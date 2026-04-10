@@ -9,24 +9,24 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Resource Type
-    # @return [Type11Enum]
+    # TODO: Write general description for this method
+    # @return [Type11]
     attr_accessor :type
 
     # Resource Members
     # @return [Array[List1]]
     attr_accessor :list
 
-    # Pagination page links
-    # @return [Links]
+    # Resource Members
+    # @return [Links1]
     attr_accessor :links
 
-    # Pagination info
-    # @return [Pagination]
+    # Resource Members
+    # @return [Pagination1]
     attr_accessor :pagination
 
-    # Sort information used on the results
-    # @return [Sort]
+    # Resource Members
+    # @return [Sort1]
     attr_accessor :sort
 
     # A mapping from model property names to API property names.
@@ -56,19 +56,17 @@ module FortisApi
       []
     end
 
-    def initialize(type = Type11Enum::CONTACTSCOLLECTION, list = SKIP,
-                   links = SKIP, pagination = SKIP, sort = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(type: SKIP, list: SKIP, links: SKIP, pagination: SKIP,
+                   sort: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @type = type unless type == SKIP
       @list = list unless list == SKIP
       @links = links unless links == SKIP
       @pagination = pagination unless pagination == SKIP
       @sort = sort unless sort == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -76,7 +74,7 @@ module FortisApi
       return nil unless hash
 
       # Extract variables from the hash.
-      type = hash['type'] ||= Type11Enum::CONTACTSCOLLECTION
+      type = hash.key?('type') ? hash['type'] : SKIP
       # Parameter is an array, so we need to iterate through it
       list = nil
       unless hash['list'].nil?
@@ -87,27 +85,31 @@ module FortisApi
       end
 
       list = SKIP unless hash.key?('list')
-      links = Links.from_hash(hash['links']) if hash['links']
-      pagination = Pagination.from_hash(hash['pagination']) if hash['pagination']
-      sort = Sort.from_hash(hash['sort']) if hash['sort']
+      links = Links1.from_hash(hash['links']) if hash['links']
+      pagination = Pagination1.from_hash(hash['pagination']) if hash['pagination']
+      sort = Sort1.from_hash(hash['sort']) if hash['sort']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ResponseContactsCollection.new(type,
-                                     list,
-                                     links,
-                                     pagination,
-                                     sort,
-                                     additional_properties)
+      ResponseContactsCollection.new(type: type,
+                                     list: list,
+                                     links: links,
+                                     pagination: pagination,
+                                     sort: sort,
+                                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type}, list: #{@list}, links: #{@links}, pagination:"\
-      " #{@pagination}, sort: #{@sort}, additional_properties: #{get_additional_properties}>"
+      " #{@pagination}, sort: #{@sort}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -115,7 +117,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type.inspect}, list: #{@list.inspect}, links: #{@links.inspect},"\
       " pagination: #{@pagination.inspect}, sort: #{@sort.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

@@ -30,72 +30,69 @@ def cash_refund(body)
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCashRefundRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  '11e95f8ec39de8fbdb0a4f1a',
-  'smith'
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith'
 )
 
 result = transactions_cash_controller.cash_refund(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1149,7 +1146,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -1169,71 +1166,68 @@ def cash_sale(body)
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCashSaleRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'smith'
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  account_holder_name: 'smith'
 )
 
 result = transactions_cash_controller.cash_sale(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2287,6 +2281,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

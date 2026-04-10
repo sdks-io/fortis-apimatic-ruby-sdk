@@ -71,13 +71,11 @@ module FortisApi
       ]
     end
 
-    def initialize(contact_id = SKIP, contact_api_id = SKIP, location_id = SKIP,
-                   product_transaction_id = SKIP, message = SKIP,
-                   client_token = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(contact_id: SKIP, contact_api_id: SKIP, location_id: SKIP,
+                   product_transaction_id: SKIP, message: SKIP,
+                   client_token: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @contact_id = contact_id unless contact_id == SKIP
       @contact_api_id = contact_api_id unless contact_api_id == SKIP
@@ -85,6 +83,7 @@ module FortisApi
       @product_transaction_id = product_transaction_id unless product_transaction_id == SKIP
       @message = message unless message == SKIP
       @client_token = client_token unless client_token == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -101,17 +100,21 @@ module FortisApi
       message = hash.key?('message') ? hash['message'] : SKIP
       client_token = hash.key?('client_token') ? hash['client_token'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data7.new(contact_id,
-                contact_api_id,
-                location_id,
-                product_transaction_id,
-                message,
-                client_token,
-                additional_properties)
+      Data7.new(contact_id: contact_id,
+                contact_api_id: contact_api_id,
+                location_id: location_id,
+                product_transaction_id: product_transaction_id,
+                message: message,
+                client_token: client_token,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -120,7 +123,7 @@ module FortisApi
       "<#{class_name} contact_id: #{@contact_id}, contact_api_id: #{@contact_api_id},"\
       " location_id: #{@location_id}, product_transaction_id: #{@product_transaction_id}, message:"\
       " #{@message}, client_token: #{@client_token}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -129,7 +132,7 @@ module FortisApi
       "<#{class_name} contact_id: #{@contact_id.inspect}, contact_api_id:"\
       " #{@contact_api_id.inspect}, location_id: #{@location_id.inspect}, product_transaction_id:"\
       " #{@product_transaction_id.inspect}, message: #{@message.inspect}, client_token:"\
-      " #{@client_token.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@client_token.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

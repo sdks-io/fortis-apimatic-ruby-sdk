@@ -71,18 +71,9 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :display_billing_fields
 
-    # Delivery Method
-    # >0 - Do not send, use the expand parameter of payment_url in the create
-    # paylink request to obtain the payment_url to embed into your messaging
-    # system.
-    # >
-    # >1 - Email. Will send an email to the provided address in the email field.
-    # >
-    # >2 - SMS. Text message the Paylink. Check with sales rep for cost.
-    # >
-    # >3 - Both
-    # >
-    # @return [DeliveryMethodEnum]
+    # Display Billing Fields to show the billing field inputs in the paylink
+    # form
+    # @return [Object]
     attr_accessor :delivery_method
 
     # Required if delivery_method is set to 2[SMS], 3[Both email and sms], this
@@ -104,9 +95,9 @@ module FortisApi
     # @return [String]
     attr_accessor :store_token_title
 
-    # the action that will be used by the form when making the payment possible
-    # values: sale, auth-only
-    # @return [PaylinkActionEnum]
+    # Store Token Title can be used to set the name of the token, sucha John
+    # Smith
+    # @return [Object]
     attr_accessor :paylink_action
 
     # Bank Funded Only Override
@@ -201,11 +192,9 @@ module FortisApi
         paylink_api_id
         ach_product_transaction_id
         expire_date
-        delivery_method
         cell_phone
         description
         store_token_title
-        paylink_action
         tags
         redirect_url_delay
         redirect_url_on_approve
@@ -213,22 +202,19 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = SKIP, cc_product_transaction_id = SKIP,
-                   email = SKIP, amount_due = SKIP, location_api_id = SKIP,
-                   contact_id = SKIP, contact_api_id = SKIP,
-                   paylink_api_id = SKIP, ach_product_transaction_id = SKIP,
-                   expire_date = SKIP,
-                   display_product_transaction_receipt_details = SKIP,
-                   display_billing_fields = SKIP, delivery_method = SKIP,
-                   cell_phone = SKIP, description = SKIP, store_token = SKIP,
-                   store_token_title = SKIP, paylink_action = SKIP,
-                   bank_funded_only_override = SKIP, tags = SKIP,
-                   redirect_url_delay = SKIP, redirect_url_on_approve = SKIP,
-                   redirect_url_on_decline = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, cc_product_transaction_id: SKIP,
+                   email: SKIP, amount_due: SKIP, location_api_id: SKIP,
+                   contact_id: SKIP, contact_api_id: SKIP, paylink_api_id: SKIP,
+                   ach_product_transaction_id: SKIP, expire_date: SKIP,
+                   display_product_transaction_receipt_details: SKIP,
+                   display_billing_fields: SKIP, delivery_method: SKIP,
+                   cell_phone: SKIP, description: SKIP, store_token: SKIP,
+                   store_token_title: SKIP, paylink_action: SKIP,
+                   bank_funded_only_override: SKIP, tags: SKIP,
+                   redirect_url_delay: SKIP, redirect_url_on_approve: SKIP,
+                   redirect_url_on_decline: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       unless cc_product_transaction_id == SKIP
@@ -265,6 +251,7 @@ module FortisApi
       @redirect_url_delay = redirect_url_delay unless redirect_url_delay == SKIP
       @redirect_url_on_approve = redirect_url_on_approve unless redirect_url_on_approve == SKIP
       @redirect_url_on_decline = redirect_url_on_decline unless redirect_url_on_decline == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -310,34 +297,38 @@ module FortisApi
       redirect_url_on_decline =
         hash.key?('redirect_url_on_decline') ? hash['redirect_url_on_decline'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1PaylinksRequest1.new(location_id,
-                             cc_product_transaction_id,
-                             email,
-                             amount_due,
-                             location_api_id,
-                             contact_id,
-                             contact_api_id,
-                             paylink_api_id,
-                             ach_product_transaction_id,
-                             expire_date,
-                             display_product_transaction_receipt_details,
-                             display_billing_fields,
-                             delivery_method,
-                             cell_phone,
-                             description,
-                             store_token,
-                             store_token_title,
-                             paylink_action,
-                             bank_funded_only_override,
-                             tags,
-                             redirect_url_delay,
-                             redirect_url_on_approve,
-                             redirect_url_on_decline,
-                             additional_properties)
+      V1PaylinksRequest1.new(location_id: location_id,
+                             cc_product_transaction_id: cc_product_transaction_id,
+                             email: email,
+                             amount_due: amount_due,
+                             location_api_id: location_api_id,
+                             contact_id: contact_id,
+                             contact_api_id: contact_api_id,
+                             paylink_api_id: paylink_api_id,
+                             ach_product_transaction_id: ach_product_transaction_id,
+                             expire_date: expire_date,
+                             display_product_transaction_receipt_details: display_product_transaction_receipt_details,
+                             display_billing_fields: display_billing_fields,
+                             delivery_method: delivery_method,
+                             cell_phone: cell_phone,
+                             description: description,
+                             store_token: store_token,
+                             store_token_title: store_token_title,
+                             paylink_action: paylink_action,
+                             bank_funded_only_override: bank_funded_only_override,
+                             tags: tags,
+                             redirect_url_delay: redirect_url_delay,
+                             redirect_url_on_approve: redirect_url_on_approve,
+                             redirect_url_on_decline: redirect_url_on_decline,
+                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -356,7 +347,7 @@ module FortisApi
       " bank_funded_only_override: #{@bank_funded_only_override}, tags: #{@tags},"\
       " redirect_url_delay: #{@redirect_url_delay}, redirect_url_on_approve:"\
       " #{@redirect_url_on_approve}, redirect_url_on_decline: #{@redirect_url_on_decline},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -377,7 +368,7 @@ module FortisApi
       " #{@bank_funded_only_override.inspect}, tags: #{@tags.inspect}, redirect_url_delay:"\
       " #{@redirect_url_delay.inspect}, redirect_url_on_approve:"\
       " #{@redirect_url_on_approve.inspect}, redirect_url_on_decline:"\
-      " #{@redirect_url_on_decline.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@redirect_url_on_decline.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

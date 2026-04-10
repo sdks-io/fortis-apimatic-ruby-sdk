@@ -10,44 +10,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Enables the communication of Device Binding Status between the ACS, the DS
-    # and the 3DS Requestor. For bound devices (value = 11–14), Device Binding
-    # Status also conveys the type of binding that was performed.
-    # >01 - Device is not bound by Cardholder
-    # >
-    # >02 - Not eligible as determined by Issuer
-    # >
-    # >03 - Pending confirmation by Cardholder
-    # >
-    # >04 - Cardholder rejected
-    # >
-    # >05 - Device Binding Status unknown, unavailable, or does not apply
-    # >
-    # >06 through 10 - Reserved for EMVCo future use (values invalid until
-    # defined by EMVCo)
-    # >
-    # >11 - Device is bound by Cardholder (device is bound using hardware / SIM
-    # internal to the Consumer Device. For instance, keys stored in a secure
-    # element on the device)
-    # >
-    # >12 - Device is bound by Cardholder (device is bound using hardware
-    # external to the Consumer Device. For example, an external FIDO
-    # Authenticator
-    # >
-    # >13 - Device is bound by Cardholder (device is bound using data that
-    # includes dynamically generated data and could include a unique device ID)
-    # >
-    # >14 - Device is bound by Cardholder (device is bound using static device
-    # data that has been obtained from the Consumer Device
-    # >
-    # >15 - Device is bound by Cardholder (Other method)
-    # >
-    # >16 through 79 - Reserved for EMVCo future use (values invalid until
-    # defined by EMVCo)
-    # >
-    # >80 through 99 - Reserved for DS use
-    # >
-    # @return [DeviceBindingStatusEnum]
+    # TODO: Write general description for this method
+    # @return [DeviceBindingStatus]
     attr_accessor :device_binding_status
 
     # A mapping from model property names to API property names.
@@ -69,13 +33,12 @@ module FortisApi
       []
     end
 
-    def initialize(device_binding_status = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(device_binding_status: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @device_binding_status = device_binding_status unless device_binding_status == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -86,26 +49,30 @@ module FortisApi
       device_binding_status =
         hash.key?('device_binding_status') ? hash['device_binding_status'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Device.new(device_binding_status,
-                 additional_properties)
+      Device.new(device_binding_status: device_binding_status,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} device_binding_status: #{@device_binding_status}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} device_binding_status: #{@device_binding_status.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

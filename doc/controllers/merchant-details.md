@@ -25,17 +25,22 @@ def merchant_details(body)
 
 ## Response Type
 
-[`ResponseMerchantDetails`](../../doc/models/response-merchant-details.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseMerchantDetails`](../../doc/models/response-merchant-details.md).
 
 ## Example Usage
 
 ```ruby
 body = V1WalletProviderMerchantDetailsRequest.new(
-  'dev.pay.site'
+  merchant_origin: 'dev.pay.site'
 )
 
 result = merchant_details_controller.merchant_details(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -61,6 +66,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

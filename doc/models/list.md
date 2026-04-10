@@ -1,6 +1,8 @@
 
 # List
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `List`
@@ -28,7 +30,8 @@
 | `total_blind_refund_count` | `Integer` | Optional | Total Blind Refund Count |
 | `changelogs` | [`Array[Changelog]`](../../doc/models/changelog.md) | Optional | Changelog Information on `expand` |
 | `postback_logs` | [`Array[PostbackLog]`](../../doc/models/postback-log.md) | Optional | Postback Log Information on `expand` |
-| `product_transaction` | [`ProductTransaction`](../../doc/models/product-transaction.md) | Optional | Product Transaction Information on `expand` |
+| `product_transaction` | [`ProductTransaction1`](../../doc/models/product-transaction-1.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,7 +53,11 @@
   "total_void_amount": 2342,
   "total_void_count": 17,
   "total_blind_refund_amount": 2342,
-  "total_blind_refund_count": 16
+  "total_blind_refund_count": 16,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

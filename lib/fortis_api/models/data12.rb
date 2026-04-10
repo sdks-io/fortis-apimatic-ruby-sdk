@@ -23,32 +23,11 @@ module FortisApi
     # @return [String]
     attr_accessor :acs_url
 
-    # Indicates whether a transaction qualifies as an authenticated transaction.
-    # >Y - Authentication / Account verification successful
-    # >
-    # >N - Not authenticated / Account not verified; Transaction denied
-    # >
-    # >U - Authentication / Account verification could not be performed;
-    # technical or other problem
-    # >
-    # >C - In order to complete the authentication, a challenge is required
-    # >
-    # >R - Authentication / Account verification Rejected. Issuer is rejecting
-    # authentication/verification and request that authorization not be
-    # attempted
-    # >
-    # >A - Attempts processing performed; Not authenticated / verified, but a
-    # proof of attempt authentication / verification is provided
-    # >
-    # >D - In order to complete the authentication, a challenge is required.
-    # Decoupled Authentication confirmed. (Only if the 3DS Server has initiated
-    # authentication with EMV 3DS 2.2.0 version or greater)
-    # >
-    # >I - Informational Only; 3DS Requestor challenge preference acknowledged.
-    # (Only if the 3DS Server has initiated authentication with EMV 3DS 2.2.0
-    # version or greater)
-    # >
-    # @return [TransactionStatusEnum]
+    # Fully qualified URL of the ACS in case the authentication response message
+    # indicates that further Cardholder interaction is required to complete the
+    # authentication.
+    # This field is only present in Browser flow.
+    # @return [TransactionStatus]
     attr_accessor :transaction_status
 
     # Payment System-specific value provided as part of the ACS registration for
@@ -80,13 +59,12 @@ module FortisApi
     # @return [String]
     attr_accessor :message_version
 
-    # Indication of whether a challenge is required for the transaction to be
-    # authorised due to local/regional mandates or other variable.
-    # >Y - Challenge is mandated
-    # >
-    # >N - Challenge is not mandated
-    # >
-    # @return [AcsChallengeMandatedEnum]
+    # Protocol version identifier This shall be the Protocol Version Number of
+    # the specification utilised by the system creating this message.
+    # The Message Version Number is set by the 3DS Server which originates the
+    # protocol with the AReq message. The Message Version Number does not change
+    # during a 3DS transaction.
+    # @return [AcsChallengeMandated]
     attr_accessor :acs_challenge_mandated
 
     # Date and time of the purchase, converted into UTC. The field is limited to
@@ -140,17 +118,14 @@ module FortisApi
       []
     end
 
-    def initialize(three_ds_server_trans_id = SKIP, acs_url = SKIP,
-                   transaction_status = SKIP, authentication_value = SKIP,
-                   eci = SKIP, ds_trans_id = SKIP, acs_trans_id = SKIP,
-                   message_version = SKIP, acs_challenge_mandated = SKIP,
-                   purchase_date = SKIP,
-                   base64_encoded_challenge_request = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(three_ds_server_trans_id: SKIP, acs_url: SKIP,
+                   transaction_status: SKIP, authentication_value: SKIP,
+                   eci: SKIP, ds_trans_id: SKIP, acs_trans_id: SKIP,
+                   message_version: SKIP, acs_challenge_mandated: SKIP,
+                   purchase_date: SKIP, base64_encoded_challenge_request: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @three_ds_server_trans_id = three_ds_server_trans_id unless three_ds_server_trans_id == SKIP
       @acs_url = acs_url unless acs_url == SKIP
@@ -166,6 +141,7 @@ module FortisApi
         @base64_encoded_challenge_request =
           base64_encoded_challenge_request
       end
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -191,22 +167,26 @@ module FortisApi
       base64_encoded_challenge_request =
         hash.key?('base64_encoded_challenge_request') ? hash['base64_encoded_challenge_request'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data12.new(three_ds_server_trans_id,
-                 acs_url,
-                 transaction_status,
-                 authentication_value,
-                 eci,
-                 ds_trans_id,
-                 acs_trans_id,
-                 message_version,
-                 acs_challenge_mandated,
-                 purchase_date,
-                 base64_encoded_challenge_request,
-                 additional_properties)
+      Data12.new(three_ds_server_trans_id: three_ds_server_trans_id,
+                 acs_url: acs_url,
+                 transaction_status: transaction_status,
+                 authentication_value: authentication_value,
+                 eci: eci,
+                 ds_trans_id: ds_trans_id,
+                 acs_trans_id: acs_trans_id,
+                 message_version: message_version,
+                 acs_challenge_mandated: acs_challenge_mandated,
+                 purchase_date: purchase_date,
+                 base64_encoded_challenge_request: base64_encoded_challenge_request,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -218,7 +198,7 @@ module FortisApi
       " #{@acs_trans_id}, message_version: #{@message_version}, acs_challenge_mandated:"\
       " #{@acs_challenge_mandated}, purchase_date: #{@purchase_date},"\
       " base64_encoded_challenge_request: #{@base64_encoded_challenge_request},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -231,7 +211,7 @@ module FortisApi
       " #{@message_version.inspect}, acs_challenge_mandated: #{@acs_challenge_mandated.inspect},"\
       " purchase_date: #{@purchase_date.inspect}, base64_encoded_challenge_request:"\
       " #{@base64_encoded_challenge_request.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

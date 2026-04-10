@@ -13,8 +13,8 @@ module FortisApi
     # @return [String]
     attr_accessor :field
 
-    # Sort direction ASC/DESC
-    # @return [OrderEnum]
+    # Field name used on the sort
+    # @return [Order]
     attr_accessor :order
 
     # A mapping from model property names to API property names.
@@ -38,14 +38,13 @@ module FortisApi
       []
     end
 
-    def initialize(field = SKIP, order = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(field: SKIP, order: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @field = field unless field == SKIP
       @order = order unless order == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -56,27 +55,31 @@ module FortisApi
       field = hash.key?('field') ? hash['field'] : SKIP
       order = hash.key?('order') ? hash['order'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Field.new(field,
-                order,
-                additional_properties)
+      Field.new(field: field,
+                order: order,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} field: #{@field}, order: #{@order}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} field: #{@field.inspect}, order: #{@order.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

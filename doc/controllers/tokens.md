@@ -14,25 +14,25 @@ tokens_controller = client.tokens
 
 ## Methods
 
-* [Create a New ACH Token](../../doc/controllers/tokens.md#create-a-new-ach-token)
-* [Create a New Credit Card Token](../../doc/controllers/tokens.md#create-a-new-credit-card-token)
-* [Create a New Previous Transaction Token](../../doc/controllers/tokens.md#create-a-new-previous-transaction-token)
-* [Create a New Terminal Token with Async Method](../../doc/controllers/tokens.md#create-a-new-terminal-token-with-async-method)
-* [Create a New Terminal Token](../../doc/controllers/tokens.md#create-a-new-terminal-token)
-* [Create a New Ticket Token](../../doc/controllers/tokens.md#create-a-new-ticket-token)
-* [Create a New Wallet Token](../../doc/controllers/tokens.md#create-a-new-wallet-token)
-* [Delete a Single Token Record](../../doc/controllers/tokens.md#delete-a-single-token-record)
-* [View Single Token Record](../../doc/controllers/tokens.md#view-single-token-record)
-* [List All Tokens Related](../../doc/controllers/tokens.md#list-all-tokens-related)
+* [Createanew ACH Token](../../doc/controllers/tokens.md#createanew-ach-token)
+* [Createanew Credit Card Token](../../doc/controllers/tokens.md#createanew-credit-card-token)
+* [Createanew Previous Transaction Token](../../doc/controllers/tokens.md#createanew-previous-transaction-token)
+* [Createanew Terminal Tokenwith Asyncmethod](../../doc/controllers/tokens.md#createanew-terminal-tokenwith-asyncmethod)
+* [Createanew Terminal Token](../../doc/controllers/tokens.md#createanew-terminal-token)
+* [Createanew Ticket Token](../../doc/controllers/tokens.md#createanew-ticket-token)
+* [Createanew Wallet Token](../../doc/controllers/tokens.md#createanew-wallet-token)
+* [Deleteasingletokenrecord](../../doc/controllers/tokens.md#deleteasingletokenrecord)
+* [Viewsingletokenrecord](../../doc/controllers/tokens.md#viewsingletokenrecord)
+* [Listalltokensrelated](../../doc/controllers/tokens.md#listalltokensrelated)
 * [Update ACH Token](../../doc/controllers/tokens.md#update-ach-token)
 * [Update CC Token](../../doc/controllers/tokens.md#update-cc-token)
 
 
-# Create a New ACH Token
+# Createanew ACH Token
 
 ```ruby
-def create_a_new_ach_token(body,
-                           expand: nil)
+def createanew_ach_token(body,
+                         expand: nil)
 ```
 
 ## Parameters
@@ -40,55 +40,54 @@ def create_a_new_ach_token(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TokensAchRequest`](../../doc/models/v1-tokens-ach-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensAchRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'John Smith',
-  '545454545454545',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi18.new,
-  AccountType13Enum::SAVINGS,
-  false,
-  '100020200'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'John Smith',
+  account_number: '545454545454545',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
+  is_company: false,
+  routing_number: '100020200'
 )
 
-result = tokens_controller.create_a_new_ach_token(body)
-puts result
+result = tokens_controller.createanew_ach_token(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -555,15 +554,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Create a New Credit Card Token
+# Createanew Credit Card Token
 
 ```ruby
-def create_a_new_credit_card_token(body,
-                                   expand: nil)
+def createanew_credit_card_token(body,
+                                 expand: nil)
 ```
 
 ## Parameters
@@ -571,60 +570,60 @@ def create_a_new_credit_card_token(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TokensCcRequest`](../../doc/models/v1-tokens-cc-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensCcRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'John Smith',
-  '5454545454545454',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi19.new,
-  '0929',
-  '1234567890',
-  '%B5454545454545454^account holder^17041010001111A123456789012?250112000000153000000?;5454545454545454=25011011000012345678?00|DC7AB845EFA793FB3C89C5D347D36ED11CAAED0C33E150437893996BA75EB8A0F334D0DAA1B874B6C677A4EF6984B089F891D8E434ACD867B616F4D815E63DA6A86B2AF927E9919B0CFC1DA3FD276D9382672EF8AA256329|32EA4D785CA3398882AABC405017EF9C2BDA666FA007A76538DE10878601EEC36EFE1F185BB8B1C8',
-  'ksn',
-  '236D530E098D48DB3F1AA367882CC1A7D475EFCACEFF1E965F17EC1E2D42CBF611C9EB0F80F4255784BA06951BD6092AB6CD3369D3D7E022E74DDCB16F9C40599FA03355E37E6ABB06B717B207709ED8C6BC5C7B6E32BB2B2F5046551A1C88D6',
-  false,
-  '%B5424181111112228^FDCS TEST CARD /MASTERCARD^18121010001111123456789012?;5424181111112228=1812101100000123456?',
-  '12345678'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'John Smith',
+  account_number: '5454545454545454',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
+  exp_date: '0929',
+  e_serial_number: '1234567890',
+  e_track_data: '%B5454545454545454^account holder^17041010001111A123456789012?250112000000153000000?;5454545454545454=25011011000012345678?00|DC7AB845EFA793FB3C89C5D347D36ED11CAAED0C33E150437893996BA75EB8A0F334D0DAA1B874B6C677A4EF6984B089F891D8E434ACD867B616F4D815E63DA6A86B2AF927E9919B0CFC1DA3FD276D9382672EF8AA256329|32EA4D785CA3398882AABC405017EF9C2BDA666FA007A76538DE10878601EEC36EFE1F185BB8B1C8',
+  e_format: 'ksn',
+  e_keyed_data: '236D530E098D48DB3F1AA367882CC1A7D475EFCACEFF1E965F17EC1E2D42CBF611C9EB0F80F4255784BA06951BD6092AB6CD3369D3D7E022E74DDCB16F9C40599FA03355E37E6ABB06B717B207709ED8C6BC5C7B6E32BB2B2F5046551A1C88D6',
+  run_avs: false,
+  track_data: '%B5424181111112228^FDCS TEST CARD /MASTERCARD^18121010001111123456789012?;5424181111112228=1812101100000123456?',
+  ticket: '12345678'
 )
 
-result = tokens_controller.create_a_new_credit_card_token(body)
-puts result
+result = tokens_controller.createanew_credit_card_token(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1091,15 +1090,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Create a New Previous Transaction Token
+# Createanew Previous Transaction Token
 
 ```ruby
-def create_a_new_previous_transaction_token(body,
-                                            expand: nil)
+def createanew_previous_transaction_token(body,
+                                          expand: nil)
 ```
 
 ## Parameters
@@ -1107,52 +1106,52 @@ def create_a_new_previous_transaction_token(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TokensPreviousTransactionRequest`](../../doc/models/v1-tokens-previous-transaction-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensPreviousTransactionRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9'
 )
 
-result = tokens_controller.create_a_new_previous_transaction_token(body)
-puts result
+result = tokens_controller.createanew_previous_transaction_token(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1619,14 +1618,14 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Create a New Terminal Token with Async Method
+# Createanew Terminal Tokenwith Asyncmethod
 
 ```ruby
-def create_a_new_terminal_token_with_async_method(body)
+def createanew_terminal_tokenwith_asyncmethod(body)
 ```
 
 ## Parameters
@@ -1637,50 +1636,50 @@ def create_a_new_terminal_token_with_async_method(body)
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensTerminalAsyncRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'store',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  action: 'store',
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9'
 )
 
-result = tokens_controller.create_a_new_terminal_token_with_async_method(body)
-puts result
+result = tokens_controller.createanew_terminal_tokenwith_asyncmethod(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1701,15 +1700,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Create a New Terminal Token
+# Createanew Terminal Token
 
 ```ruby
-def create_a_new_terminal_token(body,
-                                expand: nil)
+def createanew_terminal_token(body,
+                              expand: nil)
 ```
 
 ## Parameters
@@ -1717,54 +1716,54 @@ def create_a_new_terminal_token(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TokensTerminalRequest`](../../doc/models/v1-tokens-terminal-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensTerminalRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'store',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  action: 'store',
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9'
 )
 
-result = tokens_controller.create_a_new_terminal_token(body)
-puts result
+result = tokens_controller.createanew_terminal_token(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2231,15 +2230,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Create a New Ticket Token
+# Createanew Ticket Token
 
 ```ruby
-def create_a_new_ticket_token(body,
-                              expand: nil)
+def createanew_ticket_token(body,
+                            expand: nil)
 ```
 
 ## Parameters
@@ -2247,53 +2246,53 @@ def create_a_new_ticket_token(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TokensTicketRequest`](../../doc/models/v1-tokens-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensTicketRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  '12345678',
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  ticket: '12345678',
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9'
 )
 
-result = tokens_controller.create_a_new_ticket_token(body)
-puts result
+result = tokens_controller.createanew_ticket_token(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2760,15 +2759,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Create a New Wallet Token
+# Createanew Wallet Token
 
 ```ruby
-def create_a_new_wallet_token(body,
-                              expand: nil)
+def createanew_wallet_token(body,
+                            expand: nil)
 ```
 
 ## Parameters
@@ -2776,55 +2775,55 @@ def create_a_new_wallet_token(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TokensWalletRequest`](../../doc/models/v1-tokens-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TokensWalletRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new,
-  '11ee2bd392f32cb8aefd5bb5'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5'
 )
 
-result = tokens_controller.create_a_new_wallet_token(body)
-puts result
+result = tokens_controller.createanew_wallet_token(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -3291,14 +3290,14 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# Delete a Single Token Record
+# Deleteasingletokenrecord
 
 ```ruby
-def delete_a_single_token_record(token_id)
+def deleteasingletokenrecord(token_id)
 ```
 
 ## Parameters
@@ -3309,15 +3308,20 @@ def delete_a_single_token_record(token_id)
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 token_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = tokens_controller.delete_a_single_token_record(token_id)
-puts result
+result = tokens_controller.deleteasingletokenrecord(token_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -3784,15 +3788,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# View Single Token Record
+# Viewsingletokenrecord
 
 ```ruby
-def view_single_token_record(token_id,
-                             expand: nil,
-                             fields: nil)
+def viewsingletokenrecord(token_id,
+                          expand: nil,
+                          fields: nil)
 ```
 
 ## Parameters
@@ -3800,20 +3804,25 @@ def view_single_token_record(token_id,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `token_id` | `String` | Template, Required | A unique, system-generated identifier for the Token.<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `fields` | [`Array[Field53Enum]`](../../doc/models/field-53-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `fields` | [`Array[Field53]`](../../doc/models/field-53.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
 ```ruby
 token_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = tokens_controller.view_single_token_record(token_id)
-puts result
+result = tokens_controller.viewsingletokenrecord(token_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -4280,66 +4289,71 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# List All Tokens Related
+# Listalltokensrelated
 
 ```ruby
-def list_all_tokens_related(page: nil,
-                            order: nil,
-                            filter_by: nil,
-                            expand: nil,
-                            format: nil,
-                            typeahead: nil,
-                            fields: nil)
+def listalltokensrelated(page: nil,
+                         order: nil,
+                         filter_by: nil,
+                         expand: nil,
+                         format: nil,
+                         typeahead: nil,
+                         fields: nil)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | [`Page`](../../doc/models/page.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
+| `page` | [`Page1`](../../doc/models/page-1.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
 | `order` | [`Array[Order21]`](../../doc/models/order-21.md) | Query, Optional | Criteria used in query string parameters to order results.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`.  Must be encoded, or use syntax that does not require encoding.<br><br>> /endpoint?order[0][key]=created_ts&order[0][operator]=asc<br>> <br>> /endpoint?order=[{ "key": "created_ts", "operator": "asc"}]<br>> <br>> /endpoint?order=[{ "key": "balance", "operator": "desc"},{ "key": "created_ts", "operator": "asc"}]<br><br>**Constraints**: *Minimum Items*: `1` |
 | `filter_by` | [`Array[FilterBy]`](../../doc/models/filter-by.md) | Query, Optional | Filter criteria that can be used in query string parameters.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`. Must be encoded, or use syntax that does not require encoding.<br><br>> ?filter_by[0][key]=first_name&filter_by[0][operator]==&filter_by[0][value]=Steve<br>> <br>> /endpoint?filter_by=[{ "key": "first_name", "operator": "=", "value": "Fred" }]<br>> <br>> /endpoint?filter_by=[{ "key": "account_type", "operator": "=", "value": "VISA" }]<br>> <br>> /endpoint?filter_by=[{ "key": "created_ts", "operator": ">=", "value": "946702799" }, { "key": "created_ts", "operator": "<=", value: "1695061891" }]<br>> <br>> /endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value": "Williams,Brown,Allman" }]<br><br>**Constraints**: *Minimum Items*: `1` |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `format` | [`Format1Enum`](../../doc/models/format-1-enum.md) | Query, Optional | Reporting format, valid values: csv, tsv |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `format` | [`Format1`](../../doc/models/format-1.md) | Query, Optional | Reporting format, valid values: csv, tsv |
 | `typeahead` | `String` | Query, Optional | You can use any `field_name` from this endpoint results to order the list using the value provided as filter for the same `field_name`. It will be ordered using the following rules: 1) Exact match, 2) Starts with, 3) Contains.<br><br>> /endpoint?filter={ "field_name": "Value" }&_typeahead=field_name |
-| `fields` | [`Array[Field53Enum]`](../../doc/models/field-53-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `fields` | [`Array[Field53]`](../../doc/models/field-53.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseTokensCollection`](../../doc/models/response-tokens-collection.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTokensCollection`](../../doc/models/response-tokens-collection.md).
 
 ## Example Usage
 
 ```ruby
-page = Page.new(
-  1,
-  50
+page = Page1.new(
+  number: 1,
+  size: 50
 )
 
 order = [
   Order21.new(
-    'first_name',
-    OperatorEnum::ASC
+    key: 'first_name',
+    operator: Operator::ASC
   )
 ]
 
 filter_by = [
   FilterBy.new(
-    'first_name',
-    Operator1Enum::ENUM_1,
-    'Fred'
+    key: 'first_name',
+    operator: Operator1::ENUM_1,
+    value: 'Fred'
   )
 ]
 
-result = tokens_controller.list_all_tokens_related(
+result = tokens_controller.listalltokensrelated(
   page: page,
   order: order,
   filter_by: filter_by
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -4831,7 +4845,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
 # Update ACH Token
@@ -4848,11 +4862,11 @@ def update_ach_token(token_id,
 |  --- | --- | --- | --- |
 | `token_id` | `String` | Template, Required | A unique, system-generated identifier for the Token.<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `body` | [`V1TokensAchRequest1`](../../doc/models/v1-tokens-ach-request-1.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
@@ -4860,46 +4874,45 @@ def update_ach_token(token_id,
 token_id = '11e95f8ec39de8fbdb0a4f1a'
 
 body = V1TokensAchRequest1.new(
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new,
-  AccountType13Enum::SAVINGS
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9'
 )
 
 result = tokens_controller.update_ach_token(
   token_id,
   body
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -5366,7 +5379,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -5384,11 +5397,11 @@ def update_cc_token(token_id,
 |  --- | --- | --- | --- |
 | `token_id` | `String` | Template, Required | A unique, system-generated identifier for the Token.<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `body` | [`V1TokensCcRequest1`](../../doc/models/v1-tokens-cc-request-1.md) | Body, Required | - |
-| `expand` | [`Array[Expand47Enum]`](../../doc/models/expand-47-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand47]`](../../doc/models/expand-47.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseToken`](../../doc/models/response-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseToken`](../../doc/models/response-token.md).
 
 ## Example Usage
 
@@ -5396,46 +5409,46 @@ def update_cc_token(token_id,
 token_id = '11e95f8ec39de8fbdb0a4f1a'
 
 body = V1TokensCcRequest1.new(
-  'John Smith',
-  'accountvaultabcd',
-  'tokenabcd',
-  'accountvault custom 1',
-  'accountvault custom 2',
-  'accountvault custom 3',
-  'token custom 1',
-  'token custom 2',
-  'token custom 3',
-  AchSecCode3Enum::WEB,
-  BillingAddress.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '123456',
-  IdentityVerification2.new,
-  '11e95f8ec39de8fbdb0a4f1a',
-  'previousaccountvault123456',
-  'previousaccountvault123456',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '545454545454545',
-  true,
-  '192.168.0.10',
-  'Test CC Account',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  2,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  nil,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
-  Joi4.new,
-  '0929'
+  account_holder_name: 'John Smith',
+  account_vault_api_id: 'accountvaultabcd',
+  token_api_id: 'tokenabcd',
+  accountvault_c1: 'accountvault custom 1',
+  accountvault_c2: 'accountvault custom 2',
+  accountvault_c3: 'accountvault custom 3',
+  token_c1: 'token custom 1',
+  token_c2: 'token custom 2',
+  token_c3: 'token custom 3',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  customer_id: '123456',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_account_vault_api_id: 'previousaccountvault123456',
+  previous_token_api_id: 'previousaccountvault123456',
+  previous_account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_token_id: '11e95f8ec39de8fbdb0a4f1a',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '545454545454545',
+  terms_agree: true,
+  terms_agree_ip: '192.168.0.10',
+  title: 'Test CC Account',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  secure_protocol_version: 2,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  acs_transaction_id: '13c701a3-5a88-4c45-89e9-ef65e50a8bf9',
+  exp_date: '0929'
 )
 
 result = tokens_controller.update_cc_token(
   token_id,
   body
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -5902,6 +5915,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

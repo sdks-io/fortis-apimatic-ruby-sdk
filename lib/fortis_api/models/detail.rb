@@ -50,17 +50,16 @@ module FortisApi
       []
     end
 
-    def initialize(message = SKIP, path = SKIP, type = SKIP, context = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(message: SKIP, path: SKIP, type: SKIP, context: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @message = message unless message == SKIP
       @path = path unless path == SKIP
       @type = type unless type == SKIP
       @context = context unless context == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -73,22 +72,26 @@ module FortisApi
       type = hash.key?('type') ? hash['type'] : SKIP
       context = Context.from_hash(hash['context']) if hash['context']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Detail.new(message,
-                 path,
-                 type,
-                 context,
-                 additional_properties)
+      Detail.new(message: message,
+                 path: path,
+                 type: type,
+                 context: context,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} message: #{@message}, path: #{@path}, type: #{@type}, context: #{@context},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -96,7 +99,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} message: #{@message.inspect}, path: #{@path.inspect}, type:"\
       " #{@type.inspect}, context: #{@context.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

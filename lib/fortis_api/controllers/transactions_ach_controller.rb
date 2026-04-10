@@ -4,19 +4,19 @@
 # https://www.apimatic.io ).
 
 module FortisApi
-  # TransactionsACHController
-  class TransactionsACHController < BaseController
+  # TransactionsAchController
+  class TransactionsAchController < BaseController
     # ACH Transaction that is intended for a Blind Refund, where a previous
     # transaction id is not known. Must have Fortis approval prior to use.
     # @param [V1TransactionsAchCreditKeyedRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_credit(body,
                    expand: nil)
       @api_call
@@ -24,7 +24,8 @@ module FortisApi
                                      '/v1/transactions/ach/credit/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -32,9 +33,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -46,13 +48,13 @@ module FortisApi
     # use.
     # @param [V1TransactionsAchCreditPrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_credit_previous_transaction(body,
                                         expand: nil)
       @api_call
@@ -60,7 +62,8 @@ module FortisApi
                                      '/v1/transactions/ach/credit/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -68,9 +71,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -82,13 +86,13 @@ module FortisApi
     # use.
     # @param [V1TransactionsAchCreditTokenRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_credit_tokenized(body,
                              expand: nil)
       @api_call
@@ -96,7 +100,8 @@ module FortisApi
                                      '/v1/transactions/ach/credit/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -104,9 +109,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -116,13 +122,13 @@ module FortisApi
     # Creates an ACH Sale transaction to debit the customers bank account.
     # @param [V1TransactionsAchDebitKeyedRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_debit(body,
                   expand: nil)
       @api_call
@@ -130,7 +136,8 @@ module FortisApi
                                      '/v1/transactions/ach/debit/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -138,9 +145,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -150,13 +158,13 @@ module FortisApi
     # Create an ACH Sale transaction with a previous ACH transaction_id.
     # @param [V1TransactionsAchDebitPrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_debit_previous_transaction(body,
                                        expand: nil)
       @api_call
@@ -164,7 +172,8 @@ module FortisApi
                                      '/v1/transactions/ach/debit/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -172,9 +181,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -185,13 +195,13 @@ module FortisApi
     # transaction.
     # @param [V1TransactionsAchDebitTokenRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_debit_tokenized(body,
                             expand: nil)
       @api_call
@@ -199,7 +209,8 @@ module FortisApi
                                      '/v1/transactions/ach/debit/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -207,9 +218,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -219,13 +231,13 @@ module FortisApi
     # Create a new ACH refund transaction using previous transaction id
     # @param [V1TransactionsAchRefundPrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ach_refund_previous_transaction(body,
                                         expand: nil)
       @api_call
@@ -233,7 +245,8 @@ module FortisApi
                                      '/v1/transactions/ach/refund/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -241,9 +254,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))

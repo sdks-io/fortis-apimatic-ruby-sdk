@@ -1,6 +1,8 @@
 
 # Detail
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Detail`
@@ -13,6 +15,7 @@
 | `path` | `Array[String]` | Optional | - |
 | `type` | `String` | Optional | - |
 | `context` | [`Context`](../../doc/models/context.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,7 +29,15 @@
   ],
   "context": {
     "key": "key2",
-    "label": "label2"
+    "label": "label2",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

@@ -11,19 +11,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Length of time that the cardholder has had the account with the 3DS
-    # Requestor.
-    # >01 - No account
-    # >
-    # >02 - Created during this transaction
-    # >
-    # >03 - Less than 30 days
-    # >
-    # >04 - Between 30 and 60 days
-    # >
-    # >05 - More than 60 days
-    # >
-    # @return [ChAccAgeIndEnum]
+    # TODO: Write general description for this method
+    # @return [ChAccAgeInd]
     attr_accessor :ch_acc_age_ind
 
     # Date converted into UTC that the cardholder opened the account with the
@@ -31,18 +20,9 @@ module FortisApi
     # @return [String]
     attr_accessor :ch_acc_date
 
-    # Length of time since the cardholder's account information with the 3DS
-    # Requestor was last changed. Includes Billing or Shipping address, new
-    # payment account, or new user(s) added.
-    # >01 - Changed during this transaction
-    # >
-    # >02 - Less than 30 days
-    # >
-    # >03 - 30 - 60 days
-    # >
-    # >04 - More than 60 days
-    # >
-    # @return [ChAccChangeIndEnum]
+    # Date converted into UTC that the cardholder opened the account with the
+    # 3DS Requestor. Date format = YYYYMMDD.
+    # @return [ChAccChangeInd]
     attr_accessor :ch_acc_change_ind
 
     # Date converted into UTC that the cardholder's account with the 3DS
@@ -51,19 +31,10 @@ module FortisApi
     # @return [String]
     attr_accessor :ch_acc_change
 
-    # Length of time since the cardholder's account with the 3DS Requestor had a
-    # password change or account reset.
-    # >01 - No change
-    # >
-    # >02 - Changed during this transaction
-    # >
-    # >03 - Less than 30 days
-    # >
-    # >04 - 30 - 60 days
-    # >
-    # >05 - More than 60 days
-    # >
-    # @return [ChAccPwChangeIndEnum]
+    # Date converted into UTC that the cardholder's account with the 3DS
+    # Requestor was last changed. Including Billing or Shipping address, new
+    # payment account, or new user(s) added. Date format = YYYYMMDD.
+    # @return [ChAccPwChangeInd]
     attr_accessor :ch_acc_pw_change_ind
 
     # Date converted into UTC that cardholder's account with the 3DS Requestor
@@ -71,17 +42,9 @@ module FortisApi
     # @return [String]
     attr_accessor :ch_acc_pw_change
 
-    # Indicates when the shipping address used for this transaction was first
-    # used with the 3DS Requestor.
-    # >01 - This transaction
-    # >
-    # >02 - Less than 30 days
-    # >
-    # >03 - 30 - 60 days
-    # >
-    # >04 - More than 60 days
-    # >
-    # @return [ShipAddressUsageIndEnum]
+    # Date converted into UTC that cardholder's account with the 3DS Requestor
+    # had a password change or account reset. Date format must be YYYYMMDD.
+    # @return [ShipAddressUsageInd]
     attr_accessor :ship_address_usage_ind
 
     # Date converted into UTC when the shipping address used for this
@@ -111,37 +74,19 @@ module FortisApi
     # @return [Integer]
     attr_accessor :nb_purchase_account
 
-    # Indicates whether the 3DS Requestor has experienced suspicious activity
-    # including previous fraud) on the cardholder account.
-    # >01 - No suspicious activity has been observed
-    # >
-    # >02 - Suspicious activity has been observed
-    # >
-    # @return [SuspiciousAccActivityEnum]
+    # Number of purchases with this cardholder account during the previous six
+    # months.
+    # @return [SuspiciousAccActivity]
     attr_accessor :suspicious_acc_activity
 
-    # Indicates if the Cardholder Name on the account is identical to the
-    # shipping Name used for this transaction.
-    # >01 - Account Name identical to shipping Name
-    # >
-    # >02 - Account Name different than shipping Name
-    # >
-    # @return [ShipNameIndicatorEnum]
+    # Number of purchases with this cardholder account during the previous six
+    # months.
+    # @return [ShipNameIndicator]
     attr_accessor :ship_name_indicator
 
-    # Indicates the length of time that the payment account was enrolled in the
-    # cardholder's account with the 3DS Requestor.
-    # >01 - No account (guest check-out)
-    # >
-    # >02 - During this transaction
-    # >
-    # >03 - Less than 30 days
-    # >
-    # >04 - 30 - 60 days
-    # >
-    # >05 - More than 60 days
-    # >
-    # @return [PaymentAccIndEnum]
+    # Number of purchases with this cardholder account during the previous six
+    # months.
+    # @return [PaymentAccInd]
     attr_accessor :payment_acc_ind
 
     # Date converted into UTC that the payment account was enrolled in the
@@ -209,19 +154,17 @@ module FortisApi
       ]
     end
 
-    def initialize(ch_acc_age_ind = SKIP, ch_acc_date = SKIP,
-                   ch_acc_change_ind = SKIP, ch_acc_change = SKIP,
-                   ch_acc_pw_change_ind = SKIP, ch_acc_pw_change = SKIP,
-                   ship_address_usage_ind = SKIP, ship_address_usage = SKIP,
-                   txn_activity_day = SKIP, txn_activity_year = SKIP,
-                   provision_attempts_day = SKIP, nb_purchase_account = SKIP,
-                   suspicious_acc_activity = SKIP, ship_name_indicator = SKIP,
-                   payment_acc_ind = SKIP, payment_acc_age = SKIP,
-                   ch_acc_req_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(ch_acc_age_ind: SKIP, ch_acc_date: SKIP,
+                   ch_acc_change_ind: SKIP, ch_acc_change: SKIP,
+                   ch_acc_pw_change_ind: SKIP, ch_acc_pw_change: SKIP,
+                   ship_address_usage_ind: SKIP, ship_address_usage: SKIP,
+                   txn_activity_day: SKIP, txn_activity_year: SKIP,
+                   provision_attempts_day: SKIP, nb_purchase_account: SKIP,
+                   suspicious_acc_activity: SKIP, ship_name_indicator: SKIP,
+                   payment_acc_ind: SKIP, payment_acc_age: SKIP,
+                   ch_acc_req_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @ch_acc_age_ind = ch_acc_age_ind unless ch_acc_age_ind == SKIP
       @ch_acc_date = ch_acc_date unless ch_acc_date == SKIP
@@ -240,6 +183,7 @@ module FortisApi
       @payment_acc_ind = payment_acc_ind unless payment_acc_ind == SKIP
       @payment_acc_age = payment_acc_age unless payment_acc_age == SKIP
       @ch_acc_req_id = ch_acc_req_id unless ch_acc_req_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -279,28 +223,32 @@ module FortisApi
         hash.key?('payment_acc_age') ? hash['payment_acc_age'] : SKIP
       ch_acc_req_id = hash.key?('ch_acc_req_id') ? hash['ch_acc_req_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      AccountInfo.new(ch_acc_age_ind,
-                      ch_acc_date,
-                      ch_acc_change_ind,
-                      ch_acc_change,
-                      ch_acc_pw_change_ind,
-                      ch_acc_pw_change,
-                      ship_address_usage_ind,
-                      ship_address_usage,
-                      txn_activity_day,
-                      txn_activity_year,
-                      provision_attempts_day,
-                      nb_purchase_account,
-                      suspicious_acc_activity,
-                      ship_name_indicator,
-                      payment_acc_ind,
-                      payment_acc_age,
-                      ch_acc_req_id,
-                      additional_properties)
+      AccountInfo.new(ch_acc_age_ind: ch_acc_age_ind,
+                      ch_acc_date: ch_acc_date,
+                      ch_acc_change_ind: ch_acc_change_ind,
+                      ch_acc_change: ch_acc_change,
+                      ch_acc_pw_change_ind: ch_acc_pw_change_ind,
+                      ch_acc_pw_change: ch_acc_pw_change,
+                      ship_address_usage_ind: ship_address_usage_ind,
+                      ship_address_usage: ship_address_usage,
+                      txn_activity_day: txn_activity_day,
+                      txn_activity_year: txn_activity_year,
+                      provision_attempts_day: provision_attempts_day,
+                      nb_purchase_account: nb_purchase_account,
+                      suspicious_acc_activity: suspicious_acc_activity,
+                      ship_name_indicator: ship_name_indicator,
+                      payment_acc_ind: payment_acc_ind,
+                      payment_acc_age: payment_acc_age,
+                      ch_acc_req_id: ch_acc_req_id,
+                      additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -315,7 +263,7 @@ module FortisApi
       " nb_purchase_account: #{@nb_purchase_account}, suspicious_acc_activity:"\
       " #{@suspicious_acc_activity}, ship_name_indicator: #{@ship_name_indicator},"\
       " payment_acc_ind: #{@payment_acc_ind}, payment_acc_age: #{@payment_acc_age}, ch_acc_req_id:"\
-      " #{@ch_acc_req_id}, additional_properties: #{get_additional_properties}>"
+      " #{@ch_acc_req_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -332,7 +280,7 @@ module FortisApi
       " #{@suspicious_acc_activity.inspect}, ship_name_indicator: #{@ship_name_indicator.inspect},"\
       " payment_acc_ind: #{@payment_acc_ind.inspect}, payment_acc_age:"\
       " #{@payment_acc_age.inspect}, ch_acc_req_id: #{@ch_acc_req_id.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

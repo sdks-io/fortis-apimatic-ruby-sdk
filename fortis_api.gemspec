@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'fortis-apimatic-sdk'
-  s.version = '1.0.2'
+  s.version = '1.0.3'
   s.summary = 'SDKs for fortis'
   s.description = 'SDKs for fortis by APIMatic'
   s.authors = ['Muhammad Rafay']
@@ -13,8 +13,6 @@ Gem::Specification.new do |s|
   s.add_dependency('apimatic_core_interfaces', '~> 0.2.3')
   s.add_dependency('apimatic_core', '~> 0.3.20')
   s.add_dependency('apimatic_faraday_client_adapter', '~> 0.1.6')
-  s.add_development_dependency('minitest', '~> 5.24.0')
-  s.add_development_dependency('minitest-proveit', '~> 1.0')
   s.required_ruby_version = ['>= 2.6']
   s.files = Dir['{bin,lib,man,test,spec}/**/*', 'README*', 'LICENSE*']
   s.require_paths = ['lib']

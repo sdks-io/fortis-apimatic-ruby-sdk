@@ -1,6 +1,8 @@
 
 # Response 412 Exception
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Response412Exception`
@@ -15,6 +17,7 @@
 | `title` | `String` | Optional | Error description |
 | `detail` | `String` | Optional | Error details |
 | `meta` | [`Meta`](../../doc/models/meta.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,7 +27,11 @@
   "id": "clj4ge1234004t9ptdoz34567",
   "statusCode": 412,
   "title": "Precondition Failed",
-  "detail": "\"fieldName\" is required"
+  "detail": "\"fieldName\" is required",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

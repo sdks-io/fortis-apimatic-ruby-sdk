@@ -63,18 +63,17 @@ module FortisApi
       ]
     end
 
-    def initialize(city = SKIP, state = SKIP, postal_code = SKIP,
-                   country = SKIP, street = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(city: SKIP, state: SKIP, postal_code: SKIP, country: SKIP,
+                   street: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @city = city unless city == SKIP
       @state = state unless state == SKIP
       @postal_code = postal_code unless postal_code == SKIP
       @country = country unless country == SKIP
       @street = street unless street == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -88,23 +87,27 @@ module FortisApi
       country = hash.key?('country') ? hash['country'] : SKIP
       street = hash.key?('street') ? hash['street'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Address.new(city,
-                  state,
-                  postal_code,
-                  country,
-                  street,
-                  additional_properties)
+      Address.new(city: city,
+                  state: state,
+                  postal_code: postal_code,
+                  country: country,
+                  street: street,
+                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} city: #{@city}, state: #{@state}, postal_code: #{@postal_code}, country:"\
-      " #{@country}, street: #{@street}, additional_properties: #{get_additional_properties}>"
+      " #{@country}, street: #{@street}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -112,7 +115,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} city: #{@city.inspect}, state: #{@state.inspect}, postal_code:"\
       " #{@postal_code.inspect}, country: #{@country.inspect}, street: #{@street.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

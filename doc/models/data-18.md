@@ -1,6 +1,8 @@
 
 # Data 18
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Data18`
@@ -31,8 +33,8 @@
 | `item_footer` | `String` | Optional | Item footer<br><br>**Constraints**: *Maximum Length*: `250` |
 | `amount_due` | `Float` | Optional | Amount Due |
 | `notification_email` | `String` | Optional | Notification email<br><br>**Constraints**: *Maximum Length*: `640` |
-| `status_id` | [`StatusIdEnum`](../../doc/models/status-id-enum.md) | Optional | (DEPRECATED) Status Id |
-| `status_code` | [`StatusCode14Enum`](../../doc/models/status-code-14-enum.md) | Optional | Status Code |
+| `status_id` | `Object` | Optional | - |
+| `status_code` | `Object` | Optional | - |
 | `note` | `String` | Optional | Note<br><br>**Constraints**: *Maximum Length*: `200` |
 | `notification_days_before_due_date` | `Integer` | Optional | Notification days before due date<br><br>**Constraints**: `>= 0`, `<= 99` |
 | `notification_days_after_due_date` | `Integer` | Optional | Notification days after due date<br><br>**Constraints**: `>= 0`, `<= 99` |
@@ -56,21 +58,22 @@
 | `active` | `TrueClass \| FalseClass` | Optional | Active status |
 | `payment_status_id` | `Integer` | Optional | Payment Status Id<br><br>**Constraints**: `>= 1`, `<= 3` |
 | `is_active` | `TrueClass \| FalseClass` | Optional | Register is active |
-| `quick_invoice_setting` | [`QuickInvoiceSetting`](../../doc/models/quick-invoice-setting.md) | Optional | Quick Invoice Setting Information on `expand` |
+| `quick_invoice_setting` | [`QuickInvoiceSetting1`](../../doc/models/quick-invoice-setting-1.md) | Optional | - |
 | `quick_invoice_views` | [`Array[QuickInvoiceView]`](../../doc/models/quick-invoice-view.md) | Optional | Quick Invoice View Information on `expand` |
-| `location` | [`Location`](../../doc/models/location.md) | Optional | Location Information on `expand` |
-| `created_user` | [`CreatedUser`](../../doc/models/created-user.md) | Optional | User Information on `expand` |
-| `modified_user` | [`ModifiedUser`](../../doc/models/modified-user.md) | Optional | Modified User Information on `expand` |
+| `location` | [`Location18`](../../doc/models/location-18.md) | Optional | - |
+| `created_user` | [`User9`](../../doc/models/user-9.md) | Optional | - |
+| `modified_user` | [`User9`](../../doc/models/user-9.md) | Optional | - |
 | `changelogs` | [`Array[Changelog]`](../../doc/models/changelog.md) | Optional | Changelog Information on `expand` |
-| `contact` | [`Contact1`](../../doc/models/contact-1.md) | Optional | Contact Information on `expand` |
+| `contact` | [`Contact3`](../../doc/models/contact-3.md) | Optional | - |
 | `log_emails` | [`Array[LogEmail]`](../../doc/models/log-email.md) | Optional | Log Email Information on `expand` |
-| `log_sms` | [`LogSms`](../../doc/models/log-sms.md) | Optional | Log Sms Information on `expand` |
+| `log_sms` | [`LogSms1`](../../doc/models/log-sms-1.md) | Optional | - |
 | `transactions` | [`Array[Transaction]`](../../doc/models/transaction.md) | Optional | Transaction Information on `expand` |
-| `cc_product_transaction` | [`CcProductTransaction`](../../doc/models/cc-product-transaction.md) | Optional | Cc Product Transaction Information on `expand` |
-| `ach_product_transaction` | [`AchProductTransaction`](../../doc/models/ach-product-transaction.md) | Optional | Ach Product Transaction Information on `expand` |
-| `email_blacklist` | [`EmailBlacklist`](../../doc/models/email-blacklist.md) | Optional | Email Blacklist Information on `expand` |
-| `sms_blacklist` | [`SmsBlacklist`](../../doc/models/sms-blacklist.md) | Optional | Sms Blacklist Information on `expand` |
+| `cc_product_transaction` | [`ProductTransaction1`](../../doc/models/product-transaction-1.md) | Optional | - |
+| `ach_product_transaction` | [`ProductTransaction1`](../../doc/models/product-transaction-1.md) | Optional | - |
+| `email_blacklist` | [`EmailBlacklist1`](../../doc/models/email-blacklist-1.md) | Optional | - |
+| `sms_blacklist` | [`SmsBlacklist1`](../../doc/models/sms-blacklist-1.md) | Optional | - |
 | `payment_url` | `String` | Optional | Payment Url Information on `expand` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -97,8 +100,6 @@
   "item_footer": "Thank you",
   "amount_due": 245.36,
   "notification_email": "email@domain.com",
-  "status_id": 1,
-  "status_code": 1,
   "note": "some note",
   "notification_days_before_due_date": 3,
   "notification_days_after_due_date": 7,
@@ -119,7 +120,11 @@
   "modified_user_id": "11e95f8ec39de8fbdb0a4f1a",
   "active": true,
   "payment_status_id": 1,
-  "is_active": true
+  "is_active": true,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

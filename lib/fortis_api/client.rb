@@ -62,15 +62,15 @@ module FortisApi
     end
 
     # Access to m3_ds_authentication controller.
-    # @return [M3DSAuthenticationController] Returns the controller instance.
+    # @return [M3DsAuthenticationController] Returns the controller instance.
     def m3_ds_authentication
-      @m3_ds_authentication ||= M3DSAuthenticationController.new @global_configuration
+      @m3_ds_authentication ||= M3DsAuthenticationController.new @global_configuration
     end
 
     # Access to m3_ds_transactions controller.
-    # @return [M3DSTransactionsController] Returns the controller instance.
+    # @return [M3DsTransactionsController] Returns the controller instance.
     def m3_ds_transactions
-      @m3_ds_transactions ||= M3DSTransactionsController.new @global_configuration
+      @m3_ds_transactions ||= M3DsTransactionsController.new @global_configuration
     end
 
     # Access to merchant_deposits controller.
@@ -140,15 +140,15 @@ module FortisApi
     end
 
     # Access to transaction_ach_retries controller.
-    # @return [TransactionACHRetriesController] Returns the controller instance.
+    # @return [TransactionAchRetriesController] Returns the controller instance.
     def transaction_ach_retries
-      @transaction_ach_retries ||= TransactionACHRetriesController.new @global_configuration
+      @transaction_ach_retries ||= TransactionAchRetriesController.new @global_configuration
     end
 
     # Access to transactions_ach controller.
-    # @return [TransactionsACHController] Returns the controller instance.
+    # @return [TransactionsAchController] Returns the controller instance.
     def transactions_ach
-      @transactions_ach ||= TransactionsACHController.new @global_configuration
+      @transactions_ach ||= TransactionsAchController.new @global_configuration
     end
 
     # Access to transactions_cash controller.
@@ -164,9 +164,9 @@ module FortisApi
     end
 
     # Access to transactions_ebt_card controller.
-    # @return [TransactionsEBTCardController] Returns the controller instance.
+    # @return [TransactionsEbtCardController] Returns the controller instance.
     def transactions_ebt_card
-      @transactions_ebt_card ||= TransactionsEBTCardController.new @global_configuration
+      @transactions_ebt_card ||= TransactionsEbtCardController.new @global_configuration
     end
 
     # Access to transactions_read controller.
@@ -222,9 +222,9 @@ module FortisApi
       max_retries: 0, retry_interval: 1, backoff_factor: 2,
       retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
       retry_methods: %i[get put], http_callback: nil, proxy_settings: nil,
-      environment: Environment::SANDBOX, user_id_credentials: nil,
-      user_api_key_credentials: nil, developer_id_credentials: nil,
-      access_token_credentials: nil, config: nil
+      logging_configuration: nil, environment: Environment::PRODUCTION,
+      user_id_credentials: nil, user_api_key_credentials: nil,
+      developer_id_credentials: nil, access_token_credentials: nil, config: nil
     )
       @config = if config.nil?
                   Configuration.new(
@@ -233,7 +233,9 @@ module FortisApi
                     backoff_factor: backoff_factor,
                     retry_statuses: retry_statuses,
                     retry_methods: retry_methods, http_callback: http_callback,
-                    proxy_settings: proxy_settings, environment: environment,
+                    proxy_settings: proxy_settings,
+                    logging_configuration: logging_configuration,
+                    environment: environment,
                     user_id_credentials: user_id_credentials,
                     user_api_key_credentials: user_api_key_credentials,
                     developer_id_credentials: developer_id_credentials,
@@ -242,11 +244,13 @@ module FortisApi
                 else
                   config
                 end
+      user_agent_params = BaseController.user_agent_parameters
 
       @global_configuration = GlobalConfiguration.new(client_configuration: @config)
                                                  .base_uri_executor(@config.method(:get_base_uri))
                                                  .global_errors(BaseController::GLOBAL_ERRORS)
-                                                 .user_agent(BaseController.user_agent)
+                                                 .user_agent(BaseController.user_agent,
+                                                             agent_parameters: user_agent_params)
 
       initialize_auth_managers(@global_configuration)
       @global_configuration = @global_configuration.auth_managers(@auth_managers)

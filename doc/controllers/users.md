@@ -10,22 +10,22 @@ users_controller = client.users
 
 ## Methods
 
-* [Create a New API Key](../../doc/controllers/users.md#create-a-new-api-key)
-* [Create a New User](../../doc/controllers/users.md#create-a-new-user)
-* [List All User](../../doc/controllers/users.md#list-all-user)
-* [Delete a User Record](../../doc/controllers/users.md#delete-a-user-record)
-* [View Single User Record](../../doc/controllers/users.md#view-single-user-record)
-* [Update a User Record](../../doc/controllers/users.md#update-a-user-record)
-* [View Self Record](../../doc/controllers/users.md#view-self-record)
-* [Remove Verification](../../doc/controllers/users.md#remove-verification)
-* [Send Verification](../../doc/controllers/users.md#send-verification)
+* [Createanew AP Ikey](../../doc/controllers/users.md#createanew-ap-ikey)
+* [Createanewuser](../../doc/controllers/users.md#createanewuser)
+* [Listall User](../../doc/controllers/users.md#listall-user)
+* [Deleteauserrecord](../../doc/controllers/users.md#deleteauserrecord)
+* [Viewsingleuserrecord](../../doc/controllers/users.md#viewsingleuserrecord)
+* [Updateauserrecord](../../doc/controllers/users.md#updateauserrecord)
+* [Viewselfrecord](../../doc/controllers/users.md#viewselfrecord)
+* [Removeverification](../../doc/controllers/users.md#removeverification)
+* [Sendverification](../../doc/controllers/users.md#sendverification)
 
 
-# Create a New API Key
+# Createanew AP Ikey
 
 ```ruby
-def create_a_new_api_key(user_id,
-                         expand: nil)
+def createanew_ap_ikey(user_id,
+                       expand: nil)
 ```
 
 ## Parameters
@@ -33,19 +33,24 @@ def create_a_new_api_key(user_id,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `user_id` | `String` | Template, Required | User ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `expand` | [`Array[Expand117Enum]`](../../doc/models/expand-117-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand117]`](../../doc/models/expand-117.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseUserApiKey`](../../doc/models/response-user-api-key.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUserApiKey`](../../doc/models/response-user-api-key.md).
 
 ## Example Usage
 
 ```ruby
 user_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = users_controller.create_a_new_api_key(user_id)
-puts result
+result = users_controller.createanew_ap_ikey(user_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -63,14 +68,14 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Create a New User
+# Createanewuser
 
 ```ruby
-def create_a_new_user(body,
-                      expand: nil)
+def createanewuser(body,
+                   expand: nil)
 ```
 
 ## Parameters
@@ -78,53 +83,50 @@ def create_a_new_user(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1UsersRequest`](../../doc/models/v1-users-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand117Enum]`](../../doc/models/expand-117-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand117]`](../../doc/models/expand-117.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseUser`](../../doc/models/response-user.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUser`](../../doc/models/response-user.md).
 
 ## Example Usage
 
 ```ruby
 body = V1UsersRequest.new(
-  'email@domain.com',
-  'Smith',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '{user_name}',
-  UserTypeCodeEnum::ENUM_100,
-  '5454545454545454',
-  '{branding_domain_url}',
-  '3339998822',
-  'Fortis Payment Systems, LLC',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '2021-12-01',
-  '11e95f8ec39de8fbdb0a4f1a',
-  true,
-  '3339998822',
-  'John',
-  'en-US',
-  '3339998822',
-  '5',
-  nil,
-  '20220308',
-  'America/New_York',
-  UiPrefs.new,
-  '234bas8dfn8238f923w2',
-  nil,
-  nil,
-  '48375',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  StatusCodeEnum::ENUM_1,
-  false,
-  false,
-  Address2.new
+  email: 'email@domain.com',
+  last_name: 'Smith',
+  primary_location_id: '11e95f8ec39de8fbdb0a4f1a',
+  username: '{user_name}',
+  user_type_code: UserTypeCode::ENUM_600,
+  account_number: '5454545454545454',
+  branding_domain_url: '{branding_domain_url}',
+  cell_phone: '3339998822',
+  company_name: 'Fortis Payment Systems, LLC',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  date_of_birth: '2021-12-01',
+  domain_id: '11e95f8ec39de8fbdb0a4f1a',
+  email_trx_receipt: true,
+  home_phone: '3339998822',
+  first_name: 'John',
+  locale: 'en-US',
+  office_phone: '3339998822',
+  office_ext_phone: '5',
+  terms_condition_code: '20220308',
+  tz: 'America/New_York',
+  user_api_key: '234bas8dfn8238f923w2',
+  zip: '48375',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  api_only: false,
+  is_invitation: false
 )
 
-result = users_controller.create_a_new_user(body)
-puts result
+result = users_controller.createanewuser(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -515,67 +517,72 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# List All User
+# Listall User
 
 ```ruby
-def list_all_user(page: nil,
-                  order: nil,
-                  filter_by: nil,
-                  expand: nil,
-                  format: nil,
-                  typeahead: nil,
-                  fields: nil)
+def listall_user(page: nil,
+                 order: nil,
+                 filter_by: nil,
+                 expand: nil,
+                 format: nil,
+                 typeahead: nil,
+                 fields: nil)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | [`Page`](../../doc/models/page.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
+| `page` | [`Page1`](../../doc/models/page-1.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
 | `order` | [`Array[Order21]`](../../doc/models/order-21.md) | Query, Optional | Criteria used in query string parameters to order results.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`.  Must be encoded, or use syntax that does not require encoding.<br><br>> /endpoint?order[0][key]=created_ts&order[0][operator]=asc<br>> <br>> /endpoint?order=[{ "key": "created_ts", "operator": "asc"}]<br>> <br>> /endpoint?order=[{ "key": "balance", "operator": "desc"},{ "key": "created_ts", "operator": "asc"}]<br><br>**Constraints**: *Minimum Items*: `1` |
 | `filter_by` | [`Array[FilterBy]`](../../doc/models/filter-by.md) | Query, Optional | Filter criteria that can be used in query string parameters.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`. Must be encoded, or use syntax that does not require encoding.<br><br>> ?filter_by[0][key]=first_name&filter_by[0][operator]==&filter_by[0][value]=Steve<br>> <br>> /endpoint?filter_by=[{ "key": "first_name", "operator": "=", "value": "Fred" }]<br>> <br>> /endpoint?filter_by=[{ "key": "account_type", "operator": "=", "value": "VISA" }]<br>> <br>> /endpoint?filter_by=[{ "key": "created_ts", "operator": ">=", "value": "946702799" }, { "key": "created_ts", "operator": "<=", value: "1695061891" }]<br>> <br>> /endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value": "Williams,Brown,Allman" }]<br><br>**Constraints**: *Minimum Items*: `1` |
-| `expand` | [`Array[Expand117Enum]`](../../doc/models/expand-117-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `format` | [`Format1Enum`](../../doc/models/format-1-enum.md) | Query, Optional | Reporting format, valid values: csv, tsv |
+| `expand` | [`Array[Expand117]`](../../doc/models/expand-117.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `format` | [`Format1`](../../doc/models/format-1.md) | Query, Optional | Reporting format, valid values: csv, tsv |
 | `typeahead` | `String` | Query, Optional | You can use any `field_name` from this endpoint results to order the list using the value provided as filter for the same `field_name`. It will be ordered using the following rules: 1) Exact match, 2) Starts with, 3) Contains.<br><br>> /endpoint?filter={ "field_name": "Value" }&_typeahead=field_name |
-| `fields` | [`Array[Field60Enum]`](../../doc/models/field-60-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `fields` | [`Array[Field60]`](../../doc/models/field-60.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseUsersCollection`](../../doc/models/response-users-collection.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUsersCollection`](../../doc/models/response-users-collection.md).
 
 ## Example Usage
 
 ```ruby
-page = Page.new(
-  1,
-  50
+page = Page1.new(
+  number: 1,
+  size: 50
 )
 
 order = [
   Order21.new(
-    'first_name',
-    OperatorEnum::ASC
+    key: 'first_name',
+    operator: Operator::ASC
   )
 ]
 
 filter_by = [
   FilterBy.new(
-    'first_name',
-    Operator1Enum::ENUM_1,
-    'Fred'
+    key: 'first_name',
+    operator: Operator1::ENUM_1,
+    value: 'Fred'
   )
 ]
 
-result = users_controller.list_all_user(
+result = users_controller.listall_user(
   page: page,
   order: order,
   filter_by: filter_by
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -991,13 +998,13 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Delete a User Record
+# Deleteauserrecord
 
 ```ruby
-def delete_a_user_record(user_id)
+def deleteauserrecord(user_id)
 ```
 
 ## Parameters
@@ -1008,15 +1015,20 @@ def delete_a_user_record(user_id)
 
 ## Response Type
 
-[`ResponseUser`](../../doc/models/response-user.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUser`](../../doc/models/response-user.md).
 
 ## Example Usage
 
 ```ruby
 user_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = users_controller.delete_a_user_record(user_id)
-puts result
+result = users_controller.deleteauserrecord(user_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1407,15 +1419,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# View Single User Record
+# Viewsingleuserrecord
 
 ```ruby
-def view_single_user_record(user_id,
-                            expand: nil,
-                            fields: nil)
+def viewsingleuserrecord(user_id,
+                         expand: nil,
+                         fields: nil)
 ```
 
 ## Parameters
@@ -1423,20 +1435,25 @@ def view_single_user_record(user_id,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `user_id` | `String` | Template, Required | User ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `expand` | [`Array[Expand117Enum]`](../../doc/models/expand-117-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `fields` | [`Array[Field60Enum]`](../../doc/models/field-60-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `expand` | [`Array[Expand117]`](../../doc/models/expand-117.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `fields` | [`Array[Field60]`](../../doc/models/field-60.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseUser`](../../doc/models/response-user.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUser`](../../doc/models/response-user.md).
 
 ## Example Usage
 
 ```ruby
 user_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = users_controller.view_single_user_record(user_id)
-puts result
+result = users_controller.viewsingleuserrecord(user_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1827,15 +1844,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Update a User Record
+# Updateauserrecord
 
 ```ruby
-def update_a_user_record(user_id,
-                         body,
-                         expand: nil)
+def updateauserrecord(user_id,
+                      body,
+                      expand: nil)
 ```
 
 ## Parameters
@@ -1844,11 +1861,11 @@ def update_a_user_record(user_id,
 |  --- | --- | --- | --- |
 | `user_id` | `String` | Template, Required | User ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `body` | [`V1UsersRequest1`](../../doc/models/v1-users-request-1.md) | Body, Required | - |
-| `expand` | [`Array[Expand117Enum]`](../../doc/models/expand-117-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand117]`](../../doc/models/expand-117.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseUser`](../../doc/models/response-user.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUser`](../../doc/models/response-user.md).
 
 ## Example Usage
 
@@ -1856,46 +1873,42 @@ def update_a_user_record(user_id,
 user_id = '11e95f8ec39de8fbdb0a4f1a'
 
 body = V1UsersRequest1.new(
-  '5454545454545454',
-  '{branding_domain_url}',
-  '3339998822',
-  'Fortis Payment Systems, LLC',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '2021-12-01',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'email@domain.com',
-  true,
-  '3339998822',
-  'John',
-  'Smith',
-  'en-US',
-  '3339998822',
-  '5',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  '20220308',
-  'America/New_York',
-  UiPrefs.new,
-  '{user_name}',
-  '234bas8dfn8238f923w2',
-  nil,
-  UserTypeCodeEnum::ENUM_100,
-  nil,
-  '48375',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  StatusCodeEnum::ENUM_1,
-  false,
-  false,
-  Address2.new
+  account_number: '5454545454545454',
+  branding_domain_url: '{branding_domain_url}',
+  cell_phone: '3339998822',
+  company_name: 'Fortis Payment Systems, LLC',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  date_of_birth: '2021-12-01',
+  domain_id: '11e95f8ec39de8fbdb0a4f1a',
+  email: 'email@domain.com',
+  email_trx_receipt: true,
+  home_phone: '3339998822',
+  first_name: 'John',
+  last_name: 'Smith',
+  locale: 'en-US',
+  office_phone: '3339998822',
+  office_ext_phone: '5',
+  primary_location_id: '11e95f8ec39de8fbdb0a4f1a',
+  terms_condition_code: '20220308',
+  tz: 'America/New_York',
+  username: '{user_name}',
+  user_api_key: '234bas8dfn8238f923w2',
+  zip: '48375',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  api_only: false,
+  is_invitation: false
 )
 
-result = users_controller.update_a_user_record(
+result = users_controller.updateauserrecord(
   user_id,
   body
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2286,33 +2299,38 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# View Self Record
+# Viewselfrecord
 
 ```ruby
-def view_self_record(expand: nil,
-                     fields: nil)
+def viewselfrecord(expand: nil,
+                   fields: nil)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `expand` | [`Array[Expand117Enum]`](../../doc/models/expand-117-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `fields` | [`Array[Field60Enum]`](../../doc/models/field-60-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `expand` | [`Array[Expand117]`](../../doc/models/expand-117.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `fields` | [`Array[Field60]`](../../doc/models/field-60.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseUser`](../../doc/models/response-user.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseUser`](../../doc/models/response-user.md).
 
 ## Example Usage
 
 ```ruby
-result = users_controller.view_self_record
-puts result
+result = users_controller.viewselfrecord
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2703,15 +2721,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Remove Verification
+# Removeverification
 
 Remove the pending user
 
 ```ruby
-def remove_verification(user_id)
+def removeverification(user_id)
 ```
 
 ## Parameters
@@ -2722,15 +2740,20 @@ def remove_verification(user_id)
 
 ## Response Type
 
-[`ResponseRemoveVerification`](../../doc/models/response-remove-verification.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseRemoveVerification`](../../doc/models/response-remove-verification.md).
 
 ## Example Usage
 
 ```ruby
 user_id = 'user_id8'
 
-result = users_controller.remove_verification(user_id)
-puts result
+result = users_controller.removeverification(user_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2751,15 +2774,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Send Verification
+# Sendverification
 
 Send an verification email to the pending user
 
 ```ruby
-def send_verification(user_id)
+def sendverification(user_id)
 ```
 
 ## Parameters
@@ -2770,15 +2793,20 @@ def send_verification(user_id)
 
 ## Response Type
 
-[`ResponseSendVerification`](../../doc/models/response-send-verification.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseSendVerification`](../../doc/models/response-send-verification.md).
 
 ## Example Usage
 
 ```ruby
 user_id = 'user_id8'
 
-result = users_controller.send_verification(user_id)
-puts result
+result = users_controller.sendverification(user_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2799,5 +2827,5 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 

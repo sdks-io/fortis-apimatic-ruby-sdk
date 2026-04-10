@@ -94,15 +94,12 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, tag_id = SKIP, transaction_id = SKIP,
-                   payment_method = SKIP, created = SKIP, modified = SKIP,
-                   created_ts = SKIP, modified_ts = SKIP,
-                   created_user_id = SKIP, modified_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, tag_id: SKIP, transaction_id: SKIP,
+                   payment_method: SKIP, created: SKIP, modified: SKIP,
+                   created_ts: SKIP, modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @tag_id = tag_id unless tag_id == SKIP
@@ -114,6 +111,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -136,21 +134,25 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      TagTransaction.new(id,
-                         tag_id,
-                         transaction_id,
-                         payment_method,
-                         created,
-                         modified,
-                         created_ts,
-                         modified_ts,
-                         created_user_id,
-                         modified_user_id,
-                         additional_properties)
+      TagTransaction.new(id: id,
+                         tag_id: tag_id,
+                         transaction_id: transaction_id,
+                         payment_method: payment_method,
+                         created: created,
+                         modified: modified,
+                         created_ts: created_ts,
+                         modified_ts: modified_ts,
+                         created_user_id: created_user_id,
+                         modified_user_id: modified_user_id,
+                         additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -160,7 +162,7 @@ module FortisApi
       " payment_method: #{@payment_method}, created: #{@created}, modified: #{@modified},"\
       " created_ts: #{@created_ts}, modified_ts: #{@modified_ts}, created_user_id:"\
       " #{@created_user_id}, modified_user_id: #{@modified_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -171,7 +173,7 @@ module FortisApi
       " #{@created.inspect}, modified: #{@modified.inspect}, created_ts: #{@created_ts.inspect},"\
       " modified_ts: #{@modified_ts.inspect}, created_user_id: #{@created_user_id.inspect},"\
       " modified_user_id: #{@modified_user_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

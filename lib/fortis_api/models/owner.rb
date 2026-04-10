@@ -122,17 +122,13 @@ module FortisApi
       ]
     end
 
-    def initialize(first_name = nil, last_name = nil, title = nil,
-                   date_of_birth = nil, address_line_1 = nil,
-                   address_line_2 = nil, city = nil, state_province = nil,
-                   postal_code = nil, country_code = nil, ssn = nil,
-                   ownership_percent = nil, phone_number = nil,
-                   email_address = nil, is_controller = nil, is_signer = nil,
-                   middle_name = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(first_name:, last_name:, title:, date_of_birth:,
+                   address_line_1:, address_line_2:, city:, state_province:,
+                   postal_code:, country_code:, ssn:, ownership_percent:,
+                   phone_number:, email_address:, is_controller:, is_signer:,
+                   middle_name: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @first_name = first_name
       @last_name = last_name
@@ -151,6 +147,7 @@ module FortisApi
       @email_address = email_address
       @is_controller = is_controller
       @is_signer = is_signer
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -180,28 +177,32 @@ module FortisApi
       is_signer = hash.key?('is_signer') ? hash['is_signer'] : nil
       middle_name = hash.key?('middle_name') ? hash['middle_name'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Owner.new(first_name,
-                last_name,
-                title,
-                date_of_birth,
-                address_line_1,
-                address_line_2,
-                city,
-                state_province,
-                postal_code,
-                country_code,
-                ssn,
-                ownership_percent,
-                phone_number,
-                email_address,
-                is_controller,
-                is_signer,
-                middle_name,
-                additional_properties)
+      Owner.new(first_name: first_name,
+                last_name: last_name,
+                title: title,
+                date_of_birth: date_of_birth,
+                address_line_1: address_line_1,
+                address_line_2: address_line_2,
+                city: city,
+                state_province: state_province,
+                postal_code: postal_code,
+                country_code: country_code,
+                ssn: ssn,
+                ownership_percent: ownership_percent,
+                phone_number: phone_number,
+                email_address: email_address,
+                is_controller: is_controller,
+                is_signer: is_signer,
+                middle_name: middle_name,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -213,7 +214,7 @@ module FortisApi
       " #{@state_province}, postal_code: #{@postal_code}, country_code: #{@country_code}, ssn:"\
       " #{@ssn}, ownership_percent: #{@ownership_percent}, phone_number: #{@phone_number},"\
       " email_address: #{@email_address}, is_controller: #{@is_controller}, is_signer:"\
-      " #{@is_signer}, additional_properties: #{get_additional_properties}>"
+      " #{@is_signer}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -227,7 +228,7 @@ module FortisApi
       " #{@country_code.inspect}, ssn: #{@ssn.inspect}, ownership_percent:"\
       " #{@ownership_percent.inspect}, phone_number: #{@phone_number.inspect}, email_address:"\
       " #{@email_address.inspect}, is_controller: #{@is_controller.inspect}, is_signer:"\
-      " #{@is_signer.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@is_signer.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

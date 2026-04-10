@@ -3,6 +3,8 @@
 
 Header
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Header`
@@ -13,6 +15,7 @@ Header
 |  --- | --- | --- | --- |
 | `settings` | [`Settings`](../../doc/models/settings.md) | Optional | - |
 | `fields` | [`Array[Field18]`](../../doc/models/field-18.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@ Header
   "settings": {
     "enabled": false,
     "columns": 202.28,
-    "rows": 235.78
+    "rows": 235.78,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "fields": [
     {
@@ -33,9 +40,17 @@ Header
         "position8",
         "position9"
       ],
-      "required": false
+      "required": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

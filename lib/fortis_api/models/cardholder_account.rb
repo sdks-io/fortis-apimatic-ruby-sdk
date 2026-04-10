@@ -15,10 +15,10 @@ module FortisApi
     # @return [String]
     attr_accessor :expire_date
 
-    # This field contains additional information about the Cardholder's account
-    # provided by the 3DS Requestor. The field is optional but recommended to
-    # include.
-    # @return [AccountInfo]
+    # Expiry date of the PAN or token supplied to the 3DS Requestor by the
+    # Cardholder. The field has 4 characters in a format YYMM.
+    # The requirements of the presence of this field are DS specific.
+    # @return [AccountInfo1]
     attr_accessor :account_info
 
     # Account number that will be used in the authorization request for payment
@@ -26,9 +26,9 @@ module FortisApi
     # @return [String]
     attr_accessor :account_number
 
-    # ID for the scheme to which the Cardholder's acctNumber belongs to. It will
-    # be used to identify the Scheme from the 3DS Server configuration.
-    # @return [SchemeIdEnum]
+    # Account number that will be used in the authorization request for payment
+    # transactions. May be represented by PAN or token.
+    # @return [SchemeId]
     attr_accessor :scheme_id
 
     # Additional information about the account optionally provided by the 3DS
@@ -69,13 +69,11 @@ module FortisApi
       []
     end
 
-    def initialize(account_number = nil, scheme_id = nil, expire_date = SKIP,
-                   account_info = SKIP, account_id = SKIP, cvv = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(account_number:, scheme_id:, expire_date: SKIP,
+                   account_info: SKIP, account_id: SKIP, cvv: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @expire_date = expire_date unless expire_date == SKIP
       @account_info = account_info unless account_info == SKIP
@@ -83,6 +81,7 @@ module FortisApi
       @scheme_id = scheme_id
       @account_id = account_id unless account_id == SKIP
       @cvv = cvv unless cvv == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -94,21 +93,25 @@ module FortisApi
         hash.key?('account_number') ? hash['account_number'] : nil
       scheme_id = hash.key?('scheme_id') ? hash['scheme_id'] : nil
       expire_date = hash.key?('expire_date') ? hash['expire_date'] : SKIP
-      account_info = AccountInfo.from_hash(hash['account_info']) if hash['account_info']
+      account_info = AccountInfo1.from_hash(hash['account_info']) if hash['account_info']
       account_id = hash.key?('account_id') ? hash['account_id'] : SKIP
       cvv = hash.key?('cvv') ? hash['cvv'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      CardholderAccount.new(account_number,
-                            scheme_id,
-                            expire_date,
-                            account_info,
-                            account_id,
-                            cvv,
-                            additional_properties)
+      CardholderAccount.new(account_number: account_number,
+                            scheme_id: scheme_id,
+                            expire_date: expire_date,
+                            account_info: account_info,
+                            account_id: account_id,
+                            cvv: cvv,
+                            additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -116,7 +119,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} expire_date: #{@expire_date}, account_info: #{@account_info},"\
       " account_number: #{@account_number}, scheme_id: #{@scheme_id}, account_id: #{@account_id},"\
-      " cvv: #{@cvv}, additional_properties: #{get_additional_properties}>"
+      " cvv: #{@cvv}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -125,7 +128,7 @@ module FortisApi
       "<#{class_name} expire_date: #{@expire_date.inspect}, account_info:"\
       " #{@account_info.inspect}, account_number: #{@account_number.inspect}, scheme_id:"\
       " #{@scheme_id.inspect}, account_id: #{@account_id.inspect}, cvv: #{@cvv.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

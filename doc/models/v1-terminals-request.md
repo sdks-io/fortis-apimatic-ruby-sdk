@@ -1,6 +1,8 @@
 
 # V1 Terminals Request
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `V1TerminalsRequest`
@@ -13,15 +15,15 @@
 | `default_product_transaction_id` | `String` | Optional | Product Transaction ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `terminal_application_id` | `String` | Required | Terminal Application ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `terminal_cvm_id` | `String` | Optional | Terminal CVM ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `terminal_manufacturer_code` | [`TerminalManufacturerCodeEnum`](../../doc/models/terminal-manufacturer-code-enum.md) | Required | Terminal Manufacturer Code |
+| `terminal_manufacturer_code` | [`TerminalManufacturerCode`](../../doc/models/terminal-manufacturer-code.md) | Required | - |
 | `title` | `String` | Required | Terminal Name<br><br>**Constraints**: *Maximum Length*: `64` |
 | `mac_address` | `String` | Optional | Terminal MAC Address<br><br>**Constraints**: *Pattern*: `^([0-9a-fA-F]{2}[:-]?){5}([0-9a-fA-F]{2})$` |
 | `local_ip_address` | `String` | Optional | Terminal Local IP Address |
 | `port` | `Integer` | Optional | Terminal Port<br><br>**Default**: `10009`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `serial_number` | `String` | Required | Terminal Serial Number<br><br>**Constraints**: *Maximum Length*: `24`, *Pattern*: `^[a-zA-Z0-9]*$` |
 | `terminal_number` | `String` | Optional | Terminal Number<br><br>**Constraints**: *Minimum Length*: `15`, *Maximum Length*: `15` |
-| `terminal_timeouts` | [`TerminalTimeouts`](../../doc/models/terminal-timeouts.md) | Optional | The following options outlines some configurable timeout values that can be used to customize the experience at the terminal for the cardholder.<br><br>> These timeouts are specific to Ingenico devices only.<br>> <br>> These timeouts are specific to Ingenico devices only. |
-| `tip_percents` | [`TipPercents`](../../doc/models/tip-percents.md) | Optional | A JSON of tip percents the JSON MUST contain only these three fields: percent_1, percent_2, percent_3 |
+| `terminal_timeouts` | [`TerminalTimeouts1`](../../doc/models/terminal-timeouts-1.md) | Optional | - |
+| `tip_percents` | [`TipPercents1`](../../doc/models/tip-percents-1.md) | Optional | - |
 | `location_api_id` | `String` | Optional | Location Api ID<br><br>**Constraints**: *Maximum Length*: `64` |
 | `terminal_api_id` | `String` | Optional | Terminal Api ID<br><br>**Constraints**: *Maximum Length*: `64` |
 | `header_line_1` | `String` | Optional | Header Line 1<br><br>**Constraints**: *Maximum Length*: `32` |
@@ -46,8 +48,9 @@
 | `is_provisioned` | `TrueClass \| FalseClass` | Optional | Is Provisioned |
 | `tip_enable` | `TrueClass \| FalseClass` | Optional | Tip Enable |
 | `validated_decryption` | `TrueClass \| FalseClass` | Optional | Validated Decryption |
-| `communication_type` | [`CommunicationTypeEnum`](../../doc/models/communication-type-enum.md) | Optional | Communication Type |
+| `communication_type` | `Object` | Optional | - |
 | `active` | `TrueClass \| FalseClass` | Optional | Active |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -86,8 +89,11 @@
   "is_provisioned": false,
   "tip_enable": false,
   "validated_decryption": false,
-  "communication_type": "http",
-  "active": true
+  "active": true,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

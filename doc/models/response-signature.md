@@ -1,6 +1,8 @@
 
 # Response Signature
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ResponseSignature`
@@ -9,8 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type72Enum`](../../doc/models/type-72-enum.md) | Optional | Resource Type<br><br>**Default**: `Type72Enum::SIGNATURE` |
+| `type` | [`Type72`](../../doc/models/type-72.md) | Optional | - |
 | `data` | [`Data21`](../../doc/models/data-21.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,7 +25,15 @@
     "resource": "AccountVault",
     "resource_id": "resource_id6",
     "id": "id0",
-    "created_ts": 114
+    "created_ts": 114,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

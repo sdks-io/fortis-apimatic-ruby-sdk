@@ -291,31 +291,28 @@ module FortisApi
       ]
     end
 
-    def initialize(title = nil, due_date = nil, item_list = nil,
-                   location_id = SKIP, cc_product_transaction_id = SKIP,
-                   ach_product_transaction_id = SKIP, allow_overpayment = SKIP,
-                   bank_funded_only_override = SKIP, email = SKIP,
-                   contact_id = SKIP, contact_api_id = SKIP,
-                   quick_invoice_api_id = SKIP, customer_id = SKIP,
-                   expire_date = SKIP, allow_partial_pay = SKIP,
-                   attach_files_to_email = SKIP, send_email = SKIP,
-                   invoice_number = SKIP, item_header = SKIP,
-                   item_footer = SKIP, amount_due = SKIP,
-                   notification_email = SKIP, status_id = SKIP,
-                   status_code = SKIP, note = SKIP,
-                   notification_days_before_due_date = SKIP,
-                   notification_days_after_due_date = SKIP,
-                   notification_on_due_date = SKIP, send_text_to_pay = SKIP,
-                   files = SKIP, remaining_balance = SKIP,
-                   single_payment_min_amount = SKIP,
-                   single_payment_max_amount = 999999999, cell_phone = SKIP,
-                   tags = SKIP, quick_invoice_c1 = SKIP,
-                   quick_invoice_c2 = SKIP, quick_invoice_c3 = SKIP,
-                   auto_reopen = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(title:, due_date:, item_list:, location_id: SKIP,
+                   cc_product_transaction_id: SKIP,
+                   ach_product_transaction_id: SKIP, allow_overpayment: SKIP,
+                   bank_funded_only_override: SKIP, email: SKIP,
+                   contact_id: SKIP, contact_api_id: SKIP,
+                   quick_invoice_api_id: SKIP, customer_id: SKIP,
+                   expire_date: SKIP, allow_partial_pay: SKIP,
+                   attach_files_to_email: SKIP, send_email: SKIP,
+                   invoice_number: SKIP, item_header: SKIP, item_footer: SKIP,
+                   amount_due: SKIP, notification_email: SKIP, status_id: SKIP,
+                   status_code: SKIP, note: SKIP,
+                   notification_days_before_due_date: SKIP,
+                   notification_days_after_due_date: SKIP,
+                   notification_on_due_date: SKIP, send_text_to_pay: SKIP,
+                   files: SKIP, remaining_balance: SKIP,
+                   single_payment_min_amount: SKIP,
+                   single_payment_max_amount: 999999999, cell_phone: SKIP,
+                   tags: SKIP, quick_invoice_c1: SKIP, quick_invoice_c2: SKIP,
+                   quick_invoice_c3: SKIP, auto_reopen: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       @title = title
@@ -377,6 +374,7 @@ module FortisApi
       @quick_invoice_c2 = quick_invoice_c2 unless quick_invoice_c2 == SKIP
       @quick_invoice_c3 = quick_invoice_c3 unless quick_invoice_c3 == SKIP
       @auto_reopen = auto_reopen unless auto_reopen == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -462,50 +460,54 @@ module FortisApi
         hash.key?('quick_invoice_c3') ? hash['quick_invoice_c3'] : SKIP
       auto_reopen = hash.key?('auto_reopen') ? hash['auto_reopen'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1QuickInvoicesRequest.new(title,
-                                 due_date,
-                                 item_list,
-                                 location_id,
-                                 cc_product_transaction_id,
-                                 ach_product_transaction_id,
-                                 allow_overpayment,
-                                 bank_funded_only_override,
-                                 email,
-                                 contact_id,
-                                 contact_api_id,
-                                 quick_invoice_api_id,
-                                 customer_id,
-                                 expire_date,
-                                 allow_partial_pay,
-                                 attach_files_to_email,
-                                 send_email,
-                                 invoice_number,
-                                 item_header,
-                                 item_footer,
-                                 amount_due,
-                                 notification_email,
-                                 status_id,
-                                 status_code,
-                                 note,
-                                 notification_days_before_due_date,
-                                 notification_days_after_due_date,
-                                 notification_on_due_date,
-                                 send_text_to_pay,
-                                 files,
-                                 remaining_balance,
-                                 single_payment_min_amount,
-                                 single_payment_max_amount,
-                                 cell_phone,
-                                 tags,
-                                 quick_invoice_c1,
-                                 quick_invoice_c2,
-                                 quick_invoice_c3,
-                                 auto_reopen,
-                                 additional_properties)
+      V1QuickInvoicesRequest.new(title: title,
+                                 due_date: due_date,
+                                 item_list: item_list,
+                                 location_id: location_id,
+                                 cc_product_transaction_id: cc_product_transaction_id,
+                                 ach_product_transaction_id: ach_product_transaction_id,
+                                 allow_overpayment: allow_overpayment,
+                                 bank_funded_only_override: bank_funded_only_override,
+                                 email: email,
+                                 contact_id: contact_id,
+                                 contact_api_id: contact_api_id,
+                                 quick_invoice_api_id: quick_invoice_api_id,
+                                 customer_id: customer_id,
+                                 expire_date: expire_date,
+                                 allow_partial_pay: allow_partial_pay,
+                                 attach_files_to_email: attach_files_to_email,
+                                 send_email: send_email,
+                                 invoice_number: invoice_number,
+                                 item_header: item_header,
+                                 item_footer: item_footer,
+                                 amount_due: amount_due,
+                                 notification_email: notification_email,
+                                 status_id: status_id,
+                                 status_code: status_code,
+                                 note: note,
+                                 notification_days_before_due_date: notification_days_before_due_date,
+                                 notification_days_after_due_date: notification_days_after_due_date,
+                                 notification_on_due_date: notification_on_due_date,
+                                 send_text_to_pay: send_text_to_pay,
+                                 files: files,
+                                 remaining_balance: remaining_balance,
+                                 single_payment_min_amount: single_payment_min_amount,
+                                 single_payment_max_amount: single_payment_max_amount,
+                                 cell_phone: cell_phone,
+                                 tags: tags,
+                                 quick_invoice_c1: quick_invoice_c1,
+                                 quick_invoice_c2: quick_invoice_c2,
+                                 quick_invoice_c3: quick_invoice_c3,
+                                 auto_reopen: auto_reopen,
+                                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -529,7 +531,7 @@ module FortisApi
       " #{@single_payment_min_amount}, single_payment_max_amount: #{@single_payment_max_amount},"\
       " cell_phone: #{@cell_phone}, tags: #{@tags}, quick_invoice_c1: #{@quick_invoice_c1},"\
       " quick_invoice_c2: #{@quick_invoice_c2}, quick_invoice_c3: #{@quick_invoice_c3},"\
-      " auto_reopen: #{@auto_reopen}, additional_properties: #{get_additional_properties}>"
+      " auto_reopen: #{@auto_reopen}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -558,7 +560,7 @@ module FortisApi
       " #{@single_payment_max_amount.inspect}, cell_phone: #{@cell_phone.inspect}, tags:"\
       " #{@tags.inspect}, quick_invoice_c1: #{@quick_invoice_c1.inspect}, quick_invoice_c2:"\
       " #{@quick_invoice_c2.inspect}, quick_invoice_c3: #{@quick_invoice_c3.inspect}, auto_reopen:"\
-      " #{@auto_reopen.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@auto_reopen.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

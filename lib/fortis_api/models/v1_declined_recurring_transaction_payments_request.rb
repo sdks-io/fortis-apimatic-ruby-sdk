@@ -33,8 +33,8 @@ module FortisApi
     # @return [String]
     attr_accessor :description
 
-    # Billing Address Object
-    # @return [BillingAddress]
+    # Description
+    # @return [BillingAddress7]
     attr_accessor :billing_address
 
     # Tags
@@ -109,17 +109,14 @@ module FortisApi
       ]
     end
 
-    def initialize(declined_recurring_transaction_id = nil,
-                   account_number = nil, exp_date = nil,
-                   transaction_amount = nil, account_holder_name = SKIP,
-                   description = SKIP, billing_address = SKIP, tags = SKIP,
-                   replace_account_vault = SKIP, save_account = SKIP,
-                   save_account_title = SKIP, subtotal_amount = SKIP,
-                   surcharge_amount = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(declined_recurring_transaction_id:, account_number:,
+                   exp_date:, transaction_amount:, account_holder_name: SKIP,
+                   description: SKIP, billing_address: SKIP, tags: SKIP,
+                   replace_account_vault: SKIP, save_account: SKIP,
+                   save_account_title: SKIP, subtotal_amount: SKIP,
+                   surcharge_amount: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @declined_recurring_transaction_id = declined_recurring_transaction_id
       @account_number = account_number
@@ -134,6 +131,7 @@ module FortisApi
       @save_account_title = save_account_title unless save_account_title == SKIP
       @subtotal_amount = subtotal_amount unless subtotal_amount == SKIP
       @surcharge_amount = surcharge_amount unless surcharge_amount == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -151,7 +149,7 @@ module FortisApi
       account_holder_name =
         hash.key?('account_holder_name') ? hash['account_holder_name'] : SKIP
       description = hash.key?('description') ? hash['description'] : SKIP
-      billing_address = BillingAddress.from_hash(hash['billing_address']) if
+      billing_address = BillingAddress7.from_hash(hash['billing_address']) if
         hash['billing_address']
       tags = hash.key?('tags') ? hash['tags'] : SKIP
       replace_account_vault =
@@ -164,24 +162,28 @@ module FortisApi
       surcharge_amount =
         hash.key?('surcharge_amount') ? hash['surcharge_amount'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1DeclinedRecurringTransactionPaymentsRequest.new(declined_recurring_transaction_id,
-                                                        account_number,
-                                                        exp_date,
-                                                        transaction_amount,
-                                                        account_holder_name,
-                                                        description,
-                                                        billing_address,
-                                                        tags,
-                                                        replace_account_vault,
-                                                        save_account,
-                                                        save_account_title,
-                                                        subtotal_amount,
-                                                        surcharge_amount,
-                                                        additional_properties)
+      V1DeclinedRecurringTransactionPaymentsRequest.new(declined_recurring_transaction_id: declined_recurring_transaction_id,
+                                                        account_number: account_number,
+                                                        exp_date: exp_date,
+                                                        transaction_amount: transaction_amount,
+                                                        account_holder_name: account_holder_name,
+                                                        description: description,
+                                                        billing_address: billing_address,
+                                                        tags: tags,
+                                                        replace_account_vault: replace_account_vault,
+                                                        save_account: save_account,
+                                                        save_account_title: save_account_title,
+                                                        subtotal_amount: subtotal_amount,
+                                                        surcharge_amount: surcharge_amount,
+                                                        additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -193,8 +195,7 @@ module FortisApi
       " #{@description}, billing_address: #{@billing_address}, tags: #{@tags},"\
       " replace_account_vault: #{@replace_account_vault}, save_account: #{@save_account},"\
       " save_account_title: #{@save_account_title}, subtotal_amount: #{@subtotal_amount},"\
-      " surcharge_amount: #{@surcharge_amount}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " surcharge_amount: #{@surcharge_amount}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -208,7 +209,7 @@ module FortisApi
       " replace_account_vault: #{@replace_account_vault.inspect}, save_account:"\
       " #{@save_account.inspect}, save_account_title: #{@save_account_title.inspect},"\
       " subtotal_amount: #{@subtotal_amount.inspect}, surcharge_amount:"\
-      " #{@surcharge_amount.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@surcharge_amount.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

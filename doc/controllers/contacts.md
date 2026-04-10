@@ -13,8 +13,8 @@ contacts_controller = client.contacts
 ## Methods
 
 * [Contacts Search](../../doc/controllers/contacts.md#contacts-search)
-* [Create a New Contact](../../doc/controllers/contacts.md#create-a-new-contact)
-* [List All Contacts](../../doc/controllers/contacts.md#list-all-contacts)
+* [Createanew Contact](../../doc/controllers/contacts.md#createanew-contact)
+* [Listall Contacts](../../doc/controllers/contacts.md#listall-contacts)
 * [Delete Contact](../../doc/controllers/contacts.md#delete-contact)
 * [View Single Contact](../../doc/controllers/contacts.md#view-single-contact)
 * [Update Contact](../../doc/controllers/contacts.md#update-contact)
@@ -34,29 +34,34 @@ def contacts_search(location_id,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `location_id` | `String` | Query, Required | Location ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `page` | [`Page`](../../doc/models/page.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
+| `page` | [`Page1`](../../doc/models/page-1.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
 | `keyword` | `String` | Query, Optional | You can use any value to search on specific fields of this endpoint results. You can not specify the fields that are used. |
 | `active` | `TrueClass \| FalseClass` | Query, Optional | Active |
 
 ## Response Type
 
-[`ResponseContactSearchsCollection`](../../doc/models/response-contact-searchs-collection.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseContactSearchsCollection`](../../doc/models/response-contact-searchs-collection.md).
 
 ## Example Usage
 
 ```ruby
 location_id = '11e95f8ec39de8fbdb0a4f1a'
 
-page = Page.new(
-  1,
-  50
+page = Page1.new(
+  number: 1,
+  size: 50
 )
 
 result = contacts_controller.contacts_search(
   location_id,
   page: page
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -464,14 +469,14 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Create a New Contact
+# Createanew Contact
 
 ```ruby
-def create_a_new_contact(body,
-                         expand: nil)
+def createanew_contact(body,
+                       expand: nil)
 ```
 
 ## Parameters
@@ -479,46 +484,49 @@ def create_a_new_contact(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1ContactsRequest`](../../doc/models/v1-contacts-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand1Enum]`](../../doc/models/expand-1-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand1]`](../../doc/models/expand-1.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseContact`](../../doc/models/response-contact.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseContact`](../../doc/models/response-contact.md).
 
 ## Example Usage
 
 ```ruby
 body = V1ContactsRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'Smith',
-  '54545433332',
-  '137',
-  'John',
-  '3339998822',
-  245.36,
-  Address.new,
-  'Fortis Payment Systems, LLC',
-  'This is a sample message for you',
-  '2021-12-01',
-  true,
-  '3339998822',
-  '3339998822',
-  '5',
-  '+1',
-  '+1',
-  '+1',
-  0,
-  UpdateIfExistsEnum::ENUM_1,
-  'any',
-  'anything',
-  'something',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'email@domain.com',
-  '11e95f8ec39de8fbdb0a4f1a'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  last_name: 'Smith',
+  account_number: '54545433332',
+  contact_api_id: '137',
+  first_name: 'John',
+  cell_phone: '3339998822',
+  balance: 245.36,
+  company_name: 'Fortis Payment Systems, LLC',
+  header_message: 'This is a sample message for you',
+  date_of_birth: '2021-12-01',
+  email_trx_receipt: true,
+  home_phone: '3339998822',
+  office_phone: '3339998822',
+  office_phone_ext: '5',
+  home_phone_country_code: '+1',
+  office_phone_country_code: '+1',
+  cell_phone_country_code: '+1',
+  header_message_type: 0,
+  contact_c1: 'any',
+  contact_c2: 'anything',
+  contact_c3: 'something',
+  parent_id: '11e95f8ec39de8fbdb0a4f1a',
+  email: 'email@domain.com',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
-result = contacts_controller.create_a_new_contact(body)
-puts result
+result = contacts_controller.createanew_contact(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -901,67 +909,72 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# List All Contacts
+# Listall Contacts
 
 ```ruby
-def list_all_contacts(page: nil,
-                      order: nil,
-                      filter_by: nil,
-                      expand: nil,
-                      format: nil,
-                      typeahead: nil,
-                      fields: nil)
+def listall_contacts(page: nil,
+                     order: nil,
+                     filter_by: nil,
+                     expand: nil,
+                     format: nil,
+                     typeahead: nil,
+                     fields: nil)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | [`Page`](../../doc/models/page.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
+| `page` | [`Page1`](../../doc/models/page-1.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
 | `order` | [`Array[Order21]`](../../doc/models/order-21.md) | Query, Optional | Criteria used in query string parameters to order results.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`.  Must be encoded, or use syntax that does not require encoding.<br><br>> /endpoint?order[0][key]=created_ts&order[0][operator]=asc<br>> <br>> /endpoint?order=[{ "key": "created_ts", "operator": "asc"}]<br>> <br>> /endpoint?order=[{ "key": "balance", "operator": "desc"},{ "key": "created_ts", "operator": "asc"}]<br><br>**Constraints**: *Minimum Items*: `1` |
 | `filter_by` | [`Array[FilterBy]`](../../doc/models/filter-by.md) | Query, Optional | Filter criteria that can be used in query string parameters.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`. Must be encoded, or use syntax that does not require encoding.<br><br>> ?filter_by[0][key]=first_name&filter_by[0][operator]==&filter_by[0][value]=Steve<br>> <br>> /endpoint?filter_by=[{ "key": "first_name", "operator": "=", "value": "Fred" }]<br>> <br>> /endpoint?filter_by=[{ "key": "account_type", "operator": "=", "value": "VISA" }]<br>> <br>> /endpoint?filter_by=[{ "key": "created_ts", "operator": ">=", "value": "946702799" }, { "key": "created_ts", "operator": "<=", value: "1695061891" }]<br>> <br>> /endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value": "Williams,Brown,Allman" }]<br><br>**Constraints**: *Minimum Items*: `1` |
-| `expand` | [`Array[Expand1Enum]`](../../doc/models/expand-1-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `format` | [`Format1Enum`](../../doc/models/format-1-enum.md) | Query, Optional | Reporting format, valid values: csv, tsv |
+| `expand` | [`Array[Expand1]`](../../doc/models/expand-1.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `format` | [`Format1`](../../doc/models/format-1.md) | Query, Optional | Reporting format, valid values: csv, tsv |
 | `typeahead` | `String` | Query, Optional | You can use any `field_name` from this endpoint results to order the list using the value provided as filter for the same `field_name`. It will be ordered using the following rules: 1) Exact match, 2) Starts with, 3) Contains.<br><br>> /endpoint?filter={ "field_name": "Value" }&_typeahead=field_name |
-| `fields` | [`Array[Field28Enum]`](../../doc/models/field-28-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `fields` | [`Array[Field28]`](../../doc/models/field-28.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseContactsCollection`](../../doc/models/response-contacts-collection.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseContactsCollection`](../../doc/models/response-contacts-collection.md).
 
 ## Example Usage
 
 ```ruby
-page = Page.new(
-  1,
-  50
+page = Page1.new(
+  number: 1,
+  size: 50
 )
 
 order = [
   Order21.new(
-    'first_name',
-    OperatorEnum::ASC
+    key: 'first_name',
+    operator: Operator::ASC
   )
 ]
 
 filter_by = [
   FilterBy.new(
-    'first_name',
-    Operator1Enum::ENUM_1,
-    'Fred'
+    key: 'first_name',
+    operator: Operator1::ENUM_1,
+    value: 'Fred'
   )
 ]
 
-result = contacts_controller.list_all_contacts(
+result = contacts_controller.listall_contacts(
   page: page,
   order: order,
   filter_by: filter_by
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1369,7 +1382,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
 # Delete Contact
@@ -1386,7 +1399,7 @@ def delete_contact(contact_id)
 
 ## Response Type
 
-[`ResponseContact`](../../doc/models/response-contact.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseContact`](../../doc/models/response-contact.md).
 
 ## Example Usage
 
@@ -1394,7 +1407,12 @@ def delete_contact(contact_id)
 contact_id = '11e95f8ec39de8fbdb0a4f1a'
 
 result = contacts_controller.delete_contact(contact_id)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1777,7 +1795,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
 # View Single Contact
@@ -1793,12 +1811,12 @@ def view_single_contact(contact_id,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `contact_id` | `String` | Template, Required | Contact ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `expand` | [`Array[Expand1Enum]`](../../doc/models/expand-1-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `fields` | [`Array[Field28Enum]`](../../doc/models/field-28-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `expand` | [`Array[Expand1]`](../../doc/models/expand-1.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `fields` | [`Array[Field28]`](../../doc/models/field-28.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseContact`](../../doc/models/response-contact.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseContact`](../../doc/models/response-contact.md).
 
 ## Example Usage
 
@@ -1806,7 +1824,12 @@ def view_single_contact(contact_id,
 contact_id = '11e95f8ec39de8fbdb0a4f1a'
 
 result = contacts_controller.view_single_contact(contact_id)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2189,7 +2212,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
 # Update Contact
@@ -2206,11 +2229,11 @@ def update_contact(contact_id,
 |  --- | --- | --- | --- |
 | `contact_id` | `String` | Template, Required | Contact ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `body` | [`V1ContactsRequest1`](../../doc/models/v1-contacts-request-1.md) | Body, Required | - |
-| `expand` | [`Array[Expand1Enum]`](../../doc/models/expand-1-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand1]`](../../doc/models/expand-1.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseContact`](../../doc/models/response-contact.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseContact`](../../doc/models/response-contact.md).
 
 ## Example Usage
 
@@ -2218,39 +2241,42 @@ def update_contact(contact_id,
 contact_id = '11e95f8ec39de8fbdb0a4f1a'
 
 body = V1ContactsRequest1.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  '54545433332',
-  '137',
-  'John',
-  'Smith',
-  '3339998822',
-  245.36,
-  Address.new,
-  'Fortis Payment Systems, LLC',
-  'This is a sample message for you',
-  '2021-12-01',
-  true,
-  '3339998822',
-  '3339998822',
-  '5',
-  '+1',
-  '+1',
-  '+1',
-  0,
-  UpdateIfExistsEnum::ENUM_1,
-  'any',
-  'anything',
-  'something',
-  '11e95f8ec39de8fbdb0a4f1a',
-  'email@domain.com',
-  '11e95f8ec39de8fbdb0a4f1a'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_number: '54545433332',
+  contact_api_id: '137',
+  first_name: 'John',
+  last_name: 'Smith',
+  cell_phone: '3339998822',
+  balance: 245.36,
+  company_name: 'Fortis Payment Systems, LLC',
+  header_message: 'This is a sample message for you',
+  date_of_birth: '2021-12-01',
+  email_trx_receipt: true,
+  home_phone: '3339998822',
+  office_phone: '3339998822',
+  office_phone_ext: '5',
+  home_phone_country_code: '+1',
+  office_phone_country_code: '+1',
+  cell_phone_country_code: '+1',
+  header_message_type: 0,
+  contact_c1: 'any',
+  contact_c2: 'anything',
+  contact_c3: 'something',
+  parent_id: '11e95f8ec39de8fbdb0a4f1a',
+  email: 'email@domain.com',
+  token_import_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = contacts_controller.update_contact(
   contact_id,
   body
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2633,6 +2659,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

@@ -1,6 +1,8 @@
 
 # User 9
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `User9`
@@ -28,20 +30,20 @@
 | `requires_new_password` | `String` | Optional | Requires New Password<br><br>**Constraints**: *Maximum Length*: `1` |
 | `terms_condition_code` | `String` | Optional | Terms Condition (This field is required when updating your own password). |
 | `tz` | `String` | Optional | Time zone<br><br>**Constraints**: *Maximum Length*: `30` |
-| `ui_prefs` | [`UiPrefs`](../../doc/models/ui-prefs.md) | Optional | Ui Prefs |
+| `ui_prefs` | [`UiPrefs1`](../../doc/models/ui-prefs-1.md) | Optional | - |
 | `username` | `String` | Optional | Username<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `64` |
 | `user_api_key` | `String` | Optional | User Api Key<br><br>**Constraints**: *Minimum Length*: `16`, *Maximum Length*: `64` |
 | `user_hash_key` | `String` | Optional | User Hash Key<br><br>**Constraints**: *Minimum Length*: `24`, *Maximum Length*: `36` |
-| `user_type_code` | [`UserTypeCodeEnum`](../../doc/models/user-type-code-enum.md) | Optional | User Type |
+| `user_type_code` | [`UserTypeCode`](../../doc/models/user-type-code.md) | Optional | - |
 | `password` | `String` | Optional | Password<br><br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `128`, *Pattern*: ``^(?=.*[`!@#$%^&*()_+\-=\[\]{};':"\\\|,.<>\/?~])(?=.*[0-9])(?=.*[a-zA-Z]).*$`` |
 | `zip` | `String` | Optional | Zip<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `10`, *Pattern*: `^[a-zA-Z0-9\-\s]+$` |
 | `location_id` | `String` | Optional | Location ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `contact_api_id` | `String` | Optional | ContactApi Id |
 | `primary_location_api_id` | `String` | Optional | Primary LocationApi ID |
-| `status_code` | [`StatusCodeEnum`](../../doc/models/status-code-enum.md) | Optional | Status Code |
+| `status_code` | `Object` | Optional | - |
 | `api_only` | `TrueClass \| FalseClass` | Optional | API Only |
 | `is_invitation` | `TrueClass \| FalseClass` | Optional | Is Invitation |
-| `address` | [`Address2`](../../doc/models/address-2.md) | Optional | Address |
+| `address` | [`Address3`](../../doc/models/address-3.md) | Optional | - |
 | `id` | `String` | Optional | User ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `status` | `TrueClass \| FalseClass` | Optional | Status |
 | `login_attempts` | `Integer` | Optional | Login Attempts |
@@ -56,6 +58,7 @@
 | `current_login` | `Integer` | Optional | Current Login Timestamp |
 | `sftp_access` | `TrueClass \| FalseClass` | Optional | SFTP Access |
 | `log_api_response_body_ts` | `Integer` | Optional | Log Api Response Body |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -81,10 +84,8 @@
   "tz": "America/New_York",
   "username": "{user_name}",
   "user_api_key": "234bas8dfn8238f923w2",
-  "user_type_code": 100,
   "zip": "48375",
   "location_id": "11e95f8ec39de8fbdb0a4f1a",
-  "status_code": 1,
   "api_only": false,
   "is_invitation": false,
   "id": "11e95f8ec39de8fbdb0a4f1a",
@@ -97,7 +98,11 @@
   "terms_accepted_ts": 1422040992,
   "terms_agree_ip": "192.168.0.10",
   "current_login": 1422040992,
-  "log_api_response_body_ts": 1422040992
+  "log_api_response_body_ts": 1422040992,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

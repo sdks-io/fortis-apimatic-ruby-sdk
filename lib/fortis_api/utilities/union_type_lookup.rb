@@ -22,120 +22,10 @@ module FortisApi
           )
         ),
 
-        :ListAllMerchantDepositsKeyword => AnyOf.new(
+        :ListallMerchantDepositsKeyword => AnyOf.new(
           [
             LeafType.new(String),
             LeafType.new(Float)
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8TaxAmountCase0 => AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        ),
-
-        :Data8TaxAmount => AnyOf.new(
-          [
-            AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        )
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8SecondaryAmountCase0 => AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        ),
-
-        :Data8SecondaryAmount => AnyOf.new(
-          [
-            AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        )
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8SaveAccount => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8SaveAccountTitle => AnyOf.new(
-          [
-            LeafType.new(String)
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8Title => AnyOf.new(
-          [
-            LeafType.new(String)
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8BankFundedOnlyOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8AllowPartialAuthorizationOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8AutoDeclineCvvOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8AutoDeclineStreetOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :Data8AutoDeclineZipOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
           ],
           UnionTypeContext.new(
             is_optional: true
@@ -153,13 +43,7 @@ module FortisApi
 
         :FilterByOperator => OneOf.new(
           [
-            LeafType.new(Operator1Enum)
-          ]
-        ),
-
-        :FilterByValueCase0 => AnyOf.new(
-          [
-            LeafType.new(Float)
+            LeafType.new(Operator1)
           ]
         ),
 
@@ -173,11 +57,7 @@ module FortisApi
 
         :FilterByValue => OneOf.new(
           [
-            AnyOf.new(
-          [
-            LeafType.new(Float)
-          ]
-        ),
+            LeafType.new(Float),
             AnyOf.new(
           [
             LeafType.new(Float),
@@ -240,116 +120,6 @@ module FortisApi
         :V1TicketsRequestLocationId => AnyOf.new(
           [
             LeafType.new(String)
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestTaxAmountCase0 => AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        ),
-
-        :V1ElementsTransactionIntentionRequestTaxAmount => AnyOf.new(
-          [
-            AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        )
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestSecondaryAmountCase0 => AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        ),
-
-        :V1ElementsTransactionIntentionRequestSecondaryAmount => AnyOf.new(
-          [
-            AnyOf.new(
-          [
-            LeafType.new(Integer)
-          ]
-        )
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestSaveAccount => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestSaveAccountTitle => AnyOf.new(
-          [
-            LeafType.new(String)
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestTitle => AnyOf.new(
-          [
-            LeafType.new(String)
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestBankFundedOnlyOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestAllowPartialAuthorizationOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestAutoDeclineCvvOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestAutoDeclineStreetOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
-          ],
-          UnionTypeContext.new(
-            is_optional: true
-          )
-        ),
-
-        :V1ElementsTransactionIntentionRequestAutoDeclineZipOverride => AnyOf.new(
-          [
-            AnyOf.new([LeafType.new(TrueClass), LeafType.new(FalseClass)])
           ],
           UnionTypeContext.new(
             is_optional: true

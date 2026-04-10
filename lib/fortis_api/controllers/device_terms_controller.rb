@@ -9,23 +9,25 @@ module FortisApi
     # TODO: type endpoint description here
     # @param [V1DeviceTermsRequest] body Required parameter: TODO: type
     # description here
-    # @return [ResponseTransactionProcessing] Response from the API call.
-    def create_a_new_device_term(body)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanewdeviceterm(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/device-terms',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionProcessing.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -33,7 +35,7 @@ module FortisApi
     end
 
     # TODO: type endpoint description here
-    # @param [Page] page Optional parameter: Use this field to specify paginate
+    # @param [Page1] page Optional parameter: Use this field to specify paginate
     # your results, by using page size and number. You can use one of the
     # following methods: >/endpoint?page={ "number": 1, "size": 50 } >
     # >/endpoint?page[number]=1&page[size]=50 >
@@ -58,30 +60,30 @@ module FortisApi
     # "created_ts", "operator": "<=", value: "1695061891" }] >
     # >/endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value":
     # "Williams,Brown,Allman" }] >
-    # @param [Array[Expand8Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand8]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Format1Enum] format Optional parameter: Reporting format, valid
+    # @param [Format1] format Optional parameter: Reporting format, valid
     # values: csv, tsv
     # @param [String] typeahead Optional parameter: You can use any `field_name`
     # from this endpoint results to order the list using the value provided as
     # filter for the same `field_name`. It will be ordered using the following
     # rules: 1) Exact match, 2) Starts with, 3) Contains. >/endpoint?filter={
     # "field_name": "Value" }&_typeahead=field_name >
-    # @param [Array[Field31Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field31]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
-    # @return [ResponseDeviceTermsCollection] Response from the API call.
-    def list_all_device_terms_related(page: nil,
-                                      order: nil,
-                                      filter_by: nil,
-                                      expand: nil,
-                                      format: nil,
-                                      typeahead: nil,
-                                      fields: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def listalldevicetermsrelated(page: nil,
+                                  order: nil,
+                                  filter_by: nil,
+                                  expand: nil,
+                                  format: nil,
+                                  typeahead: nil,
+                                  fields: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/device-terms',
@@ -98,32 +100,34 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseDeviceTermsCollection.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
     # TODO: type endpoint description here
     # @param [String] device_terms_id Required parameter: Device term ID
-    # @param [Array[Expand8Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand8]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Array[Field31Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field31]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
-    # @return [ResponseDeviceTerm] Response from the API call.
-    def view_single_device_term_record(device_terms_id,
-                                       expand: nil,
-                                       fields: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def viewsingledevicetermrecord(device_terms_id,
+                                   expand: nil,
+                                   fields: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/device-terms/{device_terms_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(device_terms_id, key: 'device_terms_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .query_param(new_parameter(fields, key: 'fields'))
@@ -132,9 +136,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseDeviceTerm.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

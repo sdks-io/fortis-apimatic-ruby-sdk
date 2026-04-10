@@ -83,15 +83,12 @@ module FortisApi
       ]
     end
 
-    def initialize(terminal_manufacturer_code = SKIP, title = SKIP,
-                   contact_data = SKIP, contactless_data = SKIP, id = SKIP,
-                   created_ts = SKIP, modified_ts = SKIP,
-                   created_user_id = SKIP, modified_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(terminal_manufacturer_code: SKIP, title: SKIP,
+                   contact_data: SKIP, contactless_data: SKIP, id: SKIP,
+                   created_ts: SKIP, modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       unless terminal_manufacturer_code == SKIP
         @terminal_manufacturer_code =
@@ -105,6 +102,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -126,20 +124,24 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      TerminalCvm.new(terminal_manufacturer_code,
-                      title,
-                      contact_data,
-                      contactless_data,
-                      id,
-                      created_ts,
-                      modified_ts,
-                      created_user_id,
-                      modified_user_id,
-                      additional_properties)
+      TerminalCvm.new(terminal_manufacturer_code: terminal_manufacturer_code,
+                      title: title,
+                      contact_data: contact_data,
+                      contactless_data: contactless_data,
+                      id: id,
+                      created_ts: created_ts,
+                      modified_ts: modified_ts,
+                      created_user_id: created_user_id,
+                      modified_user_id: modified_user_id,
+                      additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -149,7 +151,7 @@ module FortisApi
       " #{@title}, contact_data: #{@contact_data}, contactless_data: #{@contactless_data}, id:"\
       " #{@id}, created_ts: #{@created_ts}, modified_ts: #{@modified_ts}, created_user_id:"\
       " #{@created_user_id}, modified_user_id: #{@modified_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -160,7 +162,7 @@ module FortisApi
       " #{@contactless_data.inspect}, id: #{@id.inspect}, created_ts: #{@created_ts.inspect},"\
       " modified_ts: #{@modified_ts.inspect}, created_user_id: #{@created_user_id.inspect},"\
       " modified_user_id: #{@modified_user_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

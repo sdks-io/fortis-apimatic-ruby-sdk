@@ -4,15 +4,15 @@
 # https://www.apimatic.io ).
 
 module FortisApi
-  # M3DSTransactionsController
-  class M3DSTransactionsController < BaseController
+  # M3DsTransactionsController
+  class M3DsTransactionsController < BaseController
     # For getting results of successful 3DS authentication attempts
     # @param [String] three_ds_server_trans_id Required parameter: Universally
     # unique transaction identifier assigned by the 3DS Server to identify a
     # single transaction.
     # @param [String] product_transaction_id Required parameter: Product
     # Transaction ID associated with this 3DS request
-    # @return [ResponseThreeDSTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def m3_ds_transactions_request(three_ds_server_trans_id,
                                    product_transaction_id)
       @api_call
@@ -20,16 +20,19 @@ module FortisApi
                                      '/v1/merchant/threedsecure/transactions/{three_ds_server_trans_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(three_ds_server_trans_id, key: 'three_ds_server_trans_id')
+                                    .is_required(true)
                                     .should_encode(true))
-                   .query_param(new_parameter(product_transaction_id, key: 'product_transaction_id'))
+                   .query_param(new_parameter(product_transaction_id, key: 'product_transaction_id')
+                                 .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
-                    .deserialize_into(ResponseThreeDSTransaction.method(:from_hash))
+                    .deserialize_into(ResponseThreeDsTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

@@ -1,6 +1,8 @@
 
 # Response Location Info
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ResponseLocationInfo`
@@ -9,8 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type44Enum`](../../doc/models/type-44-enum.md) | Optional | Resource Type<br><br>**Default**: `Type44Enum::LOCATIONINFO` |
+| `type` | [`Type44`](../../doc/models/type-44.md) | Optional | - |
 | `data` | [`Data11`](../../doc/models/data-11.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,9 +29,24 @@
       "city": "city6",
       "state": "state2",
       "postal_code": "postal_code8",
-      "country": "US",
-      "street": "street6"
+      "country": {
+        "key1": "val1",
+        "key2": "val2"
+      },
+      "street": "street6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
     }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

@@ -10,18 +10,18 @@ tags_controller = client.tags
 
 ## Methods
 
-* [Create a New Tag](../../doc/controllers/tags.md#create-a-new-tag)
-* [List All Tags Related](../../doc/controllers/tags.md#list-all-tags-related)
-* [Delete Tag Record](../../doc/controllers/tags.md#delete-tag-record)
-* [View Single Tags Record](../../doc/controllers/tags.md#view-single-tags-record)
-* [Update Tag Record](../../doc/controllers/tags.md#update-tag-record)
+* [Createanewtag](../../doc/controllers/tags.md#createanewtag)
+* [Listalltagsrelated](../../doc/controllers/tags.md#listalltagsrelated)
+* [Deletetagrecord](../../doc/controllers/tags.md#deletetagrecord)
+* [Viewsingletagsrecord](../../doc/controllers/tags.md#viewsingletagsrecord)
+* [Updatetagrecord](../../doc/controllers/tags.md#updatetagrecord)
 
 
-# Create a New Tag
+# Createanewtag
 
 ```ruby
-def create_a_new_tag(body,
-                     expand: nil)
+def createanewtag(body,
+                  expand: nil)
 ```
 
 ## Parameters
@@ -29,22 +29,27 @@ def create_a_new_tag(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TagsRequest`](../../doc/models/v1-tags-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand37Enum]`](../../doc/models/expand-37-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand37]`](../../doc/models/expand-37.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTag`](../../doc/models/response-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTag`](../../doc/models/response-tag.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TagsRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'My terminal'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  title: 'My terminal'
 )
 
-result = tags_controller.create_a_new_tag(body)
-puts result
+result = tags_controller.createanewtag(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -100,67 +105,72 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# List All Tags Related
+# Listalltagsrelated
 
 ```ruby
-def list_all_tags_related(page: nil,
-                          order: nil,
-                          filter_by: nil,
-                          expand: nil,
-                          format: nil,
-                          typeahead: nil,
-                          fields: nil)
+def listalltagsrelated(page: nil,
+                       order: nil,
+                       filter_by: nil,
+                       expand: nil,
+                       format: nil,
+                       typeahead: nil,
+                       fields: nil)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | [`Page`](../../doc/models/page.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
+| `page` | [`Page1`](../../doc/models/page-1.md) | Query, Optional | Use this field to specify paginate your results, by using page size and number. You can use one of the following methods:<br><br>> /endpoint?page={ "number": 1, "size": 50 }<br>> <br>> /endpoint?page[number]=1&page[size]=50 |
 | `order` | [`Array[Order21]`](../../doc/models/order-21.md) | Query, Optional | Criteria used in query string parameters to order results.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`.  Must be encoded, or use syntax that does not require encoding.<br><br>> /endpoint?order[0][key]=created_ts&order[0][operator]=asc<br>> <br>> /endpoint?order=[{ "key": "created_ts", "operator": "asc"}]<br>> <br>> /endpoint?order=[{ "key": "balance", "operator": "desc"},{ "key": "created_ts", "operator": "asc"}]<br><br>**Constraints**: *Minimum Items*: `1` |
 | `filter_by` | [`Array[FilterBy]`](../../doc/models/filter-by.md) | Query, Optional | Filter criteria that can be used in query string parameters.  Most fields from the endpoint results can be used as a `key`.  Unsupported fields or operators will return a `412`. Must be encoded, or use syntax that does not require encoding.<br><br>> ?filter_by[0][key]=first_name&filter_by[0][operator]==&filter_by[0][value]=Steve<br>> <br>> /endpoint?filter_by=[{ "key": "first_name", "operator": "=", "value": "Fred" }]<br>> <br>> /endpoint?filter_by=[{ "key": "account_type", "operator": "=", "value": "VISA" }]<br>> <br>> /endpoint?filter_by=[{ "key": "created_ts", "operator": ">=", "value": "946702799" }, { "key": "created_ts", "operator": "<=", value: "1695061891" }]<br>> <br>> /endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value": "Williams,Brown,Allman" }]<br><br>**Constraints**: *Minimum Items*: `1` |
-| `expand` | [`Array[Expand37Enum]`](../../doc/models/expand-37-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `format` | [`Format1Enum`](../../doc/models/format-1-enum.md) | Query, Optional | Reporting format, valid values: csv, tsv |
+| `expand` | [`Array[Expand37]`](../../doc/models/expand-37.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `format` | [`Format1`](../../doc/models/format-1.md) | Query, Optional | Reporting format, valid values: csv, tsv |
 | `typeahead` | `String` | Query, Optional | You can use any `field_name` from this endpoint results to order the list using the value provided as filter for the same `field_name`. It will be ordered using the following rules: 1) Exact match, 2) Starts with, 3) Contains.<br><br>> /endpoint?filter={ "field_name": "Value" }&_typeahead=field_name |
-| `fields` | [`Array[Field47Enum]`](../../doc/models/field-47-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `fields` | [`Array[Field47]`](../../doc/models/field-47.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseTagsCollection`](../../doc/models/response-tags-collection.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTagsCollection`](../../doc/models/response-tags-collection.md).
 
 ## Example Usage
 
 ```ruby
-page = Page.new(
-  1,
-  50
+page = Page1.new(
+  number: 1,
+  size: 50
 )
 
 order = [
   Order21.new(
-    'first_name',
-    OperatorEnum::ASC
+    key: 'first_name',
+    operator: Operator::ASC
   )
 ]
 
 filter_by = [
   FilterBy.new(
-    'first_name',
-    Operator1Enum::ENUM_1,
-    'Fred'
+    key: 'first_name',
+    operator: Operator1::ENUM_1,
+    value: 'Fred'
   )
 ]
 
-result = tags_controller.list_all_tags_related(
+result = tags_controller.listalltagsrelated(
   page: page,
   order: order,
   filter_by: filter_by
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -241,13 +251,13 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Delete Tag Record
+# Deletetagrecord
 
 ```ruby
-def delete_tag_record(tag_id)
+def deletetagrecord(tag_id)
 ```
 
 ## Parameters
@@ -258,15 +268,20 @@ def delete_tag_record(tag_id)
 
 ## Response Type
 
-[`ResponseTag`](../../doc/models/response-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTag`](../../doc/models/response-tag.md).
 
 ## Example Usage
 
 ```ruby
 tag_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = tags_controller.delete_tag_record(tag_id)
-puts result
+result = tags_controller.deletetagrecord(tag_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -322,15 +337,15 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# View Single Tags Record
+# Viewsingletagsrecord
 
 ```ruby
-def view_single_tags_record(tag_id,
-                            expand: nil,
-                            fields: nil)
+def viewsingletagsrecord(tag_id,
+                         expand: nil,
+                         fields: nil)
 ```
 
 ## Parameters
@@ -338,20 +353,25 @@ def view_single_tags_record(tag_id,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `tag_id` | `String` | Template, Required | Tag ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `expand` | [`Array[Expand37Enum]`](../../doc/models/expand-37-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
-| `fields` | [`Array[Field47Enum]`](../../doc/models/field-47-enum.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
+| `expand` | [`Array[Expand37]`](../../doc/models/expand-37.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
+| `fields` | [`Array[Field47]`](../../doc/models/field-47.md) | Query, Optional | You can use any `field_name` from this endpoint results to filter the list of fields returned on the response. |
 
 ## Response Type
 
-[`ResponseTag`](../../doc/models/response-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTag`](../../doc/models/response-tag.md).
 
 ## Example Usage
 
 ```ruby
 tag_id = '11e95f8ec39de8fbdb0a4f1a'
 
-result = tags_controller.view_single_tags_record(tag_id)
-puts result
+result = tags_controller.viewsingletagsrecord(tag_id)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -407,14 +427,14 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 
 
-# Update Tag Record
+# Updatetagrecord
 
 ```ruby
-def update_tag_record(tag_id,
-                      body)
+def updatetagrecord(tag_id,
+                    body)
 ```
 
 ## Parameters
@@ -426,7 +446,7 @@ def update_tag_record(tag_id,
 
 ## Response Type
 
-[`ResponseTag`](../../doc/models/response-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTag`](../../doc/models/response-tag.md).
 
 ## Example Usage
 
@@ -434,15 +454,20 @@ def update_tag_record(tag_id,
 tag_id = '11e95f8ec39de8fbdb0a4f1a'
 
 body = V1TagsRequest1.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'My terminal'
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  title: 'My terminal'
 )
 
-result = tags_controller.update_tag_record(
+result = tags_controller.updatetagrecord(
   tag_id,
   body
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -498,6 +523,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

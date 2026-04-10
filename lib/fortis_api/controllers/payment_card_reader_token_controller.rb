@@ -9,21 +9,23 @@ module FortisApi
     # For initializing iPhone card readers for Apple Tap to Pay transactions
     # @param [String] product_transaction_id Required parameter: Product
     # Transaction ID to be used to initialize the card reader
-    # @return [ResponsePaymentCardReaderToken] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def payment_card_reader_token_request(product_transaction_id)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/payment-card-reader-token',
                                      Server::DEFAULT)
-                   .query_param(new_parameter(product_transaction_id, key: 'product_transaction_id'))
+                   .query_param(new_parameter(product_transaction_id, key: 'product_transaction_id')
+                                 .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponsePaymentCardReaderToken.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

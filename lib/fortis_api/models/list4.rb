@@ -39,8 +39,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :reason_code_id
 
-    # Signature Information on `expand`
-    # @return [Signature]
+    # Reason code ID
+    # @return [Signature1]
     attr_accessor :signature
 
     # Created Time Stamp
@@ -55,24 +55,24 @@ module FortisApi
     # @return [String]
     attr_accessor :created_user_id
 
-    # User Information on `expand`
-    # @return [CreatedUser]
+    # System generated id for user who created record
+    # @return [User9]
     attr_accessor :created_user
 
-    # Location Information on `expand`
-    # @return [Location]
+    # System generated id for user who created record
+    # @return [Location18]
     attr_accessor :location
 
-    # Terminal Information on `expand`
-    # @return [Terminal]
+    # System generated id for user who created record
+    # @return [Terminal2]
     attr_accessor :terminal
 
     # Changelog Information on `expand`
     # @return [Array[Changelog]]
     attr_accessor :changelogs
 
-    # Reason Code Information on `expand`
-    # @return [ReasonCode]
+    # Changelog Information on `expand`
+    # @return [ReasonCode1]
     attr_accessor :reason_code
 
     # A mapping from model property names to API property names.
@@ -126,17 +126,15 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = SKIP, terminal_id = SKIP,
-                   require_signature = SKIP, device_term_api_id = SKIP,
-                   terms_conditions = SKIP, id = SKIP, reason_code_id = SKIP,
-                   signature = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   created_user_id = SKIP, created_user = SKIP, location = SKIP,
-                   terminal = SKIP, changelogs = SKIP, reason_code = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, terminal_id: SKIP,
+                   require_signature: SKIP, device_term_api_id: SKIP,
+                   terms_conditions: SKIP, id: SKIP, reason_code_id: SKIP,
+                   signature: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   created_user_id: SKIP, created_user: SKIP, location: SKIP,
+                   terminal: SKIP, changelogs: SKIP, reason_code: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       @terminal_id = terminal_id unless terminal_id == SKIP
@@ -154,6 +152,7 @@ module FortisApi
       @terminal = terminal unless terminal == SKIP
       @changelogs = changelogs unless changelogs == SKIP
       @reason_code = reason_code unless reason_code == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -172,14 +171,14 @@ module FortisApi
       id = hash.key?('id') ? hash['id'] : SKIP
       reason_code_id =
         hash.key?('reason_code_id') ? hash['reason_code_id'] : SKIP
-      signature = Signature.from_hash(hash['signature']) if hash['signature']
+      signature = Signature1.from_hash(hash['signature']) if hash['signature']
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
-      created_user = CreatedUser.from_hash(hash['created_user']) if hash['created_user']
-      location = Location.from_hash(hash['location']) if hash['location']
-      terminal = Terminal.from_hash(hash['terminal']) if hash['terminal']
+      created_user = User9.from_hash(hash['created_user']) if hash['created_user']
+      location = Location18.from_hash(hash['location']) if hash['location']
+      terminal = Terminal2.from_hash(hash['terminal']) if hash['terminal']
       # Parameter is an array, so we need to iterate through it
       changelogs = nil
       unless hash['changelogs'].nil?
@@ -190,29 +189,33 @@ module FortisApi
       end
 
       changelogs = SKIP unless hash.key?('changelogs')
-      reason_code = ReasonCode.from_hash(hash['reason_code']) if hash['reason_code']
+      reason_code = ReasonCode1.from_hash(hash['reason_code']) if hash['reason_code']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      List4.new(location_id,
-                terminal_id,
-                require_signature,
-                device_term_api_id,
-                terms_conditions,
-                id,
-                reason_code_id,
-                signature,
-                created_ts,
-                modified_ts,
-                created_user_id,
-                created_user,
-                location,
-                terminal,
-                changelogs,
-                reason_code,
-                additional_properties)
+      List4.new(location_id: location_id,
+                terminal_id: terminal_id,
+                require_signature: require_signature,
+                device_term_api_id: device_term_api_id,
+                terms_conditions: terms_conditions,
+                id: id,
+                reason_code_id: reason_code_id,
+                signature: signature,
+                created_ts: created_ts,
+                modified_ts: modified_ts,
+                created_user_id: created_user_id,
+                created_user: created_user,
+                location: location,
+                terminal: terminal,
+                changelogs: changelogs,
+                reason_code: reason_code,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -224,7 +227,7 @@ module FortisApi
       " signature: #{@signature}, created_ts: #{@created_ts}, modified_ts: #{@modified_ts},"\
       " created_user_id: #{@created_user_id}, created_user: #{@created_user}, location:"\
       " #{@location}, terminal: #{@terminal}, changelogs: #{@changelogs}, reason_code:"\
-      " #{@reason_code}, additional_properties: #{get_additional_properties}>"
+      " #{@reason_code}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -238,7 +241,7 @@ module FortisApi
       " #{@modified_ts.inspect}, created_user_id: #{@created_user_id.inspect}, created_user:"\
       " #{@created_user.inspect}, location: #{@location.inspect}, terminal: #{@terminal.inspect},"\
       " changelogs: #{@changelogs.inspect}, reason_code: #{@reason_code.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

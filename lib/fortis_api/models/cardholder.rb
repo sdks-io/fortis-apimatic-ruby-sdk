@@ -10,20 +10,12 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Indicates whether the Cardholder Shipping Address and Cardholder Billing
-    # Address are the same.
-    #  If the field is not set and the shipping and billing addresses are the
-    # same, the 3DS Server will set the value to Y. Otherwise, the value will
-    # not be changed.
-    # >Y - Shipping Address matches Billing Address
-    # >
-    # >N - Shipping Address does not match Billing Address
-    # >
-    # @return [AddressMatchEnum]
+    # TODO: Write general description for this method
+    # @return [AddressMatch]
     attr_accessor :address_match
 
-    # Cardholder billing address object
-    # @return [BillingAddress24]
+    # TODO: Write general description for this method
+    # @return [BillingAddress13]
     attr_accessor :billing_address
 
     # The email address associated with the account that is either entered by
@@ -34,25 +26,28 @@ module FortisApi
     # @return [String]
     attr_accessor :email
 
-    # The home phone provided by the Cardholder. Refer to ITU-E.164 for
-    # additional information on format and length.
-    # This field is required if available, unless market or regional mandate
-    # restricts sending this information.
-    # @return [HomePhone]
+    # The email address associated with the account that is either entered by
+    # the Cardholder, or is on file with the 3DS Requestor. This field shall
+    # meet requirements of Section 3.4 of IETF RFC 5322.
+    # This field is required unless market or regional mandate restricts sending
+    # this information.
+    # @return [HomePhone2]
     attr_accessor :home_phone
 
-    # The mobile phone provided by the Cardholder. Refer to ITU-E.164 for
-    # additional information on format and length.
-    # This field is required if available, unless market or regional mandate
-    # restricts sending this information.
-    # @return [MobilePhone]
+    # The email address associated with the account that is either entered by
+    # the Cardholder, or is on file with the 3DS Requestor. This field shall
+    # meet requirements of Section 3.4 of IETF RFC 5322.
+    # This field is required unless market or regional mandate restricts sending
+    # this information.
+    # @return [MobilePhone2]
     attr_accessor :mobile_phone
 
-    # The work phone provided by the Cardholder. Refer to ITU-E.164 for
-    # additional information on format and length.
-    # This field is required if available, unless market or regional mandate
-    # restricts sending this information.
-    # @return [WorkPhone]
+    # The email address associated with the account that is either entered by
+    # the Cardholder, or is on file with the 3DS Requestor. This field shall
+    # meet requirements of Section 3.4 of IETF RFC 5322.
+    # This field is required unless market or regional mandate restricts sending
+    # this information.
+    # @return [WorkPhone2]
     attr_accessor :work_phone
 
     # Name of the Cardholder.
@@ -61,8 +56,10 @@ module FortisApi
     # @return [String]
     attr_accessor :cardholder_name
 
-    # Cardholder shipping address object
-    # @return [ShippingAddress]
+    # Name of the Cardholder.
+    # This field is required unless market or regional mandate restricts sending
+    # this information.
+    # @return [ShippingAddress2]
     attr_accessor :shipping_address
 
     # Tax ID is the Cardholder's tax identification.
@@ -107,14 +104,12 @@ module FortisApi
       []
     end
 
-    def initialize(address_match = SKIP, billing_address = SKIP, email = SKIP,
-                   home_phone = SKIP, mobile_phone = SKIP, work_phone = SKIP,
-                   cardholder_name = SKIP, shipping_address = SKIP,
-                   tax_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(address_match: SKIP, billing_address: SKIP, email: SKIP,
+                   home_phone: SKIP, mobile_phone: SKIP, work_phone: SKIP,
+                   cardholder_name: SKIP, shipping_address: SKIP, tax_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @address_match = address_match unless address_match == SKIP
       @billing_address = billing_address unless billing_address == SKIP
@@ -125,6 +120,7 @@ module FortisApi
       @cardholder_name = cardholder_name unless cardholder_name == SKIP
       @shipping_address = shipping_address unless shipping_address == SKIP
       @tax_id = tax_id unless tax_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -133,32 +129,36 @@ module FortisApi
 
       # Extract variables from the hash.
       address_match = hash.key?('address_match') ? hash['address_match'] : SKIP
-      billing_address = BillingAddress24.from_hash(hash['billing_address']) if
+      billing_address = BillingAddress13.from_hash(hash['billing_address']) if
         hash['billing_address']
       email = hash.key?('email') ? hash['email'] : SKIP
-      home_phone = HomePhone.from_hash(hash['home_phone']) if hash['home_phone']
-      mobile_phone = MobilePhone.from_hash(hash['mobile_phone']) if hash['mobile_phone']
-      work_phone = WorkPhone.from_hash(hash['work_phone']) if hash['work_phone']
+      home_phone = HomePhone2.from_hash(hash['home_phone']) if hash['home_phone']
+      mobile_phone = MobilePhone2.from_hash(hash['mobile_phone']) if hash['mobile_phone']
+      work_phone = WorkPhone2.from_hash(hash['work_phone']) if hash['work_phone']
       cardholder_name =
         hash.key?('cardholder_name') ? hash['cardholder_name'] : SKIP
-      shipping_address = ShippingAddress.from_hash(hash['shipping_address']) if
+      shipping_address = ShippingAddress2.from_hash(hash['shipping_address']) if
         hash['shipping_address']
       tax_id = hash.key?('tax_id') ? hash['tax_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Cardholder.new(address_match,
-                     billing_address,
-                     email,
-                     home_phone,
-                     mobile_phone,
-                     work_phone,
-                     cardholder_name,
-                     shipping_address,
-                     tax_id,
-                     additional_properties)
+      Cardholder.new(address_match: address_match,
+                     billing_address: billing_address,
+                     email: email,
+                     home_phone: home_phone,
+                     mobile_phone: mobile_phone,
+                     work_phone: work_phone,
+                     cardholder_name: cardholder_name,
+                     shipping_address: shipping_address,
+                     tax_id: tax_id,
+                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -168,7 +168,7 @@ module FortisApi
       " email: #{@email}, home_phone: #{@home_phone}, mobile_phone: #{@mobile_phone}, work_phone:"\
       " #{@work_phone}, cardholder_name: #{@cardholder_name}, shipping_address:"\
       " #{@shipping_address}, tax_id: #{@tax_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -179,7 +179,7 @@ module FortisApi
       " mobile_phone: #{@mobile_phone.inspect}, work_phone: #{@work_phone.inspect},"\
       " cardholder_name: #{@cardholder_name.inspect}, shipping_address:"\
       " #{@shipping_address.inspect}, tax_id: #{@tax_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

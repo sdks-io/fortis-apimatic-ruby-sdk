@@ -55,17 +55,16 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, changelog_id = SKIP, field = SKIP,
-                   old_value = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, changelog_id: SKIP, field: SKIP, old_value: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @changelog_id = changelog_id unless changelog_id == SKIP
       @field = field unless field == SKIP
       @old_value = old_value unless old_value == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -78,22 +77,26 @@ module FortisApi
       field = hash.key?('field') ? hash['field'] : SKIP
       old_value = hash.key?('old_value') ? hash['old_value'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ChangelogDetail.new(id,
-                          changelog_id,
-                          field,
-                          old_value,
-                          additional_properties)
+      ChangelogDetail.new(id: id,
+                          changelog_id: changelog_id,
+                          field: field,
+                          old_value: old_value,
+                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, changelog_id: #{@changelog_id}, field: #{@field}, old_value:"\
-      " #{@old_value}, additional_properties: #{get_additional_properties}>"
+      " #{@old_value}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -101,7 +104,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id.inspect}, changelog_id: #{@changelog_id.inspect}, field:"\
       " #{@field.inspect}, old_value: #{@old_value.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

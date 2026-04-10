@@ -27,70 +27,66 @@ def merchant_boarding(body)
 
 ## Response Type
 
-[`ResponseOnboarding`](../../doc/models/response-onboarding.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseOnboarding`](../../doc/models/response-onboarding.md).
 
 ## Example Usage
 
 ```ruby
 body = V1OnboardingRequest.new(
-  PrimaryPrincipal1.new(
-    'Bob',
-    'Fairview',
-    'Nathaniel',
-    'Dr',
-    '2021-12-01',
-    '1354 Oak St.',
-    'Unit 203',
-    'Dover',
-    'DE',
-    '55022',
-    nil,
-    100,
-    '555-555-1234'
+  primary_principal: PrimaryPrincipal2.new(
+    first_name: 'Bob',
+    last_name: 'Fairview',
+    middle_name: 'Nathaniel',
+    title: 'Dr',
+    date_of_birth: '2021-12-01',
+    address_line_1: '1354 Oak St.',
+    address_line_2: 'Unit 203',
+    city: 'Dover',
+    state_province: 'DE',
+    postal_code: '55022',
+    ownership_percent: 100,
+    phone_number: '555-555-1234'
   ),
-  '1234YourTemplateCode',
-  'email@domain.com',
-  'Discount Home Goods',
-  Location20.new(
-    '555-555-1212',
-    '1200 West Hartford Pkwy',
-    'Suite 2000',
-    'Dover',
-    'DE',
-    '55022'
+  template_code: '1234YourTemplateCode',
+  email: 'email@domain.com',
+  dba_name: 'Discount Home Goods',
+  location: Location19.new(
+    phone_number: '555-555-1212',
+    address_line_1: '1200 West Hartford Pkwy',
+    address_line_2: 'Suite 2000',
+    city: 'Dover',
+    state_province: 'DE',
+    postal_code: '55022'
   ),
-  envrr,
-  Contact11.new(
-    '555-555-3456',
-    'Jeffery',
-    'Todd',
-    'jtodd@example.com'
+  app_delivery: AppDelivery::DIRECT,
+  contact: Contact13.new(
+    phone_number: '555-555-3456',
+    first_name: 'Jeffery',
+    last_name: 'Todd',
+    email: 'jtodd@example.com'
   ),
-  nil,
-  BusinessCategoryEnum::EDUCATION,
-  nil,
-  nil,
-  0,
-  0,
-  100,
-  OwnershipTypeEnum::LLP,
-  '0000000000',
-  5,
-  1,
-  1500,
-  5,
-  2,
-  1500,
-  'http://www.example.com',
-  BankAccount.new,
-  AltBankAccount.new,
-  'Total Home Goods, LLP',
-  'ABC123',
-  []
+  swiped_percent: 0,
+  keyed_percent: 0,
+  ecommerce_percent: 100,
+  fed_tax_id: '0000000000',
+  cc_average_ticket_range: 5,
+  cc_monthly_volume_range: 1,
+  cc_high_ticket: 1500,
+  ec_average_ticket_range: 5,
+  ec_monthly_volume_range: 2,
+  ec_high_ticket: 1500,
+  website: 'http://www.example.com',
+  legal_name: 'Total Home Goods, LLP',
+  client_app_id: 'ABC123'
 )
 
 result = on_boarding_controller.merchant_boarding(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -169,6 +165,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

@@ -54,17 +54,16 @@ module FortisApi
       ]
     end
 
-    def initialize(first_name = SKIP, last_name = SKIP, email = SKIP,
-                   phone_number = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(first_name: SKIP, last_name: SKIP, email: SKIP,
+                   phone_number: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @first_name = first_name unless first_name == SKIP
       @last_name = last_name unless last_name == SKIP
       @email = email unless email == SKIP
       @phone_number = phone_number unless phone_number == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -77,22 +76,26 @@ module FortisApi
       email = hash.key?('email') ? hash['email'] : SKIP
       phone_number = hash.key?('phone_number') ? hash['phone_number'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Contact.new(first_name,
-                  last_name,
-                  email,
-                  phone_number,
-                  additional_properties)
+      Contact.new(first_name: first_name,
+                  last_name: last_name,
+                  email: email,
+                  phone_number: phone_number,
+                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} first_name: #{@first_name}, last_name: #{@last_name}, email: #{@email},"\
-      " phone_number: #{@phone_number}, additional_properties: #{get_additional_properties}>"
+      " phone_number: #{@phone_number}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -100,7 +103,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} first_name: #{@first_name.inspect}, last_name: #{@last_name.inspect},"\
       " email: #{@email.inspect}, phone_number: #{@phone_number.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

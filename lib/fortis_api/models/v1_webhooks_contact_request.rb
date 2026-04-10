@@ -32,8 +32,10 @@ module FortisApi
     # @return [String]
     attr_accessor :expands
 
-    # Options include: api-default
-    # @return [FormatEnum]
+    # An option list of expanded data to send with base data. (i.e. set this
+    # field to “contact,account_vault” to get the contact an accountvault used
+    # to run a transaction.)
+    # @return [Object]
     attr_accessor :format
 
     # Flag to indicate whether configuration is active (in effect).
@@ -73,10 +75,8 @@ module FortisApi
     # @return [String]
     attr_accessor :product_transaction_id
 
-    # The resource you want to subscribe the postbacks to.
-    # >Possible values include: 'contact', 'transaction', 'transactionbatch'
-    # >
-    # @return [Resource12Enum]
+    # Required when using 'transaction' or 'transactionbatch' resource
+    # @return [Object]
     attr_accessor :resource
 
     # Maximum number of attempts on failure
@@ -133,26 +133,21 @@ module FortisApi
         basic_auth_username
         basic_auth_password
         expands
-        format
         location_api_id
         postback_config_id
         product_transaction_id
-        resource
       ]
     end
 
-    def initialize(is_active = nil, location_id = nil, on_create = nil,
-                   on_update = nil, on_delete = nil, number_of_attempts = nil,
-                   url = nil, attempt_interval = 300,
-                   basic_auth_username = SKIP, basic_auth_password = SKIP,
-                   expands = SKIP, format = SKIP, location_api_id = SKIP,
-                   legacy = true, postback_config_id = SKIP,
-                   product_transaction_id = SKIP, resource = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(is_active:, location_id:, on_create:, on_update:, on_delete:,
+                   number_of_attempts:, url:, attempt_interval: 300,
+                   basic_auth_username: SKIP, basic_auth_password: SKIP,
+                   expands: SKIP, format: SKIP, location_api_id: SKIP,
+                   legacy: true, postback_config_id: SKIP,
+                   product_transaction_id: SKIP, resource: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @attempt_interval = attempt_interval unless attempt_interval == SKIP
       @basic_auth_username = basic_auth_username unless basic_auth_username == SKIP
@@ -171,6 +166,7 @@ module FortisApi
       @resource = resource unless resource == SKIP
       @number_of_attempts = number_of_attempts
       @url = url
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -202,28 +198,32 @@ module FortisApi
         hash.key?('product_transaction_id') ? hash['product_transaction_id'] : SKIP
       resource = hash.key?('resource') ? hash['resource'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1WebhooksContactRequest.new(is_active,
-                                   location_id,
-                                   on_create,
-                                   on_update,
-                                   on_delete,
-                                   number_of_attempts,
-                                   url,
-                                   attempt_interval,
-                                   basic_auth_username,
-                                   basic_auth_password,
-                                   expands,
-                                   format,
-                                   location_api_id,
-                                   legacy,
-                                   postback_config_id,
-                                   product_transaction_id,
-                                   resource,
-                                   additional_properties)
+      V1WebhooksContactRequest.new(is_active: is_active,
+                                   location_id: location_id,
+                                   on_create: on_create,
+                                   on_update: on_update,
+                                   on_delete: on_delete,
+                                   number_of_attempts: number_of_attempts,
+                                   url: url,
+                                   attempt_interval: attempt_interval,
+                                   basic_auth_username: basic_auth_username,
+                                   basic_auth_password: basic_auth_password,
+                                   expands: expands,
+                                   format: format,
+                                   location_api_id: location_api_id,
+                                   legacy: legacy,
+                                   postback_config_id: postback_config_id,
+                                   product_transaction_id: product_transaction_id,
+                                   resource: resource,
+                                   additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -236,7 +236,7 @@ module FortisApi
       " on_delete: #{@on_delete}, legacy: #{@legacy}, postback_config_id: #{@postback_config_id},"\
       " product_transaction_id: #{@product_transaction_id}, resource: #{@resource},"\
       " number_of_attempts: #{@number_of_attempts}, url: #{@url}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -251,7 +251,7 @@ module FortisApi
       " postback_config_id: #{@postback_config_id.inspect}, product_transaction_id:"\
       " #{@product_transaction_id.inspect}, resource: #{@resource.inspect}, number_of_attempts:"\
       " #{@number_of_attempts.inspect}, url: #{@url.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

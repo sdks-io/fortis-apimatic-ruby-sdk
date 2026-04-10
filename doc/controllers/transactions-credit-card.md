@@ -11,49 +11,49 @@ transactions_credit_card_controller = client.transactions_credit_card
 ## Methods
 
 * [CC Auth Only](../../doc/controllers/transactions-credit-card.md#cc-auth-only)
-* [CC Auth Only - Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-auth-only---previous-transaction)
-* [CC Auth Only - Swiped](../../doc/controllers/transactions-credit-card.md#cc-auth-only---swiped)
-* [CC Auth Only - Tap to Pay](../../doc/controllers/transactions-credit-card.md#cc-auth-only---tap-to-pay)
-* [CC Auth Only - Terminal](../../doc/controllers/transactions-credit-card.md#cc-auth-only---terminal)
-* [CC Auth Only - Ticket](../../doc/controllers/transactions-credit-card.md#cc-auth-only---ticket)
-* [CC Auth Only - Tokenized](../../doc/controllers/transactions-credit-card.md#cc-auth-only---tokenized)
-* [CC Auth Only - Wallet](../../doc/controllers/transactions-credit-card.md#cc-auth-only---wallet)
-* [CC AVS](../../doc/controllers/transactions-credit-card.md#cc-avs)
-* [CC AVS - Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-avs---previous-transaction)
-* [CC AVS - Swiped](../../doc/controllers/transactions-credit-card.md#cc-avs---swiped)
-* [CC AVS - Terminal](../../doc/controllers/transactions-credit-card.md#cc-avs---terminal)
-* [CC AVS - Ticket](../../doc/controllers/transactions-credit-card.md#cc-avs---ticket)
-* [CC AVS - Tokenized](../../doc/controllers/transactions-credit-card.md#cc-avs---tokenized)
-* [CC AVS - Wallet](../../doc/controllers/transactions-credit-card.md#cc-avs---wallet)
+* [CC Auth Only-Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-auth-only-previous-transaction)
+* [CC Auth Only-Swiped](../../doc/controllers/transactions-credit-card.md#cc-auth-only-swiped)
+* [CC Auth Only-Tap to Pay](../../doc/controllers/transactions-credit-card.md#cc-auth-only-tap-to-pay)
+* [CC Auth Only-Terminal](../../doc/controllers/transactions-credit-card.md#cc-auth-only-terminal)
+* [CC Auth Only-Ticket](../../doc/controllers/transactions-credit-card.md#cc-auth-only-ticket)
+* [CC Auth Only-Tokenized](../../doc/controllers/transactions-credit-card.md#cc-auth-only-tokenized)
+* [CC Auth Only-Wallet](../../doc/controllers/transactions-credit-card.md#cc-auth-only-wallet)
+* [CCAVS](../../doc/controllers/transactions-credit-card.md#ccavs)
+* [CCAVS-Previous Transaction](../../doc/controllers/transactions-credit-card.md#ccavs-previous-transaction)
+* [CCAVS-Swiped](../../doc/controllers/transactions-credit-card.md#ccavs-swiped)
+* [CCAVS-Terminal](../../doc/controllers/transactions-credit-card.md#ccavs-terminal)
+* [CCAVS-Ticket](../../doc/controllers/transactions-credit-card.md#ccavs-ticket)
+* [CCAVS-Tokenized](../../doc/controllers/transactions-credit-card.md#ccavs-tokenized)
+* [CCAVS-Wallet](../../doc/controllers/transactions-credit-card.md#ccavs-wallet)
 * [CC Balance Inquiry](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry)
-* [CC Balance Inquiry - Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry---previous-transaction)
-* [CC Balance Inquiry - Swiped](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry---swiped)
-* [CC Balance Inquiry - Terminal](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry---terminal)
-* [CC Balance Inquiry - Ticket](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry---ticket)
-* [CC Balance Inquiry - Tokenized](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry---tokenized)
-* [CC Balance Inquiry - Wallet](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry---wallet)
+* [CC Balance Inquiry-Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry-previous-transaction)
+* [CC Balance Inquiry-Swiped](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry-swiped)
+* [CC Balance Inquiry-Terminal](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry-terminal)
+* [CC Balance Inquiry-Ticket](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry-ticket)
+* [CC Balance Inquiry-Tokenized](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry-tokenized)
+* [CC Balance Inquiry-Wallet](../../doc/controllers/transactions-credit-card.md#cc-balance-inquiry-wallet)
 * [CC Force](../../doc/controllers/transactions-credit-card.md#cc-force)
-* [CC Force - Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-force---previous-transaction)
-* [CC Force - Swiped](../../doc/controllers/transactions-credit-card.md#cc-force---swiped)
-* [CC Force - Ticket](../../doc/controllers/transactions-credit-card.md#cc-force---ticket)
-* [CC Force - Tokenized](../../doc/controllers/transactions-credit-card.md#cc-force---tokenized)
-* [CC Force - Wallet](../../doc/controllers/transactions-credit-card.md#cc-force---wallet)
+* [CC Force-Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-force-previous-transaction)
+* [CC Force-Swiped](../../doc/controllers/transactions-credit-card.md#cc-force-swiped)
+* [CC Force-Ticket](../../doc/controllers/transactions-credit-card.md#cc-force-ticket)
+* [CC Force-Tokenized](../../doc/controllers/transactions-credit-card.md#cc-force-tokenized)
+* [CC Force-Wallet](../../doc/controllers/transactions-credit-card.md#cc-force-wallet)
 * [CC Refund](../../doc/controllers/transactions-credit-card.md#cc-refund)
-* [CC Refund - Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-refund---previous-transaction)
-* [CC Refund - Swiped](../../doc/controllers/transactions-credit-card.md#cc-refund---swiped)
-* [CC Refund - Tap to Pay](../../doc/controllers/transactions-credit-card.md#cc-refund---tap-to-pay)
-* [CC Refund - Terminal](../../doc/controllers/transactions-credit-card.md#cc-refund---terminal)
-* [CC Refund - Ticket](../../doc/controllers/transactions-credit-card.md#cc-refund---ticket)
-* [CC Refund - Tokenized](../../doc/controllers/transactions-credit-card.md#cc-refund---tokenized)
-* [CC Refund - Wallet](../../doc/controllers/transactions-credit-card.md#cc-refund---wallet)
+* [CC Refund-Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-refund-previous-transaction)
+* [CC Refund-Swiped](../../doc/controllers/transactions-credit-card.md#cc-refund-swiped)
+* [CC Refund-Tap to Pay](../../doc/controllers/transactions-credit-card.md#cc-refund-tap-to-pay)
+* [CC Refund-Terminal](../../doc/controllers/transactions-credit-card.md#cc-refund-terminal)
+* [CC Refund-Ticket](../../doc/controllers/transactions-credit-card.md#cc-refund-ticket)
+* [CC Refund-Tokenized](../../doc/controllers/transactions-credit-card.md#cc-refund-tokenized)
+* [CC Refund-Wallet](../../doc/controllers/transactions-credit-card.md#cc-refund-wallet)
 * [CC Sale](../../doc/controllers/transactions-credit-card.md#cc-sale)
-* [CC Sale - Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-sale---previous-transaction)
-* [CC Sale - Swiped](../../doc/controllers/transactions-credit-card.md#cc-sale---swiped)
-* [CC Sale - Tap to Pay](../../doc/controllers/transactions-credit-card.md#cc-sale---tap-to-pay)
-* [CC Sale - Terminal](../../doc/controllers/transactions-credit-card.md#cc-sale---terminal)
-* [CC Sale - Ticket](../../doc/controllers/transactions-credit-card.md#cc-sale---ticket)
-* [CC Sale - Tokenized](../../doc/controllers/transactions-credit-card.md#cc-sale---tokenized)
-* [CC Sale - Wallet](../../doc/controllers/transactions-credit-card.md#cc-sale---wallet)
+* [CC Sale-Previous Transaction](../../doc/controllers/transactions-credit-card.md#cc-sale-previous-transaction)
+* [CC Sale-Swiped](../../doc/controllers/transactions-credit-card.md#cc-sale-swiped)
+* [CC Sale-Tap to Pay](../../doc/controllers/transactions-credit-card.md#cc-sale-tap-to-pay)
+* [CC Sale-Terminal](../../doc/controllers/transactions-credit-card.md#cc-sale-terminal)
+* [CC Sale-Ticket](../../doc/controllers/transactions-credit-card.md#cc-sale-ticket)
+* [CC Sale-Tokenized](../../doc/controllers/transactions-credit-card.md#cc-sale-tokenized)
+* [CC Sale-Wallet](../../doc/controllers/transactions-credit-card.md#cc-sale-wallet)
 
 
 # CC Auth Only
@@ -70,103 +70,91 @@ def cc_auth_only(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlyKeyedRequest`](../../doc/models/v1-transactions-cc-auth-only-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyKeyedRequest.new(
-  1,
-  '5454545454545454',
-  '0722',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  nil,
-  EntryModeIdEnum::K,
-  'T051904524T 741025349520O 8520748520963',
-  '1234',
-  '1234'
+  transaction_amount: 1,
+  account_number: '5454545454545454',
+  exp_date: '0722',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  pin: '1234',
+  ksn: '1234'
 )
 
 result = transactions_credit_card_controller.cc_auth_only(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1220,11 +1208,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Previous Transaction
+# CC Auth Only-Previous Transaction
 
 Create a new Credit Card authorization only transaction using previous transaction id
 
@@ -1238,105 +1226,87 @@ def cc_auth_only_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlyPrevTrxnRequest`](../../doc/models/v1-transactions-cc-auth-only-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyPrevTrxnRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  ),
-  nil,
-  'smith'
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_auth_only_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2390,11 +2360,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Swiped
+# CC Auth Only-Swiped
 
 Create a new swiped Credit Card authorization only transaction
 
@@ -2408,98 +2378,87 @@ def cc_auth_only_swiped(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlySwipedRequest`](../../doc/models/v1-transactions-cc-auth-only-swiped-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlySwipedRequest.new(
-  1,
-  'T051904524T 741025349520O 8520748520963',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  EntryModeIdEnum::K,
-  'smith'
+  transaction_amount: 1,
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_auth_only_swiped(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -3553,11 +3512,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Tap to Pay
+# CC Auth Only-Tap to Pay
 
 Create a new Tap To Pay Credit Card authorization only transaction
 
@@ -3571,89 +3530,83 @@ def cc_auth_only_tap_to_pay(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlyTaptopayRequest`](../../doc/models/v1-transactions-cc-auth-only-taptopay-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyTaptopayRequest.new(
-  'card_data_cryptogram2',
-  'general_card_data4',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '1234567890',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0
+  card_data_cryptogram: 'card_data_cryptogram2',
+  general_card_data: 'general_card_data4',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
 result = transactions_credit_card_controller.cc_auth_only_tap_to_pay(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -4707,11 +4660,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Terminal
+# CC Auth Only-Terminal
 
 Create a new terminal Credit Card authorization only transaction
 
@@ -4727,94 +4680,81 @@ def cc_auth_only_terminal(body)
 
 ## Response Type
 
-[`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyTerminalRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  1,
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  EFormatEnum::MAGNESAFE
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  transaction_amount: 1,
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
 result = transactions_credit_card_controller.cc_auth_only_terminal(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -4835,11 +4775,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Ticket
+# CC Auth Only-Ticket
 
 Create a new ticket Credit Card authorization only transaction
 
@@ -4853,98 +4793,87 @@ def cc_auth_only_ticket(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlyTicketRequest`](../../doc/models/v1-transactions-cc-auth-only-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyTicketRequest.new(
-  1,
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  'smith'
+  transaction_amount: 1,
+  ticket_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_auth_only_ticket(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -5998,11 +5927,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Tokenized
+# CC Auth Only-Tokenized
 
 Create a new tokenized Credit Card authorization only transaction
 
@@ -6016,106 +5945,87 @@ def cc_auth_only_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlyTokenRequest`](../../doc/models/v1-transactions-cc-auth-only-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyTokenRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_credit_card_controller.cc_auth_only_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -7169,11 +7079,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Auth Only - Wallet
+# CC Auth Only-Wallet
 
 Create a new Wallet Credit Card authorization only transaction
 
@@ -7187,99 +7097,89 @@ def cc_auth_only_wallet(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAuthOnlyWalletRequest`](../../doc/models/v1-transactions-cc-auth-only-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAuthOnlyWalletRequest.new(
-  1,
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  '11ee2bd392f32cb8aefd5bb5'
+  transaction_amount: 1,
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5'
 )
 
 result = transactions_credit_card_controller.cc_auth_only_wallet(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -8333,17 +8233,17 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS
+# CCAVS
 
 Create a new keyed Credit Card AVS only transaction
 
 ```ruby
-def cc_avs(body,
-           expand: nil)
+def ccavs(body,
+          expand: nil)
 ```
 
 ## Parameters
@@ -8351,103 +8251,91 @@ def cc_avs(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAvsOnlyKeyedRequest`](../../doc/models/v1-transactions-cc-avs-only-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlyKeyedRequest.new(
-  '5454545454545454',
-  '0722',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  nil,
-  EntryModeIdEnum::K,
-  'T051904524T 741025349520O 8520748520963',
-  '1234',
-  '1234'
+  account_number: '5454545454545454',
+  exp_date: '0722',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  pin: '1234',
+  ksn: '1234'
 )
 
-result = transactions_credit_card_controller.cc_avs(body)
-puts result
+result = transactions_credit_card_controller.ccavs(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -9501,17 +9389,17 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS - Previous Transaction
+# CCAVS-Previous Transaction
 
 Create a new Credit Card AVS only transaction using previous transaction id
 
 ```ruby
-def cc_avs_previous_transaction(body,
-                                expand: nil)
+def ccavs_previous_transaction(body,
+                               expand: nil)
 ```
 
 ## Parameters
@@ -9519,105 +9407,87 @@ def cc_avs_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAvsOnlyPrevTrxnRequest`](../../doc/models/v1-transactions-cc-avs-only-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlyPrevTrxnRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  ),
-  nil,
-  'smith'
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith'
 )
 
-result = transactions_credit_card_controller.cc_avs_previous_transaction(body)
-puts result
+result = transactions_credit_card_controller.ccavs_previous_transaction(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -10671,17 +10541,17 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS - Swiped
+# CCAVS-Swiped
 
 Create a new swiped Credit Card AVS only transaction
 
 ```ruby
-def cc_avs_swiped(body,
-                  expand: nil)
+def ccavs_swiped(body,
+                 expand: nil)
 ```
 
 ## Parameters
@@ -10689,98 +10559,87 @@ def cc_avs_swiped(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAvsOnlySwipedRequest`](../../doc/models/v1-transactions-cc-avs-only-swiped-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlySwipedRequest.new(
-  'T051904524T 741025349520O 8520748520963',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  EntryModeIdEnum::K,
-  'smith'
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
-result = transactions_credit_card_controller.cc_avs_swiped(body)
-puts result
+result = transactions_credit_card_controller.ccavs_swiped(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -11834,16 +11693,16 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS - Terminal
+# CCAVS-Terminal
 
 Create a new terminal Credit Card AVS only transaction
 
 ```ruby
-def cc_avs_terminal(body)
+def ccavs_terminal(body)
 ```
 
 ## Parameters
@@ -11854,94 +11713,81 @@ def cc_avs_terminal(body)
 
 ## Response Type
 
-[`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlyTerminalRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  EFormatEnum::MAGNESAFE
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
-result = transactions_credit_card_controller.cc_avs_terminal(body)
-puts result
+result = transactions_credit_card_controller.ccavs_terminal(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -11962,17 +11808,17 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS - Ticket
+# CCAVS-Ticket
 
 Create a new ticket Credit Card AVS only transaction
 
 ```ruby
-def cc_avs_ticket(body,
-                  expand: nil)
+def ccavs_ticket(body,
+                 expand: nil)
 ```
 
 ## Parameters
@@ -11980,98 +11826,87 @@ def cc_avs_ticket(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAvsOnlyTicketRequest`](../../doc/models/v1-transactions-cc-avs-only-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlyTicketRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  'smith'
+  ticket_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
-result = transactions_credit_card_controller.cc_avs_ticket(body)
-puts result
+result = transactions_credit_card_controller.ccavs_ticket(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -13125,17 +12960,17 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS - Tokenized
+# CCAVS-Tokenized
 
 Create a new tokenized Credit Card AVS only transaction
 
 ```ruby
-def cc_avs_tokenized(body,
-                     expand: nil)
+def ccavs_tokenized(body,
+                    expand: nil)
 ```
 
 ## Parameters
@@ -13143,106 +12978,87 @@ def cc_avs_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAvsOnlyTokenRequest`](../../doc/models/v1-transactions-cc-avs-only-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlyTokenRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
-result = transactions_credit_card_controller.cc_avs_tokenized(body)
-puts result
+result = transactions_credit_card_controller.ccavs_tokenized(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -14296,17 +14112,17 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC AVS - Wallet
+# CCAVS-Wallet
 
 Create a new Wallet Credit Card AVS only transaction
 
 ```ruby
-def cc_avs_wallet(body,
-                  expand: nil)
+def ccavs_wallet(body,
+                 expand: nil)
 ```
 
 ## Parameters
@@ -14314,99 +14130,89 @@ def cc_avs_wallet(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcAvsOnlyWalletRequest`](../../doc/models/v1-transactions-cc-avs-only-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcAvsOnlyWalletRequest.new(
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  '11ee2bd392f32cb8aefd5bb5'
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5'
 )
 
-result = transactions_credit_card_controller.cc_avs_wallet(body)
-puts result
+result = transactions_credit_card_controller.ccavs_wallet(body)
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -15460,7 +15266,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -15478,103 +15284,91 @@ def cc_balance_inquiry(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcBalanceInquiryKeyedRequest`](../../doc/models/v1-transactions-cc-balance-inquiry-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquiryKeyedRequest.new(
-  '5454545454545454',
-  '0722',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  nil,
-  EntryModeIdEnum::K,
-  'T051904524T 741025349520O 8520748520963',
-  '1234',
-  '1234'
+  account_number: '5454545454545454',
+  exp_date: '0722',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  pin: '1234',
+  ksn: '1234'
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -16628,11 +16422,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Balance Inquiry - Previous Transaction
+# CC Balance Inquiry-Previous Transaction
 
 Create a new Credit Card balance inquiry transaction using previous transaction id
 
@@ -16646,105 +16440,87 @@ def cc_balance_inquiry_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcBalanceInquiryPrevTrxnRequest`](../../doc/models/v1-transactions-cc-balance-inquiry-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquiryPrevTrxnRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  ),
-  nil,
-  'smith'
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -17798,11 +17574,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Balance Inquiry - Swiped
+# CC Balance Inquiry-Swiped
 
 Create a new swiped Credit Card balance inquiry transaction
 
@@ -17816,98 +17592,87 @@ def cc_balance_inquiry_swiped(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcBalanceInquirySwipedRequest`](../../doc/models/v1-transactions-cc-balance-inquiry-swiped-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquirySwipedRequest.new(
-  'T051904524T 741025349520O 8520748520963',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  EntryModeIdEnum::K,
-  'smith'
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry_swiped(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -18961,11 +18726,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Balance Inquiry - Terminal
+# CC Balance Inquiry-Terminal
 
 Create a new terminal Credit Card balance inquiry transaction
 
@@ -18981,94 +18746,81 @@ def cc_balance_inquiry_terminal(body)
 
 ## Response Type
 
-[`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquiryTerminalRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  EFormatEnum::MAGNESAFE
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry_terminal(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -19089,11 +18841,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Balance Inquiry - Ticket
+# CC Balance Inquiry-Ticket
 
 Create a new Ticket Credit Card balance inquiry transaction
 
@@ -19107,98 +18859,87 @@ def cc_balance_inquiry_ticket(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcBalanceInquiryTicketRequest`](../../doc/models/v1-transactions-cc-balance-inquiry-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquiryTicketRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  'smith'
+  ticket_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry_ticket(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -20252,11 +19993,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Balance Inquiry - Tokenized
+# CC Balance Inquiry-Tokenized
 
 Create a new tokenized Credit Card balance inquiry transaction
 
@@ -20270,106 +20011,87 @@ def cc_balance_inquiry_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcBalanceInquiryTokenRequest`](../../doc/models/v1-transactions-cc-balance-inquiry-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquiryTokenRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -21423,11 +21145,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Balance Inquiry - Wallet
+# CC Balance Inquiry-Wallet
 
 Create a new Wallet Credit Card balance inquiry transaction
 
@@ -21441,99 +21163,89 @@ def cc_balance_inquiry_wallet(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcBalanceInquiryWalletRequest`](../../doc/models/v1-transactions-cc-balance-inquiry-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcBalanceInquiryWalletRequest.new(
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  '11ee2bd392f32cb8aefd5bb5'
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5'
 )
 
 result = transactions_credit_card_controller.cc_balance_inquiry_wallet(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -22587,7 +22299,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -22605,105 +22317,93 @@ def cc_force(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcForceKeyedRequest`](../../doc/models/v1-transactions-cc-force-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcForceKeyedRequest.new(
-  '5454545454545454',
-  '0722',
-  'abc123',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  nil,
-  EntryModeIdEnum::K,
-  'T051904524T 741025349520O 8520748520963',
-  '1234',
-  '1234',
-  '1212MCC123456'
+  account_number: '5454545454545454',
+  exp_date: '0722',
+  auth_code: 'abc123',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  pin: '1234',
+  ksn: '1234',
+  trans_id: '1212MCC123456'
 )
 
 result = transactions_credit_card_controller.cc_force(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -23757,11 +23457,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Force - Previous Transaction
+# CC Force-Previous Transaction
 
 Create a new Credit Card force transaction using previous transaction id
 
@@ -23775,107 +23475,89 @@ def cc_force_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcForcePrevTrxnRequest`](../../doc/models/v1-transactions-cc-force-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcForcePrevTrxnRequest.new(
-  'auth_code2',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  ),
-  nil,
-  'smith',
-  '1212MCC123456'
+  auth_code: 'auth_code2',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith',
+  trans_id: '1212MCC123456'
 )
 
 result = transactions_credit_card_controller.cc_force_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -24929,11 +24611,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Force - Swiped
+# CC Force-Swiped
 
 Create a new swiped Credit Card force transaction
 
@@ -24947,99 +24629,88 @@ def cc_force_swiped(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcForceSwipedRequest`](../../doc/models/v1-transactions-cc-force-swiped-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcForceSwipedRequest.new(
-  'T051904524T 741025349520O 8520748520963',
-  'abc123',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  EntryModeIdEnum::K,
-  'smith'
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  auth_code: 'abc123',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_force_swiped(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -26093,11 +25764,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Force - Ticket
+# CC Force-Ticket
 
 Create a new ticket Credit Card force transaction
 
@@ -26111,100 +25782,89 @@ def cc_force_ticket(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcForceTicketRequest`](../../doc/models/v1-transactions-cc-force-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcForceTicketRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  'abc123',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  'smith',
-  '1212MCC123456'
+  ticket_id: '11e95f8ec39de8fbdb0a4f1a',
+  auth_code: 'abc123',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  trans_id: '1212MCC123456'
 )
 
 result = transactions_credit_card_controller.cc_force_ticket(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -27258,11 +26918,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Force - Tokenized
+# CC Force-Tokenized
 
 Create a new tokenized Credit Card force transaction
 
@@ -27276,108 +26936,89 @@ def cc_force_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcForceTokenRequest`](../../doc/models/v1-transactions-cc-force-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcForceTokenRequest.new(
-  'abc123',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  ),
-  '1212MCC123456'
+  auth_code: 'abc123',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a',
+  trans_id: '1212MCC123456'
 )
 
 result = transactions_credit_card_controller.cc_force_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -28431,11 +28072,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Force - Wallet
+# CC Force-Wallet
 
 Create a new Wallet Credit Card force transaction
 
@@ -28449,101 +28090,91 @@ def cc_force_wallet(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcForceWalletRequest`](../../doc/models/v1-transactions-cc-force-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcForceWalletRequest.new(
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  'abc123',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  '11ee2bd392f32cb8aefd5bb5',
-  '1212MCC123456'
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  auth_code: 'abc123',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5',
+  trans_id: '1212MCC123456'
 )
 
 result = transactions_credit_card_controller.cc_force_wallet(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -29597,7 +29228,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -29615,104 +29246,90 @@ def cc_refund(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundKeyedRequest`](../../doc/models/v1-transactions-cc-refund-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundKeyedRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  nil,
-  nil,
-  EntryModeIdEnum::K,
-  nil,
-  'T051904524T 741025349520O 8520748520963',
-  '1234',
-  '1234',
-  '11e95f8ec39de8fbdb0a4f1a'
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  pin: '1234',
+  ksn: '1234',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_credit_card_controller.cc_refund(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -30766,11 +30383,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Previous Transaction
+# CC Refund-Previous Transaction
 
 Create a new Credit Card refund transaction using previous transaction id
 
@@ -30784,105 +30401,87 @@ def cc_refund_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundPrevTrxnRequest`](../../doc/models/v1-transactions-cc-refund-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundPrevTrxnRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  ),
-  nil,
-  'smith'
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_refund_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -31936,11 +31535,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Swiped
+# CC Refund-Swiped
 
 Create a new swiped Credit Card refund transaction
 
@@ -31954,98 +31553,87 @@ def cc_refund_swiped(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundSwipedRequest`](../../doc/models/v1-transactions-cc-refund-swiped-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundSwipedRequest.new(
-  1,
-  'T051904524T 741025349520O 8520748520963',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  EntryModeIdEnum::K,
-  'smith'
+  transaction_amount: 1,
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_refund_swiped(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -33099,11 +32687,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Tap to Pay
+# CC Refund-Tap to Pay
 
 Create a new Tap To Pay Credit Card refund transaction
 
@@ -33117,91 +32705,84 @@ def cc_refund_tap_to_pay(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundTaptopayRequest`](../../doc/models/v1-transactions-cc-refund-taptopay-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundTaptopayRequest.new(
-  'card_data_cryptogram2',
-  'general_card_data4',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '1234567890',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a'
+  card_data_cryptogram: 'card_data_cryptogram2',
+  general_card_data: 'general_card_data4',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_credit_card_controller.cc_refund_tap_to_pay(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -34255,11 +33836,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Terminal
+# CC Refund-Terminal
 
 Create a new terminal Credit Card refund transaction
 
@@ -34275,94 +33856,81 @@ def cc_refund_terminal(body)
 
 ## Response Type
 
-[`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundTerminalRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  1,
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  EFormatEnum::MAGNESAFE
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  transaction_amount: 1,
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
 result = transactions_credit_card_controller.cc_refund_terminal(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -34383,11 +33951,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Ticket
+# CC Refund-Ticket
 
 Create a new ticket Credit Card refund transaction
 
@@ -34401,98 +33969,87 @@ def cc_refund_ticket(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundTicketRequest`](../../doc/models/v1-transactions-cc-refund-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundTicketRequest.new(
-  1,
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  'smith'
+  transaction_amount: 1,
+  ticket_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_refund_ticket(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -35546,11 +35103,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Tokenized
+# CC Refund-Tokenized
 
 Create a new tokenized Credit Card refund transaction
 
@@ -35564,106 +35121,87 @@ def cc_refund_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundTokenRequest`](../../doc/models/v1-transactions-cc-refund-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundTokenRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_credit_card_controller.cc_refund_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -36717,11 +36255,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Refund - Wallet
+# CC Refund-Wallet
 
 Create a new Wallet Credit Card refund transaction
 
@@ -36735,99 +36273,89 @@ def cc_refund_wallet(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcRefundWalletRequest`](../../doc/models/v1-transactions-cc-refund-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcRefundWalletRequest.new(
-  1,
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  '11ee2bd392f32cb8aefd5bb5'
+  transaction_amount: 1,
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5'
 )
 
 result = transactions_credit_card_controller.cc_refund_wallet(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -37881,7 +37409,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -37899,103 +37427,91 @@ def cc_sale(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSaleKeyedRequest`](../../doc/models/v1-transactions-cc-sale-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleKeyedRequest.new(
-  1,
-  '5454545454545454',
-  '0722',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  nil,
-  EntryModeIdEnum::K,
-  'T051904524T 741025349520O 8520748520963',
-  '1234',
-  '1234'
+  transaction_amount: 1,
+  account_number: '5454545454545454',
+  exp_date: '0722',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  pin: '1234',
+  ksn: '1234'
 )
 
 result = transactions_credit_card_controller.cc_sale(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -39049,11 +38565,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Previous Transaction
+# CC Sale-Previous Transaction
 
 Create a new Credit Card sale transaction using previous transaction id
 
@@ -39067,105 +38583,87 @@ def cc_sale_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSalePrevTrxnRequest`](../../doc/models/v1-transactions-cc-sale-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSalePrevTrxnRequest.new(
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  ),
-  nil,
-  'smith'
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_sale_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -40219,11 +39717,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Swiped
+# CC Sale-Swiped
 
 Create a new swiped Credit Card sale transaction
 
@@ -40237,98 +39735,87 @@ def cc_sale_swiped(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSaleSwipedRequest`](../../doc/models/v1-transactions-cc-sale-swiped-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleSwipedRequest.new(
-  1,
-  'T051904524T 741025349520O 8520748520963',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  EntryModeIdEnum::K,
-  'smith'
+  transaction_amount: 1,
+  track_data: 'T051904524T 741025349520O 8520748520963',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_sale_swiped(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -41382,11 +40869,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Tap to Pay
+# CC Sale-Tap to Pay
 
 Create a new Tap To Pay Credit card sale transaction. Only supported on native iOS integrations.
 
@@ -41400,89 +40887,83 @@ def cc_sale_tap_to_pay(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSaleTaptopayRequest`](../../doc/models/v1-transactions-cc-sale-taptopay-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleTaptopayRequest.new(
-  'card_data_cryptogram2',
-  'general_card_data4',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  '1234567890',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0
+  card_data_cryptogram: 'card_data_cryptogram2',
+  general_card_data: 'general_card_data4',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  transaction_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
 result = transactions_credit_card_controller.cc_sale_tap_to_pay(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -42536,11 +42017,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Terminal
+# CC Sale-Terminal
 
 Create a new Credit Card Sale for card present EMV transactions using any of the Certified terminals.
 
@@ -42556,94 +42037,81 @@ def cc_sale_terminal(body)
 
 ## Response Type
 
-[`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransactionProcessing`](../../doc/models/response-transaction-processing.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleTerminalRequest.new(
-  '11e95f8ec39de8fbdb0a4f1a',
-  1,
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  EFormatEnum::MAGNESAFE
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  transaction_amount: 1,
+  terminal_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0
 )
 
 result = transactions_credit_card_controller.cc_sale_terminal(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -42664,11 +42132,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Ticket
+# CC Sale-Ticket
 
 Create a new Credit Card Sale using the Ticket_id obtained from the Elements form submission done event.
 
@@ -42682,98 +42150,87 @@ def cc_sale_ticket(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSaleTicketRequest`](../../doc/models/v1-transactions-cc-sale-ticket-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleTicketRequest.new(
-  1,
-  '11e95f8ec39de8fbdb0a4f1a',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  nil,
-  'smith'
+  transaction_amount: 1,
+  ticket_id: '11e95f8ec39de8fbdb0a4f1a',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith'
 )
 
 result = transactions_credit_card_controller.cc_sale_ticket(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -43827,11 +43284,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Tokenized
+# CC Sale-Tokenized
 
 Create a new Credit Card Sale with a previously created token_id.
 
@@ -43845,106 +43302,87 @@ def cc_sale_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSaleTokenRequest`](../../doc/models/v1-transactions-cc-sale-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleTokenRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_credit_card_controller.cc_sale_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -44998,11 +44436,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# CC Sale - Wallet
+# CC Sale-Wallet
 
 Create a new Wallet Credit Card sale transaction
 
@@ -45016,99 +44454,89 @@ def cc_sale_wallet(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsCcSaleWalletRequest`](../../doc/models/v1-transactions-cc-sale-wallet-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsCcSaleWalletRequest.new(
-  1,
-  'wallet_data2',
-  WalletProviderEnum::GOOGLEPAY,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  nil,
-  nil,
-  'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
-  2,
-  nil,
-  'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234567890',
-  true,
-  'd65e93c3-35ab-41ba-b307-767bfc19eae',
-  nil,
-  '1234',
-  '1234',
-  InitiationTypeEnum::M103,
-  true,
-  true,
-  true,
-  nil,
-  0,
-  0,
-  'smith',
-  '11ee2bd392f32cb8aefd5bb5'
+  transaction_amount: 1,
+  wallet_data: 'wallet_data2',
+  wallet_provider: WalletProvider::GOOGLEPAY,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  secure_auth_data: 'vVwL7UNHCf8W8M2LAfvRChNHN7c%3D',
+  secure_protocol_version: 2,
+  secure_cryptogram: 'ZVVEVDJITHpTNE9yNlNHMUh0R0E=',
+  secure_directory_server_transaction_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  terminal_serial_number: '1234567890',
+  threedsecure: true,
+  three_ds_server_trans_id: 'd65e93c3-35ab-41ba-b307-767bfc19eae',
+  clerk_id: '1234',
+  voucher_number: '1234',
+  bill_payment: true,
+  delay_charge: true,
+  deferred_auth: true,
+  ebt_food_eligible_amount: 0,
+  ebt_cash_eligible_amount: 0,
+  account_holder_name: 'smith',
+  wallet_key_id: '11ee2bd392f32cb8aefd5bb5'
 )
 
 result = transactions_credit_card_controller.cc_sale_wallet(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -46162,6 +45590,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

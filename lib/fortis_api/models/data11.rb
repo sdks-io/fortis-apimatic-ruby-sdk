@@ -25,8 +25,8 @@ module FortisApi
     # @return [String]
     attr_accessor :account_number
 
-    # Address
-    # @return [Address1]
+    # Account number
+    # @return [Address6]
     attr_accessor :address
 
     # GUID for Branding Domain
@@ -105,36 +105,36 @@ module FortisApi
     # @return [String]
     attr_accessor :created_user_id
 
-    # Location Type
-    # @return [LocationTypeEnum]
+    # User ID Created the register
+    # @return [Object]
     attr_accessor :location_type
 
     # Branding domain URL
     # @return [String]
     attr_accessor :branding_domain_url
 
-    # Branding domain array
-    # @return [BrandingDomain]
+    # Branding domain URL
+    # @return [BrandingDomain2]
     attr_accessor :branding_domain
 
     # Product Transactions array
     # @return [Array[ProductTransaction1]]
     attr_accessor :product_transactions
 
-    # Product file array
-    # @return [ProductFile]
+    # Product Transactions array
+    # @return [ProductFile1]
     attr_accessor :product_file
 
-    # Product Token array (legacy)
-    # @return [ProductAccountvault]
+    # Product Transactions array
+    # @return [ProductAccountvault1]
     attr_accessor :product_accountvault
 
-    # Product Token array
-    # @return [ProductToken]
+    # Product Transactions array
+    # @return [ProductToken1]
     attr_accessor :product_token
 
-    # Product recurring array
-    # @return [ProductRecurring]
+    # Product Transactions array
+    # @return [ProductRecurring1]
     attr_accessor :product_recurring
 
     # Tags array
@@ -251,31 +251,28 @@ module FortisApi
         tz
         parent_id
         created_user_id
-        location_type
         branding_domain_url
       ]
     end
 
-    def initialize(id = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   account_number = SKIP, address = SKIP,
-                   branding_domain_id = SKIP,
-                   contact_email_trx_receipt_default = SKIP, default_ach = SKIP,
-                   default_cc = SKIP, email_reply_to = SKIP, fax = SKIP,
-                   location_api_id = SKIP, location_api_key = SKIP,
-                   location_c1 = SKIP, location_c2 = SKIP, location_c3 = SKIP,
-                   name = SKIP, office_phone = SKIP, office_ext_phone = SKIP,
-                   tz = SKIP, parent_id = SKIP, show_contact_notes = SKIP,
-                   show_contact_files = SKIP, created_user_id = SKIP,
-                   location_type = SKIP, branding_domain_url = SKIP,
-                   branding_domain = SKIP, product_transactions = SKIP,
-                   product_file = SKIP, product_accountvault = SKIP,
-                   product_token = SKIP, product_recurring = SKIP, tags = SKIP,
-                   terminals = SKIP, additional_access = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   account_number: SKIP, address: SKIP,
+                   branding_domain_id: SKIP,
+                   contact_email_trx_receipt_default: SKIP, default_ach: SKIP,
+                   default_cc: SKIP, email_reply_to: SKIP, fax: SKIP,
+                   location_api_id: SKIP, location_api_key: SKIP,
+                   location_c1: SKIP, location_c2: SKIP, location_c3: SKIP,
+                   name: SKIP, office_phone: SKIP, office_ext_phone: SKIP,
+                   tz: SKIP, parent_id: SKIP, show_contact_notes: SKIP,
+                   show_contact_files: SKIP, created_user_id: SKIP,
+                   location_type: SKIP, branding_domain_url: SKIP,
+                   branding_domain: SKIP, product_transactions: SKIP,
+                   product_file: SKIP, product_accountvault: SKIP,
+                   product_token: SKIP, product_recurring: SKIP, tags: SKIP,
+                   terminals: SKIP, additional_access: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
@@ -315,6 +312,7 @@ module FortisApi
       @tags = tags unless tags == SKIP
       @terminals = terminals unless terminals == SKIP
       @additional_access = additional_access unless additional_access == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -327,7 +325,7 @@ module FortisApi
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
       account_number =
         hash.key?('account_number') ? hash['account_number'] : SKIP
-      address = Address1.from_hash(hash['address']) if hash['address']
+      address = Address6.from_hash(hash['address']) if hash['address']
       branding_domain_id =
         hash.key?('branding_domain_id') ? hash['branding_domain_id'] : SKIP
       contact_email_trx_receipt_default =
@@ -359,7 +357,7 @@ module FortisApi
       location_type = hash.key?('location_type') ? hash['location_type'] : SKIP
       branding_domain_url =
         hash.key?('branding_domain_url') ? hash['branding_domain_url'] : SKIP
-      branding_domain = BrandingDomain.from_hash(hash['branding_domain']) if
+      branding_domain = BrandingDomain2.from_hash(hash['branding_domain']) if
         hash['branding_domain']
       # Parameter is an array, so we need to iterate through it
       product_transactions = nil
@@ -371,11 +369,11 @@ module FortisApi
       end
 
       product_transactions = SKIP unless hash.key?('product_transactions')
-      product_file = ProductFile.from_hash(hash['product_file']) if hash['product_file']
-      product_accountvault = ProductAccountvault.from_hash(hash['product_accountvault']) if
+      product_file = ProductFile1.from_hash(hash['product_file']) if hash['product_file']
+      product_accountvault = ProductAccountvault1.from_hash(hash['product_accountvault']) if
         hash['product_accountvault']
-      product_token = ProductToken.from_hash(hash['product_token']) if hash['product_token']
-      product_recurring = ProductRecurring.from_hash(hash['product_recurring']) if
+      product_token = ProductToken1.from_hash(hash['product_token']) if hash['product_token']
+      product_recurring = ProductRecurring1.from_hash(hash['product_recurring']) if
         hash['product_recurring']
       # Parameter is an array, so we need to iterate through it
       tags = nil
@@ -400,46 +398,50 @@ module FortisApi
       additional_access = AdditionalAccess.from_hash(hash['additional_access']) if
         hash['additional_access']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data11.new(id,
-                 created_ts,
-                 modified_ts,
-                 account_number,
-                 address,
-                 branding_domain_id,
-                 contact_email_trx_receipt_default,
-                 default_ach,
-                 default_cc,
-                 email_reply_to,
-                 fax,
-                 location_api_id,
-                 location_api_key,
-                 location_c1,
-                 location_c2,
-                 location_c3,
-                 name,
-                 office_phone,
-                 office_ext_phone,
-                 tz,
-                 parent_id,
-                 show_contact_notes,
-                 show_contact_files,
-                 created_user_id,
-                 location_type,
-                 branding_domain_url,
-                 branding_domain,
-                 product_transactions,
-                 product_file,
-                 product_accountvault,
-                 product_token,
-                 product_recurring,
-                 tags,
-                 terminals,
-                 additional_access,
-                 additional_properties)
+      Data11.new(id: id,
+                 created_ts: created_ts,
+                 modified_ts: modified_ts,
+                 account_number: account_number,
+                 address: address,
+                 branding_domain_id: branding_domain_id,
+                 contact_email_trx_receipt_default: contact_email_trx_receipt_default,
+                 default_ach: default_ach,
+                 default_cc: default_cc,
+                 email_reply_to: email_reply_to,
+                 fax: fax,
+                 location_api_id: location_api_id,
+                 location_api_key: location_api_key,
+                 location_c1: location_c1,
+                 location_c2: location_c2,
+                 location_c3: location_c3,
+                 name: name,
+                 office_phone: office_phone,
+                 office_ext_phone: office_ext_phone,
+                 tz: tz,
+                 parent_id: parent_id,
+                 show_contact_notes: show_contact_notes,
+                 show_contact_files: show_contact_files,
+                 created_user_id: created_user_id,
+                 location_type: location_type,
+                 branding_domain_url: branding_domain_url,
+                 branding_domain: branding_domain,
+                 product_transactions: product_transactions,
+                 product_file: product_file,
+                 product_accountvault: product_accountvault,
+                 product_token: product_token,
+                 product_recurring: product_recurring,
+                 tags: tags,
+                 terminals: terminals,
+                 additional_access: additional_access,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -460,7 +462,7 @@ module FortisApi
       " #{@product_file}, product_accountvault: #{@product_accountvault}, product_token:"\
       " #{@product_token}, product_recurring: #{@product_recurring}, tags: #{@tags}, terminals:"\
       " #{@terminals}, additional_access: #{@additional_access}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -485,7 +487,7 @@ module FortisApi
       " #{@product_accountvault.inspect}, product_token: #{@product_token.inspect},"\
       " product_recurring: #{@product_recurring.inspect}, tags: #{@tags.inspect}, terminals:"\
       " #{@terminals.inspect}, additional_access: #{@additional_access.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

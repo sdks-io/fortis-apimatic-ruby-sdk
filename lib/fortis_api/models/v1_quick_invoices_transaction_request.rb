@@ -30,13 +30,12 @@ module FortisApi
       []
     end
 
-    def initialize(transaction_id = nil, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(transaction_id:, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @transaction_id = transaction_id
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -47,26 +46,30 @@ module FortisApi
       transaction_id =
         hash.key?('transaction_id') ? hash['transaction_id'] : nil
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1QuickInvoicesTransactionRequest.new(transaction_id,
-                                            additional_properties)
+      V1QuickInvoicesTransactionRequest.new(transaction_id: transaction_id,
+                                            additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} transaction_id: #{@transaction_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} transaction_id: #{@transaction_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

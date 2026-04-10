@@ -108,27 +108,12 @@ module FortisApi
     # @return [String]
     attr_accessor :browser_user_agent
 
-    # Dimensions of the challenge window that has been displayed to the
-    # Cardholder. The ACS shall reply with content that is formatted to
-    # appropriately render in this window to provide the best possible user
-    # experience.
-    # Preconfigured sizes are width X height in pixels of the window displayed
-    # in the Cardholder browser window. This is used only to prepare the CReq
-    # request and it is not part of the AReq flow. If not present it will be
-    # omitted.
-    # However, when sending the Challenge Request, this field is required when
-    # device_channel = 02 (BRW).
-    # >01 - 250 x 400
-    # >
-    # >02 - 390 x 400
-    # >
-    # >03 - 500 x 600
-    # >
-    # >04 - 600 x 400
-    # >
-    # >05 - Full screen
-    # >
-    # @return [ChallengeWindowSizeEnum]
+    # Exact content of the HTTP user-agent header. The field is limited to
+    # maximum 2048 caracters. If the total length of the User-Agent sent by the
+    # browser exceeds 2048 characters, the 3DS Server truncates the excess
+    # portion.
+    # This field is required for requests where device_channel = 02 (BRW).
+    # @return [ChallengeWindowSize]
     attr_accessor :challenge_window_size
 
     # Boolean that represents the ability of the cardholder browser to execute
@@ -186,17 +171,15 @@ module FortisApi
       []
     end
 
-    def initialize(browser_accept_header = SKIP, browser_java_enabled = SKIP,
-                   browser_language = SKIP, browser_color_depth = SKIP,
-                   browser_screen_height = SKIP, browser_screen_width = SKIP,
-                   browser_tz = SKIP, browser_user_agent = SKIP,
-                   challenge_window_size = SKIP,
-                   browser_javascript_enabled = SKIP, accept_language = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(browser_accept_header: SKIP, browser_java_enabled: SKIP,
+                   browser_language: SKIP, browser_color_depth: SKIP,
+                   browser_screen_height: SKIP, browser_screen_width: SKIP,
+                   browser_tz: SKIP, browser_user_agent: SKIP,
+                   challenge_window_size: SKIP,
+                   browser_javascript_enabled: SKIP, accept_language: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @browser_accept_header = browser_accept_header unless browser_accept_header == SKIP
       @browser_java_enabled = browser_java_enabled unless browser_java_enabled == SKIP
@@ -212,6 +195,7 @@ module FortisApi
           browser_javascript_enabled
       end
       @accept_language = accept_language unless accept_language == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -241,22 +225,26 @@ module FortisApi
       accept_language =
         hash.key?('accept_language') ? hash['accept_language'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      BrowserInformation.new(browser_accept_header,
-                             browser_java_enabled,
-                             browser_language,
-                             browser_color_depth,
-                             browser_screen_height,
-                             browser_screen_width,
-                             browser_tz,
-                             browser_user_agent,
-                             challenge_window_size,
-                             browser_javascript_enabled,
-                             accept_language,
-                             additional_properties)
+      BrowserInformation.new(browser_accept_header: browser_accept_header,
+                             browser_java_enabled: browser_java_enabled,
+                             browser_language: browser_language,
+                             browser_color_depth: browser_color_depth,
+                             browser_screen_height: browser_screen_height,
+                             browser_screen_width: browser_screen_width,
+                             browser_tz: browser_tz,
+                             browser_user_agent: browser_user_agent,
+                             challenge_window_size: challenge_window_size,
+                             browser_javascript_enabled: browser_javascript_enabled,
+                             accept_language: accept_language,
+                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -268,8 +256,7 @@ module FortisApi
       " browser_screen_width: #{@browser_screen_width}, browser_tz: #{@browser_tz},"\
       " browser_user_agent: #{@browser_user_agent}, challenge_window_size:"\
       " #{@challenge_window_size}, browser_javascript_enabled: #{@browser_javascript_enabled},"\
-      " accept_language: #{@accept_language}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " accept_language: #{@accept_language}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -282,7 +269,7 @@ module FortisApi
       " #{@browser_screen_width.inspect}, browser_tz: #{@browser_tz.inspect}, browser_user_agent:"\
       " #{@browser_user_agent.inspect}, challenge_window_size: #{@challenge_window_size.inspect},"\
       " browser_javascript_enabled: #{@browser_javascript_enabled.inspect}, accept_language:"\
-      " #{@accept_language.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@accept_language.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

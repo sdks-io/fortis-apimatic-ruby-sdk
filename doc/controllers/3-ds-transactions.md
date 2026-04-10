@@ -6,7 +6,7 @@ m3_ds_transactions_controller = client.m3_ds_transactions
 
 ## Class Name
 
-`M3DSTransactionsController`
+`M3DsTransactionsController`
 
 
 # 3 DS Transactions Request
@@ -27,7 +27,7 @@ def m3_ds_transactions_request(three_ds_server_trans_id,
 
 ## Response Type
 
-[`ResponseThreeDSTransaction`](../../doc/models/response-three-ds-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseThreeDsTransaction`](../../doc/models/response-three-ds-transaction.md).
 
 ## Example Usage
 
@@ -40,7 +40,12 @@ result = m3_ds_transactions_controller.m3_ds_transactions_request(
   three_ds_server_trans_id,
   product_transaction_id
 )
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -64,5 +69,5 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 

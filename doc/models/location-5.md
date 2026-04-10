@@ -3,6 +3,8 @@
 
 The Location.
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Location5`
@@ -17,6 +19,7 @@ The Location.
 | `state_province` | `String` | Optional | Merchant's business two-digit state or province code.<br><br>**Constraints**: *Maximum Length*: `2` |
 | `postal_code` | `String` | Optional | Merchant's business postal code.<br><br>**Constraints**: *Maximum Length*: `10` |
 | `phone_number` | `String` | Optional | Merchant's business phone number.<br><br>**Constraints**: *Maximum Length*: `20` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@ The Location.
   "city": "Dover",
   "state_province": "DE",
   "postal_code": "55022",
-  "phone_number": "555-555-1212"
+  "phone_number": "555-555-1212",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

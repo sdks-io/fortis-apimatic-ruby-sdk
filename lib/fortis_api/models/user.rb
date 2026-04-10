@@ -55,17 +55,16 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, username = SKIP, first_name = SKIP,
-                   last_name = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, username: SKIP, first_name: SKIP, last_name: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @username = username unless username == SKIP
       @first_name = first_name unless first_name == SKIP
       @last_name = last_name unless last_name == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -78,22 +77,26 @@ module FortisApi
       first_name = hash.key?('first_name') ? hash['first_name'] : SKIP
       last_name = hash.key?('last_name') ? hash['last_name'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      User.new(id,
-               username,
-               first_name,
-               last_name,
-               additional_properties)
+      User.new(id: id,
+               username: username,
+               first_name: first_name,
+               last_name: last_name,
+               additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, username: #{@username}, first_name: #{@first_name}, last_name:"\
-      " #{@last_name}, additional_properties: #{get_additional_properties}>"
+      " #{@last_name}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -101,7 +104,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id.inspect}, username: #{@username.inspect}, first_name:"\
       " #{@first_name.inspect}, last_name: #{@last_name.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

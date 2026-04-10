@@ -14,22 +14,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Indicates the category/type of information. This field is required.
-    # >01 - General
-    # >
-    # >02 - Certificate expiry
-    # >
-    # >03 - Fraud alert
-    # >
-    # >04 - Operational alert
-    # >
-    # >05 - Transactional data
-    # >
-    # >06 - Other
-    # >
-    # >80 through 99 - PS-specific value (dependent on the payment scheme type)
-    # >
-    # @return [CategoryEnum]
+    # TODO: Write general description for this method
+    # @return [Category]
     attr_accessor :category
 
     # Information to be broadcasted to the recipients. Accepted value length is
@@ -43,42 +29,22 @@ module FortisApi
     # @return [String]
     attr_accessor :expire_date
 
-    # Indicates the importance/severity level of the broadcasted information.
-    # This field is required.
-    # >01 - Critical. Immediate action to be taken by recipient
-    # >
-    # >02 - Major. Major impact; Upcoming action to be taken by recipient
-    # >
-    # >03 - Minor. Minor impact; Upcoming action to be taken by recipient
-    # >
-    # >04 - Informational. Informational only with no immediate action by
-    # recipient
-    # >
-    # @return [SeverityEnum]
+    # The date after which the relevance of the broadcasted information (e.g.,
+    # ceritifacte expiration dates) expires. The accepted value length is 8
+    # characters. The accepted format is YYYYMMDD.
+    # @return [Severity]
     attr_accessor :severity
 
-    # Indicates the intended recipient(s) of the broadcasted information. This
-    # field is required.
-    # >01 - 3DS SDK
-    # >
-    # >02 - 3DS Server
-    # >
-    # >03 - DS
-    # >
-    # >04 - ACS
-    # >
-    # @return [RecipientsEnum]
+    # The date after which the relevance of the broadcasted information (e.g.,
+    # ceritifacte expiration dates) expires. The accepted value length is 8
+    # characters. The accepted format is YYYYMMDD.
+    # @return [Recipients]
     attr_accessor :recipients
 
-    # Indicates the source of the broadcasted information. This field is
-    # required.
-    # >01 - 3DS Server
-    # >
-    # >02 - DS
-    # >
-    # >03 - ACS
-    # >
-    # @return [SourceEnum]
+    # The date after which the relevance of the broadcasted information (e.g.,
+    # ceritifacte expiration dates) expires. The accepted value length is 8
+    # characters. The accepted format is YYYYMMDD.
+    # @return [Source]
     attr_accessor :source
 
     # A mapping from model property names to API property names.
@@ -110,13 +76,11 @@ module FortisApi
       []
     end
 
-    def initialize(category = SKIP, description = SKIP, expire_date = SKIP,
-                   severity = SKIP, recipients = SKIP, source = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(category: SKIP, description: SKIP, expire_date: SKIP,
+                   severity: SKIP, recipients: SKIP, source: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @category = category unless category == SKIP
       @description = description unless description == SKIP
@@ -124,6 +88,7 @@ module FortisApi
       @severity = severity unless severity == SKIP
       @recipients = recipients unless recipients == SKIP
       @source = source unless source == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -138,17 +103,21 @@ module FortisApi
       recipients = hash.key?('recipients') ? hash['recipients'] : SKIP
       source = hash.key?('source') ? hash['source'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      BroadInfo.new(category,
-                    description,
-                    expire_date,
-                    severity,
-                    recipients,
-                    source,
-                    additional_properties)
+      BroadInfo.new(category: category,
+                    description: description,
+                    expire_date: expire_date,
+                    severity: severity,
+                    recipients: recipients,
+                    source: source,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -156,7 +125,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} category: #{@category}, description: #{@description}, expire_date:"\
       " #{@expire_date}, severity: #{@severity}, recipients: #{@recipients}, source: #{@source},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -165,7 +134,7 @@ module FortisApi
       "<#{class_name} category: #{@category.inspect}, description: #{@description.inspect},"\
       " expire_date: #{@expire_date.inspect}, severity: #{@severity.inspect}, recipients:"\
       " #{@recipients.inspect}, source: #{@source.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

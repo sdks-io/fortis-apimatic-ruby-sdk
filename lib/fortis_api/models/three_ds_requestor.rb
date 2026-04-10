@@ -9,28 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Indicates the type of Authentication request. This data element provides
-    # additional information to the ACS to determine the best approach for
-    # handling an authentication request. This value is used for App-based and
-    # Browser flows.
-    # >01 - Payment transaction
-    # >
-    # >02 - Recurring transaction
-    # >
-    # >03 - Installment transaction
-    # >
-    # >04 - Add card
-    # >
-    # >05 - Maintain card
-    # >
-    # >06 - Cardholder verification as part of EMV token ID&V
-    # >
-    # >07 - Billing agreement
-    # >
-    # >80 through 99 - can be used for PS-specific values, regardless of
-    # protocol version
-    # >
-    # @return [ThreeDsRequestorAuthenticationIndEnum]
+    # TODO: Write general description for this method
+    # @return [ThreeDsRequestorAuthenticationInd]
     attr_accessor :three_ds_requestor_authentication_ind
 
     # Information about how the 3DS Requestor authenticated the cardholder
@@ -78,7 +58,7 @@ module FortisApi
     # >80 through 99 - can be used for PS-specific values, regardless of
     # protocol version
     # >
-    # @return [Array[ThreeDsRequestorChallengeIndEnum]]
+    # @return [Array[ThreeDsRequestorChallengeInd]]
     attr_accessor :three_ds_requestor_challenge_ind
 
     # This object contains information about how the 3DS Requestor authenticated
@@ -91,27 +71,14 @@ module FortisApi
     # @return [Array[ThreeDsRequestorPriorAuthenticationInfo]]
     attr_accessor :three_ds_requestor_prior_authentication_info
 
-    # Indicates whether the 3DS Requestor requests the ACS to utilise Decoupled
-    # Authentication and agrees to utilise Decoupled Authentication if the ACS
-    # confirms its use.
-    #  Value "F" and "B" are only valid for EMV 3DS 2.3.1 or later.
-    # The field is optional and if value is not present, the expected action is
-    # for the ACS to interpret as "N".
-    # Available for supporting EMV 3DS 2.2.0 and later versions.
-    # >Y - Decoupled Authentication is supported and preferred if challenge is
-    # necessary.
-    # >
-    # >N - Do not use Decoupled Authentication.
-    # >
-    # >F - Decoupled Authentication is supported and is to be used only as a
-    # fallback challenge method if a challenge is necessary (Transaction Status
-    # = D in RReq). Available in EMV 3DS 2.3.1 and later.
-    # >
-    # >B - Decoupled Authentication is supported and can be used as a primary or
-    # fallback challenge method if a challenge is necessary (Transaction Status
-    # = D in either ARes or RReq). Available in EMV 3DS 2.3.1 and later.
-    # >
-    # @return [ThreeDsRequestorDecReqIndEnum]
+    # This object contains information about how the 3DS Requestor authenticated
+    # the cardholder as part of a previous 3DS transaction.
+    # In versions prior to 2.3.1, this array is limited to a size of 1.
+    # Starting from EMVCo version 2.3.1 this array size may be 1-3.
+    # This field is optional, but recommended to include for versions prior to
+    # 2.3.1. From 2.3.1, it is required for 3RI in the case of Decoupled
+    # Authentication Fallback or for SPC.
+    # @return [ThreeDsRequestorDecReqInd]
     attr_accessor :three_ds_requestor_dec_req_ind
 
     # Indicates the maximum amount of time that the 3DS Requestor will wait for
@@ -125,13 +92,15 @@ module FortisApi
     # @return [Integer]
     attr_accessor :three_ds_requestor_dec_max_time
 
-    # Indicate if the 3DS Requestor supports the SPC authentication.
-    # This field is required if device_channel = 02 (BRW) and it is supported by
-    # the 3DS Requestor.
-    # Available for supporting EMV 3DS 2.3.1 and later versions.
-    # >Y - Supported
-    # >
-    # @return [ThreeDsRequestorSpcSupportEnum]
+    # Indicates the maximum amount of time that the 3DS Requestor will wait for
+    # an ACS to provide the results of a Decoupled Authentication transaction
+    # (in minutes). Valid values are between 1 and 10080.
+    # The field is optional and if value is not present, the expected action is
+    # for the ACS to interpret it as 10080 minutes (7 days).
+    # Available for supporting EMV 3DS 2.2.0 and later versions.
+    # Starting from EMV 3DS 2.3.1:
+    # This field is required if three_ds_requestor_dec_req_ind = Y, F or B
+    # @return [ThreeDsRequestorSpcSupport]
     attr_accessor :three_ds_requestor_spc_support
 
     # Reason that the SPC authentication was not completed.
@@ -180,18 +149,16 @@ module FortisApi
       []
     end
 
-    def initialize(three_ds_requestor_authentication_ind = nil,
-                   three_ds_requestor_authentication_info = SKIP,
-                   three_ds_requestor_challenge_ind = SKIP,
-                   three_ds_requestor_prior_authentication_info = SKIP,
-                   three_ds_requestor_dec_req_ind = SKIP,
-                   three_ds_requestor_dec_max_time = SKIP,
-                   three_ds_requestor_spc_support = SKIP, spc_incomp_ind = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(three_ds_requestor_authentication_ind:,
+                   three_ds_requestor_authentication_info: SKIP,
+                   three_ds_requestor_challenge_ind: SKIP,
+                   three_ds_requestor_prior_authentication_info: SKIP,
+                   three_ds_requestor_dec_req_ind: SKIP,
+                   three_ds_requestor_dec_max_time: SKIP,
+                   three_ds_requestor_spc_support: SKIP, spc_incomp_ind: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @three_ds_requestor_authentication_ind = three_ds_requestor_authentication_ind
       unless three_ds_requestor_authentication_info == SKIP
@@ -219,6 +186,7 @@ module FortisApi
           three_ds_requestor_spc_support
       end
       @spc_incomp_ind = spc_incomp_ind unless spc_incomp_ind == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -259,19 +227,23 @@ module FortisApi
       spc_incomp_ind =
         hash.key?('spc_incomp_ind') ? hash['spc_incomp_ind'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ThreeDsRequestor.new(three_ds_requestor_authentication_ind,
-                           three_ds_requestor_authentication_info,
-                           three_ds_requestor_challenge_ind,
-                           three_ds_requestor_prior_authentication_info,
-                           three_ds_requestor_dec_req_ind,
-                           three_ds_requestor_dec_max_time,
-                           three_ds_requestor_spc_support,
-                           spc_incomp_ind,
-                           additional_properties)
+      ThreeDsRequestor.new(three_ds_requestor_authentication_ind: three_ds_requestor_authentication_ind,
+                           three_ds_requestor_authentication_info: three_ds_requestor_authentication_info,
+                           three_ds_requestor_challenge_ind: three_ds_requestor_challenge_ind,
+                           three_ds_requestor_prior_authentication_info: three_ds_requestor_prior_authentication_info,
+                           three_ds_requestor_dec_req_ind: three_ds_requestor_dec_req_ind,
+                           three_ds_requestor_dec_max_time: three_ds_requestor_dec_max_time,
+                           three_ds_requestor_spc_support: three_ds_requestor_spc_support,
+                           spc_incomp_ind: spc_incomp_ind,
+                           additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -285,7 +257,7 @@ module FortisApi
       " #{@three_ds_requestor_dec_req_ind}, three_ds_requestor_dec_max_time:"\
       " #{@three_ds_requestor_dec_max_time}, three_ds_requestor_spc_support:"\
       " #{@three_ds_requestor_spc_support}, spc_incomp_ind: #{@spc_incomp_ind},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -300,7 +272,7 @@ module FortisApi
       " #{@three_ds_requestor_dec_req_ind.inspect}, three_ds_requestor_dec_max_time:"\
       " #{@three_ds_requestor_dec_max_time.inspect}, three_ds_requestor_spc_support:"\
       " #{@three_ds_requestor_spc_support.inspect}, spc_incomp_ind: #{@spc_incomp_ind.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

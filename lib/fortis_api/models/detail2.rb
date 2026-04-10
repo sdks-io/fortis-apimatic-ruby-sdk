@@ -82,14 +82,12 @@ module FortisApi
       ]
     end
 
-    def initialize(processor_batch_number = SKIP, product_code = SKIP,
-                   deposit_detail_type = SKIP, amount = SKIP, memo = SKIP,
-                   reported_date = SKIP, settled_date = SKIP, mid = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(processor_batch_number: SKIP, product_code: SKIP,
+                   deposit_detail_type: SKIP, amount: SKIP, memo: SKIP,
+                   reported_date: SKIP, settled_date: SKIP, mid: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @processor_batch_number = processor_batch_number unless processor_batch_number == SKIP
       @product_code = product_code unless product_code == SKIP
@@ -99,6 +97,7 @@ module FortisApi
       @reported_date = reported_date unless reported_date == SKIP
       @settled_date = settled_date unless settled_date == SKIP
       @mid = mid unless mid == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -117,19 +116,23 @@ module FortisApi
       settled_date = hash.key?('settled_date') ? hash['settled_date'] : SKIP
       mid = hash.key?('mid') ? hash['mid'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Detail2.new(processor_batch_number,
-                  product_code,
-                  deposit_detail_type,
-                  amount,
-                  memo,
-                  reported_date,
-                  settled_date,
-                  mid,
-                  additional_properties)
+      Detail2.new(processor_batch_number: processor_batch_number,
+                  product_code: product_code,
+                  deposit_detail_type: deposit_detail_type,
+                  amount: amount,
+                  memo: memo,
+                  reported_date: reported_date,
+                  settled_date: settled_date,
+                  mid: mid,
+                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -138,7 +141,7 @@ module FortisApi
       "<#{class_name} processor_batch_number: #{@processor_batch_number}, product_code:"\
       " #{@product_code}, deposit_detail_type: #{@deposit_detail_type}, amount: #{@amount}, memo:"\
       " #{@memo}, reported_date: #{@reported_date}, settled_date: #{@settled_date}, mid: #{@mid},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -148,7 +151,7 @@ module FortisApi
       " #{@product_code.inspect}, deposit_detail_type: #{@deposit_detail_type.inspect}, amount:"\
       " #{@amount.inspect}, memo: #{@memo.inspect}, reported_date: #{@reported_date.inspect},"\
       " settled_date: #{@settled_date.inspect}, mid: #{@mid.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

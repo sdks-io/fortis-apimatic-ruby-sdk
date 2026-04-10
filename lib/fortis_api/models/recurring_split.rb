@@ -60,19 +60,17 @@ module FortisApi
       ]
     end
 
-    def initialize(contact_id = SKIP, amount = SKIP, id = SKIP,
-                   created_ts = SKIP, created_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(contact_id: SKIP, amount: SKIP, id: SKIP, created_ts: SKIP,
+                   created_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @contact_id = contact_id unless contact_id == SKIP
       @amount = amount unless amount == SKIP
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -87,16 +85,20 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      RecurringSplit.new(contact_id,
-                         amount,
-                         id,
-                         created_ts,
-                         created_user_id,
-                         additional_properties)
+      RecurringSplit.new(contact_id: contact_id,
+                         amount: amount,
+                         id: id,
+                         created_ts: created_ts,
+                         created_user_id: created_user_id,
+                         additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -104,7 +106,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} contact_id: #{@contact_id}, amount: #{@amount}, id: #{@id}, created_ts:"\
       " #{@created_ts}, created_user_id: #{@created_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -112,7 +114,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} contact_id: #{@contact_id.inspect}, amount: #{@amount.inspect}, id:"\
       " #{@id.inspect}, created_ts: #{@created_ts.inspect}, created_user_id:"\
-      " #{@created_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@created_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

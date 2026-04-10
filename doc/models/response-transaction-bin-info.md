@@ -1,6 +1,8 @@
 
 # Response Transaction Bin Info
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ResponseTransactionBinInfo`
@@ -9,8 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type113Enum`](../../doc/models/type-113-enum.md) | Optional | Resource Type<br><br>**Default**: `Type113Enum::TRANSACTIONBININFO` |
+| `type` | [`Type113`](../../doc/models/type-113.md) | Optional | - |
 | `data` | [`Data28`](../../doc/models/data-28.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,7 +25,15 @@
     "country_code": "country_code0",
     "detail_card_product": "detail_card_product2",
     "detail_card_indicator": "detail_card_indicator2",
-    "fsa_indicator": "fsa_indicator8"
+    "fsa_indicator": "fsa_indicator8",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

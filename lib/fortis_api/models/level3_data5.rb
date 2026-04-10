@@ -44,8 +44,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :tax_amount
 
-    # Sales Tax Exempt. Allowed values: “1”, “0”.
-    # @return [TaxExemptEnum]
+    # Amount of any value added taxes ,Can accept Two (2) decimal places.
+    # @return [Object]
     attr_accessor :tax_exempt
 
     # Array of line items in transaction
@@ -94,20 +94,16 @@ module FortisApi
         shipfrom_zip_code
         shipto_zip_code
         tax_amount
-        tax_exempt
       ]
     end
 
-    def initialize(line_items = nil, destination_country_code = SKIP,
-                   duty_amount = SKIP, freight_amount = SKIP,
-                   national_tax = SKIP, sales_tax = SKIP,
-                   shipfrom_zip_code = SKIP, shipto_zip_code = SKIP,
-                   tax_amount = SKIP, tax_exempt = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(line_items:, destination_country_code: SKIP,
+                   duty_amount: SKIP, freight_amount: SKIP, national_tax: SKIP,
+                   sales_tax: SKIP, shipfrom_zip_code: SKIP,
+                   shipto_zip_code: SKIP, tax_amount: SKIP, tax_exempt: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @destination_country_code = destination_country_code unless destination_country_code == SKIP
       @duty_amount = duty_amount unless duty_amount == SKIP
@@ -119,6 +115,7 @@ module FortisApi
       @tax_amount = tax_amount unless tax_amount == SKIP
       @tax_exempt = tax_exempt unless tax_exempt == SKIP
       @line_items = line_items
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -150,21 +147,25 @@ module FortisApi
       tax_amount = hash.key?('tax_amount') ? hash['tax_amount'] : SKIP
       tax_exempt = hash.key?('tax_exempt') ? hash['tax_exempt'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Level3Data5.new(line_items,
-                      destination_country_code,
-                      duty_amount,
-                      freight_amount,
-                      national_tax,
-                      sales_tax,
-                      shipfrom_zip_code,
-                      shipto_zip_code,
-                      tax_amount,
-                      tax_exempt,
-                      additional_properties)
+      Level3Data5.new(line_items: line_items,
+                      destination_country_code: destination_country_code,
+                      duty_amount: duty_amount,
+                      freight_amount: freight_amount,
+                      national_tax: national_tax,
+                      sales_tax: sales_tax,
+                      shipfrom_zip_code: shipfrom_zip_code,
+                      shipto_zip_code: shipto_zip_code,
+                      tax_amount: tax_amount,
+                      tax_exempt: tax_exempt,
+                      additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -174,7 +175,7 @@ module FortisApi
       " #{@duty_amount}, freight_amount: #{@freight_amount}, national_tax: #{@national_tax},"\
       " sales_tax: #{@sales_tax}, shipfrom_zip_code: #{@shipfrom_zip_code}, shipto_zip_code:"\
       " #{@shipto_zip_code}, tax_amount: #{@tax_amount}, tax_exempt: #{@tax_exempt}, line_items:"\
-      " #{@line_items}, additional_properties: #{get_additional_properties}>"
+      " #{@line_items}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -186,7 +187,7 @@ module FortisApi
       " shipfrom_zip_code: #{@shipfrom_zip_code.inspect}, shipto_zip_code:"\
       " #{@shipto_zip_code.inspect}, tax_amount: #{@tax_amount.inspect}, tax_exempt:"\
       " #{@tax_exempt.inspect}, line_items: #{@line_items.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

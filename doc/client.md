@@ -5,7 +5,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| environment | [`Environment`](../README.md#environments) | The API environment. <br> **Default: `Environment.SANDBOX`** |
+| environment | [`Environment`](../README.md#environments) | The API environment. <br> **Default: `Environment.PRODUCTION`** |
 | connection | `Faraday::Connection` | The Faraday connection object passed by the SDK user for making requests |
 | adapter | `Faraday::Adapter` | The Faraday adapter object passed by the SDK user for performing http requests |
 | timeout | `Float` | The value to use for connection timeout. <br> **Default: 60** |
@@ -16,6 +16,7 @@ The following parameters are configurable for the API Client:
 | retry_methods | `Array` | A list of HTTP methods to retry. <br> **Default: %i[get put]** |
 | http_callback | `HttpCallBack` | The Http CallBack allows defining callables for pre and post API calls. |
 | proxy_settings | [`ProxySettings`](../doc/proxy-settings.md) | Optional proxy configuration to route HTTP requests through a proxy server. |
+| logging_configuration | [`LoggingConfiguration`](../doc/logging-configuration.md) | The SDK logging configuration for API calls |
 | user_id_credentials | [`UserIdCredentials`](auth/custom-header-signature.md) | The credential object for Custom Header Signature |
 | user_api_key_credentials | [`UserApiKeyCredentials`](auth/custom-header-signature-1.md) | The credential object for Custom Header Signature |
 | developer_id_credentials | [`DeveloperIdCredentials`](auth/custom-header-signature-2.md) | The credential object for Custom Header Signature |
@@ -42,7 +43,16 @@ client = Client.new(
   access_token_credentials: AccessTokenCredentials.new(
     access_token: 'access-token'
   ),
-  environment: Environment::SANDBOX
+  environment: Environment::PRODUCTION,
+  logging_configuration: LoggingConfiguration.new(
+    log_level: Logger::INFO,
+    request_logging_config: RequestLoggingConfiguration.new(
+      log_body: true
+    ),
+    response_logging_config: ResponseLoggingConfiguration.new(
+      log_headers: true
+    )
+  )
 )
 ```
 
@@ -74,8 +84,8 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | elements | Gets ElementsController |
 | full_boarding | Gets FullBoardingController |
 | locations | Gets LocationsController |
-| m3_ds_authentication | Gets M3DSAuthenticationController |
-| m3_ds_transactions | Gets M3DSTransactionsController |
+| m_3_ds_authentication | Gets M3DsAuthenticationController |
+| m_3_ds_transactions | Gets M3DsTransactionsController |
 | merchant_deposits | Gets MerchantDepositsController |
 | on_boarding | Gets OnBoardingController |
 | paylinks | Gets PaylinksController |
@@ -87,11 +97,11 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | terminals | Gets TerminalsController |
 | tickets | Gets TicketsController |
 | tokens | Gets TokensController |
-| transaction_ach_retries | Gets TransactionACHRetriesController |
-| transactions_ach | Gets TransactionsACHController |
+| transaction_ach_retries | Gets TransactionAchRetriesController |
+| transactions_ach | Gets TransactionsAchController |
 | transactions_cash | Gets TransactionsCashController |
 | transactions_credit_card | Gets TransactionsCreditCardController |
-| transactions_ebt_card | Gets TransactionsEBTCardController |
+| transactions_ebt_card | Gets TransactionsEbtCardController |
 | transactions_read | Gets TransactionsReadController |
 | level_3_data | Gets Level3DataController |
 | transactions_updates | Gets TransactionsUpdatesController |

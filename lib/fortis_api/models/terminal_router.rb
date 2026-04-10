@@ -71,14 +71,11 @@ module FortisApi
       ]
     end
 
-    def initialize(mac_address = SKIP, location_id = SKIP,
-                   location_api_id = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(mac_address: SKIP, location_id: SKIP, location_api_id: SKIP,
+                   id: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   created_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @mac_address = mac_address unless mac_address == SKIP
       @location_id = location_id unless location_id == SKIP
@@ -87,6 +84,7 @@ module FortisApi
       @created_ts = created_ts unless created_ts == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -104,18 +102,22 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      TerminalRouter.new(mac_address,
-                         location_id,
-                         location_api_id,
-                         id,
-                         created_ts,
-                         modified_ts,
-                         created_user_id,
-                         additional_properties)
+      TerminalRouter.new(mac_address: mac_address,
+                         location_id: location_id,
+                         location_api_id: location_api_id,
+                         id: id,
+                         created_ts: created_ts,
+                         modified_ts: modified_ts,
+                         created_user_id: created_user_id,
+                         additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -124,7 +126,7 @@ module FortisApi
       "<#{class_name} mac_address: #{@mac_address}, location_id: #{@location_id},"\
       " location_api_id: #{@location_api_id}, id: #{@id}, created_ts: #{@created_ts}, modified_ts:"\
       " #{@modified_ts}, created_user_id: #{@created_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -133,7 +135,7 @@ module FortisApi
       "<#{class_name} mac_address: #{@mac_address.inspect}, location_id: #{@location_id.inspect},"\
       " location_api_id: #{@location_api_id.inspect}, id: #{@id.inspect}, created_ts:"\
       " #{@created_ts.inspect}, modified_ts: #{@modified_ts.inspect}, created_user_id:"\
-      " #{@created_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@created_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

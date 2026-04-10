@@ -9,8 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Object type
-    # @return [Type4Enum]
+    # TODO: Write general description for this method
+    # @return [Type4]
     attr_accessor :type
 
     # [object Object]
@@ -38,14 +38,13 @@ module FortisApi
       []
     end
 
-    def initialize(type = SKIP, fields = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(type: SKIP, fields: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @type = type unless type == SKIP
       @fields = fields unless fields == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -65,27 +64,31 @@ module FortisApi
 
       fields = SKIP unless hash.key?('fields')
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Sort.new(type,
-               fields,
-               additional_properties)
+      Sort.new(type: type,
+               fields: fields,
+               additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type}, fields: #{@fields}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type.inspect}, fields: #{@fields.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

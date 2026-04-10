@@ -1,6 +1,8 @@
 
 # Response Webhook
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ResponseWebhook`
@@ -9,8 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type138Enum`](../../doc/models/type-138-enum.md) | Optional | Resource Type<br><br>**Default**: `Type138Enum::WEBHOOK` |
+| `type` | [`Type138`](../../doc/models/type-138.md) | Optional | - |
 | `data` | [`Data39`](../../doc/models/data-39.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,7 +25,18 @@
     "basic_auth_username": "basic_auth_username8",
     "basic_auth_password": "basic_auth_password0",
     "expands": "expands2",
-    "format": "api-default"
+    "format": {
+      "key1": "val1",
+      "key2": "val2"
+    },
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

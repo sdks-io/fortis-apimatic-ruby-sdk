@@ -17,12 +17,12 @@ module FortisApi
     # @return [Integer]
     attr_accessor :page_size
 
-    # Ui Prefs Export Type
-    # @return [ReportExportTypeEnum]
+    # Ui Prefs Page Size
+    # @return [Object]
     attr_accessor :report_export_type
 
-    # Ui Prefs Process Method
-    # @return [ProcessMethodEnum]
+    # Ui Prefs Page Size
+    # @return [Object]
     attr_accessor :process_method
 
     # Ui Prefs Default Termianl
@@ -56,25 +56,22 @@ module FortisApi
       %w[
         entry_page
         page_size
-        report_export_type
-        process_method
         default_terminal
       ]
     end
 
-    def initialize(entry_page = SKIP, page_size = SKIP,
-                   report_export_type = SKIP, process_method = SKIP,
-                   default_terminal = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(entry_page: SKIP, page_size: SKIP, report_export_type: SKIP,
+                   process_method: SKIP, default_terminal: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @entry_page = entry_page unless entry_page == SKIP
       @page_size = page_size unless page_size == SKIP
       @report_export_type = report_export_type unless report_export_type == SKIP
       @process_method = process_method unless process_method == SKIP
       @default_terminal = default_terminal unless default_terminal == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -91,16 +88,20 @@ module FortisApi
       default_terminal =
         hash.key?('default_terminal') ? hash['default_terminal'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      UiPrefs.new(entry_page,
-                  page_size,
-                  report_export_type,
-                  process_method,
-                  default_terminal,
-                  additional_properties)
+      UiPrefs.new(entry_page: entry_page,
+                  page_size: page_size,
+                  report_export_type: report_export_type,
+                  process_method: process_method,
+                  default_terminal: default_terminal,
+                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -108,7 +109,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} entry_page: #{@entry_page}, page_size: #{@page_size}, report_export_type:"\
       " #{@report_export_type}, process_method: #{@process_method}, default_terminal:"\
-      " #{@default_terminal}, additional_properties: #{get_additional_properties}>"
+      " #{@default_terminal}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -117,7 +118,7 @@ module FortisApi
       "<#{class_name} entry_page: #{@entry_page.inspect}, page_size: #{@page_size.inspect},"\
       " report_export_type: #{@report_export_type.inspect}, process_method:"\
       " #{@process_method.inspect}, default_terminal: #{@default_terminal.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

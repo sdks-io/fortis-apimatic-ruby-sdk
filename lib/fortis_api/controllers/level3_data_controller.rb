@@ -10,26 +10,29 @@ module FortisApi
     # @param [String] transaction_id Required parameter: Transaction ID
     # @param [V1TransactionsLevel3MasterCardRequest] body Required parameter:
     # TODO: type description here
-    # @return [ResponseTransactionLevel3Master] Response from the API call.
-    def create_a_new_level3_entry_for_a_master_card(transaction_id,
-                                                    body)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanew_level3entryfora_master_card(transaction_id,
+                                               body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/{transaction_id}/level3/master-card',
                                      Server::DEFAULT)
                    .template_param(new_parameter(transaction_id, key: 'transaction_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionLevel3Master.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -40,26 +43,29 @@ module FortisApi
     # @param [String] transaction_id Required parameter: Transaction ID
     # @param [V1TransactionsLevel3VisaRequest] body Required parameter: TODO:
     # type description here
-    # @return [ResponseTransactionLevel3Visa] Response from the API call.
-    def create_a_new_level3_entry_for_a_visa(transaction_id,
-                                             body)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanew_level3entryfora_visa(transaction_id,
+                                        body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/{transaction_id}/level3/visa',
                                      Server::DEFAULT)
                    .template_param(new_parameter(transaction_id, key: 'transaction_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionLevel3Visa.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -69,50 +75,56 @@ module FortisApi
     # TODO: type endpoint description here
     # @param [String] transaction_id Required parameter: Transaction ID
     # @param [String] level3_id Required parameter: Level 3 ID
-    # @return [ResponseTransactionLevel3] Response from the API call.
-    def delete_a_single_level3_record(transaction_id,
-                                      level3_id)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def deleteasinglelevel3record(transaction_id,
+                                  level3_id)
       @api_call
         .request(new_request_builder(HttpMethodEnum::DELETE,
                                      '/v1/transactions/{transaction_id}/level3/{level3_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(transaction_id, key: 'transaction_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .template_param(new_parameter(level3_id, key: 'level3_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionLevel3.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
     # TODO: type endpoint description here
     # @param [String] transaction_id Required parameter: Transaction ID
     # @param [String] level3_id Required parameter: Level 3 ID
-    # @return [ResponseTransactionLevel3] Response from the API call.
-    def view_single_level3_record(transaction_id,
-                                  level3_id)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def viewsinglelevel3record(transaction_id,
+                               level3_id)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/transactions/{transaction_id}/level3/{level3_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(transaction_id, key: 'transaction_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .template_param(new_parameter(level3_id, key: 'level3_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionLevel3.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

@@ -50,17 +50,16 @@ module FortisApi
       []
     end
 
-    def initialize(id = SKIP, user_id = SKIP, hash = SKIP, created_ts = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, user_id: SKIP, hash: SKIP, created_ts: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @user_id = user_id unless user_id == SKIP
       @hash = hash unless hash == SKIP
       @created_ts = created_ts unless created_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -73,29 +72,33 @@ module FortisApi
       hash = hash.key?('hash') ? hash['hash'] : SKIP
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      List19.new(id,
-                 user_id,
-                 hash,
-                 created_ts,
-                 additional_properties)
+      List19.new(id: id,
+                 user_id: user_id,
+                 hash: hash,
+                 created_ts: created_ts,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, user_id: #{@user_id}, hash: #{@hash}, created_ts:"\
-      " #{@created_ts}, additional_properties: #{get_additional_properties}>"
+      " #{@created_ts}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id.inspect}, user_id: #{@user_id.inspect}, hash: #{@hash.inspect},"\
-      " created_ts: #{@created_ts.inspect}, additional_properties: #{get_additional_properties}>"
+      " created_ts: #{@created_ts.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

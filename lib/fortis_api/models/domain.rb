@@ -38,7 +38,7 @@ module FortisApi
     attr_accessor :allow_contact_login
 
     # Registration Fields
-    # @return [Array[RegistrationFieldEnum]]
+    # @return [Array[RegistrationField]]
     attr_accessor :registration_fields
 
     # Company Name.
@@ -117,8 +117,8 @@ module FortisApi
     # @return [String]
     attr_accessor :custom_css
 
-    # Contact User Default Entry Page
-    # @return [ContactUserDefaultEntryPageEnum]
+    # Custom CSS
+    # @return [Object]
     attr_accessor :contact_user_default_entry_page
 
     # Contact User Default Auth Role
@@ -245,33 +245,28 @@ module FortisApi
         custom_javascript
         custom_theme
         custom_css
-        contact_user_default_entry_page
         custom_stylesheet_url
       ]
     end
 
-    def initialize(url = SKIP, title = SKIP, logo = SKIP, support_email = SKIP,
-                   allow_contact_signup = SKIP,
-                   allow_contact_registration = SKIP,
-                   allow_contact_login = SKIP, registration_fields = SKIP,
-                   company_name = SKIP, nav_color = SKIP,
-                   button_primary_color = SKIP, logo_background_color = SKIP,
-                   icon_background_color = SKIP,
-                   menu_text_background_color = SKIP, menu_text_color = SKIP,
-                   right_menu_background_color = SKIP,
-                   right_menu_text_color = SKIP,
-                   button_primary_text_color = SKIP, nav_logo = SKIP,
-                   fav_icon = SKIP, aes_key = SKIP, help_text = SKIP,
-                   email_reply_to = SKIP, email = SKIP,
-                   custom_javascript = SKIP, custom_theme = SKIP,
-                   custom_css = SKIP, contact_user_default_entry_page = SKIP,
-                   contact_user_default_auth_roles = SKIP,
-                   custom_stylesheet_url = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(url: SKIP, title: SKIP, logo: SKIP, support_email: SKIP,
+                   allow_contact_signup: SKIP, allow_contact_registration: SKIP,
+                   allow_contact_login: SKIP, registration_fields: SKIP,
+                   company_name: SKIP, nav_color: SKIP,
+                   button_primary_color: SKIP, logo_background_color: SKIP,
+                   icon_background_color: SKIP,
+                   menu_text_background_color: SKIP, menu_text_color: SKIP,
+                   right_menu_background_color: SKIP,
+                   right_menu_text_color: SKIP, button_primary_text_color: SKIP,
+                   nav_logo: SKIP, fav_icon: SKIP, aes_key: SKIP,
+                   help_text: SKIP, email_reply_to: SKIP, email: SKIP,
+                   custom_javascript: SKIP, custom_theme: SKIP,
+                   custom_css: SKIP, contact_user_default_entry_page: SKIP,
+                   contact_user_default_auth_roles: SKIP,
+                   custom_stylesheet_url: SKIP, id: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @url = url unless url == SKIP
       @title = title unless title == SKIP
@@ -324,6 +319,7 @@ module FortisApi
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -382,44 +378,48 @@ module FortisApi
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Domain.new(url,
-                 title,
-                 logo,
-                 support_email,
-                 allow_contact_signup,
-                 allow_contact_registration,
-                 allow_contact_login,
-                 registration_fields,
-                 company_name,
-                 nav_color,
-                 button_primary_color,
-                 logo_background_color,
-                 icon_background_color,
-                 menu_text_background_color,
-                 menu_text_color,
-                 right_menu_background_color,
-                 right_menu_text_color,
-                 button_primary_text_color,
-                 nav_logo,
-                 fav_icon,
-                 aes_key,
-                 help_text,
-                 email_reply_to,
-                 email,
-                 custom_javascript,
-                 custom_theme,
-                 custom_css,
-                 contact_user_default_entry_page,
-                 contact_user_default_auth_roles,
-                 custom_stylesheet_url,
-                 id,
-                 created_ts,
-                 modified_ts,
-                 additional_properties)
+      Domain.new(url: url,
+                 title: title,
+                 logo: logo,
+                 support_email: support_email,
+                 allow_contact_signup: allow_contact_signup,
+                 allow_contact_registration: allow_contact_registration,
+                 allow_contact_login: allow_contact_login,
+                 registration_fields: registration_fields,
+                 company_name: company_name,
+                 nav_color: nav_color,
+                 button_primary_color: button_primary_color,
+                 logo_background_color: logo_background_color,
+                 icon_background_color: icon_background_color,
+                 menu_text_background_color: menu_text_background_color,
+                 menu_text_color: menu_text_color,
+                 right_menu_background_color: right_menu_background_color,
+                 right_menu_text_color: right_menu_text_color,
+                 button_primary_text_color: button_primary_text_color,
+                 nav_logo: nav_logo,
+                 fav_icon: fav_icon,
+                 aes_key: aes_key,
+                 help_text: help_text,
+                 email_reply_to: email_reply_to,
+                 email: email,
+                 custom_javascript: custom_javascript,
+                 custom_theme: custom_theme,
+                 custom_css: custom_css,
+                 contact_user_default_entry_page: contact_user_default_entry_page,
+                 contact_user_default_auth_roles: contact_user_default_auth_roles,
+                 custom_stylesheet_url: custom_stylesheet_url,
+                 id: id,
+                 created_ts: created_ts,
+                 modified_ts: modified_ts,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -441,7 +441,7 @@ module FortisApi
       " contact_user_default_entry_page: #{@contact_user_default_entry_page},"\
       " contact_user_default_auth_roles: #{@contact_user_default_auth_roles},"\
       " custom_stylesheet_url: #{@custom_stylesheet_url}, id: #{@id}, created_ts: #{@created_ts},"\
-      " modified_ts: #{@modified_ts}, additional_properties: #{get_additional_properties}>"
+      " modified_ts: #{@modified_ts}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -467,8 +467,7 @@ module FortisApi
       " #{@contact_user_default_entry_page.inspect}, contact_user_default_auth_roles:"\
       " #{@contact_user_default_auth_roles.inspect}, custom_stylesheet_url:"\
       " #{@custom_stylesheet_url.inspect}, id: #{@id.inspect}, created_ts: #{@created_ts.inspect},"\
-      " modified_ts: #{@modified_ts.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " modified_ts: #{@modified_ts.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

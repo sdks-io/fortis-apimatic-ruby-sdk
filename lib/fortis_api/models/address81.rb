@@ -33,8 +33,8 @@ module FortisApi
     # @return [String]
     attr_accessor :country_code
 
-    # Address type of address.
-    # @return [AddressTypeEnum]
+    # Country of address.
+    # @return [AddressType]
     attr_accessor :address_type
 
     # A mapping from model property names to API property names.
@@ -64,13 +64,11 @@ module FortisApi
       ]
     end
 
-    def initialize(address_line_1 = nil, city = nil, state_province = nil,
-                   postal_code = nil, country_code = nil, address_type = nil,
-                   address_line_2 = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(address_line_1:, city:, state_province:, postal_code:,
+                   country_code:, address_type:, address_line_2: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @address_line_1 = address_line_1
       @address_line_2 = address_line_2 unless address_line_2 == SKIP
@@ -79,6 +77,7 @@ module FortisApi
       @postal_code = postal_code
       @country_code = country_code
       @address_type = address_type
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -97,18 +96,22 @@ module FortisApi
       address_line_2 =
         hash.key?('address_line_2') ? hash['address_line_2'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Address81.new(address_line_1,
-                    city,
-                    state_province,
-                    postal_code,
-                    country_code,
-                    address_type,
-                    address_line_2,
-                    additional_properties)
+      Address81.new(address_line_1: address_line_1,
+                    city: city,
+                    state_province: state_province,
+                    postal_code: postal_code,
+                    country_code: country_code,
+                    address_type: address_type,
+                    address_line_2: address_line_2,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -117,7 +120,7 @@ module FortisApi
       "<#{class_name} address_line_1: #{@address_line_1}, address_line_2: #{@address_line_2},"\
       " city: #{@city}, state_province: #{@state_province}, postal_code: #{@postal_code},"\
       " country_code: #{@country_code}, address_type: #{@address_type}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -127,7 +130,7 @@ module FortisApi
       " #{@address_line_2.inspect}, city: #{@city.inspect}, state_province:"\
       " #{@state_province.inspect}, postal_code: #{@postal_code.inspect}, country_code:"\
       " #{@country_code.inspect}, address_type: #{@address_type.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

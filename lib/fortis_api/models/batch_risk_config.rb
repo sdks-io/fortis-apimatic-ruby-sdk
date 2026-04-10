@@ -41,15 +41,14 @@ module FortisApi
       ]
     end
 
-    def initialize(blind_refund_total_count = SKIP,
-                   blind_refund_max_amount = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(blind_refund_total_count: SKIP,
+                   blind_refund_max_amount: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @blind_refund_total_count = blind_refund_total_count unless blind_refund_total_count == SKIP
       @blind_refund_max_amount = blind_refund_max_amount unless blind_refund_max_amount == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -62,13 +61,17 @@ module FortisApi
       blind_refund_max_amount =
         hash.key?('blind_refund_max_amount') ? hash['blind_refund_max_amount'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      BatchRiskConfig.new(blind_refund_total_count,
-                          blind_refund_max_amount,
-                          additional_properties)
+      BatchRiskConfig.new(blind_refund_total_count: blind_refund_total_count,
+                          blind_refund_max_amount: blind_refund_max_amount,
+                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -76,7 +79,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} blind_refund_total_count: #{@blind_refund_total_count},"\
       " blind_refund_max_amount: #{@blind_refund_max_amount}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -84,7 +87,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} blind_refund_total_count: #{@blind_refund_total_count.inspect},"\
       " blind_refund_max_amount: #{@blind_refund_max_amount.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

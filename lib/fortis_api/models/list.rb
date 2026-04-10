@@ -86,8 +86,8 @@ module FortisApi
     # @return [Array[PostbackLog]]
     attr_accessor :postback_logs
 
-    # Product Transaction Information on `expand`
-    # @return [ProductTransaction]
+    # Postback Log Information on `expand`
+    # @return [ProductTransaction1]
     attr_accessor :product_transaction
 
     # A mapping from model property names to API property names.
@@ -162,21 +162,18 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, created_ts = SKIP, product_transaction_id = SKIP,
-                   processing_status_id = SKIP, batch_num = SKIP,
-                   is_open = SKIP, settlement_file_name = SKIP,
-                   batch_close_ts = SKIP, batch_close_detail = SKIP,
-                   total_sale_amount = SKIP, total_sale_count = SKIP,
-                   total_refund_amount = SKIP, total_refund_count = SKIP,
-                   total_void_amount = SKIP, total_void_count = SKIP,
-                   total_blind_refund_amount = SKIP,
-                   total_blind_refund_count = SKIP, changelogs = SKIP,
-                   postback_logs = SKIP, product_transaction = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, created_ts: SKIP, product_transaction_id: SKIP,
+                   processing_status_id: SKIP, batch_num: SKIP, is_open: SKIP,
+                   settlement_file_name: SKIP, batch_close_ts: SKIP,
+                   batch_close_detail: SKIP, total_sale_amount: SKIP,
+                   total_sale_count: SKIP, total_refund_amount: SKIP,
+                   total_refund_count: SKIP, total_void_amount: SKIP,
+                   total_void_count: SKIP, total_blind_refund_amount: SKIP,
+                   total_blind_refund_count: SKIP, changelogs: SKIP,
+                   postback_logs: SKIP, product_transaction: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
@@ -201,6 +198,7 @@ module FortisApi
       @changelogs = changelogs unless changelogs == SKIP
       @postback_logs = postback_logs unless postback_logs == SKIP
       @product_transaction = product_transaction unless product_transaction == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -258,34 +256,38 @@ module FortisApi
       end
 
       postback_logs = SKIP unless hash.key?('postback_logs')
-      product_transaction = ProductTransaction.from_hash(hash['product_transaction']) if
+      product_transaction = ProductTransaction1.from_hash(hash['product_transaction']) if
         hash['product_transaction']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      List.new(id,
-               created_ts,
-               product_transaction_id,
-               processing_status_id,
-               batch_num,
-               is_open,
-               settlement_file_name,
-               batch_close_ts,
-               batch_close_detail,
-               total_sale_amount,
-               total_sale_count,
-               total_refund_amount,
-               total_refund_count,
-               total_void_amount,
-               total_void_count,
-               total_blind_refund_amount,
-               total_blind_refund_count,
-               changelogs,
-               postback_logs,
-               product_transaction,
-               additional_properties)
+      List.new(id: id,
+               created_ts: created_ts,
+               product_transaction_id: product_transaction_id,
+               processing_status_id: processing_status_id,
+               batch_num: batch_num,
+               is_open: is_open,
+               settlement_file_name: settlement_file_name,
+               batch_close_ts: batch_close_ts,
+               batch_close_detail: batch_close_detail,
+               total_sale_amount: total_sale_amount,
+               total_sale_count: total_sale_count,
+               total_refund_amount: total_refund_amount,
+               total_refund_count: total_refund_count,
+               total_void_amount: total_void_amount,
+               total_void_count: total_void_count,
+               total_blind_refund_amount: total_blind_refund_amount,
+               total_blind_refund_count: total_blind_refund_count,
+               changelogs: changelogs,
+               postback_logs: postback_logs,
+               product_transaction: product_transaction,
+               additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -301,7 +303,7 @@ module FortisApi
       " total_blind_refund_amount: #{@total_blind_refund_amount}, total_blind_refund_count:"\
       " #{@total_blind_refund_count}, changelogs: #{@changelogs}, postback_logs:"\
       " #{@postback_logs}, product_transaction: #{@product_transaction}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -320,7 +322,7 @@ module FortisApi
       " #{@total_blind_refund_amount.inspect}, total_blind_refund_count:"\
       " #{@total_blind_refund_count.inspect}, changelogs: #{@changelogs.inspect}, postback_logs:"\
       " #{@postback_logs.inspect}, product_transaction: #{@product_transaction.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

@@ -12,23 +12,25 @@ module FortisApi
     # checkouts.
     # @param [V1ElementsTicketIntentionRequest] body Required parameter: TODO:
     # type description here
-    # @return [ResponseTicketIntention] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ticket_intention(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/elements/ticket/intention',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTicketIntention.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -40,23 +42,25 @@ module FortisApi
     # state changes throughout the process.
     # @param [V1ElementsTransactionIntentionRequest] body Required parameter:
     # TODO: type description here
-    # @return [ResponseTransactionIntention] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def transaction_intention(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/elements/transaction/intention',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionIntention.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))

@@ -1,6 +1,8 @@
 
 # V1 Wallet Provider Apple Pay Validate Merchant Request
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `V1WalletProviderApplePayValidateMerchantRequest`
@@ -13,6 +15,7 @@
 | `merchant_id` | `String` | Required | Merchant ID |
 | `domain_name` | `String` | Required | Domain Name |
 | `display_name` | `String` | Required | Title |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,11 @@
   "url": "https://apple-pay-gateway-cert.apple.com/paymentservices/startSession",
   "merchantId": "abc1234",
   "domainName": "website.domain.com",
-  "displayName": "Sandwich Market"
+  "displayName": "Sandwich Market",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

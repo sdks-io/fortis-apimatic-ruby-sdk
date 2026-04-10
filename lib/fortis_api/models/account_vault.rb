@@ -56,12 +56,12 @@ module FortisApi
     # @return [String]
     attr_accessor :token_c3
 
-    # SEC code for the account
-    # @return [AchSecCode3Enum]
+    # Custom field 3 for API users to store custom data
+    # @return [Object]
     attr_accessor :ach_sec_code
 
-    # Billing Address Object
-    # @return [BillingAddress]
+    # Custom field 3 for API users to store custom data
+    # @return [BillingAddress7]
     attr_accessor :billing_address
 
     # Used to associate the Token with a Contact.
@@ -72,8 +72,8 @@ module FortisApi
     # @return [String]
     attr_accessor :customer_id
 
-    # Identity verification
-    # @return [IdentityVerification2]
+    # Used to store a customer identification number.
+    # @return [IdentityVerification5]
     attr_accessor :identity_verification
 
     # A valid Location Id associated with the Contact for this Token
@@ -172,8 +172,8 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :active
 
-    # CAU Summary Status ID.
-    # @return [CauSummaryStatusIdEnum]
+    # Register is Active
+    # @return [CauSummaryStatusId]
     attr_accessor :cau_summary_status_id
 
     # Created Time Stamp
@@ -222,8 +222,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :modified_ts
 
-    # Must be provided as either 'cc' or 'ach'.
-    # @return [PaymentMethod16Enum]
+    # Modified Time Stamp
+    # @return [PaymentMethod16]
     attr_accessor :payment_method
 
     # A valid ticket that was created to store the token.
@@ -384,7 +384,6 @@ module FortisApi
         token_c1
         token_c2
         token_c3
-        ach_sec_code
         contact_id
         customer_id
         previous_account_vault_api_id
@@ -417,36 +416,32 @@ module FortisApi
       ]
     end
 
-    def initialize(account_holder_name = SKIP, account_vault_api_id = SKIP,
-                   token_api_id = SKIP, accountvault_c1 = SKIP,
-                   accountvault_c2 = SKIP, accountvault_c3 = SKIP,
-                   token_c1 = SKIP, token_c2 = SKIP, token_c3 = SKIP,
-                   ach_sec_code = SKIP, billing_address = SKIP,
-                   contact_id = SKIP, customer_id = SKIP,
-                   identity_verification = SKIP, location_id = SKIP,
-                   previous_account_vault_api_id = SKIP,
-                   previous_token_api_id = SKIP,
-                   previous_account_vault_id = SKIP, previous_token_id = SKIP,
-                   previous_transaction_id = SKIP, account_number = SKIP,
-                   terms_agree = SKIP, terms_agree_ip = SKIP, title = SKIP,
-                   token_import_id = SKIP,
-                   secure_directory_server_transaction_id = SKIP,
-                   secure_protocol_version = SKIP, secure_auth_data = SKIP,
-                   secure_collection_indicator = SKIP,
-                   three_ds_server_trans_id = SKIP, acs_transaction_id = SKIP,
-                   joi = SKIP, id = SKIP, account_type = SKIP, active = SKIP,
-                   cau_summary_status_id = SKIP, created_ts = SKIP,
-                   e_serial_number = SKIP, e_track_data = SKIP, e_format = SKIP,
-                   e_keyed_data = SKIP, expiring_in_months = SKIP,
-                   exp_date = SKIP, first_six = SKIP, has_recurring = SKIP,
-                   last_four = SKIP, modified_ts = SKIP, payment_method = SKIP,
-                   ticket = SKIP, track_data = SKIP, created_user_id = SKIP,
-                   cau_last_updated_ts = SKIP, card_bin = SKIP,
-                   routing_number = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(account_holder_name: SKIP, account_vault_api_id: SKIP,
+                   token_api_id: SKIP, accountvault_c1: SKIP,
+                   accountvault_c2: SKIP, accountvault_c3: SKIP, token_c1: SKIP,
+                   token_c2: SKIP, token_c3: SKIP, ach_sec_code: SKIP,
+                   billing_address: SKIP, contact_id: SKIP, customer_id: SKIP,
+                   identity_verification: SKIP, location_id: SKIP,
+                   previous_account_vault_api_id: SKIP,
+                   previous_token_api_id: SKIP, previous_account_vault_id: SKIP,
+                   previous_token_id: SKIP, previous_transaction_id: SKIP,
+                   account_number: SKIP, terms_agree: SKIP,
+                   terms_agree_ip: SKIP, title: SKIP, token_import_id: SKIP,
+                   secure_directory_server_transaction_id: SKIP,
+                   secure_protocol_version: SKIP, secure_auth_data: SKIP,
+                   secure_collection_indicator: SKIP,
+                   three_ds_server_trans_id: SKIP, acs_transaction_id: SKIP,
+                   joi: SKIP, id: SKIP, account_type: SKIP, active: SKIP,
+                   cau_summary_status_id: SKIP, created_ts: SKIP,
+                   e_serial_number: SKIP, e_track_data: SKIP, e_format: SKIP,
+                   e_keyed_data: SKIP, expiring_in_months: SKIP, exp_date: SKIP,
+                   first_six: SKIP, has_recurring: SKIP, last_four: SKIP,
+                   modified_ts: SKIP, payment_method: SKIP, ticket: SKIP,
+                   track_data: SKIP, created_user_id: SKIP,
+                   cau_last_updated_ts: SKIP, card_bin: SKIP,
+                   routing_number: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @account_holder_name = account_holder_name unless account_holder_name == SKIP
       @account_vault_api_id = account_vault_api_id unless account_vault_api_id == SKIP
@@ -514,6 +509,7 @@ module FortisApi
       @cau_last_updated_ts = cau_last_updated_ts unless cau_last_updated_ts == SKIP
       @card_bin = card_bin unless card_bin == SKIP
       @routing_number = routing_number unless routing_number == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -536,11 +532,11 @@ module FortisApi
       token_c2 = hash.key?('token_c2') ? hash['token_c2'] : SKIP
       token_c3 = hash.key?('token_c3') ? hash['token_c3'] : SKIP
       ach_sec_code = hash.key?('ach_sec_code') ? hash['ach_sec_code'] : SKIP
-      billing_address = BillingAddress.from_hash(hash['billing_address']) if
+      billing_address = BillingAddress7.from_hash(hash['billing_address']) if
         hash['billing_address']
       contact_id = hash.key?('contact_id') ? hash['contact_id'] : SKIP
       customer_id = hash.key?('customer_id') ? hash['customer_id'] : SKIP
-      identity_verification = IdentityVerification2.from_hash(hash['identity_verification']) if
+      identity_verification = IdentityVerification5.from_hash(hash['identity_verification']) if
         hash['identity_verification']
       location_id = hash.key?('location_id') ? hash['location_id'] : SKIP
       previous_account_vault_api_id =
@@ -604,65 +600,69 @@ module FortisApi
       routing_number =
         hash.key?('routing_number') ? hash['routing_number'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      AccountVault.new(account_holder_name,
-                       account_vault_api_id,
-                       token_api_id,
-                       accountvault_c1,
-                       accountvault_c2,
-                       accountvault_c3,
-                       token_c1,
-                       token_c2,
-                       token_c3,
-                       ach_sec_code,
-                       billing_address,
-                       contact_id,
-                       customer_id,
-                       identity_verification,
-                       location_id,
-                       previous_account_vault_api_id,
-                       previous_token_api_id,
-                       previous_account_vault_id,
-                       previous_token_id,
-                       previous_transaction_id,
-                       account_number,
-                       terms_agree,
-                       terms_agree_ip,
-                       title,
-                       token_import_id,
-                       secure_directory_server_transaction_id,
-                       secure_protocol_version,
-                       secure_auth_data,
-                       secure_collection_indicator,
-                       three_ds_server_trans_id,
-                       acs_transaction_id,
-                       joi,
-                       id,
-                       account_type,
-                       active,
-                       cau_summary_status_id,
-                       created_ts,
-                       e_serial_number,
-                       e_track_data,
-                       e_format,
-                       e_keyed_data,
-                       expiring_in_months,
-                       exp_date,
-                       first_six,
-                       has_recurring,
-                       last_four,
-                       modified_ts,
-                       payment_method,
-                       ticket,
-                       track_data,
-                       created_user_id,
-                       cau_last_updated_ts,
-                       card_bin,
-                       routing_number,
-                       additional_properties)
+      AccountVault.new(account_holder_name: account_holder_name,
+                       account_vault_api_id: account_vault_api_id,
+                       token_api_id: token_api_id,
+                       accountvault_c1: accountvault_c1,
+                       accountvault_c2: accountvault_c2,
+                       accountvault_c3: accountvault_c3,
+                       token_c1: token_c1,
+                       token_c2: token_c2,
+                       token_c3: token_c3,
+                       ach_sec_code: ach_sec_code,
+                       billing_address: billing_address,
+                       contact_id: contact_id,
+                       customer_id: customer_id,
+                       identity_verification: identity_verification,
+                       location_id: location_id,
+                       previous_account_vault_api_id: previous_account_vault_api_id,
+                       previous_token_api_id: previous_token_api_id,
+                       previous_account_vault_id: previous_account_vault_id,
+                       previous_token_id: previous_token_id,
+                       previous_transaction_id: previous_transaction_id,
+                       account_number: account_number,
+                       terms_agree: terms_agree,
+                       terms_agree_ip: terms_agree_ip,
+                       title: title,
+                       token_import_id: token_import_id,
+                       secure_directory_server_transaction_id: secure_directory_server_transaction_id,
+                       secure_protocol_version: secure_protocol_version,
+                       secure_auth_data: secure_auth_data,
+                       secure_collection_indicator: secure_collection_indicator,
+                       three_ds_server_trans_id: three_ds_server_trans_id,
+                       acs_transaction_id: acs_transaction_id,
+                       joi: joi,
+                       id: id,
+                       account_type: account_type,
+                       active: active,
+                       cau_summary_status_id: cau_summary_status_id,
+                       created_ts: created_ts,
+                       e_serial_number: e_serial_number,
+                       e_track_data: e_track_data,
+                       e_format: e_format,
+                       e_keyed_data: e_keyed_data,
+                       expiring_in_months: expiring_in_months,
+                       exp_date: exp_date,
+                       first_six: first_six,
+                       has_recurring: has_recurring,
+                       last_four: last_four,
+                       modified_ts: modified_ts,
+                       payment_method: payment_method,
+                       ticket: ticket,
+                       track_data: track_data,
+                       created_user_id: created_user_id,
+                       cau_last_updated_ts: cau_last_updated_ts,
+                       card_bin: card_bin,
+                       routing_number: routing_number,
+                       additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -692,7 +692,7 @@ module FortisApi
       " last_four: #{@last_four}, modified_ts: #{@modified_ts}, payment_method:"\
       " #{@payment_method}, ticket: #{@ticket}, track_data: #{@track_data}, created_user_id:"\
       " #{@created_user_id}, cau_last_updated_ts: #{@cau_last_updated_ts}, card_bin: #{@card_bin},"\
-      " routing_number: #{@routing_number}, additional_properties: #{get_additional_properties}>"
+      " routing_number: #{@routing_number}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -728,7 +728,7 @@ module FortisApi
       " #{@payment_method.inspect}, ticket: #{@ticket.inspect}, track_data:"\
       " #{@track_data.inspect}, created_user_id: #{@created_user_id.inspect}, cau_last_updated_ts:"\
       " #{@cau_last_updated_ts.inspect}, card_bin: #{@card_bin.inspect}, routing_number:"\
-      " #{@routing_number.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@routing_number.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

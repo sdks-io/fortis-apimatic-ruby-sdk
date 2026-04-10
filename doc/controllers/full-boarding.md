@@ -25,86 +25,83 @@ def merchant_boarding_full(body)
 
 ## Response Type
 
-[`ResponseFullboarding`](../../doc/models/response-fullboarding.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseFullboarding`](../../doc/models/response-fullboarding.md).
 
 ## Example Usage
 
 ```ruby
 body = V1FullboardingRequest.new(
-  'email@domain.com',
-  'Discount Home Goods',
-  '5555551234',
-  OwnershipTypeEnum::LLP,
-  '0000000000',
-  15,
-  150,
-  100,
-  '7629',
-  'Yard services.',
-  0,
-  0,
-  100,
-  true,
-  false,
-  [
+  email: 'email@domain.com',
+  dba_name: 'Discount Home Goods',
+  phone_number: '5555551234',
+  ownership_type: OwnershipType::NP,
+  fed_tax_id: '0000000000',
+  average_ticket: 15,
+  high_ticket: 150,
+  cc_monthly_volume: 100,
+  mcc_code: '7629',
+  business_description: 'Yard services.',
+  swiped_percent: 0,
+  keyed_percent: 0,
+  ecommerce_percent: 100,
+  is_foreign_entity: true,
+  personally_guaranteed: false,
+  addresses: [
     Address81.new(
-      '121 E Main',
-      'Dallas',
-      'TX',
-      '75087',
-      'US',
-      AddressTypeEnum::LOCATION,
-      'Apt 707'
+      address_line_1: '121 E Main',
+      city: 'Dallas',
+      state_province: 'TX',
+      postal_code: '75087',
+      country_code: 'US',
+      address_type: AddressType::CORPORATE,
+      address_line_2: 'Apt 707'
     )
   ],
-  [
+  owners: [
     Owner.new(
-      'James',
-      'Bond',
-      'CEO',
-      '2021-12-01',
-      '133 S Goliad St',
-      'Suite 120',
-      'Rockwall',
-      'TX',
-      '75429',
-      'US',
-      '000000000',
-      100,
-      '9042142323',
-      'james@example.com',
-      true,
-      true,
-      'Tyler'
+      first_name: 'James',
+      last_name: 'Bond',
+      title: 'CEO',
+      date_of_birth: '2021-12-01',
+      address_line_1: '133 S Goliad St',
+      address_line_2: 'Suite 120',
+      city: 'Rockwall',
+      state_province: 'TX',
+      postal_code: '75429',
+      country_code: 'US',
+      ssn: '000000000',
+      ownership_percent: 100,
+      phone_number: '9042142323',
+      email_address: 'james@example.com',
+      is_controller: true,
+      is_signer: true,
+      middle_name: 'Tyler'
     )
   ],
-  [
+  bank_accounts: [
     BankAccount1.new(
-      'James Bond',
-      '111111111',
-      '1234567',
-      AccountType12Enum::CHECKING,
-      true,
-      []
+      account_holder_name: 'James Bond',
+      routing_number: '111111111',
+      account_number: '1234567',
+      account_type: AccountType12::CHECKING,
+      is_primary: true
     )
   ],
-  nil,
-  '1234YourTemplateCode',
-  'ABC123',
-  'Total Home Goods, LLP',
-  'http://www.example.com',
-  22,
-  PreferredLanguageEnum::FRCA,
-  [],
-  [],
-  [],
-  nil,
-  '192.168.0.10',
-  []
+  template_id: '1234YourTemplateCode',
+  client_app_id: 'ABC123',
+  legal_name: 'Total Home Goods, LLP',
+  website: 'http://www.example.com',
+  ec_monthly_volume: 22,
+  signer_ip: '192.168.0.10'
 )
 
 result = full_boarding_controller.merchant_boarding_full(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -129,6 +126,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

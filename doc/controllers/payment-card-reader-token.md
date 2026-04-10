@@ -25,7 +25,7 @@ def payment_card_reader_token_request(product_transaction_id)
 
 ## Response Type
 
-[`ResponsePaymentCardReaderToken`](../../doc/models/response-payment-card-reader-token.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponsePaymentCardReaderToken`](../../doc/models/response-payment-card-reader-token.md).
 
 ## Example Usage
 
@@ -33,7 +33,12 @@ def payment_card_reader_token_request(product_transaction_id)
 product_transaction_id = '11e95f8ec39de8fbdb0a4f1a'
 
 result = payment_card_reader_token_controller.payment_card_reader_token_request(product_transaction_id)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -49,5 +54,5 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 

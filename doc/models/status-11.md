@@ -3,6 +3,8 @@
 
 Status Information on `expand`
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Status11`
@@ -13,13 +15,18 @@ Status Information on `expand`
 |  --- | --- | --- | --- |
 | `id` | `Integer` | Optional | ID |
 | `title` | `String` | Optional | Title |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "id": 50,
-  "title": "Sample Title"
+  "title": "Sample Title",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,13 +9,13 @@ module FortisApi
     # Create a new keyed Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlyKeyedRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only(body,
                      expand: nil)
       @api_call
@@ -23,7 +23,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -31,9 +32,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -44,13 +46,13 @@ module FortisApi
     # transaction id
     # @param [V1TransactionsCcAuthOnlyPrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_previous_transaction(body,
                                           expand: nil)
       @api_call
@@ -58,7 +60,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -66,9 +69,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -78,13 +82,13 @@ module FortisApi
     # Create a new swiped Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlySwipedRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_swiped(body,
                             expand: nil)
       @api_call
@@ -92,7 +96,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/swiped',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -100,9 +105,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -112,13 +118,13 @@ module FortisApi
     # Create a new Tap To Pay Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlyTaptopayRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_tap_to_pay(body,
                                 expand: nil)
       @api_call
@@ -126,7 +132,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/taptopay',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -134,9 +141,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -146,23 +154,25 @@ module FortisApi
     # Create a new terminal Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlyTerminalRequest] body Required parameter:
     # TODO: type description here
-    # @return [ResponseTransactionProcessing] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_terminal(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/auth-only/terminal',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionProcessing.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -172,13 +182,13 @@ module FortisApi
     # Create a new ticket Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlyTicketRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_ticket(body,
                             expand: nil)
       @api_call
@@ -186,7 +196,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/ticket',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -194,9 +205,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -206,13 +218,13 @@ module FortisApi
     # Create a new tokenized Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlyTokenRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_tokenized(body,
                                expand: nil)
       @api_call
@@ -220,7 +232,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -228,9 +241,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -240,13 +254,13 @@ module FortisApi
     # Create a new Wallet Credit Card authorization only transaction
     # @param [V1TransactionsCcAuthOnlyWalletRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_auth_only_wallet(body,
                             expand: nil)
       @api_call
@@ -254,7 +268,8 @@ module FortisApi
                                      '/v1/transactions/cc/auth-only/wallet',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -262,9 +277,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -274,21 +290,22 @@ module FortisApi
     # Create a new keyed Credit Card AVS only transaction
     # @param [V1TransactionsCcAvsOnlyKeyedRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
-    def cc_avs(body,
-               expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs(body,
+              expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -296,9 +313,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -309,21 +327,22 @@ module FortisApi
     # id
     # @param [V1TransactionsCcAvsOnlyPrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
-    def cc_avs_previous_transaction(body,
-                                    expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs_previous_transaction(body,
+                                   expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -331,9 +350,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -343,21 +363,22 @@ module FortisApi
     # Create a new swiped Credit Card AVS only transaction
     # @param [V1TransactionsCcAvsOnlySwipedRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
-    def cc_avs_swiped(body,
-                      expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs_swiped(body,
+                     expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/swiped',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -365,9 +386,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -377,23 +399,25 @@ module FortisApi
     # Create a new terminal Credit Card AVS only transaction
     # @param [V1TransactionsCcAvsOnlyTerminalRequest] body Required parameter:
     # TODO: type description here
-    # @return [ResponseTransactionProcessing] Response from the API call.
-    def cc_avs_terminal(body)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs_terminal(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/terminal',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionProcessing.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -403,21 +427,22 @@ module FortisApi
     # Create a new ticket Credit Card AVS only transaction
     # @param [V1TransactionsCcAvsOnlyTicketRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
-    def cc_avs_ticket(body,
-                      expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs_ticket(body,
+                     expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/ticket',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -425,9 +450,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -437,21 +463,22 @@ module FortisApi
     # Create a new tokenized Credit Card AVS only transaction
     # @param [V1TransactionsCcAvsOnlyTokenRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
-    def cc_avs_tokenized(body,
-                         expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs_tokenized(body,
+                        expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -459,9 +486,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -471,21 +499,22 @@ module FortisApi
     # Create a new Wallet Credit Card AVS only transaction
     # @param [V1TransactionsCcAvsOnlyWalletRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
-    def cc_avs_wallet(body,
-                      expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def ccavs_wallet(body,
+                     expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/avs-only/wallet',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -493,9 +522,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -505,13 +535,13 @@ module FortisApi
     # Create a new keyed Credit Card balance inquiry transaction
     # @param [V1TransactionsCcBalanceInquiryKeyedRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry(body,
                            expand: nil)
       @api_call
@@ -519,7 +549,8 @@ module FortisApi
                                      '/v1/transactions/cc/balance-inquiry/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -527,9 +558,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -540,13 +572,13 @@ module FortisApi
     # transaction id
     # @param [V1TransactionsCcBalanceInquiryPrevTrxnRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry_previous_transaction(body,
                                                 expand: nil)
       @api_call
@@ -554,7 +586,8 @@ module FortisApi
                                      '/v1/transactions/cc/balance-inquiry/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -562,9 +595,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -574,13 +608,13 @@ module FortisApi
     # Create a new swiped Credit Card balance inquiry transaction
     # @param [V1TransactionsCcBalanceInquirySwipedRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry_swiped(body,
                                   expand: nil)
       @api_call
@@ -588,7 +622,8 @@ module FortisApi
                                      '/v1/transactions/cc/balance-inquiry/swiped',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -596,9 +631,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -608,23 +644,25 @@ module FortisApi
     # Create a new terminal Credit Card balance inquiry transaction
     # @param [V1TransactionsCcBalanceInquiryTerminalRequest] body Required
     # parameter: TODO: type description here
-    # @return [ResponseTransactionProcessing] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry_terminal(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/balance-inquiry/terminal',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionProcessing.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -634,13 +672,13 @@ module FortisApi
     # Create a new Ticket Credit Card balance inquiry transaction
     # @param [V1TransactionsCcBalanceInquiryTicketRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry_ticket(body,
                                   expand: nil)
       @api_call
@@ -648,7 +686,8 @@ module FortisApi
                                      '/v1/transactions/cc/balance-inquiry/ticket',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -656,9 +695,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -668,13 +708,13 @@ module FortisApi
     # Create a new tokenized Credit Card balance inquiry transaction
     # @param [V1TransactionsCcBalanceInquiryTokenRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry_tokenized(body,
                                      expand: nil)
       @api_call
@@ -682,7 +722,8 @@ module FortisApi
                                      '/v1/transactions/cc/balance-inquiry/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -690,9 +731,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -702,13 +744,13 @@ module FortisApi
     # Create a new Wallet Credit Card balance inquiry transaction
     # @param [V1TransactionsCcBalanceInquiryWalletRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_balance_inquiry_wallet(body,
                                   expand: nil)
       @api_call
@@ -716,7 +758,8 @@ module FortisApi
                                      '/v1/transactions/cc/balance-inquiry/wallet',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -724,9 +767,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -736,13 +780,13 @@ module FortisApi
     # Create a new keyed Credit Card force transaction
     # @param [V1TransactionsCcForceKeyedRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_force(body,
                  expand: nil)
       @api_call
@@ -750,7 +794,8 @@ module FortisApi
                                      '/v1/transactions/cc/force/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -758,9 +803,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -770,13 +816,13 @@ module FortisApi
     # Create a new Credit Card force transaction using previous transaction id
     # @param [V1TransactionsCcForcePrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_force_previous_transaction(body,
                                       expand: nil)
       @api_call
@@ -784,7 +830,8 @@ module FortisApi
                                      '/v1/transactions/cc/force/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -792,9 +839,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -804,13 +852,13 @@ module FortisApi
     # Create a new swiped Credit Card force transaction
     # @param [V1TransactionsCcForceSwipedRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_force_swiped(body,
                         expand: nil)
       @api_call
@@ -818,7 +866,8 @@ module FortisApi
                                      '/v1/transactions/cc/force/swiped',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -826,9 +875,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -838,13 +888,13 @@ module FortisApi
     # Create a new ticket Credit Card force transaction
     # @param [V1TransactionsCcForceTicketRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_force_ticket(body,
                         expand: nil)
       @api_call
@@ -852,7 +902,8 @@ module FortisApi
                                      '/v1/transactions/cc/force/ticket',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -860,9 +911,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -872,13 +924,13 @@ module FortisApi
     # Create a new tokenized Credit Card force transaction
     # @param [V1TransactionsCcForceTokenRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_force_tokenized(body,
                            expand: nil)
       @api_call
@@ -886,7 +938,8 @@ module FortisApi
                                      '/v1/transactions/cc/force/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -894,9 +947,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -906,13 +960,13 @@ module FortisApi
     # Create a new Wallet Credit Card force transaction
     # @param [V1TransactionsCcForceWalletRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_force_wallet(body,
                         expand: nil)
       @api_call
@@ -920,7 +974,8 @@ module FortisApi
                                      '/v1/transactions/cc/force/wallet',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -928,9 +983,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -940,13 +996,13 @@ module FortisApi
     # Create a new keyed Credit Card refund transaction
     # @param [V1TransactionsCcRefundKeyedRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund(body,
                   expand: nil)
       @api_call
@@ -954,7 +1010,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -962,9 +1019,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -974,13 +1032,13 @@ module FortisApi
     # Create a new Credit Card refund transaction using previous transaction id
     # @param [V1TransactionsCcRefundPrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_previous_transaction(body,
                                        expand: nil)
       @api_call
@@ -988,7 +1046,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -996,9 +1055,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1008,13 +1068,13 @@ module FortisApi
     # Create a new swiped Credit Card refund transaction
     # @param [V1TransactionsCcRefundSwipedRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_swiped(body,
                          expand: nil)
       @api_call
@@ -1022,7 +1082,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/swiped',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1030,9 +1091,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1042,13 +1104,13 @@ module FortisApi
     # Create a new Tap To Pay Credit Card refund transaction
     # @param [V1TransactionsCcRefundTaptopayRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_tap_to_pay(body,
                              expand: nil)
       @api_call
@@ -1056,7 +1118,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/taptopay',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1064,9 +1127,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1076,23 +1140,25 @@ module FortisApi
     # Create a new terminal Credit Card refund transaction
     # @param [V1TransactionsCcRefundTerminalRequest] body Required parameter:
     # TODO: type description here
-    # @return [ResponseTransactionProcessing] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_terminal(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/refund/terminal',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionProcessing.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1102,13 +1168,13 @@ module FortisApi
     # Create a new ticket Credit Card refund transaction
     # @param [V1TransactionsCcRefundTicketRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_ticket(body,
                          expand: nil)
       @api_call
@@ -1116,7 +1182,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/ticket',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1124,9 +1191,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1136,13 +1204,13 @@ module FortisApi
     # Create a new tokenized Credit Card refund transaction
     # @param [V1TransactionsCcRefundTokenRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_tokenized(body,
                             expand: nil)
       @api_call
@@ -1150,7 +1218,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1158,9 +1227,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1170,13 +1240,13 @@ module FortisApi
     # Create a new Wallet Credit Card refund transaction
     # @param [V1TransactionsCcRefundWalletRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_refund_wallet(body,
                          expand: nil)
       @api_call
@@ -1184,7 +1254,8 @@ module FortisApi
                                      '/v1/transactions/cc/refund/wallet',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1192,9 +1263,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1206,13 +1278,13 @@ module FortisApi
     # verification.
     # @param [V1TransactionsCcSaleKeyedRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale(body,
                 expand: nil)
       @api_call
@@ -1220,7 +1292,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1228,9 +1301,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1240,13 +1314,13 @@ module FortisApi
     # Create a new Credit Card sale transaction using previous transaction id
     # @param [V1TransactionsCcSalePrevTrxnRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_previous_transaction(body,
                                      expand: nil)
       @api_call
@@ -1254,7 +1328,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/prev-trxn',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1262,9 +1337,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1274,13 +1350,13 @@ module FortisApi
     # Create a new swiped Credit Card sale transaction
     # @param [V1TransactionsCcSaleSwipedRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_swiped(body,
                        expand: nil)
       @api_call
@@ -1288,7 +1364,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/swiped',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1296,9 +1373,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1309,13 +1387,13 @@ module FortisApi
     # native iOS integrations.
     # @param [V1TransactionsCcSaleTaptopayRequest] body Required parameter:
     # TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_tap_to_pay(body,
                            expand: nil)
       @api_call
@@ -1323,7 +1401,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/taptopay',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1331,9 +1410,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1344,23 +1424,25 @@ module FortisApi
     # of the Certified terminals.
     # @param [V1TransactionsCcSaleTerminalRequest] body Required parameter:
     # TODO: type description here
-    # @return [ResponseTransactionProcessing] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_terminal(body)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/transactions/cc/sale/terminal',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransactionProcessing.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1371,13 +1453,13 @@ module FortisApi
     # Elements form submission done event.
     # @param [V1TransactionsCcSaleTicketRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_ticket(body,
                        expand: nil)
       @api_call
@@ -1385,7 +1467,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/ticket',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1393,9 +1476,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1405,13 +1489,13 @@ module FortisApi
     # Create a new Credit Card Sale with a previously created token_id.
     # @param [V1TransactionsCcSaleTokenRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_tokenized(body,
                           expand: nil)
       @api_call
@@ -1419,7 +1503,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/token',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1427,9 +1512,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -1439,13 +1525,13 @@ module FortisApi
     # Create a new Wallet Credit Card sale transaction
     # @param [V1TransactionsCcSaleWalletRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def cc_sale_wallet(body,
                        expand: nil)
       @api_call
@@ -1453,7 +1539,8 @@ module FortisApi
                                      '/v1/transactions/cc/sale/wallet',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -1461,9 +1548,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))

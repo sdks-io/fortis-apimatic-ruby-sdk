@@ -37,8 +37,8 @@ module FortisApi
     # @return [String]
     attr_accessor :reason_sent
 
-    # Reason Model
-    # @return [ReasonModelEnum]
+    # Reason Sent
+    # @return [Object]
     attr_accessor :reason_model
 
     # Reason Model
@@ -99,21 +99,18 @@ module FortisApi
         provider_id
         domain_id
         reason_sent
-        reason_model
         reason_model_id
         reply_to
       ]
     end
 
-    def initialize(subject = SKIP, body = SKIP, source_address = SKIP,
-                   return_path = SKIP, provider_id = SKIP, domain_id = SKIP,
-                   reason_sent = SKIP, reason_model = SKIP,
-                   reason_model_id = SKIP, reply_to = SKIP, id = SKIP,
-                   created_ts = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(subject: SKIP, body: SKIP, source_address: SKIP,
+                   return_path: SKIP, provider_id: SKIP, domain_id: SKIP,
+                   reason_sent: SKIP, reason_model: SKIP, reason_model_id: SKIP,
+                   reply_to: SKIP, id: SKIP, created_ts: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @subject = subject unless subject == SKIP
       @body = body unless body == SKIP
@@ -127,6 +124,7 @@ module FortisApi
       @reply_to = reply_to unless reply_to == SKIP
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -149,23 +147,27 @@ module FortisApi
       id = hash.key?('id') ? hash['id'] : SKIP
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ReceivedEmail.new(subject,
-                        body,
-                        source_address,
-                        return_path,
-                        provider_id,
-                        domain_id,
-                        reason_sent,
-                        reason_model,
-                        reason_model_id,
-                        reply_to,
-                        id,
-                        created_ts,
-                        additional_properties)
+      ReceivedEmail.new(subject: subject,
+                        body: body,
+                        source_address: source_address,
+                        return_path: return_path,
+                        provider_id: provider_id,
+                        domain_id: domain_id,
+                        reason_sent: reason_sent,
+                        reason_model: reason_model,
+                        reason_model_id: reason_model_id,
+                        reply_to: reply_to,
+                        id: id,
+                        created_ts: created_ts,
+                        additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -175,7 +177,7 @@ module FortisApi
       " return_path: #{@return_path}, provider_id: #{@provider_id}, domain_id: #{@domain_id},"\
       " reason_sent: #{@reason_sent}, reason_model: #{@reason_model}, reason_model_id:"\
       " #{@reason_model_id}, reply_to: #{@reply_to}, id: #{@id}, created_ts: #{@created_ts},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -186,7 +188,7 @@ module FortisApi
       " #{@provider_id.inspect}, domain_id: #{@domain_id.inspect}, reason_sent:"\
       " #{@reason_sent.inspect}, reason_model: #{@reason_model.inspect}, reason_model_id:"\
       " #{@reason_model_id.inspect}, reply_to: #{@reply_to.inspect}, id: #{@id.inspect},"\
-      " created_ts: #{@created_ts.inspect}, additional_properties: #{get_additional_properties}>"
+      " created_ts: #{@created_ts.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

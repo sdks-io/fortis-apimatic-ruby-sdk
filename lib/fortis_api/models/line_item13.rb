@@ -59,9 +59,9 @@ module FortisApi
     # @return [String]
     attr_accessor :alternate_tax_id
 
-    # Indicator used to reflect debit (D) or credit (C) transaction. Allowed
-    # values: “D”, “C”.
-    # @return [DebitCreditEnum]
+    # Tax identification number of the merchant that reported the alternate tax
+    # amount.
+    # @return [Object]
     attr_accessor :debit_credit
 
     # Discount rate for the line item ,Can accept Two (2) decimal places.
@@ -132,24 +132,21 @@ module FortisApi
         tax_amount
         tax_rate
         alternate_tax_id
-        debit_credit
         discount_rate
         tax_type_applied
         tax_type_id
       ]
     end
 
-    def initialize(description = SKIP, commodity_code = SKIP,
-                   discount_amount = SKIP, other_tax_amount = SKIP,
-                   product_code = SKIP, quantity = SKIP, tax_amount = SKIP,
-                   tax_rate = SKIP, unit_code = SKIP, unit_cost = SKIP,
-                   alternate_tax_id = SKIP, debit_credit = SKIP,
-                   discount_rate = SKIP, tax_type_applied = SKIP,
-                   tax_type_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(description: SKIP, commodity_code: SKIP,
+                   discount_amount: SKIP, other_tax_amount: SKIP,
+                   product_code: SKIP, quantity: SKIP, tax_amount: SKIP,
+                   tax_rate: SKIP, unit_code: SKIP, unit_cost: SKIP,
+                   alternate_tax_id: SKIP, debit_credit: SKIP,
+                   discount_rate: SKIP, tax_type_applied: SKIP,
+                   tax_type_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @description = description unless description == SKIP
       @commodity_code = commodity_code unless commodity_code == SKIP
@@ -166,6 +163,7 @@ module FortisApi
       @discount_rate = discount_rate unless discount_rate == SKIP
       @tax_type_applied = tax_type_applied unless tax_type_applied == SKIP
       @tax_type_id = tax_type_id unless tax_type_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -194,26 +192,30 @@ module FortisApi
         hash.key?('tax_type_applied') ? hash['tax_type_applied'] : SKIP
       tax_type_id = hash.key?('tax_type_id') ? hash['tax_type_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      LineItem13.new(description,
-                     commodity_code,
-                     discount_amount,
-                     other_tax_amount,
-                     product_code,
-                     quantity,
-                     tax_amount,
-                     tax_rate,
-                     unit_code,
-                     unit_cost,
-                     alternate_tax_id,
-                     debit_credit,
-                     discount_rate,
-                     tax_type_applied,
-                     tax_type_id,
-                     additional_properties)
+      LineItem13.new(description: description,
+                     commodity_code: commodity_code,
+                     discount_amount: discount_amount,
+                     other_tax_amount: other_tax_amount,
+                     product_code: product_code,
+                     quantity: quantity,
+                     tax_amount: tax_amount,
+                     tax_rate: tax_rate,
+                     unit_code: unit_code,
+                     unit_cost: unit_cost,
+                     alternate_tax_id: alternate_tax_id,
+                     debit_credit: debit_credit,
+                     discount_rate: discount_rate,
+                     tax_type_applied: tax_type_applied,
+                     tax_type_id: tax_type_id,
+                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -225,7 +227,7 @@ module FortisApi
       " tax_rate: #{@tax_rate}, unit_code: #{@unit_code}, unit_cost: #{@unit_cost},"\
       " alternate_tax_id: #{@alternate_tax_id}, debit_credit: #{@debit_credit}, discount_rate:"\
       " #{@discount_rate}, tax_type_applied: #{@tax_type_applied}, tax_type_id: #{@tax_type_id},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -238,8 +240,7 @@ module FortisApi
       " #{@tax_rate.inspect}, unit_code: #{@unit_code.inspect}, unit_cost: #{@unit_cost.inspect},"\
       " alternate_tax_id: #{@alternate_tax_id.inspect}, debit_credit: #{@debit_credit.inspect},"\
       " discount_rate: #{@discount_rate.inspect}, tax_type_applied: #{@tax_type_applied.inspect},"\
-      " tax_type_id: #{@tax_type_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " tax_type_id: #{@tax_type_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

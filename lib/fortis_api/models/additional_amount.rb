@@ -9,18 +9,16 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # type of the amount [4S-Healthcare(Visa and MC Only),
-    # 4U-Prescription/Rx(Visa and MC Only), 4V-Vision/Optical(Visa Only),
-    # 4W-clinic/other qualified medical(Visa Only) ,4X-Dental(Visa Only)].
-    # @return [Type60Enum]
+    # TODO: Write general description for this method
+    # @return [Object]
     attr_accessor :type
 
     # The amount of additional amount.
     # @return [Integer]
     attr_accessor :amount
 
-    # Account Type
-    # @return [AccountTypeEnum]
+    # The amount of additional amount.
+    # @return [Object]
     attr_accessor :account_type
 
     # Currency Code
@@ -50,24 +48,21 @@ module FortisApi
     # An array for nullable fields
     def self.nullables
       %w[
-        type
         amount
-        account_type
         currency
       ]
     end
 
-    def initialize(type = SKIP, amount = SKIP, account_type = SKIP,
-                   currency = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(type: SKIP, amount: SKIP, account_type: SKIP, currency: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @type = type unless type == SKIP
       @amount = amount unless amount == SKIP
       @account_type = account_type unless account_type == SKIP
       @currency = currency unless currency == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -80,15 +75,19 @@ module FortisApi
       account_type = hash.key?('account_type') ? hash['account_type'] : SKIP
       currency = hash.key?('currency') ? hash['currency'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      AdditionalAmount.new(type,
-                           amount,
-                           account_type,
-                           currency,
-                           additional_properties)
+      AdditionalAmount.new(type: type,
+                           amount: amount,
+                           account_type: account_type,
+                           currency: currency,
+                           additional_properties: additional_properties)
     end
 
     # Validates an instance of the object from a given value.
@@ -105,7 +104,7 @@ module FortisApi
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type}, amount: #{@amount}, account_type: #{@account_type},"\
-      " currency: #{@currency}, additional_properties: #{get_additional_properties}>"
+      " currency: #{@currency}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -113,7 +112,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type.inspect}, amount: #{@amount.inspect}, account_type:"\
       " #{@account_type.inspect}, currency: #{@currency.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

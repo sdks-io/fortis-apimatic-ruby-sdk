@@ -9,11 +9,11 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Resource Type
-    # @return [Type61Enum]
+    # TODO: Write general description for this method
+    # @return [Type61]
     attr_accessor :type
 
-    # Resource Type
+    # TODO: Write general description for this method
     # @return [Data19]
     attr_accessor :data
 
@@ -38,15 +38,13 @@ module FortisApi
       []
     end
 
-    def initialize(type = Type61Enum::QUICKINVOICERESEND, data = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(type: SKIP, data: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @type = type unless type == SKIP
       @data = data unless data == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -54,30 +52,34 @@ module FortisApi
       return nil unless hash
 
       # Extract variables from the hash.
-      type = hash['type'] ||= Type61Enum::QUICKINVOICERESEND
+      type = hash.key?('type') ? hash['type'] : SKIP
       data = Data19.from_hash(hash['data']) if hash['data']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ResponseQuickInvoiceResend.new(type,
-                                     data,
-                                     additional_properties)
+      ResponseQuickInvoiceResend.new(type: type,
+                                     data: data,
+                                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type}, data: #{@data}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type.inspect}, data: #{@data.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

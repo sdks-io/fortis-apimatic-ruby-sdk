@@ -29,8 +29,10 @@ module FortisApi
     # @return [String]
     attr_accessor :account_number
 
-    # Billing Address Object
-    # @return [BillingAddress5]
+    # Account number
+    # >A credit card number. Length 13-19.
+    # >
+    # @return [BillingAddress9]
     attr_accessor :billing_address
 
     # Used to associate the Ticket with a Contact.
@@ -88,15 +90,12 @@ module FortisApi
       ]
     end
 
-    def initialize(exp_date = nil, account_number = nil,
-                   account_holder_name = SKIP, cvv = SKIP,
-                   billing_address = SKIP, contact_id = SKIP,
-                   contact_api_id = SKIP, location_id = SKIP,
-                   location_api_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(exp_date:, account_number:, account_holder_name: SKIP,
+                   cvv: SKIP, billing_address: SKIP, contact_id: SKIP,
+                   contact_api_id: SKIP, location_id: SKIP,
+                   location_api_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @account_holder_name = account_holder_name unless account_holder_name == SKIP
       @exp_date = exp_date
@@ -107,6 +106,7 @@ module FortisApi
       @contact_api_id = contact_api_id unless contact_api_id == SKIP
       @location_id = location_id unless location_id == SKIP
       @location_api_id = location_api_id unless location_api_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -120,7 +120,7 @@ module FortisApi
       account_holder_name =
         hash.key?('account_holder_name') ? hash['account_holder_name'] : SKIP
       cvv = hash.key?('cvv') ? hash['cvv'] : SKIP
-      billing_address = BillingAddress5.from_hash(hash['billing_address']) if
+      billing_address = BillingAddress9.from_hash(hash['billing_address']) if
         hash['billing_address']
       contact_id = hash.key?('contact_id') ? hash['contact_id'] : SKIP
       contact_api_id =
@@ -131,20 +131,24 @@ module FortisApi
       location_api_id =
         hash.key?('location_api_id') ? hash['location_api_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1TicketsRequest.new(exp_date,
-                           account_number,
-                           account_holder_name,
-                           cvv,
-                           billing_address,
-                           contact_id,
-                           contact_api_id,
-                           location_id,
-                           location_api_id,
-                           additional_properties)
+      V1TicketsRequest.new(exp_date: exp_date,
+                           account_number: account_number,
+                           account_holder_name: account_holder_name,
+                           cvv: cvv,
+                           billing_address: billing_address,
+                           contact_id: contact_id,
+                           contact_api_id: contact_api_id,
+                           location_id: location_id,
+                           location_api_id: location_api_id,
+                           additional_properties: additional_properties)
     end
 
     # Validates an instance of the object from a given value.
@@ -176,7 +180,7 @@ module FortisApi
       " #{@cvv}, account_number: #{@account_number}, billing_address: #{@billing_address},"\
       " contact_id: #{@contact_id}, contact_api_id: #{@contact_api_id}, location_id:"\
       " #{@location_id}, location_api_id: #{@location_api_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -187,7 +191,7 @@ module FortisApi
       " billing_address: #{@billing_address.inspect}, contact_id: #{@contact_id.inspect},"\
       " contact_api_id: #{@contact_api_id.inspect}, location_id: #{@location_id.inspect},"\
       " location_api_id: #{@location_api_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

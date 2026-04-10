@@ -76,13 +76,11 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, label = SKIP, field_type = SKIP, position = SKIP,
-                   required = SKIP, readonly = SKIP, visible = SKIP,
-                   value = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, label: SKIP, field_type: SKIP, position: SKIP,
+                   required: SKIP, readonly: SKIP, visible: SKIP, value: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @label = label unless label == SKIP
@@ -92,6 +90,7 @@ module FortisApi
       @readonly = readonly unless readonly == SKIP
       @visible = visible unless visible == SKIP
       @value = value unless value == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -108,19 +107,23 @@ module FortisApi
       visible = hash.key?('visible') ? hash['visible'] : SKIP
       value = hash.key?('value') ? hash['value'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Field18.new(id,
-                  label,
-                  field_type,
-                  position,
-                  required,
-                  readonly,
-                  visible,
-                  value,
-                  additional_properties)
+      Field18.new(id: id,
+                  label: label,
+                  field_type: field_type,
+                  position: position,
+                  required: required,
+                  readonly: readonly,
+                  visible: visible,
+                  value: value,
+                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -128,7 +131,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, label: #{@label}, field_type: #{@field_type}, position:"\
       " #{@position}, required: #{@required}, readonly: #{@readonly}, visible: #{@visible}, value:"\
-      " #{@value}, additional_properties: #{get_additional_properties}>"
+      " #{@value}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -137,7 +140,7 @@ module FortisApi
       "<#{class_name} id: #{@id.inspect}, label: #{@label.inspect}, field_type:"\
       " #{@field_type.inspect}, position: #{@position.inspect}, required: #{@required.inspect},"\
       " readonly: #{@readonly.inspect}, visible: #{@visible.inspect}, value: #{@value.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

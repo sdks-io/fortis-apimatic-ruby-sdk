@@ -83,12 +83,10 @@ module FortisApi
       ]
     end
 
-    def initialize(aid = SKIP, applab = SKIP, appn = SKIP, cvm = SKIP,
-                   tsi = SKIP, tvr = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(aid: SKIP, applab: SKIP, appn: SKIP, cvm: SKIP, tsi: SKIP,
+                   tvr: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @aid = aid unless aid == SKIP
       @applab = applab unless applab == SKIP
@@ -96,6 +94,7 @@ module FortisApi
       @cvm = cvm unless cvm == SKIP
       @tsi = tsi unless tsi == SKIP
       @tvr = tvr unless tvr == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -110,24 +109,28 @@ module FortisApi
       tsi = hash.key?('TSI') ? hash['TSI'] : SKIP
       tvr = hash.key?('TVR') ? hash['TVR'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      EmvReceiptData.new(aid,
-                         applab,
-                         appn,
-                         cvm,
-                         tsi,
-                         tvr,
-                         additional_properties)
+      EmvReceiptData.new(aid: aid,
+                         applab: applab,
+                         appn: appn,
+                         cvm: cvm,
+                         tsi: tsi,
+                         tvr: tvr,
+                         additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} aid: #{@aid}, applab: #{@applab}, appn: #{@appn}, cvm: #{@cvm}, tsi:"\
-      " #{@tsi}, tvr: #{@tvr}, additional_properties: #{get_additional_properties}>"
+      " #{@tsi}, tvr: #{@tvr}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -135,7 +138,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} aid: #{@aid.inspect}, applab: #{@applab.inspect}, appn: #{@appn.inspect},"\
       " cvm: #{@cvm.inspect}, tsi: #{@tsi.inspect}, tvr: #{@tvr.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

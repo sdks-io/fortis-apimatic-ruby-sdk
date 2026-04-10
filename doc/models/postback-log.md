@@ -1,6 +1,8 @@
 
 # Postback Log
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `PostbackLog`
@@ -9,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `postback_status_id` | [`PostbackStatusIdEnum`](../../doc/models/postback-status-id-enum.md) | Optional | Postback Status Id |
+| `postback_status_id` | `Object` | Optional | - |
 | `id` | `String` | Optional | Postback Log Id<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `postback_config_id` | `String` | Optional | Postback Config Id<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `changelog_id` | `String` | Optional | Changelog Id<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
@@ -18,6 +20,7 @@
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `model` | `String` | Optional | MOdel |
 | `model_id` | `String` | Optional | Model Id<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,8 +32,15 @@
   "next_run_ts": 1422040992,
   "created_ts": 1422040992,
   "model_id": "11e95f8ec39de8fbdb0a4f1a",
-  "postback_status_id": 3,
-  "http_verb": "http_verb8"
+  "postback_status_id": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "http_verb": "http_verb8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

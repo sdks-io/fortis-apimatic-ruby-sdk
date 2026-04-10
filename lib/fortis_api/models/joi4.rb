@@ -10,7 +10,7 @@ module FortisApi
     private_constant :SKIP
 
     # TODO: Write general description for this method
-    # @return [Conditions4]
+    # @return [Object]
     attr_accessor :conditions
 
     # A mapping from model property names to API property names.
@@ -32,13 +32,12 @@ module FortisApi
       []
     end
 
-    def initialize(conditions = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(conditions: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @conditions = conditions unless conditions == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -50,12 +49,16 @@ module FortisApi
         UnionTypeLookUp.get(:Joi4Conditions), hash['conditions']
       ) : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Joi4.new(conditions,
-               additional_properties)
+      Joi4.new(conditions: conditions,
+               additional_properties: additional_properties)
     end
 
     # Validates an instance of the object from a given value.
@@ -72,14 +75,14 @@ module FortisApi
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} conditions: #{@conditions}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} conditions: #{@conditions.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

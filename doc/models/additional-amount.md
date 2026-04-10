@@ -1,6 +1,8 @@
 
 # Additional Amount
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `AdditionalAmount`
@@ -9,19 +11,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type60Enum`](../../doc/models/type-60-enum.md) | Optional | type of the amount [4S-Healthcare(Visa and MC Only), 4U-Prescription/Rx(Visa and MC Only), 4V-Vision/Optical(Visa Only), 4W-clinic/other qualified medical(Visa Only) ,4X-Dental(Visa Only)]. |
+| `type` | `Object` | Optional | - |
 | `amount` | `Integer` | Optional | The amount of additional amount. |
-| `account_type` | [`AccountTypeEnum`](../../doc/models/account-type-enum.md) | Optional | Account Type |
+| `account_type` | `Object` | Optional | - |
 | `currency` | `Float` | Optional | Currency Code |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "type": "cashback",
   "amount": 10,
-  "account_type": "credit",
-  "currency": 840.0
+  "currency": 840.0,
+  "type": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "account_type": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -85,18 +85,16 @@ module FortisApi
       ]
     end
 
-    def initialize(location_api_id = SKIP, location_id = SKIP,
-                   quick_invoice_template = SKIP,
-                   default_allow_partial_pay = SKIP,
-                   default_notification_on_due_date = SKIP,
-                   default_notification_days_after_due_date = SKIP,
-                   default_notification_days_before_due_date = SKIP,
-                   show_custom_fields = SKIP, id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_api_id: SKIP, location_id: SKIP,
+                   quick_invoice_template: SKIP,
+                   default_allow_partial_pay: SKIP,
+                   default_notification_on_due_date: SKIP,
+                   default_notification_days_after_due_date: SKIP,
+                   default_notification_days_before_due_date: SKIP,
+                   show_custom_fields: SKIP, id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_api_id = location_api_id unless location_api_id == SKIP
       @location_id = location_id unless location_id == SKIP
@@ -119,6 +117,7 @@ module FortisApi
       end
       @show_custom_fields = show_custom_fields unless show_custom_fields == SKIP
       @id = id unless id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -143,20 +142,24 @@ module FortisApi
         hash.key?('show_custom_fields') ? hash['show_custom_fields'] : SKIP
       id = hash.key?('id') ? hash['id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      QuickInvoiceSetting.new(location_api_id,
-                              location_id,
-                              quick_invoice_template,
-                              default_allow_partial_pay,
-                              default_notification_on_due_date,
-                              default_notification_days_after_due_date,
-                              default_notification_days_before_due_date,
-                              show_custom_fields,
-                              id,
-                              additional_properties)
+      QuickInvoiceSetting.new(location_api_id: location_api_id,
+                              location_id: location_id,
+                              quick_invoice_template: quick_invoice_template,
+                              default_allow_partial_pay: default_allow_partial_pay,
+                              default_notification_on_due_date: default_notification_on_due_date,
+                              default_notification_days_after_due_date: default_notification_days_after_due_date,
+                              default_notification_days_before_due_date: default_notification_days_before_due_date,
+                              show_custom_fields: show_custom_fields,
+                              id: id,
+                              additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -168,7 +171,7 @@ module FortisApi
       " #{@default_notification_on_due_date}, default_notification_days_after_due_date:"\
       " #{@default_notification_days_after_due_date}, default_notification_days_before_due_date:"\
       " #{@default_notification_days_before_due_date}, show_custom_fields: #{@show_custom_fields},"\
-      " id: #{@id}, additional_properties: #{get_additional_properties}>"
+      " id: #{@id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -183,7 +186,7 @@ module FortisApi
       ' default_notification_days_before_due_date:'\
       " #{@default_notification_days_before_due_date.inspect}, show_custom_fields:"\
       " #{@show_custom_fields.inspect}, id: #{@id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

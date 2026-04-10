@@ -80,12 +80,10 @@ module FortisApi
       ]
     end
 
-    def initialize(city = SKIP, state = SKIP, postal_code = SKIP, street = SKIP,
-                   phone = SKIP, country = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(city: SKIP, state: SKIP, postal_code: SKIP, street: SKIP,
+                   phone: SKIP, country: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @city = city unless city == SKIP
       @state = state unless state == SKIP
@@ -93,6 +91,7 @@ module FortisApi
       @street = street unless street == SKIP
       @phone = phone unless phone == SKIP
       @country = country unless country == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -107,27 +106,21 @@ module FortisApi
       phone = hash.key?('phone') ? hash['phone'] : SKIP
       country = hash.key?('country') ? hash['country'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      BillingAddress1.new(city,
-                          state,
-                          postal_code,
-                          street,
-                          phone,
-                          country,
-                          additional_properties)
-    end
-
-    # Validates an instance of the object from a given value.
-    # @param [BillingAddress1 | Hash] The value against the validation is performed.
-    def self.validate(value)
-      return true if value.instance_of? self
-
-      return false unless value.instance_of? Hash
-
-      true
+      BillingAddress1.new(city: city,
+                          state: state,
+                          postal_code: postal_code,
+                          street: street,
+                          phone: phone,
+                          country: country,
+                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -135,7 +128,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} city: #{@city}, state: #{@state}, postal_code: #{@postal_code}, street:"\
       " #{@street}, phone: #{@phone}, country: #{@country}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -143,7 +136,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} city: #{@city.inspect}, state: #{@state.inspect}, postal_code:"\
       " #{@postal_code.inspect}, street: #{@street.inspect}, phone: #{@phone.inspect}, country:"\
-      " #{@country.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@country.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

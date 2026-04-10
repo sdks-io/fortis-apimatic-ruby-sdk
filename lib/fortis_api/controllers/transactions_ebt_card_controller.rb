@@ -4,18 +4,18 @@
 # https://www.apimatic.io ).
 
 module FortisApi
-  # TransactionsEBTCardController
-  class TransactionsEBTCardController < BaseController
+  # TransactionsEbtCardController
+  class TransactionsEbtCardController < BaseController
     # Create a new keyed EBT voucher clear refund transaction
     # @param [V1TransactionsEbtVoucherClearRefundKeyedRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ebt_voucher_clear_refund(body,
                                  expand: nil)
       @api_call
@@ -23,7 +23,8 @@ module FortisApi
                                      '/v1/transactions/ebt/voucher-clear-refund/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -31,9 +32,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -43,13 +45,13 @@ module FortisApi
     # Create a new keyed EBT voucher clear sale transaction
     # @param [V1TransactionsEbtVoucherClearSaleKeyedRequest] body Required
     # parameter: TODO: type description here
-    # @param [Array[Expand60Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand60]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseTransaction] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def ebt_voucher_clear_sale(body,
                                expand: nil)
       @api_call
@@ -57,7 +59,8 @@ module FortisApi
                                      '/v1/transactions/ebt/voucher-clear-sale/keyed',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -65,9 +68,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseTransaction.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))

@@ -48,8 +48,8 @@ module FortisApi
     # @return [String]
     attr_accessor :phone_number
 
-    # The Ownership Type of the merchant's business.
-    # @return [OwnershipTypeEnum]
+    # Merchant's phone number.
+    # @return [OwnershipType]
     attr_accessor :ownership_type
 
     # Federal Tax ID (EIN).
@@ -117,59 +117,31 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :personally_guaranteed
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
-    # @return [PreferredLanguageEnum]
+    # Indicates whether or not the merchant is personally guaranteed.
+    # @return [Object]
     attr_accessor :preferred_language
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
+    # Indicates whether or not the merchant is personally guaranteed.
     # @return [Array[Address81]]
     attr_accessor :addresses
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
+    # Indicates whether or not the merchant is personally guaranteed.
     # @return [Array[Owner]]
     attr_accessor :owners
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
+    # Indicates whether or not the merchant is personally guaranteed.
     # @return [Array[BankAccount1]]
     attr_accessor :bank_accounts
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
+    # Indicates whether or not the merchant is personally guaranteed.
     # @return [Array[Document]]
     attr_accessor :documents
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
+    # Indicates whether or not the merchant is personally guaranteed.
     # @return [Array[PricingElement]]
     attr_accessor :pricing_elements
 
-    # Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >Merchant preferred language. English(“en-US”) will be used if no value is
-    # supplied.
-    # >
+    # Indicates whether or not the merchant is personally guaranteed.
     # @return [Array[KycResponseObject]]
     attr_accessor :kyc_response_objects
 
@@ -183,7 +155,7 @@ module FortisApi
 
     # Array of SEC codes that will be allowed, Only applicable for ACH. Valid
     # values are 'PPD', 'WEB', 'TEL', 'CCD'.
-    # @return [Array[SecCodeEnum]]
+    # @return [Array[SecCode]]
     attr_accessor :sec_codes
 
     # A mapping from model property names to API property names.
@@ -250,28 +222,23 @@ module FortisApi
         legal_name
         website
         ec_monthly_volume
-        preferred_language
         signer_ip
       ]
     end
 
-    def initialize(email = nil, dba_name = nil, phone_number = nil,
-                   ownership_type = nil, fed_tax_id = nil, average_ticket = nil,
-                   high_ticket = nil, cc_monthly_volume = nil, mcc_code = nil,
-                   business_description = nil, swiped_percent = nil,
-                   keyed_percent = nil, ecommerce_percent = nil,
-                   is_foreign_entity = nil, personally_guaranteed = nil,
-                   addresses = nil, owners = nil, bank_accounts = nil,
-                   parent_id = SKIP, template_id = SKIP, client_app_id = SKIP,
-                   legal_name = SKIP, website = SKIP, ec_monthly_volume = SKIP,
-                   preferred_language = SKIP, documents = SKIP,
-                   pricing_elements = SKIP, kyc_response_objects = SKIP,
-                   metadata = SKIP, signer_ip = SKIP, sec_codes = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(email:, dba_name:, phone_number:, ownership_type:,
+                   fed_tax_id:, average_ticket:, high_ticket:,
+                   cc_monthly_volume:, mcc_code:, business_description:,
+                   swiped_percent:, keyed_percent:, ecommerce_percent:,
+                   is_foreign_entity:, personally_guaranteed:, addresses:,
+                   owners:, bank_accounts:, parent_id: SKIP, template_id: SKIP,
+                   client_app_id: SKIP, legal_name: SKIP, website: SKIP,
+                   ec_monthly_volume: SKIP, preferred_language: SKIP,
+                   documents: SKIP, pricing_elements: SKIP,
+                   kyc_response_objects: SKIP, metadata: SKIP, signer_ip: SKIP,
+                   sec_codes: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @parent_id = parent_id unless parent_id == SKIP
       @template_id = template_id unless template_id == SKIP
@@ -304,6 +271,7 @@ module FortisApi
       @metadata = metadata unless metadata == SKIP
       @signer_ip = signer_ip unless signer_ip == SKIP
       @sec_codes = sec_codes unless sec_codes == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -407,42 +375,46 @@ module FortisApi
       signer_ip = hash.key?('signer_ip') ? hash['signer_ip'] : SKIP
       sec_codes = hash.key?('sec_codes') ? hash['sec_codes'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1FullboardingRequest.new(email,
-                                dba_name,
-                                phone_number,
-                                ownership_type,
-                                fed_tax_id,
-                                average_ticket,
-                                high_ticket,
-                                cc_monthly_volume,
-                                mcc_code,
-                                business_description,
-                                swiped_percent,
-                                keyed_percent,
-                                ecommerce_percent,
-                                is_foreign_entity,
-                                personally_guaranteed,
-                                addresses,
-                                owners,
-                                bank_accounts,
-                                parent_id,
-                                template_id,
-                                client_app_id,
-                                legal_name,
-                                website,
-                                ec_monthly_volume,
-                                preferred_language,
-                                documents,
-                                pricing_elements,
-                                kyc_response_objects,
-                                metadata,
-                                signer_ip,
-                                sec_codes,
-                                additional_properties)
+      V1FullboardingRequest.new(email: email,
+                                dba_name: dba_name,
+                                phone_number: phone_number,
+                                ownership_type: ownership_type,
+                                fed_tax_id: fed_tax_id,
+                                average_ticket: average_ticket,
+                                high_ticket: high_ticket,
+                                cc_monthly_volume: cc_monthly_volume,
+                                mcc_code: mcc_code,
+                                business_description: business_description,
+                                swiped_percent: swiped_percent,
+                                keyed_percent: keyed_percent,
+                                ecommerce_percent: ecommerce_percent,
+                                is_foreign_entity: is_foreign_entity,
+                                personally_guaranteed: personally_guaranteed,
+                                addresses: addresses,
+                                owners: owners,
+                                bank_accounts: bank_accounts,
+                                parent_id: parent_id,
+                                template_id: template_id,
+                                client_app_id: client_app_id,
+                                legal_name: legal_name,
+                                website: website,
+                                ec_monthly_volume: ec_monthly_volume,
+                                preferred_language: preferred_language,
+                                documents: documents,
+                                pricing_elements: pricing_elements,
+                                kyc_response_objects: kyc_response_objects,
+                                metadata: metadata,
+                                signer_ip: signer_ip,
+                                sec_codes: sec_codes,
+                                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -461,7 +433,7 @@ module FortisApi
       " bank_accounts: #{@bank_accounts}, documents: #{@documents}, pricing_elements:"\
       " #{@pricing_elements}, kyc_response_objects: #{@kyc_response_objects}, metadata:"\
       " #{@metadata}, signer_ip: #{@signer_ip}, sec_codes: #{@sec_codes}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -483,7 +455,7 @@ module FortisApi
       " #{@documents.inspect}, pricing_elements: #{@pricing_elements.inspect},"\
       " kyc_response_objects: #{@kyc_response_objects.inspect}, metadata: #{@metadata.inspect},"\
       " signer_ip: #{@signer_ip.inspect}, sec_codes: #{@sec_codes.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

@@ -6,7 +6,7 @@ m3_ds_authentication_controller = client.m3_ds_authentication
 
 ## Class Name
 
-`M3DSAuthenticationController`
+`M3DsAuthenticationController`
 
 
 # 3 DS Authentication Request
@@ -25,125 +25,37 @@ def m3_ds_authentication_request(body)
 
 ## Response Type
 
-[`ResponseThreeDSAuthentication`](../../doc/models/response-three-ds-authentication.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseThreeDsAuthentication`](../../doc/models/response-three-ds-authentication.md).
 
 ## Example Usage
 
 ```ruby
 body = V1MerchantThreedsecureAuthenticationRequest.new(
-  '11ee3860e2fc7f5ea67d36b3',
-  DeviceChannelEnum::ENUM_02,
-  MessageCategoryEnum::ENUM_01,
-  ThreeDsRequestor.new(
-    ThreeDsRequestorAuthenticationIndEnum::ENUM_01,
-    [],
-    [
-      ThreeDsRequestorChallengeIndEnum::ENUM_03
-    ],
-    [],
-    envrr,
-    nil,
-    envrr
+  product_transaction_id: '11ee3860e2fc7f5ea67d36b3',
+  device_channel: DeviceChannel::ENUM_02,
+  message_category: MessageCategory::ENUM_82,
+  three_ds_requestor: ThreeDsRequestor1.new(
+    three_ds_requestor_authentication_ind: ThreeDsRequestorAuthenticationInd::ENUM_90,
+    three_ds_requestor_challenge_ind: [
+      ThreeDsRequestorChallengeInd::ENUM_03
+    ]
   ),
-  CardholderAccount.new(
-    '5454545454545454',
-    SchemeIdEnum::VISA,
-    '2508',
-    AccountInfo.new(
-      envrr,
-      nil,
-      envrr,
-      nil,
-      envrr,
-      nil,
-      envrr,
-      nil,
-      nil,
-      nil,
-      nil,
-      nil,
-      envrr,
-      envrr,
-      envrr
-    )
+  cardholder_account: CardholderAccount1.new(
+    account_number: '5454545454545454',
+    scheme_id: SchemeId::VISA,
+    expire_date: '2508'
   ),
-  PreferredProtocolVersionEnum::ENUM_220,
-  true,
-  'Y',
-  nil,
-  nil,
-  nil,
-  Cardholder.new(
-    envrr,
-    BillingAddress24.new,
-    nil,
-    HomePhone.new,
-    MobilePhone.new,
-    WorkPhone.new,
-    nil,
-    ShippingAddress.new
-  ),
-  Purchase.new(
-    nil,
-    MerchantRiskIndicator.new(
-      envrr,
-      envrr,
-      nil,
-      envrr,
-      envrr,
-      nil,
-      nil,
-      nil,
-      nil,
-      []
-    ),
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    envrr,
-    nil,
-    nil,
-    nil,
-    nil,
-    envrr
-  ),
-  BroadInfo.new(
-    envrr,
-    nil,
-    nil,
-    envrr,
-    envrr,
-    envrr
-  ),
-  [],
-  [],
-  BrowserInformation.new(
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    envrr,
-    nil,
-    []
-  ),
-  nil,
-  Device.new(
-    envrr
-  ),
-  MultiTransaction.new(
-    []
-  )
+  enforce_preferred_protocol_version: true,
+  three_ds_comp_ind: 'Y'
 )
 
 result = m3_ds_authentication_controller.m3_ds_authentication_request(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -169,7 +81,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad Request | [`ResponseErrorException`](../../doc/models/response-error-exception.md) |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 400 | Bad Request | [`V1MerchantThreedsecureAuthentication400ErrorException`](../../doc/models/v1-merchant-threedsecure-authentication-400-error-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

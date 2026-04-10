@@ -186,21 +186,19 @@ module FortisApi
       ]
     end
 
-    def initialize(title = SKIP, quote_number_format = SKIP,
-                   quote_number_start = SKIP, quote_number_increment = SKIP,
-                   quote_number_current = SKIP, invoice_number_format = SKIP,
-                   invoice_number_start = SKIP, invoice_number_increment = SKIP,
-                   invoice_number_current = SKIP, tax_rate = SKIP,
-                   tax_fee = SKIP, monthly_fee = SKIP, per_invoice_fee = SKIP,
-                   per_quote_fee = SKIP, require_pay_in_full = SKIP,
-                   selectable = SKIP, reportable = SKIP, portfolio_id = SKIP,
-                   location_id = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   modified_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(title: SKIP, quote_number_format: SKIP,
+                   quote_number_start: SKIP, quote_number_increment: SKIP,
+                   quote_number_current: SKIP, invoice_number_format: SKIP,
+                   invoice_number_start: SKIP, invoice_number_increment: SKIP,
+                   invoice_number_current: SKIP, tax_rate: SKIP, tax_fee: SKIP,
+                   monthly_fee: SKIP, per_invoice_fee: SKIP,
+                   per_quote_fee: SKIP, require_pay_in_full: SKIP,
+                   selectable: SKIP, reportable: SKIP, portfolio_id: SKIP,
+                   location_id: SKIP, id: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @title = title unless title == SKIP
       @quote_number_format = quote_number_format unless quote_number_format == SKIP
@@ -226,6 +224,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -270,35 +269,39 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ProductInvoice.new(title,
-                         quote_number_format,
-                         quote_number_start,
-                         quote_number_increment,
-                         quote_number_current,
-                         invoice_number_format,
-                         invoice_number_start,
-                         invoice_number_increment,
-                         invoice_number_current,
-                         tax_rate,
-                         tax_fee,
-                         monthly_fee,
-                         per_invoice_fee,
-                         per_quote_fee,
-                         require_pay_in_full,
-                         selectable,
-                         reportable,
-                         portfolio_id,
-                         location_id,
-                         id,
-                         created_ts,
-                         modified_ts,
-                         created_user_id,
-                         modified_user_id,
-                         additional_properties)
+      ProductInvoice.new(title: title,
+                         quote_number_format: quote_number_format,
+                         quote_number_start: quote_number_start,
+                         quote_number_increment: quote_number_increment,
+                         quote_number_current: quote_number_current,
+                         invoice_number_format: invoice_number_format,
+                         invoice_number_start: invoice_number_start,
+                         invoice_number_increment: invoice_number_increment,
+                         invoice_number_current: invoice_number_current,
+                         tax_rate: tax_rate,
+                         tax_fee: tax_fee,
+                         monthly_fee: monthly_fee,
+                         per_invoice_fee: per_invoice_fee,
+                         per_quote_fee: per_quote_fee,
+                         require_pay_in_full: require_pay_in_full,
+                         selectable: selectable,
+                         reportable: reportable,
+                         portfolio_id: portfolio_id,
+                         location_id: location_id,
+                         id: id,
+                         created_ts: created_ts,
+                         modified_ts: modified_ts,
+                         created_user_id: created_user_id,
+                         modified_user_id: modified_user_id,
+                         additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -315,7 +318,7 @@ module FortisApi
       " selectable: #{@selectable}, reportable: #{@reportable}, portfolio_id: #{@portfolio_id},"\
       " location_id: #{@location_id}, id: #{@id}, created_ts: #{@created_ts}, modified_ts:"\
       " #{@modified_ts}, created_user_id: #{@created_user_id}, modified_user_id:"\
-      " #{@modified_user_id}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_user_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -335,7 +338,7 @@ module FortisApi
       " #{@location_id.inspect}, id: #{@id.inspect}, created_ts: #{@created_ts.inspect},"\
       " modified_ts: #{@modified_ts.inspect}, created_user_id: #{@created_user_id.inspect},"\
       " modified_user_id: #{@modified_user_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

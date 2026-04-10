@@ -13,23 +13,8 @@ module FortisApi
     # @return [String]
     attr_accessor :product_transaction_id
 
-    # Specifies the preferred version of 3D Secure protocol to be utilized while
-    # executing 3D Secure authentication. 3DS Server initiates an authentication
-    # request with the preferred version and if this version is not supported by
-    # other 3D Secure components, it falls back to the next supported version(s)
-    # and continues authentication.
-    # If the preferred version is enforced by setting
-    # #enforcePreferredProtocolVersion flag, but this version is not supported
-    # by one of the 3D Secure components, 3DS Server does not initiate an
-    # authentication and provides corresponding error message to the customer.
-    # If no value is provided, EMV 3DS 2.1.0 version will be used by default.
-    # >2.1.0 - prefer authentication with 2.1.0 version
-    # >
-    # >2.2.0 - prefer authentication with 2.2.0 version
-    # >
-    # >2.3.1 - prefer authentication with 2.3.1 version
-    # >
-    # @return [PreferredProtocolVersionEnum]
+    # Product Transaction ID to associate with this 3DS request
+    # @return [Object]
     attr_accessor :preferred_protocol_version
 
     # Boolean flag that enforces preferred 3D Secure protocol version to be used
@@ -40,29 +25,20 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :enforce_preferred_protocol_version
 
-    # Indicates the type of channel interface being used to initiate the
-    # transaction.
-    # >02 - Browser (BRW)
-    # >
-    # >03 - 3DS Requestor Initiated (3RI)
-    # >
-    # @return [DeviceChannelEnum]
+    # Boolean flag that enforces preferred 3D Secure protocol version to be used
+    # in 3D Secure authentication. The value should be set true to enforce
+    # preferred version. If value is false or not provided, 3DS Server can fall
+    # back to next supported 3DS protocol version while initiating 3D Secure
+    # authentication.
+    # @return [DeviceChannel]
     attr_accessor :device_channel
 
-    # Identifies the category of the message for a specific use case.
-    # >01 - Payment Authentication (PA)
-    # >
-    # >02 - Non-Payment Authentication (NPA)
-    # >
-    # >80 through 99 - PS Specific Values
-    # >
-    # >80 - MasterCard Identity Check Insights
-    # >
-    # >85 - MasterCard Identity Check, Production Validation PA
-    # >
-    # >86 - MasterCard Identity Check, Production Validation NPA
-    # >
-    # @return [MessageCategoryEnum]
+    # Boolean flag that enforces preferred 3D Secure protocol version to be used
+    # in 3D Secure authentication. The value should be set true to enforce
+    # preferred version. If value is false or not provided, 3DS Server can fall
+    # back to next supported 3DS protocol version while initiating 3D Secure
+    # authentication.
+    # @return [MessageCategory]
     attr_accessor :message_category
 
     # Indicates whether the 3DS Method successfully completed. The value is used
@@ -88,8 +64,14 @@ module FortisApi
     # @return [String]
     attr_accessor :three_ds_method_id
 
-    # Contains information for the 3DS Requestor.
-    # @return [ThreeDsRequestor]
+    # Contains the 3DS Server Transaction ID used during the previous execution
+    # of the 3DS method. Accepted value length is 36 characters. Accepted value
+    # is a Canonical format as defined in IETF RFC 4122. May utilise any of the
+    # specified versions if the output meets specified requirements.
+    # This field is required if the 3DS Requestor reuses previous 3DS Method
+    # execution with device_channel = 02 (BRW). Available in EMV 3DS 2.3.1 and
+    # later versions.
+    # @return [ThreeDsRequestor1]
     attr_accessor :three_ds_requestor
 
     # Universally unique transaction identifier assigned by the 3DS Server to
@@ -107,28 +89,20 @@ module FortisApi
     # @return [String]
     attr_accessor :three_ds_requestor_url
 
-    # Contains information for the Cardholder Account.
-    # @return [CardholderAccount]
+    # Fully qualified URL of 3DS Requestor website or customer care site.
+    # @return [CardholderAccount1]
     attr_accessor :cardholder_account
 
-    # Contains information for the Cardholder. This field is required unless
-    # market or regional mandate restricts sending this information.
-    # @return [Cardholder]
+    # Fully qualified URL of 3DS Requestor website or customer care site.
+    # @return [Cardholder1]
     attr_accessor :cardholder
 
-    # Contains purchase information
-    # @return [Purchase]
+    # Fully qualified URL of 3DS Requestor website or customer care site.
+    # @return [Purchase1]
     attr_accessor :purchase
 
-    # Until EMV 3DS 2.2.0:
-    # Unstructured information sent between the 3DS Server, the DS and the ACS.
-    # This field is not required to be filled by the Requestor and the
-    # requirements for the presence of this field are DS specific.
-    # Starting from EMV 3DS 2.3.1:
-    # Structured information sent between the 3DS Server, the DS and the ACS.
-    # 2.3.1 structure is defined below. Accepted value length is maximum 4096
-    # characters. This field is optional.
-    # @return [BroadInfo]
+    # Fully qualified URL of 3DS Requestor website or customer care site.
+    # @return [BroadInfo1]
     attr_accessor :broad_info
 
     # Data necessary to support requirements not otherwise defined in the 3D
@@ -146,62 +120,36 @@ module FortisApi
     # @return [Array[ChallengeMessageExtension]]
     attr_accessor :challenge_message_extension
 
-    # Contains browser information. 
-    # This field is required when device_channel=02 (BRW).
-    # @return [BrowserInformation]
+    # Data necessary to support requirements not otherwise defined in the 3D
+    # Secure message are carried in a Message Extension. This field is limited
+    # to 81,920 characters and it is used in the generating of the
+    # ChallengeRequest, if challenge is needed.
+    # Requirements of this field are set by each Directory Server.
+    # @return [BrowserInformation1]
     attr_accessor :browser_information
 
-    # Indicates the type of 3RI request. This data element provides additional
-    # information to the ACS to determine the best approach for handling a 3RI
-    # request. 
-    # Values 06 through 12 are accepted as well if 3DS Server initiates
-    # authentication with EMV 3DS 2.2.0 version or greater (required protocol
-    # version can be set in the preferred_protocol_version field).
-    # Starting from EMV 3DS 2.3.1: 
-    #  Required if device_channel = 03 and message_category = 01 or 02. 
-    #  Values 13 and 14 can be used. 
-    # >01 - Recurring transaction
-    # >
-    # >02 - Installment transaction
-    # >
-    # >03 - Add card
-    # >
-    # >04 - Maintain card information
-    # >
-    # >05 - Account verification
-    # >
-    # >06 - Split/delayed shipment (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >07 - Top-up (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >08 - Mail order (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >09 - Telephone order (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >10 - Whitelist status check (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >11 - Other payment (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >12 - Billing agreement (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >13 - Device Binding status check (EMV 3DS 2.3.1 version or greater)
-    # >
-    # >14 - Card Security Code status check (EMV 3DS 2.3.1 version or greater)
-    # >
-    # >80 through 99 - PS-specific values, regardless of protocol version
-    # >
-    # @return [ThreeRiIndEnum]
+    # Data necessary to support requirements not otherwise defined in the 3D
+    # Secure message are carried in a Message Extension. This field is limited
+    # to 81,920 characters and it is used in the generating of the
+    # ChallengeRequest, if challenge is needed.
+    # Requirements of this field are set by each Directory Server.
+    # @return [Object]
     attr_accessor :three_ri_ind
 
-    # Contains device information.
-    # Available for supporting EMV 3DS 2.3.1 and later versions.
-    # @return [Device]
+    # Data necessary to support requirements not otherwise defined in the 3D
+    # Secure message are carried in a Message Extension. This field is limited
+    # to 81,920 characters and it is used in the generating of the
+    # ChallengeRequest, if challenge is needed.
+    # Requirements of this field are set by each Directory Server.
+    # @return [Device1]
     attr_accessor :device
 
-    # Additional transaction information in case of multiple transactions or
-    # merchants.
-    # Available for supporting EMV 3DS 2.3.1 and later versions.
-    # @return [MultiTransaction]
+    # Data necessary to support requirements not otherwise defined in the 3D
+    # Secure message are carried in a Message Extension. This field is limited
+    # to 81,920 characters and it is used in the generating of the
+    # ChallengeRequest, if challenge is needed.
+    # Requirements of this field are set by each Directory Server.
+    # @return [MultiTransaction1]
     attr_accessor :multi_transaction
 
     # Unique and immutable identifier linked to a device that is consistent
@@ -277,35 +225,29 @@ module FortisApi
     # An array for nullable fields
     def self.nullables
       %w[
-        preferred_protocol_version
         three_ds_comp_ind
         three_ds_method_id
         three_ds_server_trans_id
         three_ds_requestor_url
-        three_ri_ind
         device_id
         user_id
         payee_origin
       ]
     end
 
-    def initialize(product_transaction_id = nil, device_channel = nil,
-                   message_category = nil, three_ds_requestor = nil,
-                   cardholder_account = nil, preferred_protocol_version = SKIP,
-                   enforce_preferred_protocol_version = SKIP,
-                   three_ds_comp_ind = SKIP, three_ds_method_id = SKIP,
-                   three_ds_server_trans_id = SKIP,
-                   three_ds_requestor_url = SKIP, cardholder = SKIP,
-                   purchase = SKIP, broad_info = SKIP, message_extension = SKIP,
-                   challenge_message_extension = SKIP,
-                   browser_information = SKIP, three_ri_ind = SKIP,
-                   device = SKIP, multi_transaction = SKIP, device_id = SKIP,
-                   user_id = SKIP, payee_origin = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(product_transaction_id:, device_channel:, message_category:,
+                   three_ds_requestor:, cardholder_account:,
+                   preferred_protocol_version: SKIP,
+                   enforce_preferred_protocol_version: SKIP,
+                   three_ds_comp_ind: SKIP, three_ds_method_id: SKIP,
+                   three_ds_server_trans_id: SKIP, three_ds_requestor_url: SKIP,
+                   cardholder: SKIP, purchase: SKIP, broad_info: SKIP,
+                   message_extension: SKIP, challenge_message_extension: SKIP,
+                   browser_information: SKIP, three_ri_ind: SKIP, device: SKIP,
+                   multi_transaction: SKIP, device_id: SKIP, user_id: SKIP,
+                   payee_origin: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @product_transaction_id = product_transaction_id
       unless preferred_protocol_version == SKIP
@@ -339,6 +281,7 @@ module FortisApi
       @device_id = device_id unless device_id == SKIP
       @user_id = user_id unless user_id == SKIP
       @payee_origin = payee_origin unless payee_origin == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -352,9 +295,9 @@ module FortisApi
         hash.key?('device_channel') ? hash['device_channel'] : nil
       message_category =
         hash.key?('message_category') ? hash['message_category'] : nil
-      three_ds_requestor = ThreeDsRequestor.from_hash(hash['three_ds_requestor']) if
+      three_ds_requestor = ThreeDsRequestor1.from_hash(hash['three_ds_requestor']) if
         hash['three_ds_requestor']
-      cardholder_account = CardholderAccount.from_hash(hash['cardholder_account']) if
+      cardholder_account = CardholderAccount1.from_hash(hash['cardholder_account']) if
         hash['cardholder_account']
       preferred_protocol_version =
         hash.key?('preferred_protocol_version') ? hash['preferred_protocol_version'] : SKIP
@@ -368,9 +311,9 @@ module FortisApi
         hash.key?('three_ds_server_trans_id') ? hash['three_ds_server_trans_id'] : SKIP
       three_ds_requestor_url =
         hash.key?('three_ds_requestor_url') ? hash['three_ds_requestor_url'] : SKIP
-      cardholder = Cardholder.from_hash(hash['cardholder']) if hash['cardholder']
-      purchase = Purchase.from_hash(hash['purchase']) if hash['purchase']
-      broad_info = BroadInfo.from_hash(hash['broad_info']) if hash['broad_info']
+      cardholder = Cardholder1.from_hash(hash['cardholder']) if hash['cardholder']
+      purchase = Purchase1.from_hash(hash['purchase']) if hash['purchase']
+      broad_info = BroadInfo1.from_hash(hash['broad_info']) if hash['broad_info']
       # Parameter is an array, so we need to iterate through it
       message_extension = nil
       unless hash['message_extension'].nil?
@@ -391,44 +334,48 @@ module FortisApi
       end
 
       challenge_message_extension = SKIP unless hash.key?('challenge_message_extension')
-      browser_information = BrowserInformation.from_hash(hash['browser_information']) if
+      browser_information = BrowserInformation1.from_hash(hash['browser_information']) if
         hash['browser_information']
       three_ri_ind = hash.key?('three_ri_ind') ? hash['three_ri_ind'] : SKIP
-      device = Device.from_hash(hash['device']) if hash['device']
-      multi_transaction = MultiTransaction.from_hash(hash['multi_transaction']) if
+      device = Device1.from_hash(hash['device']) if hash['device']
+      multi_transaction = MultiTransaction1.from_hash(hash['multi_transaction']) if
         hash['multi_transaction']
       device_id = hash.key?('device_id') ? hash['device_id'] : SKIP
       user_id = hash.key?('user_id') ? hash['user_id'] : SKIP
       payee_origin = hash.key?('payee_origin') ? hash['payee_origin'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1MerchantThreedsecureAuthenticationRequest.new(product_transaction_id,
-                                                      device_channel,
-                                                      message_category,
-                                                      three_ds_requestor,
-                                                      cardholder_account,
-                                                      preferred_protocol_version,
-                                                      enforce_preferred_protocol_version,
-                                                      three_ds_comp_ind,
-                                                      three_ds_method_id,
-                                                      three_ds_server_trans_id,
-                                                      three_ds_requestor_url,
-                                                      cardholder,
-                                                      purchase,
-                                                      broad_info,
-                                                      message_extension,
-                                                      challenge_message_extension,
-                                                      browser_information,
-                                                      three_ri_ind,
-                                                      device,
-                                                      multi_transaction,
-                                                      device_id,
-                                                      user_id,
-                                                      payee_origin,
-                                                      additional_properties)
+      V1MerchantThreedsecureAuthenticationRequest.new(product_transaction_id: product_transaction_id,
+                                                      device_channel: device_channel,
+                                                      message_category: message_category,
+                                                      three_ds_requestor: three_ds_requestor,
+                                                      cardholder_account: cardholder_account,
+                                                      preferred_protocol_version: preferred_protocol_version,
+                                                      enforce_preferred_protocol_version: enforce_preferred_protocol_version,
+                                                      three_ds_comp_ind: three_ds_comp_ind,
+                                                      three_ds_method_id: three_ds_method_id,
+                                                      three_ds_server_trans_id: three_ds_server_trans_id,
+                                                      three_ds_requestor_url: three_ds_requestor_url,
+                                                      cardholder: cardholder,
+                                                      purchase: purchase,
+                                                      broad_info: broad_info,
+                                                      message_extension: message_extension,
+                                                      challenge_message_extension: challenge_message_extension,
+                                                      browser_information: browser_information,
+                                                      three_ri_ind: three_ri_ind,
+                                                      device: device,
+                                                      multi_transaction: multi_transaction,
+                                                      device_id: device_id,
+                                                      user_id: user_id,
+                                                      payee_origin: payee_origin,
+                                                      additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -446,7 +393,7 @@ module FortisApi
       " challenge_message_extension: #{@challenge_message_extension}, browser_information:"\
       " #{@browser_information}, three_ri_ind: #{@three_ri_ind}, device: #{@device},"\
       " multi_transaction: #{@multi_transaction}, device_id: #{@device_id}, user_id: #{@user_id},"\
-      " payee_origin: #{@payee_origin}, additional_properties: #{get_additional_properties}>"
+      " payee_origin: #{@payee_origin}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -467,7 +414,7 @@ module FortisApi
       " #{@browser_information.inspect}, three_ri_ind: #{@three_ri_ind.inspect}, device:"\
       " #{@device.inspect}, multi_transaction: #{@multi_transaction.inspect}, device_id:"\
       " #{@device_id.inspect}, user_id: #{@user_id.inspect}, payee_origin:"\
-      " #{@payee_origin.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@payee_origin.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

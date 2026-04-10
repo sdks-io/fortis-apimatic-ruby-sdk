@@ -1,6 +1,8 @@
 
 # Data 4
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Data4`
@@ -15,17 +17,18 @@
 | `exp_date` | `String` | Optional | Exp Date<br><br>**Constraints**: *Maximum Length*: `4` |
 | `transaction_amount` | `Integer` | Optional | Transaction Amount<br><br>**Constraints**: `>= 0`, `<= 999999999` |
 | `description` | `String` | Optional | Description<br><br>**Constraints**: *Maximum Length*: `255` |
-| `billing_address` | [`BillingAddress`](../../doc/models/billing-address.md) | Optional | Billing Address Object |
+| `billing_address` | [`BillingAddress7`](../../doc/models/billing-address-7.md) | Optional | - |
 | `tags` | `Array[String]` | Optional | Tags |
 | `id` | `String` | Optional | Id<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `first_six` | `String` | Optional | First Six<br><br>**Constraints**: *Maximum Length*: `6` |
 | `last_four` | `String` | Optional | Last Four<br><br>**Constraints**: *Maximum Length*: `4` |
 | `routing` | `String` | Optional | Routing |
 | `status_id` | `Float` | Optional | Status Id |
-| `reason_code_id` | [`ReasonCodeIdEnum`](../../doc/models/reason-code-id-enum.md) | Optional | Reason Code Id |
+| `reason_code_id` | `Object` | Optional | - |
 | `type_id` | `Float` | Optional | Type Id |
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `created_user_id` | `String` | Optional | User ID Created the register<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,9 +43,12 @@
   "id": "11e95f8ec39de8fbdb0a4f1a",
   "first_six": "700953",
   "last_four": "3657",
-  "reason_code_id": 1000,
   "created_ts": 1422040992,
-  "created_user_id": "11e95f8ec39de8fbdb0a4f1a"
+  "created_user_id": "11e95f8ec39de8fbdb0a4f1a",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

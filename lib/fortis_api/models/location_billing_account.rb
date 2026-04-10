@@ -148,18 +148,16 @@ module FortisApi
       ]
     end
 
-    def initialize(title = SKIP, location_id = SKIP, location_api_id = SKIP,
-                   ach_sec_code = SKIP, account_number = SKIP, routing = SKIP,
-                   exp_date = SKIP, billing_zip = SKIP, account_type = SKIP,
-                   account_holder_name = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   modified_user_id = SKIP, billing_descriptor = SKIP,
-                   payment_method = SKIP, portfolio_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(title: SKIP, location_id: SKIP, location_api_id: SKIP,
+                   ach_sec_code: SKIP, account_number: SKIP, routing: SKIP,
+                   exp_date: SKIP, billing_zip: SKIP, account_type: SKIP,
+                   account_holder_name: SKIP, id: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, billing_descriptor: SKIP,
+                   payment_method: SKIP, portfolio_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @title = title unless title == SKIP
       @location_id = location_id unless location_id == SKIP
@@ -179,6 +177,7 @@ module FortisApi
       @billing_descriptor = billing_descriptor unless billing_descriptor == SKIP
       @payment_method = payment_method unless payment_method == SKIP
       @portfolio_id = portfolio_id unless portfolio_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -212,29 +211,33 @@ module FortisApi
         hash.key?('payment_method') ? hash['payment_method'] : SKIP
       portfolio_id = hash.key?('portfolio_id') ? hash['portfolio_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      LocationBillingAccount.new(title,
-                                 location_id,
-                                 location_api_id,
-                                 ach_sec_code,
-                                 account_number,
-                                 routing,
-                                 exp_date,
-                                 billing_zip,
-                                 account_type,
-                                 account_holder_name,
-                                 id,
-                                 created_ts,
-                                 modified_ts,
-                                 created_user_id,
-                                 modified_user_id,
-                                 billing_descriptor,
-                                 payment_method,
-                                 portfolio_id,
-                                 additional_properties)
+      LocationBillingAccount.new(title: title,
+                                 location_id: location_id,
+                                 location_api_id: location_api_id,
+                                 ach_sec_code: ach_sec_code,
+                                 account_number: account_number,
+                                 routing: routing,
+                                 exp_date: exp_date,
+                                 billing_zip: billing_zip,
+                                 account_type: account_type,
+                                 account_holder_name: account_holder_name,
+                                 id: id,
+                                 created_ts: created_ts,
+                                 modified_ts: modified_ts,
+                                 created_user_id: created_user_id,
+                                 modified_user_id: modified_user_id,
+                                 billing_descriptor: billing_descriptor,
+                                 payment_method: payment_method,
+                                 portfolio_id: portfolio_id,
+                                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -247,7 +250,7 @@ module FortisApi
       " #{@created_ts}, modified_ts: #{@modified_ts}, created_user_id: #{@created_user_id},"\
       " modified_user_id: #{@modified_user_id}, billing_descriptor: #{@billing_descriptor},"\
       " payment_method: #{@payment_method}, portfolio_id: #{@portfolio_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -262,7 +265,7 @@ module FortisApi
       " created_user_id: #{@created_user_id.inspect}, modified_user_id:"\
       " #{@modified_user_id.inspect}, billing_descriptor: #{@billing_descriptor.inspect},"\
       " payment_method: #{@payment_method.inspect}, portfolio_id: #{@portfolio_id.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

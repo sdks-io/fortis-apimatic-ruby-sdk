@@ -46,17 +46,16 @@ module FortisApi
       []
     end
 
-    def initialize(url = nil, merchant_id = nil, domain_name = nil,
-                   display_name = nil, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(url:, merchant_id:, domain_name:, display_name:,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @url = url
       @merchant_id = merchant_id
       @domain_name = domain_name
       @display_name = display_name
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -69,22 +68,26 @@ module FortisApi
       domain_name = hash.key?('domainName') ? hash['domainName'] : nil
       display_name = hash.key?('displayName') ? hash['displayName'] : nil
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1WalletProviderApplePayValidateMerchantRequest.new(url,
-                                                          merchant_id,
-                                                          domain_name,
-                                                          display_name,
-                                                          additional_properties)
+      V1WalletProviderApplePayValidateMerchantRequest.new(url: url,
+                                                          merchant_id: merchant_id,
+                                                          domain_name: domain_name,
+                                                          display_name: display_name,
+                                                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} url: #{@url}, merchant_id: #{@merchant_id}, domain_name: #{@domain_name},"\
-      " display_name: #{@display_name}, additional_properties: #{get_additional_properties}>"
+      " display_name: #{@display_name}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -92,7 +95,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} url: #{@url.inspect}, merchant_id: #{@merchant_id.inspect}, domain_name:"\
       " #{@domain_name.inspect}, display_name: #{@display_name.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

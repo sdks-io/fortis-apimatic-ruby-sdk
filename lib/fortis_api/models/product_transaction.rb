@@ -13,36 +13,36 @@ module FortisApi
     # @return [String]
     attr_accessor :processor_version
 
-    # Industry Type
-    # @return [IndustryTypeEnum]
+    # Processor Version
+    # @return [Object]
     attr_accessor :industry_type
 
     # Title
     # @return [String]
     attr_accessor :title
 
-    # Payment method
-    # @return [PaymentMethodEnum]
+    # Title
+    # @return [PaymentMethod]
     attr_accessor :payment_method
 
-    # Processor
-    # @return [ProcessorEnum]
+    # Title
+    # @return [Object]
     attr_accessor :processor
 
     # MCC
     # @return [String]
     attr_accessor :mcc
 
-    # Tax Surcharge Config
-    # @return [TaxSurchargeConfigEnum]
+    # MCC
+    # @return [Object]
     attr_accessor :tax_surcharge_config
 
     # Terminal ID
     # @return [String]
     attr_accessor :terminal_id
 
-    # Partner
-    # @return [PartnerEnum]
+    # Terminal ID
+    # @return [Object]
     attr_accessor :partner
 
     # Product Ach Pv Store ID
@@ -253,8 +253,8 @@ module FortisApi
     # @return [String]
     attr_accessor :receipt_vt_above_signature
 
-    # Default Transaction Type
-    # @return [DefaultTransactionTypeEnum]
+    # Receipt VT Above Signature
+    # @return [Object]
     attr_accessor :default_transaction_type
 
     # Username
@@ -317,12 +317,12 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :allow_big_commerce
 
-    # Level3 Default
-    # @return [Level3Default]
+    # Allow Big Commerce
+    # @return [Level3Default1]
     attr_accessor :level3_default
 
-    # Cau Subscribe Type ID
-    # @return [CauSubscribeTypeIdEnum]
+    # Allow Big Commerce
+    # @return [Object]
     attr_accessor :cau_subscribe_type_id
 
     # Cau Account Number
@@ -413,8 +413,8 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :show_apple_pay
 
-    # Batch Risk Config
-    # @return [BatchRiskConfig]
+    # Vt Require Street
+    # @return [BatchRiskConfig1]
     attr_accessor :batch_risk_config
 
     # Currency Code
@@ -489,8 +489,8 @@ module FortisApi
     # @return [String]
     attr_accessor :product_billing_group_code
 
-    # Cau Subscribe Type Code
-    # @return [CauSubscribeTypeCodeEnum]
+    # Product Billing Group Code
+    # @return [Object]
     attr_accessor :cau_subscribe_type_code
 
     # Merchant Code
@@ -765,12 +765,8 @@ module FortisApi
     def self.nullables
       %w[
         processor_version
-        industry_type
-        processor
         mcc
-        tax_surcharge_config
         terminal_id
-        partner
         product_ach_pv_store_id
         invoice_adjustment_title
         location_api_id
@@ -784,7 +780,6 @@ module FortisApi
         receipt_add_account_above_signature
         receipt_add_recurring_above_signature
         receipt_vt_above_signature
-        default_transaction_type
         username
         password
         current_batch
@@ -793,7 +788,6 @@ module FortisApi
         sales_office_id
         hosted_payment_page_max_allowed
         surcharge_id
-        cau_subscribe_type_id
         cau_account_number
         location_billing_account_id
         product_billing_group_id
@@ -809,83 +803,77 @@ module FortisApi
         product_transaction_api_id
         fortis_id
         product_billing_group_code
-        cau_subscribe_type_code
         merchant_code
       ]
     end
 
-    def initialize(processor_version = SKIP, industry_type = SKIP, title = SKIP,
-                   payment_method = SKIP, processor = SKIP, mcc = SKIP,
-                   tax_surcharge_config = TaxSurchargeConfigEnum::ENUM_2,
-                   terminal_id = SKIP, partner = SKIP,
-                   product_ach_pv_store_id = SKIP,
-                   invoice_adjustment_title = SKIP, location_id = SKIP,
-                   location_api_id = SKIP, billing_location_api_id = SKIP,
-                   portfolio_id = SKIP, portfolio_validation_rule = SKIP,
-                   sub_processor = SKIP, surcharge = SKIP,
-                   processor_data = SKIP, vt_clerk_number = SKIP,
-                   vt_billing_phone = SKIP, vt_enable_tip = SKIP,
-                   ach_allow_debit = SKIP, ach_allow_credit = SKIP,
-                   ach_allow_refund = SKIP, vt_cvv = SKIP, vt_street = SKIP,
-                   vt_zip = SKIP, vt_order_num = SKIP, vt_enable = SKIP,
-                   receipt_show_contact_name = SKIP, display_avs = SKIP,
-                   card_type_visa = SKIP, card_type_mc = SKIP,
-                   card_type_disc = SKIP, card_type_amex = SKIP,
-                   card_type_diners = SKIP, card_type_jcb = SKIP,
-                   card_type_ebt = SKIP, allow_ebt_cash_benefit = SKIP,
-                   allow_ebt_food_stamp = SKIP, invoice_location = SKIP,
-                   allow_partial_authorization = SKIP,
-                   allow_recurring_partial_authorization = SKIP,
-                   auto_decline_cvv = SKIP, auto_decline_street = SKIP,
-                   auto_decline_zip = SKIP, split_payments_allow = SKIP,
-                   vt_show_custom_fields = SKIP,
-                   receipt_show_custom_fields = SKIP,
-                   vt_override_sales_tax_allowed = SKIP,
-                   vt_enable_sales_tax = SKIP, vt_require_zip = SKIP,
-                   vt_require_street = SKIP, auto_decline_cavv = SKIP,
-                   merchant_id = SKIP, receipt_header = SKIP,
-                   receipt_footer = SKIP,
-                   receipt_add_account_above_signature = SKIP,
-                   receipt_add_recurring_above_signature = SKIP,
-                   receipt_vt_above_signature = SKIP,
-                   default_transaction_type = SKIP, username = SKIP,
-                   password = SKIP, current_batch = 1,
-                   dup_check_per_batch = SKIP, agent_code = SKIP,
-                   paylink_allow = SKIP, quick_invoice_allow = SKIP,
-                   level3_allow = SKIP, payfac_enable = SKIP, enable_3ds = SKIP,
-                   sales_office_id = SKIP, hosted_payment_page_max_allowed = 5,
-                   hosted_payment_page_allow = SKIP, surcharge_id = SKIP,
-                   allow_big_commerce = SKIP, level3_default = SKIP,
-                   cau_subscribe_type_id = SKIP, cau_account_number = SKIP,
-                   location_billing_account_id = SKIP,
-                   product_billing_group_id = SKIP, account_number = SKIP,
-                   run_avs_on_accountvault_create = SKIP,
-                   accountvault_expire_notification_email_enable = SKIP,
-                   debit_allow_void = SKIP, quick_invoice_text_to_pay = SKIP,
-                   authentication_code = SKIP, sms_enable = SKIP,
-                   vt_show_currency = SKIP, receipt_show_currency = SKIP,
-                   allow_blind_refund = SKIP, vt_show_company_name = SKIP,
-                   receipt_show_company_name = SKIP, bank_funded_only = SKIP,
-                   require_cvv_on_keyed_cnp = SKIP,
-                   require_cvv_on_tokenized_cnp = SKIP,
-                   show_secondary_amount = SKIP, allow_secondary_amount = SKIP,
-                   show_google_pay = SKIP, show_apple_pay = SKIP,
-                   batch_risk_config = SKIP, currency_code = SKIP,
-                   enable_ach_validation = SKIP, enable_ach_retry = SKIP,
-                   allow_softpos = SKIP, id = SKIP, receipt_logo = SKIP,
-                   active = SKIP, tz = SKIP, current_stan = 1,
-                   created_ts = SKIP, modified_ts = SKIP,
-                   created_user_id = SKIP, modified_user_id = SKIP,
-                   product_transaction_api_id = SKIP,
-                   transaction_amount_notification_threshold = SKIP,
-                   is_secondary_amount_allowed = SKIP, fortis_id = SKIP,
-                   product_billing_group_code = SKIP,
-                   cau_subscribe_type_code = SKIP, merchant_code = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(processor_version: SKIP, industry_type: SKIP, title: SKIP,
+                   payment_method: SKIP, processor: SKIP, mcc: SKIP,
+                   tax_surcharge_config: SKIP, terminal_id: SKIP, partner: SKIP,
+                   product_ach_pv_store_id: SKIP,
+                   invoice_adjustment_title: SKIP, location_id: SKIP,
+                   location_api_id: SKIP, billing_location_api_id: SKIP,
+                   portfolio_id: SKIP, portfolio_validation_rule: SKIP,
+                   sub_processor: SKIP, surcharge: SKIP, processor_data: SKIP,
+                   vt_clerk_number: SKIP, vt_billing_phone: SKIP,
+                   vt_enable_tip: SKIP, ach_allow_debit: SKIP,
+                   ach_allow_credit: SKIP, ach_allow_refund: SKIP, vt_cvv: SKIP,
+                   vt_street: SKIP, vt_zip: SKIP, vt_order_num: SKIP,
+                   vt_enable: SKIP, receipt_show_contact_name: SKIP,
+                   display_avs: SKIP, card_type_visa: SKIP, card_type_mc: SKIP,
+                   card_type_disc: SKIP, card_type_amex: SKIP,
+                   card_type_diners: SKIP, card_type_jcb: SKIP,
+                   card_type_ebt: SKIP, allow_ebt_cash_benefit: SKIP,
+                   allow_ebt_food_stamp: SKIP, invoice_location: SKIP,
+                   allow_partial_authorization: SKIP,
+                   allow_recurring_partial_authorization: SKIP,
+                   auto_decline_cvv: SKIP, auto_decline_street: SKIP,
+                   auto_decline_zip: SKIP, split_payments_allow: SKIP,
+                   vt_show_custom_fields: SKIP,
+                   receipt_show_custom_fields: SKIP,
+                   vt_override_sales_tax_allowed: SKIP,
+                   vt_enable_sales_tax: SKIP, vt_require_zip: SKIP,
+                   vt_require_street: SKIP, auto_decline_cavv: SKIP,
+                   merchant_id: SKIP, receipt_header: SKIP,
+                   receipt_footer: SKIP,
+                   receipt_add_account_above_signature: SKIP,
+                   receipt_add_recurring_above_signature: SKIP,
+                   receipt_vt_above_signature: SKIP,
+                   default_transaction_type: SKIP, username: SKIP,
+                   password: SKIP, current_batch: 1, dup_check_per_batch: SKIP,
+                   agent_code: SKIP, paylink_allow: SKIP,
+                   quick_invoice_allow: SKIP, level3_allow: SKIP,
+                   payfac_enable: SKIP, enable_3ds: SKIP, sales_office_id: SKIP,
+                   hosted_payment_page_max_allowed: 5,
+                   hosted_payment_page_allow: SKIP, surcharge_id: SKIP,
+                   allow_big_commerce: SKIP, level3_default: SKIP,
+                   cau_subscribe_type_id: SKIP, cau_account_number: SKIP,
+                   location_billing_account_id: SKIP,
+                   product_billing_group_id: SKIP, account_number: SKIP,
+                   run_avs_on_accountvault_create: SKIP,
+                   accountvault_expire_notification_email_enable: SKIP,
+                   debit_allow_void: SKIP, quick_invoice_text_to_pay: SKIP,
+                   authentication_code: SKIP, sms_enable: SKIP,
+                   vt_show_currency: SKIP, receipt_show_currency: SKIP,
+                   allow_blind_refund: SKIP, vt_show_company_name: SKIP,
+                   receipt_show_company_name: SKIP, bank_funded_only: SKIP,
+                   require_cvv_on_keyed_cnp: SKIP,
+                   require_cvv_on_tokenized_cnp: SKIP,
+                   show_secondary_amount: SKIP, allow_secondary_amount: SKIP,
+                   show_google_pay: SKIP, show_apple_pay: SKIP,
+                   batch_risk_config: SKIP, currency_code: SKIP,
+                   enable_ach_validation: SKIP, enable_ach_retry: SKIP,
+                   allow_softpos: SKIP, id: SKIP, receipt_logo: SKIP,
+                   active: SKIP, tz: SKIP, current_stan: 1, created_ts: SKIP,
+                   modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, product_transaction_api_id: SKIP,
+                   transaction_amount_notification_threshold: SKIP,
+                   is_secondary_amount_allowed: SKIP, fortis_id: SKIP,
+                   product_billing_group_code: SKIP,
+                   cau_subscribe_type_code: SKIP, merchant_code: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @processor_version = processor_version unless processor_version == SKIP
       @industry_type = industry_type unless industry_type == SKIP
@@ -1072,6 +1060,7 @@ module FortisApi
       end
       @cau_subscribe_type_code = cau_subscribe_type_code unless cau_subscribe_type_code == SKIP
       @merchant_code = merchant_code unless merchant_code == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -1088,7 +1077,7 @@ module FortisApi
       processor = hash.key?('processor') ? hash['processor'] : SKIP
       mcc = hash.key?('mcc') ? hash['mcc'] : SKIP
       tax_surcharge_config =
-        hash['tax_surcharge_config'] ||= TaxSurchargeConfigEnum::ENUM_2
+        hash.key?('tax_surcharge_config') ? hash['tax_surcharge_config'] : SKIP
       terminal_id = hash.key?('terminal_id') ? hash['terminal_id'] : SKIP
       partner = hash.key?('partner') ? hash['partner'] : SKIP
       product_ach_pv_store_id =
@@ -1203,7 +1192,7 @@ module FortisApi
       surcharge_id = hash.key?('surcharge_id') ? hash['surcharge_id'] : SKIP
       allow_big_commerce =
         hash.key?('allow_big_commerce') ? hash['allow_big_commerce'] : SKIP
-      level3_default = Level3Default.from_hash(hash['level3_default']) if hash['level3_default']
+      level3_default = Level3Default1.from_hash(hash['level3_default']) if hash['level3_default']
       cau_subscribe_type_id =
         hash.key?('cau_subscribe_type_id') ? hash['cau_subscribe_type_id'] : SKIP
       cau_account_number =
@@ -1249,7 +1238,7 @@ module FortisApi
         hash.key?('show_google_pay') ? hash['show_google_pay'] : SKIP
       show_apple_pay =
         hash.key?('show_apple_pay') ? hash['show_apple_pay'] : SKIP
-      batch_risk_config = BatchRiskConfig.from_hash(hash['batch_risk_config']) if
+      batch_risk_config = BatchRiskConfig1.from_hash(hash['batch_risk_config']) if
         hash['batch_risk_config']
       currency_code = hash.key?('currency_code') ? hash['currency_code'] : SKIP
       enable_ach_validation =
@@ -1281,133 +1270,137 @@ module FortisApi
         hash.key?('cau_subscribe_type_code') ? hash['cau_subscribe_type_code'] : SKIP
       merchant_code = hash.key?('merchant_code') ? hash['merchant_code'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ProductTransaction.new(processor_version,
-                             industry_type,
-                             title,
-                             payment_method,
-                             processor,
-                             mcc,
-                             tax_surcharge_config,
-                             terminal_id,
-                             partner,
-                             product_ach_pv_store_id,
-                             invoice_adjustment_title,
-                             location_id,
-                             location_api_id,
-                             billing_location_api_id,
-                             portfolio_id,
-                             portfolio_validation_rule,
-                             sub_processor,
-                             surcharge,
-                             processor_data,
-                             vt_clerk_number,
-                             vt_billing_phone,
-                             vt_enable_tip,
-                             ach_allow_debit,
-                             ach_allow_credit,
-                             ach_allow_refund,
-                             vt_cvv,
-                             vt_street,
-                             vt_zip,
-                             vt_order_num,
-                             vt_enable,
-                             receipt_show_contact_name,
-                             display_avs,
-                             card_type_visa,
-                             card_type_mc,
-                             card_type_disc,
-                             card_type_amex,
-                             card_type_diners,
-                             card_type_jcb,
-                             card_type_ebt,
-                             allow_ebt_cash_benefit,
-                             allow_ebt_food_stamp,
-                             invoice_location,
-                             allow_partial_authorization,
-                             allow_recurring_partial_authorization,
-                             auto_decline_cvv,
-                             auto_decline_street,
-                             auto_decline_zip,
-                             split_payments_allow,
-                             vt_show_custom_fields,
-                             receipt_show_custom_fields,
-                             vt_override_sales_tax_allowed,
-                             vt_enable_sales_tax,
-                             vt_require_zip,
-                             vt_require_street,
-                             auto_decline_cavv,
-                             merchant_id,
-                             receipt_header,
-                             receipt_footer,
-                             receipt_add_account_above_signature,
-                             receipt_add_recurring_above_signature,
-                             receipt_vt_above_signature,
-                             default_transaction_type,
-                             username,
-                             password,
-                             current_batch,
-                             dup_check_per_batch,
-                             agent_code,
-                             paylink_allow,
-                             quick_invoice_allow,
-                             level3_allow,
-                             payfac_enable,
-                             enable_3ds,
-                             sales_office_id,
-                             hosted_payment_page_max_allowed,
-                             hosted_payment_page_allow,
-                             surcharge_id,
-                             allow_big_commerce,
-                             level3_default,
-                             cau_subscribe_type_id,
-                             cau_account_number,
-                             location_billing_account_id,
-                             product_billing_group_id,
-                             account_number,
-                             run_avs_on_accountvault_create,
-                             accountvault_expire_notification_email_enable,
-                             debit_allow_void,
-                             quick_invoice_text_to_pay,
-                             authentication_code,
-                             sms_enable,
-                             vt_show_currency,
-                             receipt_show_currency,
-                             allow_blind_refund,
-                             vt_show_company_name,
-                             receipt_show_company_name,
-                             bank_funded_only,
-                             require_cvv_on_keyed_cnp,
-                             require_cvv_on_tokenized_cnp,
-                             show_secondary_amount,
-                             allow_secondary_amount,
-                             show_google_pay,
-                             show_apple_pay,
-                             batch_risk_config,
-                             currency_code,
-                             enable_ach_validation,
-                             enable_ach_retry,
-                             allow_softpos,
-                             id,
-                             receipt_logo,
-                             active,
-                             tz,
-                             current_stan,
-                             created_ts,
-                             modified_ts,
-                             created_user_id,
-                             modified_user_id,
-                             product_transaction_api_id,
-                             transaction_amount_notification_threshold,
-                             is_secondary_amount_allowed,
-                             fortis_id,
-                             product_billing_group_code,
-                             cau_subscribe_type_code,
-                             merchant_code,
-                             additional_properties)
+      ProductTransaction.new(processor_version: processor_version,
+                             industry_type: industry_type,
+                             title: title,
+                             payment_method: payment_method,
+                             processor: processor,
+                             mcc: mcc,
+                             tax_surcharge_config: tax_surcharge_config,
+                             terminal_id: terminal_id,
+                             partner: partner,
+                             product_ach_pv_store_id: product_ach_pv_store_id,
+                             invoice_adjustment_title: invoice_adjustment_title,
+                             location_id: location_id,
+                             location_api_id: location_api_id,
+                             billing_location_api_id: billing_location_api_id,
+                             portfolio_id: portfolio_id,
+                             portfolio_validation_rule: portfolio_validation_rule,
+                             sub_processor: sub_processor,
+                             surcharge: surcharge,
+                             processor_data: processor_data,
+                             vt_clerk_number: vt_clerk_number,
+                             vt_billing_phone: vt_billing_phone,
+                             vt_enable_tip: vt_enable_tip,
+                             ach_allow_debit: ach_allow_debit,
+                             ach_allow_credit: ach_allow_credit,
+                             ach_allow_refund: ach_allow_refund,
+                             vt_cvv: vt_cvv,
+                             vt_street: vt_street,
+                             vt_zip: vt_zip,
+                             vt_order_num: vt_order_num,
+                             vt_enable: vt_enable,
+                             receipt_show_contact_name: receipt_show_contact_name,
+                             display_avs: display_avs,
+                             card_type_visa: card_type_visa,
+                             card_type_mc: card_type_mc,
+                             card_type_disc: card_type_disc,
+                             card_type_amex: card_type_amex,
+                             card_type_diners: card_type_diners,
+                             card_type_jcb: card_type_jcb,
+                             card_type_ebt: card_type_ebt,
+                             allow_ebt_cash_benefit: allow_ebt_cash_benefit,
+                             allow_ebt_food_stamp: allow_ebt_food_stamp,
+                             invoice_location: invoice_location,
+                             allow_partial_authorization: allow_partial_authorization,
+                             allow_recurring_partial_authorization: allow_recurring_partial_authorization,
+                             auto_decline_cvv: auto_decline_cvv,
+                             auto_decline_street: auto_decline_street,
+                             auto_decline_zip: auto_decline_zip,
+                             split_payments_allow: split_payments_allow,
+                             vt_show_custom_fields: vt_show_custom_fields,
+                             receipt_show_custom_fields: receipt_show_custom_fields,
+                             vt_override_sales_tax_allowed: vt_override_sales_tax_allowed,
+                             vt_enable_sales_tax: vt_enable_sales_tax,
+                             vt_require_zip: vt_require_zip,
+                             vt_require_street: vt_require_street,
+                             auto_decline_cavv: auto_decline_cavv,
+                             merchant_id: merchant_id,
+                             receipt_header: receipt_header,
+                             receipt_footer: receipt_footer,
+                             receipt_add_account_above_signature: receipt_add_account_above_signature,
+                             receipt_add_recurring_above_signature: receipt_add_recurring_above_signature,
+                             receipt_vt_above_signature: receipt_vt_above_signature,
+                             default_transaction_type: default_transaction_type,
+                             username: username,
+                             password: password,
+                             current_batch: current_batch,
+                             dup_check_per_batch: dup_check_per_batch,
+                             agent_code: agent_code,
+                             paylink_allow: paylink_allow,
+                             quick_invoice_allow: quick_invoice_allow,
+                             level3_allow: level3_allow,
+                             payfac_enable: payfac_enable,
+                             enable_3ds: enable_3ds,
+                             sales_office_id: sales_office_id,
+                             hosted_payment_page_max_allowed: hosted_payment_page_max_allowed,
+                             hosted_payment_page_allow: hosted_payment_page_allow,
+                             surcharge_id: surcharge_id,
+                             allow_big_commerce: allow_big_commerce,
+                             level3_default: level3_default,
+                             cau_subscribe_type_id: cau_subscribe_type_id,
+                             cau_account_number: cau_account_number,
+                             location_billing_account_id: location_billing_account_id,
+                             product_billing_group_id: product_billing_group_id,
+                             account_number: account_number,
+                             run_avs_on_accountvault_create: run_avs_on_accountvault_create,
+                             accountvault_expire_notification_email_enable: accountvault_expire_notification_email_enable,
+                             debit_allow_void: debit_allow_void,
+                             quick_invoice_text_to_pay: quick_invoice_text_to_pay,
+                             authentication_code: authentication_code,
+                             sms_enable: sms_enable,
+                             vt_show_currency: vt_show_currency,
+                             receipt_show_currency: receipt_show_currency,
+                             allow_blind_refund: allow_blind_refund,
+                             vt_show_company_name: vt_show_company_name,
+                             receipt_show_company_name: receipt_show_company_name,
+                             bank_funded_only: bank_funded_only,
+                             require_cvv_on_keyed_cnp: require_cvv_on_keyed_cnp,
+                             require_cvv_on_tokenized_cnp: require_cvv_on_tokenized_cnp,
+                             show_secondary_amount: show_secondary_amount,
+                             allow_secondary_amount: allow_secondary_amount,
+                             show_google_pay: show_google_pay,
+                             show_apple_pay: show_apple_pay,
+                             batch_risk_config: batch_risk_config,
+                             currency_code: currency_code,
+                             enable_ach_validation: enable_ach_validation,
+                             enable_ach_retry: enable_ach_retry,
+                             allow_softpos: allow_softpos,
+                             id: id,
+                             receipt_logo: receipt_logo,
+                             active: active,
+                             tz: tz,
+                             current_stan: current_stan,
+                             created_ts: created_ts,
+                             modified_ts: modified_ts,
+                             created_user_id: created_user_id,
+                             modified_user_id: modified_user_id,
+                             product_transaction_api_id: product_transaction_api_id,
+                             transaction_amount_notification_threshold: transaction_amount_notification_threshold,
+                             is_secondary_amount_allowed: is_secondary_amount_allowed,
+                             fortis_id: fortis_id,
+                             product_billing_group_code: product_billing_group_code,
+                             cau_subscribe_type_code: cau_subscribe_type_code,
+                             merchant_code: merchant_code,
+                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -1478,7 +1471,7 @@ module FortisApi
       " is_secondary_amount_allowed: #{@is_secondary_amount_allowed}, fortis_id: #{@fortis_id},"\
       " product_billing_group_code: #{@product_billing_group_code}, cau_subscribe_type_code:"\
       " #{@cau_subscribe_type_code}, merchant_code: #{@merchant_code}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -1565,7 +1558,7 @@ module FortisApi
       " #{@is_secondary_amount_allowed.inspect}, fortis_id: #{@fortis_id.inspect},"\
       " product_billing_group_code: #{@product_billing_group_code.inspect},"\
       " cau_subscribe_type_code: #{@cau_subscribe_type_code.inspect}, merchant_code:"\
-      " #{@merchant_code.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@merchant_code.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

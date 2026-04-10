@@ -13,20 +13,20 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :css_mini
 
-    # Stack
-    # @return [StackEnum]
+    # CSS Mini
+    # @return [Stack]
     attr_accessor :stack
 
-    # Header
-    # @return [Header]
+    # CSS Mini
+    # @return [Header2]
     attr_accessor :header
 
-    # Body
-    # @return [Body]
+    # CSS Mini
+    # @return [Body2]
     attr_accessor :body
 
-    # Footer
-    # @return [Footer]
+    # CSS Mini
+    # @return [Footer2]
     attr_accessor :footer
 
     # A mapping from model property names to API property names.
@@ -56,18 +56,17 @@ module FortisApi
       []
     end
 
-    def initialize(css_mini = SKIP, stack = SKIP, header = SKIP, body = SKIP,
-                   footer = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(css_mini: SKIP, stack: SKIP, header: SKIP, body: SKIP,
+                   footer: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @css_mini = css_mini unless css_mini == SKIP
       @stack = stack unless stack == SKIP
       @header = header unless header == SKIP
       @body = body unless body == SKIP
       @footer = footer unless footer == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -77,27 +76,31 @@ module FortisApi
       # Extract variables from the hash.
       css_mini = hash.key?('css_mini') ? hash['css_mini'] : SKIP
       stack = hash.key?('stack') ? hash['stack'] : SKIP
-      header = Header.from_hash(hash['header']) if hash['header']
-      body = Body.from_hash(hash['body']) if hash['body']
-      footer = Footer.from_hash(hash['footer']) if hash['footer']
+      header = Header2.from_hash(hash['header']) if hash['header']
+      body = Body2.from_hash(hash['body']) if hash['body']
+      footer = Footer2.from_hash(hash['footer']) if hash['footer']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      FieldConfiguration.new(css_mini,
-                             stack,
-                             header,
-                             body,
-                             footer,
-                             additional_properties)
+      FieldConfiguration.new(css_mini: css_mini,
+                             stack: stack,
+                             header: header,
+                             body: body,
+                             footer: footer,
+                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} css_mini: #{@css_mini}, stack: #{@stack}, header: #{@header}, body:"\
-      " #{@body}, footer: #{@footer}, additional_properties: #{get_additional_properties}>"
+      " #{@body}, footer: #{@footer}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -105,7 +108,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} css_mini: #{@css_mini.inspect}, stack: #{@stack.inspect}, header:"\
       " #{@header.inspect}, body: #{@body.inspect}, footer: #{@footer.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

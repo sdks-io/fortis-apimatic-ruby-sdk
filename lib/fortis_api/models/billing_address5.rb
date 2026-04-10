@@ -42,15 +42,13 @@ module FortisApi
       ]
     end
 
-    def initialize(postal_code = SKIP, street = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(postal_code: SKIP, street: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @postal_code = postal_code unless postal_code == SKIP
       @street = street unless street == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -61,37 +59,31 @@ module FortisApi
       postal_code = hash.key?('postal_code') ? hash['postal_code'] : SKIP
       street = hash.key?('street') ? hash['street'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      BillingAddress5.new(postal_code,
-                          street,
-                          additional_properties)
-    end
-
-    # Validates an instance of the object from a given value.
-    # @param [BillingAddress5 | Hash] The value against the validation is performed.
-    def self.validate(value)
-      return true if value.instance_of? self
-
-      return false unless value.instance_of? Hash
-
-      true
+      BillingAddress5.new(postal_code: postal_code,
+                          street: street,
+                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} postal_code: #{@postal_code}, street: #{@street}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} postal_code: #{@postal_code.inspect}, street: #{@street.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

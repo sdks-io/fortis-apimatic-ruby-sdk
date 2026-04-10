@@ -33,8 +33,8 @@ module FortisApi
     # @return [String]
     attr_accessor :description
 
-    # Billing Address Object
-    # @return [BillingAddress]
+    # Description
+    # @return [BillingAddress7]
     attr_accessor :billing_address
 
     # Tags
@@ -61,8 +61,8 @@ module FortisApi
     # @return [Float]
     attr_accessor :status_id
 
-    # Reason Code Id
-    # @return [ReasonCodeIdEnum]
+    # Status Id
+    # @return [Object]
     attr_accessor :reason_code_id
 
     # Type Id
@@ -130,22 +130,18 @@ module FortisApi
         account_holder_name
         tags
         routing
-        reason_code_id
       ]
     end
 
-    def initialize(declined_recurring_transaction_id = SKIP,
-                   account_number = SKIP, account_holder_name = SKIP,
-                   exp_date = SKIP, transaction_amount = SKIP,
-                   description = SKIP, billing_address = SKIP, tags = SKIP,
-                   id = SKIP, first_six = SKIP, last_four = SKIP,
-                   routing = SKIP, status_id = SKIP, reason_code_id = SKIP,
-                   type_id = SKIP, created_ts = SKIP, created_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(declined_recurring_transaction_id: SKIP,
+                   account_number: SKIP, account_holder_name: SKIP,
+                   exp_date: SKIP, transaction_amount: SKIP, description: SKIP,
+                   billing_address: SKIP, tags: SKIP, id: SKIP, first_six: SKIP,
+                   last_four: SKIP, routing: SKIP, status_id: SKIP,
+                   reason_code_id: SKIP, type_id: SKIP, created_ts: SKIP,
+                   created_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       unless declined_recurring_transaction_id == SKIP
         @declined_recurring_transaction_id =
@@ -167,6 +163,7 @@ module FortisApi
       @type_id = type_id unless type_id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -184,7 +181,7 @@ module FortisApi
       transaction_amount =
         hash.key?('transaction_amount') ? hash['transaction_amount'] : SKIP
       description = hash.key?('description') ? hash['description'] : SKIP
-      billing_address = BillingAddress.from_hash(hash['billing_address']) if
+      billing_address = BillingAddress7.from_hash(hash['billing_address']) if
         hash['billing_address']
       tags = hash.key?('tags') ? hash['tags'] : SKIP
       id = hash.key?('id') ? hash['id'] : SKIP
@@ -199,28 +196,32 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data4.new(declined_recurring_transaction_id,
-                account_number,
-                account_holder_name,
-                exp_date,
-                transaction_amount,
-                description,
-                billing_address,
-                tags,
-                id,
-                first_six,
-                last_four,
-                routing,
-                status_id,
-                reason_code_id,
-                type_id,
-                created_ts,
-                created_user_id,
-                additional_properties)
+      Data4.new(declined_recurring_transaction_id: declined_recurring_transaction_id,
+                account_number: account_number,
+                account_holder_name: account_holder_name,
+                exp_date: exp_date,
+                transaction_amount: transaction_amount,
+                description: description,
+                billing_address: billing_address,
+                tags: tags,
+                id: id,
+                first_six: first_six,
+                last_four: last_four,
+                routing: routing,
+                status_id: status_id,
+                reason_code_id: reason_code_id,
+                type_id: type_id,
+                created_ts: created_ts,
+                created_user_id: created_user_id,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -233,7 +234,7 @@ module FortisApi
       " first_six: #{@first_six}, last_four: #{@last_four}, routing: #{@routing}, status_id:"\
       " #{@status_id}, reason_code_id: #{@reason_code_id}, type_id: #{@type_id}, created_ts:"\
       " #{@created_ts}, created_user_id: #{@created_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -248,7 +249,7 @@ module FortisApi
       " #{@routing.inspect}, status_id: #{@status_id.inspect}, reason_code_id:"\
       " #{@reason_code_id.inspect}, type_id: #{@type_id.inspect}, created_ts:"\
       " #{@created_ts.inspect}, created_user_id: #{@created_user_id.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

@@ -25,8 +25,8 @@ module FortisApi
     # @return [String]
     attr_accessor :account_number
 
-    # Address
-    # @return [Address1]
+    # Account number
+    # @return [Address6]
     attr_accessor :address
 
     # GUID for Branding Domain
@@ -105,8 +105,8 @@ module FortisApi
     # @return [String]
     attr_accessor :created_user_id
 
-    # Location Type
-    # @return [LocationTypeEnum]
+    # User ID Created the register
+    # @return [Object]
     attr_accessor :location_type
 
     # Name of the parent location
@@ -121,8 +121,8 @@ module FortisApi
     # @return [AdditionalAccess]
     attr_accessor :additional_access
 
-    # Parent Information on `expand`
-    # @return [Parent3]
+    # Ticket Hash Key
+    # @return [AccountVaultCauProductTransaction]
     attr_accessor :parent
 
     # User Information on `expand`
@@ -137,20 +137,20 @@ module FortisApi
     # @return [Array[Terminal2]]
     attr_accessor :terminals
 
-    # Branding Domain Information on `expand`
-    # @return [BrandingDomain1]
+    # Terminal Information on `expand`
+    # @return [BrandingDomain2]
     attr_accessor :branding_domain
 
-    # Product Invoice Information on `expand`
-    # @return [ProductInvoice]
+    # Terminal Information on `expand`
+    # @return [ProductInvoice1]
     attr_accessor :product_invoice
 
     # Product File Information on `expand`
     # @return [Array[ProductFile1]]
     attr_accessor :product_files
 
-    # User Information on `expand`
-    # @return [CreatedUser]
+    # Product File Information on `expand`
+    # @return [User9]
     attr_accessor :created_user
 
     # Changelog Information on `expand`
@@ -165,8 +165,8 @@ module FortisApi
     # @return [Array[TerminalRouter]]
     attr_accessor :terminal_routers
 
-    # Developer Company Information on `expand`
-    # @return [DeveloperCompany]
+    # Terminal Router Information on `expand`
+    # @return [DeveloperCompany1]
     attr_accessor :developer_company
 
     # Developer Company Id Information on `expand`
@@ -177,8 +177,8 @@ module FortisApi
     # @return [Array[Helppage]]
     attr_accessor :helppages
 
-    # Quick Invoice Setting Information on `expand`
-    # @return [QuickInvoiceSetting]
+    # Helppage Information on `expand`
+    # @return [QuickInvoiceSetting1]
     attr_accessor :quick_invoice_setting
 
     # Location Billing Account Information on `expand`
@@ -322,39 +322,35 @@ module FortisApi
         office_ext_phone
         tz
         created_user_id
-        location_type
         parent_name
         ticket_hash_key
         developer_company_id
       ]
     end
 
-    def initialize(id = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   account_number = SKIP, address = SKIP,
-                   branding_domain_id = SKIP,
-                   contact_email_trx_receipt_default = SKIP, default_ach = SKIP,
-                   default_cc = SKIP, email_reply_to = SKIP, fax = SKIP,
-                   location_api_id = SKIP, location_api_key = SKIP,
-                   location_c1 = SKIP, location_c2 = SKIP, location_c3 = SKIP,
-                   name = SKIP, office_phone = SKIP, office_ext_phone = SKIP,
-                   tz = SKIP, parent_id = SKIP, show_contact_notes = SKIP,
-                   show_contact_files = SKIP, created_user_id = SKIP,
-                   location_type = SKIP, parent_name = SKIP,
-                   ticket_hash_key = SKIP, additional_access = SKIP,
-                   parent = SKIP, users = SKIP, is_deletable = SKIP,
-                   terminals = SKIP, branding_domain = SKIP,
-                   product_invoice = SKIP, product_files = SKIP,
-                   created_user = SKIP, changelogs = SKIP,
-                   product_transactions = SKIP, terminal_routers = SKIP,
-                   developer_company = SKIP, developer_company_id = SKIP,
-                   helppages = SKIP, quick_invoice_setting = SKIP,
-                   location_billing_accounts = SKIP, marketplaces = SKIP,
-                   locationmarketplaces = SKIP, addons = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   account_number: SKIP, address: SKIP,
+                   branding_domain_id: SKIP,
+                   contact_email_trx_receipt_default: SKIP, default_ach: SKIP,
+                   default_cc: SKIP, email_reply_to: SKIP, fax: SKIP,
+                   location_api_id: SKIP, location_api_key: SKIP,
+                   location_c1: SKIP, location_c2: SKIP, location_c3: SKIP,
+                   name: SKIP, office_phone: SKIP, office_ext_phone: SKIP,
+                   tz: SKIP, parent_id: SKIP, show_contact_notes: SKIP,
+                   show_contact_files: SKIP, created_user_id: SKIP,
+                   location_type: SKIP, parent_name: SKIP,
+                   ticket_hash_key: SKIP, additional_access: SKIP, parent: SKIP,
+                   users: SKIP, is_deletable: SKIP, terminals: SKIP,
+                   branding_domain: SKIP, product_invoice: SKIP,
+                   product_files: SKIP, created_user: SKIP, changelogs: SKIP,
+                   product_transactions: SKIP, terminal_routers: SKIP,
+                   developer_company: SKIP, developer_company_id: SKIP,
+                   helppages: SKIP, quick_invoice_setting: SKIP,
+                   location_billing_accounts: SKIP, marketplaces: SKIP,
+                   locationmarketplaces: SKIP, addons: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
@@ -409,6 +405,7 @@ module FortisApi
       @marketplaces = marketplaces unless marketplaces == SKIP
       @locationmarketplaces = locationmarketplaces unless locationmarketplaces == SKIP
       @addons = addons unless addons == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -421,7 +418,7 @@ module FortisApi
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
       account_number =
         hash.key?('account_number') ? hash['account_number'] : SKIP
-      address = Address1.from_hash(hash['address']) if hash['address']
+      address = Address6.from_hash(hash['address']) if hash['address']
       branding_domain_id =
         hash.key?('branding_domain_id') ? hash['branding_domain_id'] : SKIP
       contact_email_trx_receipt_default =
@@ -456,7 +453,7 @@ module FortisApi
         hash.key?('ticket_hash_key') ? hash['ticket_hash_key'] : SKIP
       additional_access = AdditionalAccess.from_hash(hash['additional_access']) if
         hash['additional_access']
-      parent = Parent3.from_hash(hash['parent']) if hash['parent']
+      parent = AccountVaultCauProductTransaction.from_hash(hash['parent']) if hash['parent']
       # Parameter is an array, so we need to iterate through it
       users = nil
       unless hash['users'].nil?
@@ -478,9 +475,9 @@ module FortisApi
       end
 
       terminals = SKIP unless hash.key?('terminals')
-      branding_domain = BrandingDomain1.from_hash(hash['branding_domain']) if
+      branding_domain = BrandingDomain2.from_hash(hash['branding_domain']) if
         hash['branding_domain']
-      product_invoice = ProductInvoice.from_hash(hash['product_invoice']) if
+      product_invoice = ProductInvoice1.from_hash(hash['product_invoice']) if
         hash['product_invoice']
       # Parameter is an array, so we need to iterate through it
       product_files = nil
@@ -492,7 +489,7 @@ module FortisApi
       end
 
       product_files = SKIP unless hash.key?('product_files')
-      created_user = CreatedUser.from_hash(hash['created_user']) if hash['created_user']
+      created_user = User9.from_hash(hash['created_user']) if hash['created_user']
       # Parameter is an array, so we need to iterate through it
       changelogs = nil
       unless hash['changelogs'].nil?
@@ -523,7 +520,7 @@ module FortisApi
       end
 
       terminal_routers = SKIP unless hash.key?('terminal_routers')
-      developer_company = DeveloperCompany.from_hash(hash['developer_company']) if
+      developer_company = DeveloperCompany1.from_hash(hash['developer_company']) if
         hash['developer_company']
       developer_company_id =
         hash.key?('developer_company_id') ? hash['developer_company_id'] : SKIP
@@ -537,7 +534,7 @@ module FortisApi
       end
 
       helppages = SKIP unless hash.key?('helppages')
-      quick_invoice_setting = QuickInvoiceSetting.from_hash(hash['quick_invoice_setting']) if
+      quick_invoice_setting = QuickInvoiceSetting1.from_hash(hash['quick_invoice_setting']) if
         hash['quick_invoice_setting']
       # Parameter is an array, so we need to iterate through it
       location_billing_accounts = nil
@@ -580,58 +577,62 @@ module FortisApi
 
       addons = SKIP unless hash.key?('addons')
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data10.new(id,
-                 created_ts,
-                 modified_ts,
-                 account_number,
-                 address,
-                 branding_domain_id,
-                 contact_email_trx_receipt_default,
-                 default_ach,
-                 default_cc,
-                 email_reply_to,
-                 fax,
-                 location_api_id,
-                 location_api_key,
-                 location_c1,
-                 location_c2,
-                 location_c3,
-                 name,
-                 office_phone,
-                 office_ext_phone,
-                 tz,
-                 parent_id,
-                 show_contact_notes,
-                 show_contact_files,
-                 created_user_id,
-                 location_type,
-                 parent_name,
-                 ticket_hash_key,
-                 additional_access,
-                 parent,
-                 users,
-                 is_deletable,
-                 terminals,
-                 branding_domain,
-                 product_invoice,
-                 product_files,
-                 created_user,
-                 changelogs,
-                 product_transactions,
-                 terminal_routers,
-                 developer_company,
-                 developer_company_id,
-                 helppages,
-                 quick_invoice_setting,
-                 location_billing_accounts,
-                 marketplaces,
-                 locationmarketplaces,
-                 addons,
-                 additional_properties)
+      Data10.new(id: id,
+                 created_ts: created_ts,
+                 modified_ts: modified_ts,
+                 account_number: account_number,
+                 address: address,
+                 branding_domain_id: branding_domain_id,
+                 contact_email_trx_receipt_default: contact_email_trx_receipt_default,
+                 default_ach: default_ach,
+                 default_cc: default_cc,
+                 email_reply_to: email_reply_to,
+                 fax: fax,
+                 location_api_id: location_api_id,
+                 location_api_key: location_api_key,
+                 location_c1: location_c1,
+                 location_c2: location_c2,
+                 location_c3: location_c3,
+                 name: name,
+                 office_phone: office_phone,
+                 office_ext_phone: office_ext_phone,
+                 tz: tz,
+                 parent_id: parent_id,
+                 show_contact_notes: show_contact_notes,
+                 show_contact_files: show_contact_files,
+                 created_user_id: created_user_id,
+                 location_type: location_type,
+                 parent_name: parent_name,
+                 ticket_hash_key: ticket_hash_key,
+                 additional_access: additional_access,
+                 parent: parent,
+                 users: users,
+                 is_deletable: is_deletable,
+                 terminals: terminals,
+                 branding_domain: branding_domain,
+                 product_invoice: product_invoice,
+                 product_files: product_files,
+                 created_user: created_user,
+                 changelogs: changelogs,
+                 product_transactions: product_transactions,
+                 terminal_routers: terminal_routers,
+                 developer_company: developer_company,
+                 developer_company_id: developer_company_id,
+                 helppages: helppages,
+                 quick_invoice_setting: quick_invoice_setting,
+                 location_billing_accounts: location_billing_accounts,
+                 marketplaces: marketplaces,
+                 locationmarketplaces: locationmarketplaces,
+                 addons: addons,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -657,7 +658,7 @@ module FortisApi
       " helppages: #{@helppages}, quick_invoice_setting: #{@quick_invoice_setting},"\
       " location_billing_accounts: #{@location_billing_accounts}, marketplaces: #{@marketplaces},"\
       " locationmarketplaces: #{@locationmarketplaces}, addons: #{@addons}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -688,7 +689,7 @@ module FortisApi
       " #{@quick_invoice_setting.inspect}, location_billing_accounts:"\
       " #{@location_billing_accounts.inspect}, marketplaces: #{@marketplaces.inspect},"\
       " locationmarketplaces: #{@locationmarketplaces.inspect}, addons: #{@addons.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

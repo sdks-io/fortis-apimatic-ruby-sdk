@@ -3,6 +3,8 @@
 
 Log Sms Information on `expand`
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `LogSms`
@@ -21,6 +23,7 @@ Log Sms Information on `expand`
 | `recipient` | `String` | Optional | Recipient<br><br>**Constraints**: *Maximum Length*: `10` |
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `created_user_id` | `String` | Optional | User ID Created the register<br><br>**Constraints**: *Maximum Length*: `36`, *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,7 +35,11 @@ Log Sms Information on `expand`
   "body": "body2",
   "reason_model": "reason_model2",
   "reason_model_id": "reason_model_id8",
-  "provider_id": "provider_id8"
+  "provider_id": "provider_id8",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

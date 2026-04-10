@@ -13,8 +13,8 @@ module FortisApi
     # @return [String]
     attr_accessor :parent_id
 
-    # The Primary Principal.
-    # @return [PrimaryPrincipal1]
+    # Location ID
+    # @return [PrimaryPrincipal2]
     attr_accessor :primary_principal
 
     # The ID of the template to be used - this value will be provided by Fortis.
@@ -29,23 +29,20 @@ module FortisApi
     # @return [String]
     attr_accessor :dba_name
 
-    # The Location.
-    # @return [Location20]
+    # Merchant 'Doing Business As' name.
+    # @return [Location19]
     attr_accessor :location
 
-    # The delivery method of the app to the merchant.
-    # @return [AppDeliveryEnum]
+    # Merchant 'Doing Business As' name.
+    # @return [AppDelivery]
     attr_accessor :app_delivery
 
-    # The Category of the merchant's business
-    # >(Required if "business_type" is provided). Note: "business_type" must
-    # belong to the appropriate "business_category"
-    # >
-    # @return [BusinessCategoryEnum]
+    # Merchant 'Doing Business As' name.
+    # @return [Object]
     attr_accessor :business_category
 
-    # The Type of a merchant's business.
-    # @return [BusinessTypeEnum]
+    # Merchant 'Doing Business As' name.
+    # @return [Object]
     attr_accessor :business_type
 
     # Description of Goods or Services.
@@ -73,8 +70,11 @@ module FortisApi
     # @return [Integer]
     attr_accessor :ecommerce_percent
 
-    # The Ownership Type of the merchant's business.
-    # @return [OwnershipTypeEnum]
+    # eCommerce percentage.
+    # >The sum total of "swiped_percent", "keyed_percent" and
+    # "ecommerce_percent" must add up to 100.
+    # >
+    # @return [Object]
     attr_accessor :ownership_type
 
     # Federal Tax ID (EIN).
@@ -125,12 +125,16 @@ module FortisApi
     # @return [String]
     attr_accessor :website
 
-    # The Bank Account.
-    # @return [BankAccount]
+    # Merchant's business website.
+    # >(Required if "ecommerce_percent" is greater than 0).
+    # >
+    # @return [BankAccount3]
     attr_accessor :bank_account
 
-    # The Alternative Bank Account.
-    # @return [AltBankAccount]
+    # Merchant's business website.
+    # >(Required if "ecommerce_percent" is greater than 0).
+    # >
+    # @return [AltBankAccount2]
     attr_accessor :alt_bank_account
 
     # Merchant legal name.
@@ -139,8 +143,10 @@ module FortisApi
     # @return [String]
     attr_accessor :legal_name
 
-    # The Contact.
-    # @return [Contact11]
+    # Merchant legal name.
+    # >(leave blank if same as DBA name).
+    # >
+    # @return [Contact13]
     attr_accessor :contact
 
     # Client Issues Id to track that can be used to track each submitted
@@ -152,7 +158,7 @@ module FortisApi
 
     # Array of SEC codes that will be allowed, Only applicable for ACH. Valid
     # values are 'PPD', 'WEB', 'TEL', 'CCD'.
-    # @return [Array[SecCodeEnum]]
+    # @return [Array[SecCode]]
     attr_accessor :sec_codes
 
     # A mapping from model property names to API property names.
@@ -220,13 +226,10 @@ module FortisApi
     def self.nullables
       %w[
         parent_id
-        business_category
-        business_type
         business_description
         swiped_percent
         keyed_percent
         ecommerce_percent
-        ownership_type
         fed_tax_id
         cc_average_ticket_range
         cc_monthly_volume_range
@@ -240,23 +243,20 @@ module FortisApi
       ]
     end
 
-    def initialize(primary_principal = nil, template_code = nil, email = nil,
-                   dba_name = nil, location = nil, app_delivery = nil,
-                   contact = nil, parent_id = SKIP, business_category = SKIP,
-                   business_type = SKIP, business_description = SKIP,
-                   swiped_percent = SKIP, keyed_percent = SKIP,
-                   ecommerce_percent = SKIP, ownership_type = SKIP,
-                   fed_tax_id = SKIP, cc_average_ticket_range = SKIP,
-                   cc_monthly_volume_range = SKIP, cc_high_ticket = SKIP,
-                   ec_average_ticket_range = SKIP,
-                   ec_monthly_volume_range = SKIP, ec_high_ticket = SKIP,
-                   website = SKIP, bank_account = SKIP, alt_bank_account = SKIP,
-                   legal_name = SKIP, client_app_id = SKIP, sec_codes = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(primary_principal:, template_code:, email:, dba_name:,
+                   location:, app_delivery:, contact:, parent_id: SKIP,
+                   business_category: SKIP, business_type: SKIP,
+                   business_description: SKIP, swiped_percent: SKIP,
+                   keyed_percent: SKIP, ecommerce_percent: SKIP,
+                   ownership_type: SKIP, fed_tax_id: SKIP,
+                   cc_average_ticket_range: SKIP, cc_monthly_volume_range: SKIP,
+                   cc_high_ticket: SKIP, ec_average_ticket_range: SKIP,
+                   ec_monthly_volume_range: SKIP, ec_high_ticket: SKIP,
+                   website: SKIP, bank_account: SKIP, alt_bank_account: SKIP,
+                   legal_name: SKIP, client_app_id: SKIP, sec_codes: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @parent_id = parent_id unless parent_id == SKIP
       @primary_principal = primary_principal
@@ -286,6 +286,7 @@ module FortisApi
       @contact = contact
       @client_app_id = client_app_id unless client_app_id == SKIP
       @sec_codes = sec_codes unless sec_codes == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -293,14 +294,14 @@ module FortisApi
       return nil unless hash
 
       # Extract variables from the hash.
-      primary_principal = PrimaryPrincipal1.from_hash(hash['primary_principal']) if
+      primary_principal = PrimaryPrincipal2.from_hash(hash['primary_principal']) if
         hash['primary_principal']
       template_code = hash.key?('template_code') ? hash['template_code'] : nil
       email = hash.key?('email') ? hash['email'] : nil
       dba_name = hash.key?('dba_name') ? hash['dba_name'] : nil
-      location = Location20.from_hash(hash['location']) if hash['location']
+      location = Location19.from_hash(hash['location']) if hash['location']
       app_delivery = hash.key?('app_delivery') ? hash['app_delivery'] : nil
-      contact = Contact11.from_hash(hash['contact']) if hash['contact']
+      contact = Contact13.from_hash(hash['contact']) if hash['contact']
       parent_id = hash.key?('parent_id') ? hash['parent_id'] : SKIP
       business_category =
         hash.key?('business_category') ? hash['business_category'] : SKIP
@@ -328,46 +329,50 @@ module FortisApi
       ec_high_ticket =
         hash.key?('ec_high_ticket') ? hash['ec_high_ticket'] : SKIP
       website = hash.key?('website') ? hash['website'] : SKIP
-      bank_account = BankAccount.from_hash(hash['bank_account']) if hash['bank_account']
-      alt_bank_account = AltBankAccount.from_hash(hash['alt_bank_account']) if
+      bank_account = BankAccount3.from_hash(hash['bank_account']) if hash['bank_account']
+      alt_bank_account = AltBankAccount2.from_hash(hash['alt_bank_account']) if
         hash['alt_bank_account']
       legal_name = hash.key?('legal_name') ? hash['legal_name'] : SKIP
       client_app_id = hash.key?('client_app_id') ? hash['client_app_id'] : SKIP
       sec_codes = hash.key?('sec_codes') ? hash['sec_codes'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1OnboardingRequest.new(primary_principal,
-                              template_code,
-                              email,
-                              dba_name,
-                              location,
-                              app_delivery,
-                              contact,
-                              parent_id,
-                              business_category,
-                              business_type,
-                              business_description,
-                              swiped_percent,
-                              keyed_percent,
-                              ecommerce_percent,
-                              ownership_type,
-                              fed_tax_id,
-                              cc_average_ticket_range,
-                              cc_monthly_volume_range,
-                              cc_high_ticket,
-                              ec_average_ticket_range,
-                              ec_monthly_volume_range,
-                              ec_high_ticket,
-                              website,
-                              bank_account,
-                              alt_bank_account,
-                              legal_name,
-                              client_app_id,
-                              sec_codes,
-                              additional_properties)
+      V1OnboardingRequest.new(primary_principal: primary_principal,
+                              template_code: template_code,
+                              email: email,
+                              dba_name: dba_name,
+                              location: location,
+                              app_delivery: app_delivery,
+                              contact: contact,
+                              parent_id: parent_id,
+                              business_category: business_category,
+                              business_type: business_type,
+                              business_description: business_description,
+                              swiped_percent: swiped_percent,
+                              keyed_percent: keyed_percent,
+                              ecommerce_percent: ecommerce_percent,
+                              ownership_type: ownership_type,
+                              fed_tax_id: fed_tax_id,
+                              cc_average_ticket_range: cc_average_ticket_range,
+                              cc_monthly_volume_range: cc_monthly_volume_range,
+                              cc_high_ticket: cc_high_ticket,
+                              ec_average_ticket_range: ec_average_ticket_range,
+                              ec_monthly_volume_range: ec_monthly_volume_range,
+                              ec_high_ticket: ec_high_ticket,
+                              website: website,
+                              bank_account: bank_account,
+                              alt_bank_account: alt_bank_account,
+                              legal_name: legal_name,
+                              client_app_id: client_app_id,
+                              sec_codes: sec_codes,
+                              additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -385,7 +390,7 @@ module FortisApi
       " ec_high_ticket: #{@ec_high_ticket}, website: #{@website}, bank_account: #{@bank_account},"\
       " alt_bank_account: #{@alt_bank_account}, legal_name: #{@legal_name}, contact: #{@contact},"\
       " client_app_id: #{@client_app_id}, sec_codes: #{@sec_codes}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -407,7 +412,7 @@ module FortisApi
       " #{@bank_account.inspect}, alt_bank_account: #{@alt_bank_account.inspect}, legal_name:"\
       " #{@legal_name.inspect}, contact: #{@contact.inspect}, client_app_id:"\
       " #{@client_app_id.inspect}, sec_codes: #{@sec_codes.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

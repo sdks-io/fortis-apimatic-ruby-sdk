@@ -3,6 +3,8 @@
 
 Resource Information on `expand`
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Resources`
@@ -18,6 +20,7 @@ Resource Information on `expand`
 | `last_used_date` | `Integer` | Optional | Last Used Date |
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `modified_ts` | `Integer` | Optional | Modified Time Stamp |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@ Resource Information on `expand`
   "last_used_date": 1422040992,
   "created_ts": 1422040992,
   "modified_ts": 1422040992,
-  "priv": "priv0"
+  "priv": "priv0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -9,8 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Payment type. Must be unique.
-    # @return [Type29Enum]
+    # TODO: Write general description for this method
+    # @return [Type29]
     attr_accessor :type
 
     # The product_transaction_id of the cc or ach deposit account that the
@@ -38,15 +38,13 @@ module FortisApi
       []
     end
 
-    def initialize(type = nil, product_transaction_id = nil,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(type:, product_transaction_id:, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @type = type
       @product_transaction_id = product_transaction_id
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -58,49 +56,31 @@ module FortisApi
       product_transaction_id =
         hash.key?('product_transaction_id') ? hash['product_transaction_id'] : nil
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Method50.new(type,
-                   product_transaction_id,
-                   additional_properties)
-    end
-
-    # Validates an instance of the object from a given value.
-    # @param [Method50 | Hash] The value against the validation is performed.
-    def self.validate(value)
-      if value.instance_of? self
-        return (
-          APIHelper.valid_type?(value.type,
-                                ->(val) { Type29Enum.validate(val) }) and
-            APIHelper.valid_type?(value.product_transaction_id,
-                                  ->(val) { val.instance_of? String })
-        )
-      end
-
-      return false unless value.instance_of? Hash
-
-      (
-        APIHelper.valid_type?(value['type'],
-                              ->(val) { Type29Enum.validate(val) }) and
-          APIHelper.valid_type?(value['product_transaction_id'],
-                                ->(val) { val.instance_of? String })
-      )
+      Method50.new(type: type,
+                   product_transaction_id: product_transaction_id,
+                   additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type}, product_transaction_id: #{@product_transaction_id},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type.inspect}, product_transaction_id:"\
-      " #{@product_transaction_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@product_transaction_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

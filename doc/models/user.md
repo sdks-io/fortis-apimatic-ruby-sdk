@@ -3,6 +3,8 @@
 
 User
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `User`
@@ -15,6 +17,7 @@ User
 | `username` | `String` | Optional | Username |
 | `first_name` | `String` | Optional | First Name |
 | `last_name` | `String` | Optional | Last Name |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@ User
   "id": "11e95f8ec39de8fbdb0a4f1a",
   "username": "email@domain.com",
   "first_name": "Bob",
-  "last_name": "Fairview"
+  "last_name": "Fairview",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

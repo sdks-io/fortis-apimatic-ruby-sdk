@@ -92,14 +92,12 @@ module FortisApi
       ]
     end
 
-    def initialize(description = nil, commodity_code = nil, product_code = nil,
-                   unit_code = nil, unit_cost = nil, discount_amount = SKIP,
-                   other_tax_amount = SKIP, quantity = SKIP, tax_amount = SKIP,
-                   tax_rate = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(description:, commodity_code:, product_code:, unit_code:,
+                   unit_cost:, discount_amount: SKIP, other_tax_amount: SKIP,
+                   quantity: SKIP, tax_amount: SKIP, tax_rate: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @description = description
       @commodity_code = commodity_code
@@ -111,6 +109,7 @@ module FortisApi
       @tax_rate = tax_rate unless tax_rate == SKIP
       @unit_code = unit_code
       @unit_cost = unit_cost
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -132,21 +131,25 @@ module FortisApi
       tax_amount = hash.key?('tax_amount') ? hash['tax_amount'] : SKIP
       tax_rate = hash.key?('tax_rate') ? hash['tax_rate'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      LineItem20.new(description,
-                     commodity_code,
-                     product_code,
-                     unit_code,
-                     unit_cost,
-                     discount_amount,
-                     other_tax_amount,
-                     quantity,
-                     tax_amount,
-                     tax_rate,
-                     additional_properties)
+      LineItem20.new(description: description,
+                     commodity_code: commodity_code,
+                     product_code: product_code,
+                     unit_code: unit_code,
+                     unit_cost: unit_cost,
+                     discount_amount: discount_amount,
+                     other_tax_amount: other_tax_amount,
+                     quantity: quantity,
+                     tax_amount: tax_amount,
+                     tax_rate: tax_rate,
+                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -156,7 +159,7 @@ module FortisApi
       " discount_amount: #{@discount_amount}, other_tax_amount: #{@other_tax_amount},"\
       " product_code: #{@product_code}, quantity: #{@quantity}, tax_amount: #{@tax_amount},"\
       " tax_rate: #{@tax_rate}, unit_code: #{@unit_code}, unit_cost: #{@unit_cost},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -167,7 +170,7 @@ module FortisApi
       " other_tax_amount: #{@other_tax_amount.inspect}, product_code: #{@product_code.inspect},"\
       " quantity: #{@quantity.inspect}, tax_amount: #{@tax_amount.inspect}, tax_rate:"\
       " #{@tax_rate.inspect}, unit_code: #{@unit_code.inspect}, unit_cost: #{@unit_cost.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

@@ -1,0 +1,51 @@
+
+# Primary Principal 2
+
+*This model accepts additional fields of type Object.*
+
+## Structure
+
+`PrimaryPrincipal2`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `first_name` | `String` | Required | Signer's first name<br><br>**Constraints**: *Maximum Length*: `20` |
+| `last_name` | `String` | Required | Signer's last name<br><br>**Constraints**: *Maximum Length*: `20` |
+| `middle_name` | `String` | Optional | Signer's middle name<br><br>**Constraints**: *Maximum Length*: `20` |
+| `title` | `String` | Optional | Signer's title<br><br>**Constraints**: *Maximum Length*: `20` |
+| `date_of_birth` | `String` | Optional | Signer's date of birth<br><br>**Constraints**: *Maximum Length*: `10`, *Pattern*: `^[\d]{4}-[\d]{2}-[\d]{2}$` |
+| `address_line_1` | `String` | Optional | Signer's residential address line 1<br><br>**Constraints**: *Maximum Length*: `100` |
+| `address_line_2` | `String` | Optional | Signer's residential address line 2<br><br>**Constraints**: *Maximum Length*: `20` |
+| `city` | `String` | Optional | Signer's city<br><br>**Constraints**: *Maximum Length*: `50` |
+| `state_province` | `String` | Optional | Signer's two-digit state code<br><br>**Constraints**: *Maximum Length*: `2` |
+| `postal_code` | `String` | Optional | Signer's postal code<br><br>**Constraints**: *Maximum Length*: `10` |
+| `ssn` | `String` | Optional | Last four digits of the primary principal or Signer's social security number<br><br>**Constraints**: *Maximum Length*: `4` |
+| `ownership_percent` | `Integer` | Optional | Percentage of business owned by primary principal or signer<br><br>**Constraints**: `>= 0`, `<= 100` |
+| `phone_number` | `String` | Optional | Signer's phone number<br><br>**Constraints**: *Maximum Length*: `20` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
+
+## Example (as JSON)
+
+```json
+{
+  "first_name": "Bob",
+  "last_name": "Fairview",
+  "middle_name": "Nathaniel",
+  "title": "Dr",
+  "date_of_birth": "2021-12-01",
+  "address_line_1": "1354 Oak St.",
+  "address_line_2": "Unit 203",
+  "city": "Dover",
+  "state_province": "DE",
+  "postal_code": "55022",
+  "ownership_percent": 100,
+  "phone_number": "555-555-1234",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
+}
+```
+

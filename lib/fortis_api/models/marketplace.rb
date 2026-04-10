@@ -73,14 +73,12 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = SKIP, marketplace_id = SKIP,
-                   location_api_id = SKIP, user_id = SKIP, id = SKIP,
-                   created_ts = SKIP, created_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, marketplace_id: SKIP,
+                   location_api_id: SKIP, user_id: SKIP, id: SKIP,
+                   created_ts: SKIP, created_user_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       @marketplace_id = marketplace_id unless marketplace_id == SKIP
@@ -89,6 +87,7 @@ module FortisApi
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -107,18 +106,22 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Marketplace.new(location_id,
-                      marketplace_id,
-                      location_api_id,
-                      user_id,
-                      id,
-                      created_ts,
-                      created_user_id,
-                      additional_properties)
+      Marketplace.new(location_id: location_id,
+                      marketplace_id: marketplace_id,
+                      location_api_id: location_api_id,
+                      user_id: user_id,
+                      id: id,
+                      created_ts: created_ts,
+                      created_user_id: created_user_id,
+                      additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -127,7 +130,7 @@ module FortisApi
       "<#{class_name} location_id: #{@location_id}, marketplace_id: #{@marketplace_id},"\
       " location_api_id: #{@location_api_id}, user_id: #{@user_id}, id: #{@id}, created_ts:"\
       " #{@created_ts}, created_user_id: #{@created_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -137,7 +140,7 @@ module FortisApi
       " #{@marketplace_id.inspect}, location_api_id: #{@location_api_id.inspect}, user_id:"\
       " #{@user_id.inspect}, id: #{@id.inspect}, created_ts: #{@created_ts.inspect},"\
       " created_user_id: #{@created_user_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

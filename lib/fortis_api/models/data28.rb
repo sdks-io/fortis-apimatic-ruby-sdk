@@ -141,19 +141,16 @@ module FortisApi
       ]
     end
 
-    def initialize(issuer_bank_name = SKIP, country_code = SKIP,
-                   detail_card_product = SKIP, detail_card_indicator = SKIP,
-                   fsa_indicator = SKIP, prepaid_indicator = SKIP,
-                   product_id = SKIP, regulator_indicator = SKIP,
-                   visa_product_sub_type = SKIP,
-                   visa_large_ticket_indicator = SKIP,
-                   account_fund_source = SKIP, card_class = SKIP,
-                   token_ind = SKIP, issuing_network = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(issuer_bank_name: SKIP, country_code: SKIP,
+                   detail_card_product: SKIP, detail_card_indicator: SKIP,
+                   fsa_indicator: SKIP, prepaid_indicator: SKIP,
+                   product_id: SKIP, regulator_indicator: SKIP,
+                   visa_product_sub_type: SKIP,
+                   visa_large_ticket_indicator: SKIP, account_fund_source: SKIP,
+                   card_class: SKIP, token_ind: SKIP, issuing_network: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @issuer_bank_name = issuer_bank_name unless issuer_bank_name == SKIP
       @country_code = country_code unless country_code == SKIP
@@ -172,6 +169,7 @@ module FortisApi
       @card_class = card_class unless card_class == SKIP
       @token_ind = token_ind unless token_ind == SKIP
       @issuing_network = issuing_network unless issuing_network == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -203,25 +201,29 @@ module FortisApi
       issuing_network =
         hash.key?('issuing_network') ? hash['issuing_network'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data28.new(issuer_bank_name,
-                 country_code,
-                 detail_card_product,
-                 detail_card_indicator,
-                 fsa_indicator,
-                 prepaid_indicator,
-                 product_id,
-                 regulator_indicator,
-                 visa_product_sub_type,
-                 visa_large_ticket_indicator,
-                 account_fund_source,
-                 card_class,
-                 token_ind,
-                 issuing_network,
-                 additional_properties)
+      Data28.new(issuer_bank_name: issuer_bank_name,
+                 country_code: country_code,
+                 detail_card_product: detail_card_product,
+                 detail_card_indicator: detail_card_indicator,
+                 fsa_indicator: fsa_indicator,
+                 prepaid_indicator: prepaid_indicator,
+                 product_id: product_id,
+                 regulator_indicator: regulator_indicator,
+                 visa_product_sub_type: visa_product_sub_type,
+                 visa_large_ticket_indicator: visa_large_ticket_indicator,
+                 account_fund_source: account_fund_source,
+                 card_class: card_class,
+                 token_ind: token_ind,
+                 issuing_network: issuing_network,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -234,8 +236,7 @@ module FortisApi
       " #{@regulator_indicator}, visa_product_sub_type: #{@visa_product_sub_type},"\
       " visa_large_ticket_indicator: #{@visa_large_ticket_indicator}, account_fund_source:"\
       " #{@account_fund_source}, card_class: #{@card_class}, token_ind: #{@token_ind},"\
-      " issuing_network: #{@issuing_network}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " issuing_network: #{@issuing_network}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -250,7 +251,7 @@ module FortisApi
       " #{@visa_large_ticket_indicator.inspect}, account_fund_source:"\
       " #{@account_fund_source.inspect}, card_class: #{@card_class.inspect}, token_ind:"\
       " #{@token_ind.inspect}, issuing_network: #{@issuing_network.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

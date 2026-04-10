@@ -8,7 +8,7 @@ module FortisApi
   class MerchantDepositsController < BaseController
     # TODO: type endpoint description here
     # @param [String] deposit_id Required parameter: Deposit Id
-    # @param [Page] page Optional parameter: Use this field to specify paginate
+    # @param [Page1] page Optional parameter: Use this field to specify paginate
     # your results, by using page size and number. You can use one of the
     # following methods: >/endpoint?page={ "number": 1, "size": 50 } >
     # >/endpoint?page[number]=1&page[size]=50 >
@@ -33,26 +33,26 @@ module FortisApi
     # "created_ts", "operator": "<=", value: "1695061891" }] >
     # >/endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value":
     # "Williams,Brown,Allman" }] >
-    # @param [Array[Expand15Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand15]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Format1Enum] format Optional parameter: Reporting format, valid
+    # @param [Format1] format Optional parameter: Reporting format, valid
     # values: csv, tsv
     # @param [String] typeahead Optional parameter: You can use any `field_name`
     # from this endpoint results to order the list using the value provided as
     # filter for the same `field_name`. It will be ordered using the following
     # rules: 1) Exact match, 2) Starts with, 3) Contains. >/endpoint?filter={
     # "field_name": "Value" }&_typeahead=field_name >
-    # @param [Array[Field37Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field37]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
     # @param [String | Float | nil] keyword Optional parameter: You can use any
     # value to search on specific fields of this endpoint results. You can not
     # specify the fields that are used.
-    # @return [ResponseMerchantDeposit] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def view_single_merchant_deposit(deposit_id,
                                      page: nil,
                                      order: nil,
@@ -67,6 +67,7 @@ module FortisApi
                                      '/v1/merchants/deposits/{deposit_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(deposit_id, key: 'deposit_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .query_param(new_parameter(page, key: 'page'))
                    .query_param(new_parameter(order, key: 'order'))
@@ -85,14 +86,15 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseMerchantDeposit.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
     # TODO: type endpoint description here
-    # @param [Page] page Optional parameter: Use this field to specify paginate
+    # @param [Page1] page Optional parameter: Use this field to specify paginate
     # your results, by using page size and number. You can use one of the
     # following methods: >/endpoint?page={ "number": 1, "size": 50 } >
     # >/endpoint?page[number]=1&page[size]=50 >
@@ -117,34 +119,34 @@ module FortisApi
     # "created_ts", "operator": "<=", value: "1695061891" }] >
     # >/endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value":
     # "Williams,Brown,Allman" }] >
-    # @param [Array[Expand15Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand15]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Format1Enum] format Optional parameter: Reporting format, valid
+    # @param [Format1] format Optional parameter: Reporting format, valid
     # values: csv, tsv
     # @param [String] typeahead Optional parameter: You can use any `field_name`
     # from this endpoint results to order the list using the value provided as
     # filter for the same `field_name`. It will be ordered using the following
     # rules: 1) Exact match, 2) Starts with, 3) Contains. >/endpoint?filter={
     # "field_name": "Value" }&_typeahead=field_name >
-    # @param [Array[Field38Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field38]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
     # @param [String | Float | nil] keyword Optional parameter: You can use any
     # value to search on specific fields of this endpoint results. You can not
     # specify the fields that are used.
-    # @return [ResponseMerchantDepositsCollection] Response from the API call.
-    def list_all_merchant_deposits(page: nil,
-                                   order: nil,
-                                   filter_by: nil,
-                                   expand: nil,
-                                   format: nil,
-                                   typeahead: nil,
-                                   fields: nil,
-                                   keyword: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def listall_merchant_deposits(page: nil,
+                                  order: nil,
+                                  filter_by: nil,
+                                  expand: nil,
+                                  format: nil,
+                                  typeahead: nil,
+                                  fields: nil,
+                                  keyword: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/merchants/deposits',
@@ -158,7 +160,7 @@ module FortisApi
                    .query_param(new_parameter(fields, key: 'fields'))
                    .query_param(new_parameter(keyword, key: 'keyword')
                                  .validator(proc do |value|
-                                   UnionTypeLookUp.get(:ListAllMerchantDepositsKeyword)
+                                   UnionTypeLookUp.get(:ListallMerchantDepositsKeyword)
                                                   .validate(value)
                                  end))
                    .header_param(new_parameter('application/json', key: 'accept'))
@@ -166,9 +168,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseMerchantDepositsCollection.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

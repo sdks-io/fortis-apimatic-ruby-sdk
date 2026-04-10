@@ -7,18 +7,18 @@ module FortisApi
   # An enum for SDK environments.
   class Environment
     ENVIRONMENT = [
-      SANDBOX = 'sandbox'.freeze,
-      PRODUCTION = 'production'.freeze
+      PRODUCTION = 'production'.freeze,
+      ENVIRONMENT2 = 'environment2'.freeze
     ].freeze
 
     # Converts a string or symbol into a valid Environment constant.
-    def self.from_value(value, default_value = SANDBOX)
+    def self.from_value(value, default_value = PRODUCTION)
       return default_value if value.nil?
 
       str = value.to_s.strip.downcase
       case str
-      when 'sandbox' then SANDBOX
       when 'production' then PRODUCTION
+      when 'environment2' then ENVIRONMENT2
 
       else
         warn "[Environment] Unknown environment '#{value}', falling back to #{default_value} "
@@ -57,15 +57,16 @@ module FortisApi
       max_retries: 0, retry_interval: 1, backoff_factor: 2,
       retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
       retry_methods: %i[get put], http_callback: nil, proxy_settings: nil,
-      environment: Environment::SANDBOX, user_id_credentials: nil,
-      user_api_key_credentials: nil, developer_id_credentials: nil,
-      access_token_credentials: nil
+      logging_configuration: nil, environment: Environment::PRODUCTION,
+      user_id_credentials: nil, user_api_key_credentials: nil,
+      developer_id_credentials: nil, access_token_credentials: nil
     )
       super connection: connection, adapter: adapter, timeout: timeout,
             max_retries: max_retries, retry_interval: retry_interval,
             backoff_factor: backoff_factor, retry_statuses: retry_statuses,
             retry_methods: retry_methods, http_callback: http_callback,
-            proxy_settings: proxy_settings
+            proxy_settings: proxy_settings,
+            logging_configuration: logging_configuration
 
       # Current API environment
       @environment = String(environment)
@@ -89,9 +90,10 @@ module FortisApi
     def clone_with(connection: nil, adapter: nil, timeout: nil,
                    max_retries: nil, retry_interval: nil, backoff_factor: nil,
                    retry_statuses: nil, retry_methods: nil, http_callback: nil,
-                   proxy_settings: nil, environment: nil,
-                   user_id_credentials: nil, user_api_key_credentials: nil,
-                   developer_id_credentials: nil, access_token_credentials: nil)
+                   proxy_settings: nil, logging_configuration: nil,
+                   environment: nil, user_id_credentials: nil,
+                   user_api_key_credentials: nil, developer_id_credentials: nil,
+                   access_token_credentials: nil)
       connection ||= self.connection
       adapter ||= self.adapter
       timeout ||= self.timeout
@@ -102,6 +104,7 @@ module FortisApi
       retry_methods ||= self.retry_methods
       http_callback ||= self.http_callback
       proxy_settings ||= self.proxy_settings
+      logging_configuration ||= self.logging_configuration
       environment ||= self.environment
       user_id_credentials ||= self.user_id_credentials
       user_api_key_credentials ||= self.user_api_key_credentials
@@ -116,6 +119,7 @@ module FortisApi
                         retry_methods: retry_methods,
                         http_callback: http_callback,
                         proxy_settings: proxy_settings,
+                        logging_configuration: logging_configuration,
                         environment: environment,
                         user_id_credentials: user_id_credentials,
                         user_api_key_credentials: user_api_key_credentials,
@@ -126,10 +130,10 @@ module FortisApi
 
     # All the environments the SDK can run in.
     ENVIRONMENTS = {
-      Environment::SANDBOX => {
+      Environment::PRODUCTION => {
         Server::DEFAULT => 'https://api.sandbox.fortis.tech'
       },
-      Environment::PRODUCTION => {
+      Environment::ENVIRONMENT2 => {
         Server::DEFAULT => 'https://api.fortis.tech'
       }
     }.freeze
@@ -145,7 +149,7 @@ module FortisApi
     # Builds a Configuration instance using environment variables.
     def self.build_default_config_from_env
       # === Core environment ===
-      environment = Environment.from_value(ENV.fetch('ENVIRONMENT', 'sandbox'))
+      environment = Environment.from_value(ENV.fetch('ENVIRONMENT', 'production'))
       timeout = (ENV['TIMEOUT'] || 60).to_f
       max_retries = (ENV['MAX_RETRIES'] || 0).to_i
       retry_interval = (ENV['RETRY_INTERVAL'] || 1).to_f
@@ -172,6 +176,8 @@ module FortisApi
 
       # === Proxy settings ===
       proxy_settings = ProxySettings.from_env
+      # === Logging Configuration ===
+      logging_configuration = LoggingConfiguration.from_env if LoggingConfiguration.any_logging_configured?
 
       Configuration.new(
         environment: environment,
@@ -185,7 +191,8 @@ module FortisApi
         user_api_key_credentials: user_api_key_credentials,
         developer_id_credentials: developer_id_credentials,
         access_token_credentials: access_token_credentials,
-        proxy_settings: proxy_settings
+        proxy_settings: proxy_settings,
+        logging_configuration: logging_configuration
       )
     end
   end

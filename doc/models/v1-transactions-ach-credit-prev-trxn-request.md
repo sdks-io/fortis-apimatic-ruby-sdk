@@ -1,6 +1,8 @@
 
 # V1 Transactions Ach Credit Prev Trxn Request
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `V1TransactionsAchCreditPrevTrxnRequest`
@@ -10,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `additional_amounts` | [`Array[AdditionalAmount]`](../../doc/models/additional-amount.md) | Optional | Additional amounts |
-| `billing_address` | [`BillingAddress1`](../../doc/models/billing-address-1.md) | Optional | Billing Address Object |
+| `billing_address` | [`BillingAddress2`](../../doc/models/billing-address-2.md) | Optional | - |
 | `checkin_date` | `String` | Optional | Checkin Date - The time difference between checkin_date and checkout_date must be less than or equal to 99 days. NOTE: if checkin_date is in the future, set the advance_deposit to 1<br><br>> Required if merchant industry type is lodging.<br><br>**Constraints**: *Maximum Length*: `10`, *Pattern*: `^[\d]{4}-[\d]{2}-[\d]{2}$` |
 | `checkout_date` | `String` | Optional | Checkout Date - The time difference between checkin_date and checkout_date must be less than or equal to 99 days.<br><br>> Required if merchant industry type is lodging.<br><br>**Constraints**: *Maximum Length*: `10`, *Pattern*: `^[\d]{4}-[\d]{2}-[\d]{2}$` |
 | `clerk_number` | `String` | Optional | Clerk or Employee Identifier<br><br>**Constraints**: *Maximum Length*: `16` |
@@ -19,14 +21,14 @@
 | `custom_data` | `Object` | Optional | A field that allows custom JSON to be entered to store extra data. |
 | `customer_id` | `String` | Optional | Can be used by Merchants to identify Contacts in our system by an ID from another system.<br><br>**Constraints**: *Maximum Length*: `64` |
 | `description` | `String` | Optional | Description<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64` |
-| `identity_verification` | [`IdentityVerification27`](../../doc/models/identity-verification-27.md) | Optional | Identity Verification |
-| `iias_ind` | [`IiasIndEnum`](../../doc/models/iias-ind-enum.md) | Optional | Possible values are '0', '1','2' |
+| `identity_verification` | [`IdentityVerification10`](../../doc/models/identity-verification-10.md) | Optional | - |
+| `iias_ind` | `Object` | Optional | - |
 | `image_front` | `String` | Optional | A base64 encoded string for the image.  Used with Check21 ACH transactions. |
 | `image_back` | `String` | Optional | A base64 encoded string for the image.  Used with Check21 ACH transactions. |
 | `installment` | `TrueClass \| FalseClass` | Optional | Flag that is allowed to be passed on card not present industries to signify the transaction is a fixed installment plan transaction. |
 | `installment_number` | `Integer` | Optional | If this is a fixed installment plan and installment field is being passed as 1, then this field must have a vlue of 1-999 specifying the current installment number that is running.<br><br>**Constraints**: `>= 1`, `<= 999` |
 | `installment_count` | `Integer` | Optional | If this is a fixed installment plan and installment field is being passed as 1, then this field must have a vlue of 1-999 specifying the total number of installments on the plan. This number must be grater than or equal to installment_number.<br><br>**Constraints**: `>= 1`, `<= 999` |
-| `recurring_flag` | [`RecurringFlagEnum`](../../doc/models/recurring-flag-enum.md) | Optional | Recurring Flag |
+| `recurring_flag` | `Object` | Optional | - |
 | `installment_counter` | `Integer` | Optional | Installment Counter<br><br>**Constraints**: `>= 1`, `<= 999` |
 | `installment_total` | `Integer` | Optional | Installment Total<br><br>**Constraints**: `>= 1`, `<= 999` |
 | `subscription` | `TrueClass \| FalseClass` | Optional | Subscription |
@@ -62,14 +64,15 @@
 | `auto_decline_cvv_override` | `TrueClass \| FalseClass` | Optional | Auto Decline CVV Override |
 | `auto_decline_street_override` | `TrueClass \| FalseClass` | Optional | Auto Decline Street Override |
 | `auto_decline_zip_override` | `TrueClass \| FalseClass` | Optional | Auto Decline Zip Override |
-| `ebt_type` | [`EbtTypeEnum`](../../doc/models/ebt-type-enum.md) | Optional | EBT Type |
+| `ebt_type` | `Object` | Optional | - |
 | `ach_identifier` | `String` | Optional | Required for ACH transactions in certain scenarios.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `1` |
-| `ach_sec_code` | [`AchSecCode31Enum`](../../doc/models/ach-sec-code-31-enum.md) | Optional | Required for ACH transactions if account_vault_id is not provided.<br><br>> Only CCD, PPD, TEL, and WEB are supported for FortisAch. |
+| `ach_sec_code` | `Object` | Optional | - |
 | `effective_date` | `String` | Optional | For ACH only, this is optional and defaults to current day.<br><br>**Constraints**: *Maximum Length*: `10`, *Pattern*: `^[\d]{4}-[\d]{2}-[\d]{2}$` |
 | `account_holder_name` | `String` | Optional | For CC, this is the 'Name (as it appears) on Card'. For ACH, this is the 'Name on Account'.<br><br>> Required for ACH transactions if account_vault_id is not provided. For CC transactions that are run through a terminal, this field may be overwritten by data acquired from the credit card track data.<br><br>**Constraints**: *Maximum Length*: `32` |
 | `previous_transaction_id` | `String` | Optional | previous_transaction_id is used as token to run transaction. Account details OR previous_transaction_id should be passed to run transaction.<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `previous_transaction_api_id` | `String` | Optional | previous_transaction_api_id is used as token to run transaction. Account details OR previous_transaction_api_id should be passed to run transaction.<br><br>**Constraints**: *Maximum Length*: `36` |
 | `joi` | [`Joi27`](../../doc/models/joi-27.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -85,13 +88,11 @@
   },
   "customer_id": "customerid",
   "description": "some description",
-  "iias_ind": 1,
   "image_front": "U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=",
   "image_back": "U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=",
   "installment": true,
   "installment_number": 1,
   "installment_count": 1,
-  "recurring_flag": "yes",
   "installment_counter": 1,
   "installment_total": 1,
   "subscription": false,
@@ -126,18 +127,42 @@
   "auto_decline_cvv_override": false,
   "auto_decline_street_override": false,
   "auto_decline_zip_override": false,
-  "ebt_type": "food_stamp",
   "ach_identifier": "P",
-  "ach_sec_code": "C21",
   "effective_date": "2021-12-01",
   "account_holder_name": "smith",
   "previous_transaction_id": "11e95f8ec39de8fbdb0a4f1a",
   "additional_amounts": [
     {
-      "type": "cashback",
+      "type": {
+        "key1": "val1",
+        "key2": "val2"
+      },
       "amount": 6,
-      "account_type": "cash_benefit",
-      "currency": 154.64
+      "account_type": {
+        "key1": "val1",
+        "key2": "val2"
+      },
+      "currency": 154.64,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "type": {
+        "key1": "val1",
+        "key2": "val2"
+      },
+      "amount": 6,
+      "account_type": {
+        "key1": "val1",
+        "key2": "val2"
+      },
+      "currency": 154.64,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
   ],
   "billing_address": {
@@ -145,7 +170,15 @@
     "state": "state6",
     "postal_code": "postal_code0",
     "street": "street8",
-    "phone": "phone2"
+    "phone": "phone2",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

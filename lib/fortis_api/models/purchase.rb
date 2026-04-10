@@ -20,8 +20,15 @@ module FortisApi
     # @return [Integer]
     attr_accessor :purchase_install_data
 
-    # Contains purchase information
-    # @return [MerchantRiskIndicator]
+    # Indicates the maximum number of authorizations permitted for installment
+    # payments.
+    # The fields is required if the Merchant and Cardholder have agreed to
+    # installment payments, i.e. if 3DS Requestor Authentication Indicator = 03.
+    # Omitted if not an installment payment authentication.
+    # Starting from EMV 3DS 2.3.1:
+    # Additionally this field is required for device_channel = 03 (3RI) if
+    # three_ri_ind = 02.
+    # @return [MerchantRiskIndicator1]
     attr_accessor :merchant_risk_indicator
 
     # Purchase amount in minor units of currency with all punctuation removed.
@@ -87,20 +94,10 @@ module FortisApi
     # @return [Integer]
     attr_accessor :recurring_frequency
 
-    # Identifies the type of transaction being authenticated. The values are
-    # derived from ISO 8583. This field is required in some markets. Otherwise,
-    # the field is optional.
-    # >01 - Goods / Service purchase
-    # >
-    # >03 - Check Acceptance
-    # >
-    # >10 - Account Funding
-    # >
-    # >11 - Quasi-Cash Transaction
-    # >
-    # >28 - Prepaid activation and Loan
-    # >
-    # @return [TransactionTypeEnum]
+    # Indicates the minimum number of days between authorizations.
+    # This field is required if 3DS Requestor Authentication Indicator = 02 or
+    # 03 and frequency_ind = 01.
+    # @return [TransactionType]
     attr_accessor :transaction_type
 
     # Recurring amount after first/promotional payment in minor units of
@@ -136,22 +133,12 @@ module FortisApi
     # @return [String]
     attr_accessor :recurring_date
 
-    # Part of the indication whether the recurring or installment payment has a
-    # fixed or variable amount.
-    # Starting from EMV 3DS 2.3.1: 
-    #  This field is required if
-    # three_ds_requestor.three_ds_requestor_authentication_ind = 02 or 03. 
-    #  This field is required if three_ri_ind= 01 or 02.
-    # >01 - Fixed Purchase Amount
-    # >
-    # >02 - Variable Purchase Amount
-    # >
-    # >03 through 79 - Reserved for EMVCo future use (values invalid until
-    # defined by EMVCo)
-    # >
-    # >80 through 99 - PS-specific value (dependent on the payment scheme type)
-    # >
-    # @return [AmountIndEnum]
+    # Effective date of new authorized amount following first/promotional
+    # payment in recurring transaction. The value is limited to 8 characters.
+    # Accepted format: YYYYMMDD.
+    # This field is required if frequency_ind = 01.
+    # Available for supporting EMV 3DS 2.3.1 and later versions.
+    # @return [AmountInd]
     attr_accessor :amount_ind
 
     # Part of the indication whether the recurring or instalment payment has a
@@ -210,18 +197,16 @@ module FortisApi
       []
     end
 
-    def initialize(purchase_install_data = SKIP, merchant_risk_indicator = SKIP,
-                   purchase_amount = SKIP, purchase_currency = SKIP,
-                   purchase_exponent = SKIP, purchase_date = SKIP,
-                   recurring_expiry = SKIP, recurring_frequency = SKIP,
-                   transaction_type = SKIP, recurring_amount = SKIP,
-                   recurring_currency = SKIP, recurring_exponent = SKIP,
-                   recurring_date = SKIP, amount_ind = SKIP,
-                   frequency_ind = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(purchase_install_data: SKIP, merchant_risk_indicator: SKIP,
+                   purchase_amount: SKIP, purchase_currency: SKIP,
+                   purchase_exponent: SKIP, purchase_date: SKIP,
+                   recurring_expiry: SKIP, recurring_frequency: SKIP,
+                   transaction_type: SKIP, recurring_amount: SKIP,
+                   recurring_currency: SKIP, recurring_exponent: SKIP,
+                   recurring_date: SKIP, amount_ind: SKIP, frequency_ind: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @purchase_install_data = purchase_install_data unless purchase_install_data == SKIP
       @merchant_risk_indicator = merchant_risk_indicator unless merchant_risk_indicator == SKIP
@@ -238,6 +223,7 @@ module FortisApi
       @recurring_date = recurring_date unless recurring_date == SKIP
       @amount_ind = amount_ind unless amount_ind == SKIP
       @frequency_ind = frequency_ind unless frequency_ind == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -247,7 +233,7 @@ module FortisApi
       # Extract variables from the hash.
       purchase_install_data =
         hash.key?('purchase_install_data') ? hash['purchase_install_data'] : SKIP
-      merchant_risk_indicator = MerchantRiskIndicator.from_hash(hash['merchant_risk_indicator']) if
+      merchant_risk_indicator = MerchantRiskIndicator1.from_hash(hash['merchant_risk_indicator']) if
         hash['merchant_risk_indicator']
       purchase_amount =
         hash.key?('purchase_amount') ? hash['purchase_amount'] : SKIP
@@ -273,26 +259,30 @@ module FortisApi
       amount_ind = hash.key?('amount_ind') ? hash['amount_ind'] : SKIP
       frequency_ind = hash.key?('frequency_ind') ? hash['frequency_ind'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Purchase.new(purchase_install_data,
-                   merchant_risk_indicator,
-                   purchase_amount,
-                   purchase_currency,
-                   purchase_exponent,
-                   purchase_date,
-                   recurring_expiry,
-                   recurring_frequency,
-                   transaction_type,
-                   recurring_amount,
-                   recurring_currency,
-                   recurring_exponent,
-                   recurring_date,
-                   amount_ind,
-                   frequency_ind,
-                   additional_properties)
+      Purchase.new(purchase_install_data: purchase_install_data,
+                   merchant_risk_indicator: merchant_risk_indicator,
+                   purchase_amount: purchase_amount,
+                   purchase_currency: purchase_currency,
+                   purchase_exponent: purchase_exponent,
+                   purchase_date: purchase_date,
+                   recurring_expiry: recurring_expiry,
+                   recurring_frequency: recurring_frequency,
+                   transaction_type: transaction_type,
+                   recurring_amount: recurring_amount,
+                   recurring_currency: recurring_currency,
+                   recurring_exponent: recurring_exponent,
+                   recurring_date: recurring_date,
+                   amount_ind: amount_ind,
+                   frequency_ind: frequency_ind,
+                   additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -305,7 +295,7 @@ module FortisApi
       " #{@recurring_frequency}, transaction_type: #{@transaction_type}, recurring_amount:"\
       " #{@recurring_amount}, recurring_currency: #{@recurring_currency}, recurring_exponent:"\
       " #{@recurring_exponent}, recurring_date: #{@recurring_date}, amount_ind: #{@amount_ind},"\
-      " frequency_ind: #{@frequency_ind}, additional_properties: #{get_additional_properties}>"
+      " frequency_ind: #{@frequency_ind}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -321,7 +311,7 @@ module FortisApi
       " recurring_currency: #{@recurring_currency.inspect}, recurring_exponent:"\
       " #{@recurring_exponent.inspect}, recurring_date: #{@recurring_date.inspect}, amount_ind:"\
       " #{@amount_ind.inspect}, frequency_ind: #{@frequency_ind.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

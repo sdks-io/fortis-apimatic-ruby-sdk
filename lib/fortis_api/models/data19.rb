@@ -66,13 +66,11 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, email_log_id = SKIP, sms_log_id = SKIP,
-                   success = SKIP, sms_success = SKIP, email = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, email_log_id: SKIP, sms_log_id: SKIP,
+                   success: SKIP, sms_success: SKIP, email: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @email_log_id = email_log_id unless email_log_id == SKIP
@@ -80,6 +78,7 @@ module FortisApi
       @success = success unless success == SKIP
       @sms_success = sms_success unless sms_success == SKIP
       @email = email unless email == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -94,17 +93,21 @@ module FortisApi
       sms_success = hash.key?('sms_success') ? hash['sms_success'] : SKIP
       email = hash.key?('email') ? hash['email'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data19.new(id,
-                 email_log_id,
-                 sms_log_id,
-                 success,
-                 sms_success,
-                 email,
-                 additional_properties)
+      Data19.new(id: id,
+                 email_log_id: email_log_id,
+                 sms_log_id: sms_log_id,
+                 success: success,
+                 sms_success: sms_success,
+                 email: email,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -112,7 +115,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, email_log_id: #{@email_log_id}, sms_log_id: #{@sms_log_id},"\
       " success: #{@success}, sms_success: #{@sms_success}, email: #{@email},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -121,7 +124,7 @@ module FortisApi
       "<#{class_name} id: #{@id.inspect}, email_log_id: #{@email_log_id.inspect}, sms_log_id:"\
       " #{@sms_log_id.inspect}, success: #{@success.inspect}, sms_success:"\
       " #{@sms_success.inspect}, email: #{@email.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

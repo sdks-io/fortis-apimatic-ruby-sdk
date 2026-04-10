@@ -17,8 +17,8 @@ module FortisApi
     # @return [String]
     attr_accessor :resource_id
 
-    # Resource
-    # @return [Resource2Enum]
+    # Resource Id
+    # @return [Resource2]
     attr_accessor :resource
 
     # Product File Id
@@ -119,17 +119,14 @@ module FortisApi
       ]
     end
 
-    def initialize(file = SKIP, resource_id = SKIP, resource = SKIP,
-                   product_file_id = SKIP, file_category_id = SKIP,
-                   visibility_group_id = SKIP, file_description = SKIP,
-                   id = SKIP, file_name = SKIP, file_extension = SKIP,
-                   file_size_bytes = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(file: SKIP, resource_id: SKIP, resource: SKIP,
+                   product_file_id: SKIP, file_category_id: SKIP,
+                   visibility_group_id: SKIP, file_description: SKIP, id: SKIP,
+                   file_name: SKIP, file_extension: SKIP, file_size_bytes: SKIP,
+                   created_ts: SKIP, modified_ts: SKIP, created_user_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @file = file unless file == SKIP
       @resource_id = resource_id unless resource_id == SKIP
@@ -145,6 +142,7 @@ module FortisApi
       @created_ts = created_ts unless created_ts == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -174,25 +172,29 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      File.new(file,
-               resource_id,
-               resource,
-               product_file_id,
-               file_category_id,
-               visibility_group_id,
-               file_description,
-               id,
-               file_name,
-               file_extension,
-               file_size_bytes,
-               created_ts,
-               modified_ts,
-               created_user_id,
-               additional_properties)
+      File.new(file: file,
+               resource_id: resource_id,
+               resource: resource,
+               product_file_id: product_file_id,
+               file_category_id: file_category_id,
+               visibility_group_id: visibility_group_id,
+               file_description: file_description,
+               id: id,
+               file_name: file_name,
+               file_extension: file_extension,
+               file_size_bytes: file_size_bytes,
+               created_ts: created_ts,
+               modified_ts: modified_ts,
+               created_user_id: created_user_id,
+               additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -203,8 +205,7 @@ module FortisApi
       " visibility_group_id: #{@visibility_group_id}, file_description: #{@file_description}, id:"\
       " #{@id}, file_name: #{@file_name}, file_extension: #{@file_extension}, file_size_bytes:"\
       " #{@file_size_bytes}, created_ts: #{@created_ts}, modified_ts: #{@modified_ts},"\
-      " created_user_id: #{@created_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " created_user_id: #{@created_user_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -217,7 +218,7 @@ module FortisApi
       " #{@file_name.inspect}, file_extension: #{@file_extension.inspect}, file_size_bytes:"\
       " #{@file_size_bytes.inspect}, created_ts: #{@created_ts.inspect}, modified_ts:"\
       " #{@modified_ts.inspect}, created_user_id: #{@created_user_id.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

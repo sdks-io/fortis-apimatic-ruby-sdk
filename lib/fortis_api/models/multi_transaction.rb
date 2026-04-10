@@ -44,16 +44,15 @@ module FortisApi
       []
     end
 
-    def initialize(merchant_list = nil, av_validity_time = SKIP,
-                   av_number_use = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(merchant_list:, av_validity_time: SKIP, av_number_use: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @merchant_list = merchant_list
       @av_validity_time = av_validity_time unless av_validity_time == SKIP
       @av_number_use = av_number_use unless av_number_use == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -75,21 +74,25 @@ module FortisApi
         hash.key?('av_validity_time') ? hash['av_validity_time'] : SKIP
       av_number_use = hash.key?('av_number_use') ? hash['av_number_use'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      MultiTransaction.new(merchant_list,
-                           av_validity_time,
-                           av_number_use,
-                           additional_properties)
+      MultiTransaction.new(merchant_list: merchant_list,
+                           av_validity_time: av_validity_time,
+                           av_number_use: av_number_use,
+                           additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} merchant_list: #{@merchant_list}, av_validity_time: #{@av_validity_time},"\
-      " av_number_use: #{@av_number_use}, additional_properties: #{get_additional_properties}>"
+      " av_number_use: #{@av_number_use}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -97,7 +100,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} merchant_list: #{@merchant_list.inspect}, av_validity_time:"\
       " #{@av_validity_time.inspect}, av_number_use: #{@av_number_use.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

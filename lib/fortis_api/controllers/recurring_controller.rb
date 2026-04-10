@@ -9,21 +9,22 @@ module FortisApi
     # TODO: type endpoint description here
     # @param [V1RecurringsRequest] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseRecurring] Response from the API call.
-    def create_a_new_recurring_record(body,
-                                      expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanewrecurringrecord(body,
+                                  expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/recurrings',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -31,9 +32,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -41,7 +43,7 @@ module FortisApi
     end
 
     # TODO: type endpoint description here
-    # @param [Page] page Optional parameter: Use this field to specify paginate
+    # @param [Page1] page Optional parameter: Use this field to specify paginate
     # your results, by using page size and number. You can use one of the
     # following methods: >/endpoint?page={ "number": 1, "size": 50 } >
     # >/endpoint?page[number]=1&page[size]=50 >
@@ -66,30 +68,30 @@ module FortisApi
     # "created_ts", "operator": "<=", value: "1695061891" }] >
     # >/endpoint?filter_by=[{ "key": "last_name", "operator": "IN", "value":
     # "Williams,Brown,Allman" }] >
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Format1Enum] format Optional parameter: Reporting format, valid
+    # @param [Format1] format Optional parameter: Reporting format, valid
     # values: csv, tsv
     # @param [String] typeahead Optional parameter: You can use any `field_name`
     # from this endpoint results to order the list using the value provided as
     # filter for the same `field_name`. It will be ordered using the following
     # rules: 1) Exact match, 2) Starts with, 3) Contains. >/endpoint?filter={
     # "field_name": "Value" }&_typeahead=field_name >
-    # @param [Array[Field43Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field43]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
-    # @return [ResponseRecurringsCollection] Response from the API call.
-    def list_all_recurring_record(page: nil,
-                                  order: nil,
-                                  filter_by: nil,
-                                  expand: nil,
-                                  format: nil,
-                                  typeahead: nil,
-                                  fields: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def listallrecurringrecord(page: nil,
+                               order: nil,
+                               filter_by: nil,
+                               expand: nil,
+                               format: nil,
+                               typeahead: nil,
+                               fields: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/recurrings',
@@ -106,53 +108,57 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurringsCollection.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
     # TODO: type endpoint description here
     # @param [String] recurring_id Required parameter: Recurring ID
-    # @return [ResponseRecurring] Response from the API call.
-    def delete_recurring_record(recurring_id)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def deleterecurringrecord(recurring_id)
       @api_call
         .request(new_request_builder(HttpMethodEnum::DELETE,
                                      '/v1/recurrings/{recurring_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
     # TODO: type endpoint description here
     # @param [String] recurring_id Required parameter: Recurring ID
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Array[Field43Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field43]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
-    # @return [ResponseRecurring] Response from the API call.
-    def view_single_recurring_record(recurring_id,
-                                     expand: nil,
-                                     fields: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def viewsinglerecurringrecord(recurring_id,
+                                  expand: nil,
+                                  fields: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/recurrings/{recurring_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .query_param(new_parameter(fields, key: 'fields'))
@@ -161,9 +167,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
@@ -171,24 +178,26 @@ module FortisApi
     # @param [String] recurring_id Required parameter: Recurring ID
     # @param [V1RecurringsRequest1] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseRecurring] Response from the API call.
-    def update_recurring_payment(recurring_id,
-                                 body,
-                                 expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def updaterecurringpayment(recurring_id,
+                               body,
+                               expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PATCH,
                                      '/v1/recurrings/{recurring_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -196,9 +205,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -207,20 +217,21 @@ module FortisApi
 
     # TODO: type endpoint description here
     # @param [String] recurring_id Required parameter: Recurring ID
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseRecurring] Response from the API call.
-    def activate_recurring_payment(recurring_id,
-                                   expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def activaterecurringpayment(recurring_id,
+                                 expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PUT,
                                      '/v1/recurrings/{recurring_id}/activate',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
@@ -228,9 +239,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
@@ -238,24 +250,26 @@ module FortisApi
     # @param [String] recurring_id Required parameter: Recurring ID
     # @param [V1RecurringsDeferPaymentRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseRecurring] Response from the API call.
-    def defer_recurring_payment(recurring_id,
-                                body,
-                                expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def deferrecurringpayment(recurring_id,
+                              body,
+                              expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PATCH,
                                      '/v1/recurrings/{recurring_id}/defer-payment',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -263,9 +277,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -274,20 +289,21 @@ module FortisApi
 
     # TODO: type endpoint description here
     # @param [String] recurring_id Required parameter: Recurring ID
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseRecurring] Response from the API call.
-    def place_on_hold_recurring_payment(recurring_id,
-                                        expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def placeonholdrecurringpayment(recurring_id,
+                                    expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PUT,
                                      '/v1/recurrings/{recurring_id}/place-on-hold',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
@@ -295,9 +311,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
@@ -305,24 +322,26 @@ module FortisApi
     # @param [String] recurring_id Required parameter: Recurring ID
     # @param [V1RecurringsSkipPaymentRequest] body Required parameter: TODO:
     # type description here
-    # @param [Array[Expand26Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand26]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseRecurring] Response from the API call.
-    def skip_recurring_payment(recurring_id,
-                               body,
-                               expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def skiprecurringpayment(recurring_id,
+                             body,
+                             expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PATCH,
                                      '/v1/recurrings/{recurring_id}/skip-payment',
                                      Server::DEFAULT)
                    .template_param(new_parameter(recurring_id, key: 'recurring_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -330,9 +349,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseRecurring.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))

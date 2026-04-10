@@ -9,6 +9,6 @@
 
 | Type |
 |  --- |
-| [`Float`](../../../doc/models/containers/filter-by-value-case-0.md) |
+| `Float` |
 | [`Mixed`](../../../doc/models/containers/filter-by-value-case-1.md) |
 

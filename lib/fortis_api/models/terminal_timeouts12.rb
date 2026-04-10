@@ -120,16 +120,14 @@ module FortisApi
       ]
     end
 
-    def initialize(card_entry_timeout = SKIP,
-                   device_terms_prompt_timeout = SKIP, overall_timeout = SKIP,
-                   pin_entry_timeout = SKIP, signature_input_timeout = SKIP,
-                   signature_submit_timeout = SKIP, status_display_time = SKIP,
-                   tip_cashback_timeout = SKIP, transaction_timeout = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(card_entry_timeout: SKIP, device_terms_prompt_timeout: SKIP,
+                   overall_timeout: SKIP, pin_entry_timeout: SKIP,
+                   signature_input_timeout: SKIP,
+                   signature_submit_timeout: SKIP, status_display_time: SKIP,
+                   tip_cashback_timeout: SKIP, transaction_timeout: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @card_entry_timeout = card_entry_timeout unless card_entry_timeout == SKIP
       unless device_terms_prompt_timeout == SKIP
@@ -143,6 +141,7 @@ module FortisApi
       @status_display_time = status_display_time unless status_display_time == SKIP
       @tip_cashback_timeout = tip_cashback_timeout unless tip_cashback_timeout == SKIP
       @transaction_timeout = transaction_timeout unless transaction_timeout == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -169,20 +168,24 @@ module FortisApi
       transaction_timeout =
         hash.key?('transaction_timeout') ? hash['transaction_timeout'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      TerminalTimeouts12.new(card_entry_timeout,
-                             device_terms_prompt_timeout,
-                             overall_timeout,
-                             pin_entry_timeout,
-                             signature_input_timeout,
-                             signature_submit_timeout,
-                             status_display_time,
-                             tip_cashback_timeout,
-                             transaction_timeout,
-                             additional_properties)
+      TerminalTimeouts12.new(card_entry_timeout: card_entry_timeout,
+                             device_terms_prompt_timeout: device_terms_prompt_timeout,
+                             overall_timeout: overall_timeout,
+                             pin_entry_timeout: pin_entry_timeout,
+                             signature_input_timeout: signature_input_timeout,
+                             signature_submit_timeout: signature_submit_timeout,
+                             status_display_time: status_display_time,
+                             tip_cashback_timeout: tip_cashback_timeout,
+                             transaction_timeout: transaction_timeout,
+                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -194,7 +197,7 @@ module FortisApi
       " signature_submit_timeout: #{@signature_submit_timeout}, status_display_time:"\
       " #{@status_display_time}, tip_cashback_timeout: #{@tip_cashback_timeout},"\
       " transaction_timeout: #{@transaction_timeout}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -207,7 +210,7 @@ module FortisApi
       " #{@signature_submit_timeout.inspect}, status_display_time:"\
       " #{@status_display_time.inspect}, tip_cashback_timeout: #{@tip_cashback_timeout.inspect},"\
       " transaction_timeout: #{@transaction_timeout.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

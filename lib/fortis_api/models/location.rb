@@ -25,8 +25,8 @@ module FortisApi
     # @return [String]
     attr_accessor :account_number
 
-    # Address
-    # @return [Address1]
+    # Account number
+    # @return [Address6]
     attr_accessor :address
 
     # GUID for Branding Domain
@@ -105,8 +105,8 @@ module FortisApi
     # @return [String]
     attr_accessor :created_user_id
 
-    # Location Type
-    # @return [LocationTypeEnum]
+    # User ID Created the register
+    # @return [Object]
     attr_accessor :location_type
 
     # Name of the parent location
@@ -208,29 +208,26 @@ module FortisApi
         office_ext_phone
         tz
         created_user_id
-        location_type
         parent_name
         ticket_hash_key
       ]
     end
 
-    def initialize(id = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   account_number = SKIP, address = SKIP,
-                   branding_domain_id = SKIP,
-                   contact_email_trx_receipt_default = SKIP, default_ach = SKIP,
-                   default_cc = SKIP, email_reply_to = SKIP, fax = SKIP,
-                   location_api_id = SKIP, location_api_key = SKIP,
-                   location_c1 = SKIP, location_c2 = SKIP, location_c3 = SKIP,
-                   name = SKIP, office_phone = SKIP, office_ext_phone = SKIP,
-                   tz = SKIP, parent_id = SKIP, show_contact_notes = SKIP,
-                   show_contact_files = SKIP, created_user_id = SKIP,
-                   location_type = SKIP, parent_name = SKIP,
-                   ticket_hash_key = SKIP, additional_access = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   account_number: SKIP, address: SKIP,
+                   branding_domain_id: SKIP,
+                   contact_email_trx_receipt_default: SKIP, default_ach: SKIP,
+                   default_cc: SKIP, email_reply_to: SKIP, fax: SKIP,
+                   location_api_id: SKIP, location_api_key: SKIP,
+                   location_c1: SKIP, location_c2: SKIP, location_c3: SKIP,
+                   name: SKIP, office_phone: SKIP, office_ext_phone: SKIP,
+                   tz: SKIP, parent_id: SKIP, show_contact_notes: SKIP,
+                   show_contact_files: SKIP, created_user_id: SKIP,
+                   location_type: SKIP, parent_name: SKIP,
+                   ticket_hash_key: SKIP, additional_access: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
@@ -263,6 +260,7 @@ module FortisApi
       @parent_name = parent_name unless parent_name == SKIP
       @ticket_hash_key = ticket_hash_key unless ticket_hash_key == SKIP
       @additional_access = additional_access unless additional_access == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -275,7 +273,7 @@ module FortisApi
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
       account_number =
         hash.key?('account_number') ? hash['account_number'] : SKIP
-      address = Address1.from_hash(hash['address']) if hash['address']
+      address = Address6.from_hash(hash['address']) if hash['address']
       branding_domain_id =
         hash.key?('branding_domain_id') ? hash['branding_domain_id'] : SKIP
       contact_email_trx_receipt_default =
@@ -311,39 +309,43 @@ module FortisApi
       additional_access = AdditionalAccess.from_hash(hash['additional_access']) if
         hash['additional_access']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Location.new(id,
-                   created_ts,
-                   modified_ts,
-                   account_number,
-                   address,
-                   branding_domain_id,
-                   contact_email_trx_receipt_default,
-                   default_ach,
-                   default_cc,
-                   email_reply_to,
-                   fax,
-                   location_api_id,
-                   location_api_key,
-                   location_c1,
-                   location_c2,
-                   location_c3,
-                   name,
-                   office_phone,
-                   office_ext_phone,
-                   tz,
-                   parent_id,
-                   show_contact_notes,
-                   show_contact_files,
-                   created_user_id,
-                   location_type,
-                   parent_name,
-                   ticket_hash_key,
-                   additional_access,
-                   additional_properties)
+      Location.new(id: id,
+                   created_ts: created_ts,
+                   modified_ts: modified_ts,
+                   account_number: account_number,
+                   address: address,
+                   branding_domain_id: branding_domain_id,
+                   contact_email_trx_receipt_default: contact_email_trx_receipt_default,
+                   default_ach: default_ach,
+                   default_cc: default_cc,
+                   email_reply_to: email_reply_to,
+                   fax: fax,
+                   location_api_id: location_api_id,
+                   location_api_key: location_api_key,
+                   location_c1: location_c1,
+                   location_c2: location_c2,
+                   location_c3: location_c3,
+                   name: name,
+                   office_phone: office_phone,
+                   office_ext_phone: office_ext_phone,
+                   tz: tz,
+                   parent_id: parent_id,
+                   show_contact_notes: show_contact_notes,
+                   show_contact_files: show_contact_files,
+                   created_user_id: created_user_id,
+                   location_type: location_type,
+                   parent_name: parent_name,
+                   ticket_hash_key: ticket_hash_key,
+                   additional_access: additional_access,
+                   additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -361,7 +363,7 @@ module FortisApi
       " #{@show_contact_files}, created_user_id: #{@created_user_id}, location_type:"\
       " #{@location_type}, parent_name: #{@parent_name}, ticket_hash_key: #{@ticket_hash_key},"\
       " additional_access: #{@additional_access}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -381,7 +383,7 @@ module FortisApi
       " show_contact_files: #{@show_contact_files.inspect}, created_user_id:"\
       " #{@created_user_id.inspect}, location_type: #{@location_type.inspect}, parent_name:"\
       " #{@parent_name.inspect}, ticket_hash_key: #{@ticket_hash_key.inspect}, additional_access:"\
-      " #{@additional_access.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@additional_access.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

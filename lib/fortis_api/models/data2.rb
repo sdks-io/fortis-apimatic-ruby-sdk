@@ -37,8 +37,8 @@ module FortisApi
     # @return [Float]
     attr_accessor :balance
 
-    # Address of contact
-    # @return [Address]
+    # Balance
+    # @return [Address4]
     attr_accessor :address
 
     # Company Name
@@ -85,8 +85,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :header_message_type
 
-    # Update If Exists
-    # @return [UpdateIfExistsEnum]
+    # Header Message Type
+    # @return [Object]
     attr_accessor :update_if_exists
 
     # Custom field 1 for api users to store custom data
@@ -141,24 +141,24 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :is_deletable
 
-    # Location Information on `expand`
-    # @return [Location]
+    # Is Deletable Information on `expand`
+    # @return [Location18]
     attr_accessor :location
 
-    # User Information on `expand`
-    # @return [User1]
+    # Is Deletable Information on `expand`
+    # @return [User9]
     attr_accessor :user
 
     # Recurring Information on `expand`
     # @return [Array[Recurring]]
     attr_accessor :recurrings
 
-    # Email Blacklist Information on `expand`
-    # @return [EmailBlacklist]
+    # Recurring Information on `expand`
+    # @return [EmailBlacklist1]
     attr_accessor :email_blacklist
 
-    # Sms Blacklist Information on `expand`
-    # @return [SmsBlacklist]
+    # Recurring Information on `expand`
+    # @return [SmsBlacklist1]
     attr_accessor :sms_blacklist
 
     # Changelog Information on `expand`
@@ -169,16 +169,16 @@ module FortisApi
     # @return [Array[PostbackLog]]
     attr_accessor :postback_logs
 
-    # User Information on `expand`
-    # @return [CreatedUser]
+    # Postback Log Information on `expand`
+    # @return [User9]
     attr_accessor :created_user
 
-    # Parent Information on `expand`
-    # @return [Parent]
+    # Postback Log Information on `expand`
+    # @return [Parent5]
     attr_accessor :parent
 
-    # Children Information on `expand`
-    # @return [Children]
+    # Postback Log Information on `expand`
+    # @return [Children1]
     attr_accessor :children
 
     # A mapping from model property names to API property names.
@@ -296,7 +296,6 @@ module FortisApi
         home_phone_country_code
         office_phone_country_code
         cell_phone_country_code
-        update_if_exists
         contact_c1
         contact_c2
         contact_c3
@@ -307,29 +306,26 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = SKIP, account_number = SKIP,
-                   contact_api_id = SKIP, first_name = SKIP, last_name = SKIP,
-                   cell_phone = SKIP, balance = SKIP, address = SKIP,
-                   company_name = SKIP, header_message = SKIP,
-                   date_of_birth = SKIP, email_trx_receipt = SKIP,
-                   home_phone = SKIP, office_phone = SKIP,
-                   office_phone_ext = SKIP, home_phone_country_code = SKIP,
-                   office_phone_country_code = SKIP,
-                   cell_phone_country_code = SKIP, header_message_type = SKIP,
-                   update_if_exists = SKIP, contact_c1 = SKIP,
-                   contact_c2 = SKIP, contact_c3 = SKIP, parent_id = SKIP,
-                   email = SKIP, token_import_id = SKIP, id = SKIP,
-                   created_ts = SKIP, modified_ts = SKIP, active = SKIP,
-                   created_user_id = SKIP, received_emails = SKIP,
-                   is_deletable = SKIP, location = SKIP, user = SKIP,
-                   recurrings = SKIP, email_blacklist = SKIP,
-                   sms_blacklist = SKIP, changelogs = SKIP,
-                   postback_logs = SKIP, created_user = SKIP, parent = SKIP,
-                   children = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, account_number: SKIP,
+                   contact_api_id: SKIP, first_name: SKIP, last_name: SKIP,
+                   cell_phone: SKIP, balance: SKIP, address: SKIP,
+                   company_name: SKIP, header_message: SKIP,
+                   date_of_birth: SKIP, email_trx_receipt: SKIP,
+                   home_phone: SKIP, office_phone: SKIP, office_phone_ext: SKIP,
+                   home_phone_country_code: SKIP,
+                   office_phone_country_code: SKIP,
+                   cell_phone_country_code: SKIP, header_message_type: SKIP,
+                   update_if_exists: SKIP, contact_c1: SKIP, contact_c2: SKIP,
+                   contact_c3: SKIP, parent_id: SKIP, email: SKIP,
+                   token_import_id: SKIP, id: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, active: SKIP, created_user_id: SKIP,
+                   received_emails: SKIP, is_deletable: SKIP, location: SKIP,
+                   user: SKIP, recurrings: SKIP, email_blacklist: SKIP,
+                   sms_blacklist: SKIP, changelogs: SKIP, postback_logs: SKIP,
+                   created_user: SKIP, parent: SKIP, children: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       @account_number = account_number unless account_number == SKIP
@@ -377,6 +373,7 @@ module FortisApi
       @created_user = created_user unless created_user == SKIP
       @parent = parent unless parent == SKIP
       @children = children unless children == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -393,7 +390,7 @@ module FortisApi
       last_name = hash.key?('last_name') ? hash['last_name'] : SKIP
       cell_phone = hash.key?('cell_phone') ? hash['cell_phone'] : SKIP
       balance = hash.key?('balance') ? hash['balance'] : SKIP
-      address = Address.from_hash(hash['address']) if hash['address']
+      address = Address4.from_hash(hash['address']) if hash['address']
       company_name = hash.key?('company_name') ? hash['company_name'] : SKIP
       header_message =
         hash.key?('header_message') ? hash['header_message'] : SKIP
@@ -438,8 +435,8 @@ module FortisApi
 
       received_emails = SKIP unless hash.key?('received_emails')
       is_deletable = hash.key?('is_deletable') ? hash['is_deletable'] : SKIP
-      location = Location.from_hash(hash['location']) if hash['location']
-      user = User1.from_hash(hash['user']) if hash['user']
+      location = Location18.from_hash(hash['location']) if hash['location']
+      user = User9.from_hash(hash['user']) if hash['user']
       # Parameter is an array, so we need to iterate through it
       recurrings = nil
       unless hash['recurrings'].nil?
@@ -450,9 +447,9 @@ module FortisApi
       end
 
       recurrings = SKIP unless hash.key?('recurrings')
-      email_blacklist = EmailBlacklist.from_hash(hash['email_blacklist']) if
+      email_blacklist = EmailBlacklist1.from_hash(hash['email_blacklist']) if
         hash['email_blacklist']
-      sms_blacklist = SmsBlacklist.from_hash(hash['sms_blacklist']) if hash['sms_blacklist']
+      sms_blacklist = SmsBlacklist1.from_hash(hash['sms_blacklist']) if hash['sms_blacklist']
       # Parameter is an array, so we need to iterate through it
       changelogs = nil
       unless hash['changelogs'].nil?
@@ -473,58 +470,62 @@ module FortisApi
       end
 
       postback_logs = SKIP unless hash.key?('postback_logs')
-      created_user = CreatedUser.from_hash(hash['created_user']) if hash['created_user']
-      parent = Parent.from_hash(hash['parent']) if hash['parent']
-      children = Children.from_hash(hash['children']) if hash['children']
+      created_user = User9.from_hash(hash['created_user']) if hash['created_user']
+      parent = Parent5.from_hash(hash['parent']) if hash['parent']
+      children = Children1.from_hash(hash['children']) if hash['children']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data2.new(location_id,
-                account_number,
-                contact_api_id,
-                first_name,
-                last_name,
-                cell_phone,
-                balance,
-                address,
-                company_name,
-                header_message,
-                date_of_birth,
-                email_trx_receipt,
-                home_phone,
-                office_phone,
-                office_phone_ext,
-                home_phone_country_code,
-                office_phone_country_code,
-                cell_phone_country_code,
-                header_message_type,
-                update_if_exists,
-                contact_c1,
-                contact_c2,
-                contact_c3,
-                parent_id,
-                email,
-                token_import_id,
-                id,
-                created_ts,
-                modified_ts,
-                active,
-                created_user_id,
-                received_emails,
-                is_deletable,
-                location,
-                user,
-                recurrings,
-                email_blacklist,
-                sms_blacklist,
-                changelogs,
-                postback_logs,
-                created_user,
-                parent,
-                children,
-                additional_properties)
+      Data2.new(location_id: location_id,
+                account_number: account_number,
+                contact_api_id: contact_api_id,
+                first_name: first_name,
+                last_name: last_name,
+                cell_phone: cell_phone,
+                balance: balance,
+                address: address,
+                company_name: company_name,
+                header_message: header_message,
+                date_of_birth: date_of_birth,
+                email_trx_receipt: email_trx_receipt,
+                home_phone: home_phone,
+                office_phone: office_phone,
+                office_phone_ext: office_phone_ext,
+                home_phone_country_code: home_phone_country_code,
+                office_phone_country_code: office_phone_country_code,
+                cell_phone_country_code: cell_phone_country_code,
+                header_message_type: header_message_type,
+                update_if_exists: update_if_exists,
+                contact_c1: contact_c1,
+                contact_c2: contact_c2,
+                contact_c3: contact_c3,
+                parent_id: parent_id,
+                email: email,
+                token_import_id: token_import_id,
+                id: id,
+                created_ts: created_ts,
+                modified_ts: modified_ts,
+                active: active,
+                created_user_id: created_user_id,
+                received_emails: received_emails,
+                is_deletable: is_deletable,
+                location: location,
+                user: user,
+                recurrings: recurrings,
+                email_blacklist: email_blacklist,
+                sms_blacklist: sms_blacklist,
+                changelogs: changelogs,
+                postback_logs: postback_logs,
+                created_user: created_user,
+                parent: parent,
+                children: children,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -546,7 +547,7 @@ module FortisApi
       " #{@is_deletable}, location: #{@location}, user: #{@user}, recurrings: #{@recurrings},"\
       " email_blacklist: #{@email_blacklist}, sms_blacklist: #{@sms_blacklist}, changelogs:"\
       " #{@changelogs}, postback_logs: #{@postback_logs}, created_user: #{@created_user}, parent:"\
-      " #{@parent}, children: #{@children}, additional_properties: #{get_additional_properties}>"
+      " #{@parent}, children: #{@children}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -574,7 +575,7 @@ module FortisApi
       " sms_blacklist: #{@sms_blacklist.inspect}, changelogs: #{@changelogs.inspect},"\
       " postback_logs: #{@postback_logs.inspect}, created_user: #{@created_user.inspect}, parent:"\
       " #{@parent.inspect}, children: #{@children.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

@@ -88,14 +88,12 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, body = SKIP, reason_model = SKIP,
-                   reason_model_id = SKIP, provider_id = SKIP, status = SKIP,
-                   sender = SKIP, recipient = SKIP, created_ts = SKIP,
-                   created_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, body: SKIP, reason_model: SKIP,
+                   reason_model_id: SKIP, provider_id: SKIP, status: SKIP,
+                   sender: SKIP, recipient: SKIP, created_ts: SKIP,
+                   created_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @body = body unless body == SKIP
@@ -107,6 +105,7 @@ module FortisApi
       @recipient = recipient unless recipient == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -127,21 +126,25 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      LogSms.new(id,
-                 body,
-                 reason_model,
-                 reason_model_id,
-                 provider_id,
-                 status,
-                 sender,
-                 recipient,
-                 created_ts,
-                 created_user_id,
-                 additional_properties)
+      LogSms.new(id: id,
+                 body: body,
+                 reason_model: reason_model,
+                 reason_model_id: reason_model_id,
+                 provider_id: provider_id,
+                 status: status,
+                 sender: sender,
+                 recipient: recipient,
+                 created_ts: created_ts,
+                 created_user_id: created_user_id,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -150,7 +153,7 @@ module FortisApi
       "<#{class_name} id: #{@id}, body: #{@body}, reason_model: #{@reason_model},"\
       " reason_model_id: #{@reason_model_id}, provider_id: #{@provider_id}, status: #{@status},"\
       " sender: #{@sender}, recipient: #{@recipient}, created_ts: #{@created_ts}, created_user_id:"\
-      " #{@created_user_id}, additional_properties: #{get_additional_properties}>"
+      " #{@created_user_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -160,7 +163,7 @@ module FortisApi
       " #{@reason_model.inspect}, reason_model_id: #{@reason_model_id.inspect}, provider_id:"\
       " #{@provider_id.inspect}, status: #{@status.inspect}, sender: #{@sender.inspect},"\
       " recipient: #{@recipient.inspect}, created_ts: #{@created_ts.inspect}, created_user_id:"\
-      " #{@created_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@created_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

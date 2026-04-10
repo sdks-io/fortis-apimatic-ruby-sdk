@@ -9,8 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Object type
-    # @return [Type3Enum]
+    # TODO: Write general description for this method
+    # @return [Type3]
     attr_accessor :type
 
     # Total records count
@@ -56,19 +56,18 @@ module FortisApi
       []
     end
 
-    def initialize(type = SKIP, total_count = SKIP, page_count = SKIP,
-                   page_number = SKIP, page_size = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(type: SKIP, total_count: SKIP, page_count: SKIP,
+                   page_number: SKIP, page_size: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @type = type unless type == SKIP
       @total_count = total_count unless total_count == SKIP
       @page_count = page_count unless page_count == SKIP
       @page_number = page_number unless page_number == SKIP
       @page_size = page_size unless page_size == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -82,16 +81,20 @@ module FortisApi
       page_number = hash.key?('page_number') ? hash['page_number'] : SKIP
       page_size = hash.key?('page_size') ? hash['page_size'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Pagination.new(type,
-                     total_count,
-                     page_count,
-                     page_number,
-                     page_size,
-                     additional_properties)
+      Pagination.new(type: type,
+                     total_count: total_count,
+                     page_count: page_count,
+                     page_number: page_number,
+                     page_size: page_size,
+                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -99,7 +102,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type}, total_count: #{@total_count}, page_count: #{@page_count},"\
       " page_number: #{@page_number}, page_size: #{@page_size}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -107,7 +110,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} type: #{@type.inspect}, total_count: #{@total_count.inspect}, page_count:"\
       " #{@page_count.inspect}, page_number: #{@page_number.inspect}, page_size:"\
-      " #{@page_size.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@page_size.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

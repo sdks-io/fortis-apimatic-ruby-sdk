@@ -65,14 +65,11 @@ module FortisApi
       []
     end
 
-    def initialize(merchant_name_listed = nil,
-                   acquirer_merchant_id_listed = SKIP, merchant_amount = SKIP,
-                   merchant_currency = SKIP, merchant_exponent = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(merchant_name_listed:, acquirer_merchant_id_listed: SKIP,
+                   merchant_amount: SKIP, merchant_currency: SKIP,
+                   merchant_exponent: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @merchant_name_listed = merchant_name_listed
       unless acquirer_merchant_id_listed == SKIP
@@ -82,6 +79,7 @@ module FortisApi
       @merchant_amount = merchant_amount unless merchant_amount == SKIP
       @merchant_currency = merchant_currency unless merchant_currency == SKIP
       @merchant_exponent = merchant_exponent unless merchant_exponent == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -100,16 +98,20 @@ module FortisApi
       merchant_exponent =
         hash.key?('merchant_exponent') ? hash['merchant_exponent'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      MerchantList.new(merchant_name_listed,
-                       acquirer_merchant_id_listed,
-                       merchant_amount,
-                       merchant_currency,
-                       merchant_exponent,
-                       additional_properties)
+      MerchantList.new(merchant_name_listed: merchant_name_listed,
+                       acquirer_merchant_id_listed: acquirer_merchant_id_listed,
+                       merchant_amount: merchant_amount,
+                       merchant_currency: merchant_currency,
+                       merchant_exponent: merchant_exponent,
+                       additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -118,7 +120,7 @@ module FortisApi
       "<#{class_name} merchant_name_listed: #{@merchant_name_listed},"\
       " acquirer_merchant_id_listed: #{@acquirer_merchant_id_listed}, merchant_amount:"\
       " #{@merchant_amount}, merchant_currency: #{@merchant_currency}, merchant_exponent:"\
-      " #{@merchant_exponent}, additional_properties: #{get_additional_properties}>"
+      " #{@merchant_exponent}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -128,7 +130,7 @@ module FortisApi
       " acquirer_merchant_id_listed: #{@acquirer_merchant_id_listed.inspect}, merchant_amount:"\
       " #{@merchant_amount.inspect}, merchant_currency: #{@merchant_currency.inspect},"\
       " merchant_exponent: #{@merchant_exponent.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

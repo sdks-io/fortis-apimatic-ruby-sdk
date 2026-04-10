@@ -93,13 +93,11 @@ module FortisApi
       []
     end
 
-    def initialize(city = SKIP, country_code = SKIP, address_line_1 = SKIP,
-                   address_line_2 = SKIP, address_line_3 = SKIP,
-                   postal_code = SKIP, state = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(city: SKIP, country_code: SKIP, address_line_1: SKIP,
+                   address_line_2: SKIP, address_line_3: SKIP,
+                   postal_code: SKIP, state: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @city = city unless city == SKIP
       @country_code = country_code unless country_code == SKIP
@@ -108,6 +106,7 @@ module FortisApi
       @address_line_3 = address_line_3 unless address_line_3 == SKIP
       @postal_code = postal_code unless postal_code == SKIP
       @state = state unless state == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -126,18 +125,22 @@ module FortisApi
       postal_code = hash.key?('postal_code') ? hash['postal_code'] : SKIP
       state = hash.key?('state') ? hash['state'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ShippingAddress.new(city,
-                          country_code,
-                          address_line_1,
-                          address_line_2,
-                          address_line_3,
-                          postal_code,
-                          state,
-                          additional_properties)
+      ShippingAddress.new(city: city,
+                          country_code: country_code,
+                          address_line_1: address_line_1,
+                          address_line_2: address_line_2,
+                          address_line_3: address_line_3,
+                          postal_code: postal_code,
+                          state: state,
+                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -146,7 +149,7 @@ module FortisApi
       "<#{class_name} city: #{@city}, country_code: #{@country_code}, address_line_1:"\
       " #{@address_line_1}, address_line_2: #{@address_line_2}, address_line_3:"\
       " #{@address_line_3}, postal_code: #{@postal_code}, state: #{@state}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -155,7 +158,7 @@ module FortisApi
       "<#{class_name} city: #{@city.inspect}, country_code: #{@country_code.inspect},"\
       " address_line_1: #{@address_line_1.inspect}, address_line_2: #{@address_line_2.inspect},"\
       " address_line_3: #{@address_line_3.inspect}, postal_code: #{@postal_code.inspect}, state:"\
-      " #{@state.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@state.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

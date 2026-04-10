@@ -144,19 +144,16 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, created_ts = SKIP, product_transaction_id = SKIP,
-                   processing_status_id = SKIP, batch_num = SKIP,
-                   is_open = SKIP, settlement_file_name = SKIP,
-                   batch_close_ts = SKIP, batch_close_detail = SKIP,
-                   total_sale_amount = SKIP, total_sale_count = SKIP,
-                   total_refund_amount = SKIP, total_refund_count = SKIP,
-                   total_void_amount = SKIP, total_void_count = SKIP,
-                   total_blind_refund_amount = SKIP,
-                   total_blind_refund_count = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, created_ts: SKIP, product_transaction_id: SKIP,
+                   processing_status_id: SKIP, batch_num: SKIP, is_open: SKIP,
+                   settlement_file_name: SKIP, batch_close_ts: SKIP,
+                   batch_close_detail: SKIP, total_sale_amount: SKIP,
+                   total_sale_count: SKIP, total_refund_amount: SKIP,
+                   total_refund_count: SKIP, total_void_amount: SKIP,
+                   total_void_count: SKIP, total_blind_refund_amount: SKIP,
+                   total_blind_refund_count: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
@@ -178,6 +175,7 @@ module FortisApi
           total_blind_refund_amount
       end
       @total_blind_refund_count = total_blind_refund_count unless total_blind_refund_count == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -216,28 +214,32 @@ module FortisApi
       total_blind_refund_count =
         hash.key?('total_blind_refund_count') ? hash['total_blind_refund_count'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      TransactionBatch.new(id,
-                           created_ts,
-                           product_transaction_id,
-                           processing_status_id,
-                           batch_num,
-                           is_open,
-                           settlement_file_name,
-                           batch_close_ts,
-                           batch_close_detail,
-                           total_sale_amount,
-                           total_sale_count,
-                           total_refund_amount,
-                           total_refund_count,
-                           total_void_amount,
-                           total_void_count,
-                           total_blind_refund_amount,
-                           total_blind_refund_count,
-                           additional_properties)
+      TransactionBatch.new(id: id,
+                           created_ts: created_ts,
+                           product_transaction_id: product_transaction_id,
+                           processing_status_id: processing_status_id,
+                           batch_num: batch_num,
+                           is_open: is_open,
+                           settlement_file_name: settlement_file_name,
+                           batch_close_ts: batch_close_ts,
+                           batch_close_detail: batch_close_detail,
+                           total_sale_amount: total_sale_amount,
+                           total_sale_count: total_sale_count,
+                           total_refund_amount: total_refund_amount,
+                           total_refund_count: total_refund_count,
+                           total_void_amount: total_void_amount,
+                           total_void_count: total_void_count,
+                           total_blind_refund_amount: total_blind_refund_amount,
+                           total_blind_refund_count: total_blind_refund_count,
+                           additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -251,7 +253,7 @@ module FortisApi
       " total_refund_amount: #{@total_refund_amount}, total_refund_count: #{@total_refund_count},"\
       " total_void_amount: #{@total_void_amount}, total_void_count: #{@total_void_count},"\
       " total_blind_refund_amount: #{@total_blind_refund_amount}, total_blind_refund_count:"\
-      " #{@total_blind_refund_count}, additional_properties: #{get_additional_properties}>"
+      " #{@total_blind_refund_count}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -268,8 +270,7 @@ module FortisApi
       " total_void_amount: #{@total_void_amount.inspect}, total_void_count:"\
       " #{@total_void_count.inspect}, total_blind_refund_amount:"\
       " #{@total_blind_refund_amount.inspect}, total_blind_refund_count:"\
-      " #{@total_blind_refund_count.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@total_blind_refund_count.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

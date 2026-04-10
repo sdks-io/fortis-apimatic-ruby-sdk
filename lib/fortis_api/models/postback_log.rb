@@ -9,8 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Postback Status Id
-    # @return [PostbackStatusIdEnum]
+    # TODO: Write general description for this method
+    # @return [Object]
     attr_accessor :postback_status_id
 
     # Postback Log Id
@@ -78,7 +78,6 @@ module FortisApi
     # An array for nullable fields
     def self.nullables
       %w[
-        postback_status_id
         http_verb
         next_run_ts
         created_ts
@@ -87,14 +86,12 @@ module FortisApi
       ]
     end
 
-    def initialize(postback_status_id = SKIP, id = SKIP,
-                   postback_config_id = SKIP, changelog_id = SKIP,
-                   http_verb = SKIP, next_run_ts = SKIP, created_ts = SKIP,
-                   model = SKIP, model_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(postback_status_id: SKIP, id: SKIP, postback_config_id: SKIP,
+                   changelog_id: SKIP, http_verb: SKIP, next_run_ts: SKIP,
+                   created_ts: SKIP, model: SKIP, model_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @postback_status_id = postback_status_id unless postback_status_id == SKIP
       @id = id unless id == SKIP
@@ -105,6 +102,7 @@ module FortisApi
       @created_ts = created_ts unless created_ts == SKIP
       @model = model unless model == SKIP
       @model_id = model_id unless model_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -124,20 +122,24 @@ module FortisApi
       model = hash.key?('model') ? hash['model'] : SKIP
       model_id = hash.key?('model_id') ? hash['model_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      PostbackLog.new(postback_status_id,
-                      id,
-                      postback_config_id,
-                      changelog_id,
-                      http_verb,
-                      next_run_ts,
-                      created_ts,
-                      model,
-                      model_id,
-                      additional_properties)
+      PostbackLog.new(postback_status_id: postback_status_id,
+                      id: id,
+                      postback_config_id: postback_config_id,
+                      changelog_id: changelog_id,
+                      http_verb: http_verb,
+                      next_run_ts: next_run_ts,
+                      created_ts: created_ts,
+                      model: model,
+                      model_id: model_id,
+                      additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -146,7 +148,7 @@ module FortisApi
       "<#{class_name} postback_status_id: #{@postback_status_id}, id: #{@id}, postback_config_id:"\
       " #{@postback_config_id}, changelog_id: #{@changelog_id}, http_verb: #{@http_verb},"\
       " next_run_ts: #{@next_run_ts}, created_ts: #{@created_ts}, model: #{@model}, model_id:"\
-      " #{@model_id}, additional_properties: #{get_additional_properties}>"
+      " #{@model_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -156,7 +158,7 @@ module FortisApi
       " postback_config_id: #{@postback_config_id.inspect}, changelog_id:"\
       " #{@changelog_id.inspect}, http_verb: #{@http_verb.inspect}, next_run_ts:"\
       " #{@next_run_ts.inspect}, created_ts: #{@created_ts.inspect}, model: #{@model.inspect},"\
-      " model_id: #{@model_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " model_id: #{@model_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

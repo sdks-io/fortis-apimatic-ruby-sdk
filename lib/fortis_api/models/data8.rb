@@ -9,13 +9,11 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # The transaction action to be performed with the transaction intention.
-    # `sale`, `auth-only`, `avs-only`, `tokenization`.
-    # @return [ActionEnum]
+    # TODO: Write general description for this method
+    # @return [Object]
     attr_accessor :action
 
-    # The transaction action to be performed with the transaction intention.
-    # `sale`, `auth-only`, `avs-only`, `tokenization`.
+    # TODO: Write general description for this method
     # @return [TrueClass | FalseClass]
     attr_accessor :digital_wallets_only
 
@@ -67,8 +65,8 @@ module FortisApi
     # @return [String]
     attr_accessor :title
 
-    # SEC code for the transaction if it's an ACH transaction.
-    # @return [AchSecCodeEnum]
+    # A title for the token.
+    # @return [Object]
     attr_accessor :ach_sec_code
 
     # Bank Funded Only Override. Force the use of a bank funded debit card on
@@ -157,30 +155,24 @@ module FortisApi
     # An array for nullable fields
     def self.nullables
       %w[
-        action
         location_id
         contact_id
-        ach_sec_code
         message
       ]
     end
 
-    def initialize(action = ActionEnum::SALE, digital_wallets_only = false,
-                   methods = SKIP, amount = SKIP, tax_amount = SKIP,
-                   secondary_amount = SKIP, location_id = SKIP,
-                   contact_id = SKIP, save_account = SKIP,
-                   save_account_title = SKIP, title = SKIP,
-                   ach_sec_code = AchSecCodeEnum::WEB,
-                   bank_funded_only_override = SKIP,
-                   allow_partial_authorization_override = SKIP,
-                   auto_decline_cvv_override = SKIP,
-                   auto_decline_street_override = SKIP,
-                   auto_decline_zip_override = SKIP, message = SKIP,
-                   client_token = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(action: SKIP, digital_wallets_only: false, methods: SKIP,
+                   amount: SKIP, tax_amount: SKIP, secondary_amount: SKIP,
+                   location_id: SKIP, contact_id: SKIP, save_account: SKIP,
+                   save_account_title: SKIP, title: SKIP, ach_sec_code: SKIP,
+                   bank_funded_only_override: SKIP,
+                   allow_partial_authorization_override: SKIP,
+                   auto_decline_cvv_override: SKIP,
+                   auto_decline_street_override: SKIP,
+                   auto_decline_zip_override: SKIP, message: SKIP,
+                   client_token: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @action = action unless action == SKIP
       @digital_wallets_only = digital_wallets_only unless digital_wallets_only == SKIP
@@ -216,6 +208,7 @@ module FortisApi
       end
       @message = message unless message == SKIP
       @client_token = client_token unless client_token == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -223,7 +216,7 @@ module FortisApi
       return nil unless hash
 
       # Extract variables from the hash.
-      action = hash['action'] ||= ActionEnum::SALE
+      action = hash.key?('action') ? hash['action'] : SKIP
       digital_wallets_only = hash['digitalWalletsOnly'] ||= false
       # Parameter is an array, so we need to iterate through it
       methods = nil
@@ -236,76 +229,57 @@ module FortisApi
 
       methods = SKIP unless hash.key?('methods')
       amount = hash.key?('amount') ? hash['amount'] : SKIP
-      tax_amount = hash.key?('tax_amount') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8TaxAmount), hash['tax_amount']
-      ) : SKIP
-      secondary_amount = hash.key?('secondary_amount') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8SecondaryAmount), hash['secondary_amount']
-      ) : SKIP
+      tax_amount = hash.key?('tax_amount') ? hash['tax_amount'] : SKIP
+      secondary_amount =
+        hash.key?('secondary_amount') ? hash['secondary_amount'] : SKIP
       location_id = hash.key?('location_id') ? hash['location_id'] : SKIP
       contact_id = hash.key?('contact_id') ? hash['contact_id'] : SKIP
-      save_account = hash.key?('save_account') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8SaveAccount), hash['save_account']
-      ) : SKIP
-      save_account_title = hash.key?('save_account_title') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8SaveAccountTitle), hash['save_account_title']
-      ) : SKIP
-      title = hash.key?('title') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8Title), hash['title']
-      ) : SKIP
-      ach_sec_code = hash['ach_sec_code'] ||= AchSecCodeEnum::WEB
-      bank_funded_only_override = hash.key?('bank_funded_only_override') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8BankFundedOnlyOverride), hash['bank_funded_only_override']
-      ) : SKIP
-      allow_partial_authorization_override = hash.key?('allow_partial_authorization_override') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8AllowPartialAuthorizationOverride), hash['allow_partial_authorization_override']
-      ) : SKIP
-      auto_decline_cvv_override = hash.key?('auto_decline_cvv_override') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8AutoDeclineCvvOverride), hash['auto_decline_cvv_override']
-      ) : SKIP
-      auto_decline_street_override = hash.key?('auto_decline_street_override') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8AutoDeclineStreetOverride), hash['auto_decline_street_override']
-      ) : SKIP
-      auto_decline_zip_override = hash.key?('auto_decline_zip_override') ? APIHelper.deserialize_union_type(
-        UnionTypeLookUp.get(:Data8AutoDeclineZipOverride), hash['auto_decline_zip_override']
-      ) : SKIP
+      save_account = hash.key?('save_account') ? hash['save_account'] : SKIP
+      save_account_title =
+        hash.key?('save_account_title') ? hash['save_account_title'] : SKIP
+      title = hash.key?('title') ? hash['title'] : SKIP
+      ach_sec_code = hash.key?('ach_sec_code') ? hash['ach_sec_code'] : SKIP
+      bank_funded_only_override =
+        hash.key?('bank_funded_only_override') ? hash['bank_funded_only_override'] : SKIP
+      allow_partial_authorization_override =
+        hash.key?('allow_partial_authorization_override') ? hash['allow_partial_authorization_override'] : SKIP
+      auto_decline_cvv_override =
+        hash.key?('auto_decline_cvv_override') ? hash['auto_decline_cvv_override'] : SKIP
+      auto_decline_street_override =
+        hash.key?('auto_decline_street_override') ? hash['auto_decline_street_override'] : SKIP
+      auto_decline_zip_override =
+        hash.key?('auto_decline_zip_override') ? hash['auto_decline_zip_override'] : SKIP
       message = hash.key?('message') ? hash['message'] : SKIP
       client_token = hash.key?('client_token') ? hash['client_token'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data8.new(action,
-                digital_wallets_only,
-                methods,
-                amount,
-                tax_amount,
-                secondary_amount,
-                location_id,
-                contact_id,
-                save_account,
-                save_account_title,
-                title,
-                ach_sec_code,
-                bank_funded_only_override,
-                allow_partial_authorization_override,
-                auto_decline_cvv_override,
-                auto_decline_street_override,
-                auto_decline_zip_override,
-                message,
-                client_token,
-                additional_properties)
-    end
-
-    # Validates an instance of the object from a given value.
-    # @param [Data8 | Hash] The value against the validation is performed.
-    def self.validate(value)
-      return true if value.instance_of? self
-
-      return false unless value.instance_of? Hash
-
-      true
+      Data8.new(action: action,
+                digital_wallets_only: digital_wallets_only,
+                methods: methods,
+                amount: amount,
+                tax_amount: tax_amount,
+                secondary_amount: secondary_amount,
+                location_id: location_id,
+                contact_id: contact_id,
+                save_account: save_account,
+                save_account_title: save_account_title,
+                title: title,
+                ach_sec_code: ach_sec_code,
+                bank_funded_only_override: bank_funded_only_override,
+                allow_partial_authorization_override: allow_partial_authorization_override,
+                auto_decline_cvv_override: auto_decline_cvv_override,
+                auto_decline_street_override: auto_decline_street_override,
+                auto_decline_zip_override: auto_decline_zip_override,
+                message: message,
+                client_token: client_token,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -321,7 +295,7 @@ module FortisApi
       " #{@auto_decline_cvv_override}, auto_decline_street_override:"\
       " #{@auto_decline_street_override}, auto_decline_zip_override:"\
       " #{@auto_decline_zip_override}, message: #{@message}, client_token: #{@client_token},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -339,7 +313,7 @@ module FortisApi
       " #{@auto_decline_cvv_override.inspect}, auto_decline_street_override:"\
       " #{@auto_decline_street_override.inspect}, auto_decline_zip_override:"\
       " #{@auto_decline_zip_override.inspect}, message: #{@message.inspect}, client_token:"\
-      " #{@client_token.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@client_token.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

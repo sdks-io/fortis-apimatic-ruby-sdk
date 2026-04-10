@@ -44,16 +44,15 @@ module FortisApi
       []
     end
 
-    def initialize(enabled = SKIP, columns = SKIP, rows = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(enabled: SKIP, columns: SKIP, rows: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @enabled = enabled unless enabled == SKIP
       @columns = columns unless columns == SKIP
       @rows = rows unless rows == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -65,28 +64,32 @@ module FortisApi
       columns = hash.key?('columns') ? hash['columns'] : SKIP
       rows = hash.key?('rows') ? hash['rows'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Settings.new(enabled,
-                   columns,
-                   rows,
-                   additional_properties)
+      Settings.new(enabled: enabled,
+                   columns: columns,
+                   rows: rows,
+                   additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} enabled: #{@enabled}, columns: #{@columns}, rows: #{@rows},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} enabled: #{@enabled.inspect}, columns: #{@columns.inspect}, rows:"\
-      " #{@rows.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@rows.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

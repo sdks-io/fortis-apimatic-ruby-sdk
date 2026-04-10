@@ -40,14 +40,13 @@ module FortisApi
       []
     end
 
-    def initialize(cc = SKIP, subscriber = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(cc: SKIP, subscriber: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @cc = cc unless cc == SKIP
       @subscriber = subscriber unless subscriber == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -58,27 +57,31 @@ module FortisApi
       cc = hash.key?('cc') ? hash['cc'] : SKIP
       subscriber = hash.key?('subscriber') ? hash['subscriber'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      HomePhone.new(cc,
-                    subscriber,
-                    additional_properties)
+      HomePhone.new(cc: cc,
+                    subscriber: subscriber,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} cc: #{@cc}, subscriber: #{@subscriber}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} cc: #{@cc.inspect}, subscriber: #{@subscriber.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

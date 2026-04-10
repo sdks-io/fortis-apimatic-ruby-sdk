@@ -3,6 +3,8 @@
 
 Surcharge Information on `expand`
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Surcharge`
@@ -32,6 +34,7 @@ Surcharge Information on `expand`
 | `modified_user_id` | `String` | Optional | Last User ID that updated the register<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `modified_ts` | `Integer` | Optional | Modified Time Stamp |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -49,7 +52,11 @@ Surcharge Information on `expand`
   "modified_ts": 1422040992,
   "max_transaction_amount": 252,
   "min_fee_amount": 198,
-  "max_fee_amount": 172
+  "max_fee_amount": 172,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

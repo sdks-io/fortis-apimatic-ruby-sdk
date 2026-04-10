@@ -10,9 +10,14 @@ module FortisApi
     attr_accessor :config, :http_call_back
 
     def self.user_agent
-      'APIMATIC 3.0'
+      'Ruby SDK, Version: 1.0.3, on OS {os-info}'
     end
 
+    def self.user_agent_parameters
+      {
+        '{os-info}' => { 'value' => RUBY_PLATFORM, 'encode' => false }
+      }
+    end
 
     GLOBAL_ERRORS = {
       'default' => ErrorCase.new

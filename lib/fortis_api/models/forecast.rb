@@ -74,13 +74,11 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, recurring_id = SKIP, recurring_type = SKIP,
-                   amount = SKIP, month = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, recurring_id: SKIP, recurring_type: SKIP,
+                   amount: SKIP, month: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @recurring_id = recurring_id unless recurring_id == SKIP
@@ -89,6 +87,7 @@ module FortisApi
       @month = month unless month == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -105,18 +104,22 @@ module FortisApi
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Forecast.new(id,
-                   recurring_id,
-                   recurring_type,
-                   amount,
-                   month,
-                   created_ts,
-                   modified_ts,
-                   additional_properties)
+      Forecast.new(id: id,
+                   recurring_id: recurring_id,
+                   recurring_type: recurring_type,
+                   amount: amount,
+                   month: month,
+                   created_ts: created_ts,
+                   modified_ts: modified_ts,
+                   additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -124,7 +127,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, recurring_id: #{@recurring_id}, recurring_type:"\
       " #{@recurring_type}, amount: #{@amount}, month: #{@month}, created_ts: #{@created_ts},"\
-      " modified_ts: #{@modified_ts}, additional_properties: #{get_additional_properties}>"
+      " modified_ts: #{@modified_ts}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -133,7 +136,7 @@ module FortisApi
       "<#{class_name} id: #{@id.inspect}, recurring_id: #{@recurring_id.inspect}, recurring_type:"\
       " #{@recurring_type.inspect}, amount: #{@amount.inspect}, month: #{@month.inspect},"\
       " created_ts: #{@created_ts.inspect}, modified_ts: #{@modified_ts.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

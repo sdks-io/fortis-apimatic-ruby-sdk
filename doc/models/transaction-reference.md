@@ -1,6 +1,8 @@
 
 # Transaction Reference
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `TransactionReference`
@@ -18,6 +20,7 @@
 | `reference_type` | `String` | Optional | Reference Type |
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `created_user_id` | `String` | Optional | User ID Created the register<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "transaction_id": "transaction_id2",
   "previous_transaction_id": "previous_transaction_id8",
   "transaction_amount": 188,
-  "previous_transaction_amount": 176
+  "previous_transaction_amount": 176,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

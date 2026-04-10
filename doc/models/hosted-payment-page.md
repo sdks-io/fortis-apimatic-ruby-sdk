@@ -3,6 +3,8 @@
 
 Hosted Payment Page Information on `expand`
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `HostedPaymentPage`
@@ -21,7 +23,7 @@ Hosted Payment Page Information on `expand`
 | `max_payment_amount` | `Integer` | Optional | Max Payment Amount<br><br>**Default**: `9999999999`<br><br>**Constraints**: `<= 9999999999` |
 | `redirect_url_on_approve` | `String` | Optional | Redirect Url On Approval |
 | `redirect_url_on_decline` | `String` | Optional | Redirect Url On Decline |
-| `field_configuration` | [`FieldConfiguration`](../../doc/models/field-configuration.md) | Optional | field_configuration |
+| `field_configuration` | [`FieldConfiguration2`](../../doc/models/field-configuration-2.md) | Optional | - |
 | `encryption_key` | `String` | Optional | Encryption Key<br><br>**Constraints**: *Minimum Length*: `32`, *Maximum Length*: `32` |
 | `stylesheet_url` | `String` | Optional | Stylesheet Url |
 | `parent_send_message` | `TrueClass \| FalseClass` | Optional | Parent Send Message |
@@ -31,6 +33,7 @@ Hosted Payment Page Information on `expand`
 | `modified_ts` | `Integer` | Optional | Modified Time Stamp |
 | `created_user_id` | `String` | Optional | System generated id for user who created record<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `modified_user_id` | `String` | Optional | System generated id for user who created record<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,7 +53,11 @@ Hosted Payment Page Information on `expand`
   "modified_ts": 1422040992,
   "created_user_id": "11e95f8ec39de8fbdb0a4f1a",
   "modified_user_id": "11e95f8ec39de8fbdb0a4f1a",
-  "location_api_id": "location_api_id2"
+  "location_api_id": "location_api_id2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

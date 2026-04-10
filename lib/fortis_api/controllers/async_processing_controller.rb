@@ -10,22 +10,24 @@ module FortisApi
     # @param [UUID | String] status_code Required parameter: A [UUID
     # v4](https://datatracker.ietf.org/doc/html/rfc4122) that's unique for the
     # Async Request
-    # @return [ResponseAsyncStatus] Response from the API call.
+    # @return [ApiResponse] Complete http response with raw body and status code.
     def status_check(status_code)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/async/status/{status_code}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(status_code, key: 'status_code')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseAsyncStatus.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

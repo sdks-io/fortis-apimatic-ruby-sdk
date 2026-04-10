@@ -1,6 +1,8 @@
 
 # Response User Verification
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ResponseUserVerification`
@@ -9,8 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type123Enum`](../../doc/models/type-123-enum.md) | Optional | Resource Type<br><br>**Default**: `Type123Enum::USERVERIFICATION` |
+| `type` | [`Type123`](../../doc/models/type-123.md) | Optional | - |
 | `data` | [`Data32`](../../doc/models/data-32.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,7 +24,15 @@
     "id": "id0",
     "user_id": "user_id8",
     "hash": "hash6",
-    "created_ts": 114
+    "created_ts": 114,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

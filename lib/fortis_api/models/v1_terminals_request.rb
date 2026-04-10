@@ -25,10 +25,8 @@ module FortisApi
     # @return [String]
     attr_accessor :terminal_cvm_id
 
-    # Terminal Manufacturer Code
-    # >
-    # >
-    # @return [TerminalManufacturerCodeEnum]
+    # Terminal CVM ID
+    # @return [TerminalManufacturerCode]
     attr_accessor :terminal_manufacturer_code
 
     # Terminal Name
@@ -55,18 +53,12 @@ module FortisApi
     # @return [String]
     attr_accessor :terminal_number
 
-    # The following options outlines some configurable timeout values that can
-    # be used to customize the experience at the terminal for the cardholder.
-    # >These timeouts are specific to Ingenico devices only.
-    # >
-    # >These timeouts are specific to Ingenico devices only.
-    # >
-    # @return [TerminalTimeouts]
+    # Terminal Number
+    # @return [TerminalTimeouts1]
     attr_accessor :terminal_timeouts
 
-    # A JSON of tip percents the JSON MUST contain only these three fields:
-    # percent_1, percent_2, percent_3
-    # @return [TipPercents]
+    # Terminal Number
+    # @return [TipPercents1]
     attr_accessor :tip_percents
 
     # Location Api ID
@@ -165,8 +157,8 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :validated_decryption
 
-    # Communication Type
-    # @return [CommunicationTypeEnum]
+    # Validated Decryption
+    # @return [Object]
     attr_accessor :communication_type
 
     # Active
@@ -276,35 +268,29 @@ module FortisApi
         default_checkout
         default_room_rate
         default_room_number
-        communication_type
       ]
     end
 
-    def initialize(location_id = nil, terminal_application_id = nil,
-                   terminal_manufacturer_code = nil, title = nil,
-                   serial_number = nil, debit = nil, emv = nil,
-                   cashback_enable = nil, print_enable = nil,
-                   sig_capture_enable = nil,
-                   default_product_transaction_id = SKIP,
-                   terminal_cvm_id = SKIP, mac_address = SKIP,
-                   local_ip_address = SKIP, port = 10009,
-                   terminal_number = SKIP, terminal_timeouts = SKIP,
-                   tip_percents = SKIP, location_api_id = SKIP,
-                   terminal_api_id = SKIP, header_line_1 = SKIP,
-                   header_line_2 = SKIP, header_line_3 = SKIP,
-                   header_line_4 = SKIP, header_line_5 = SKIP,
-                   trailer_line_1 = SKIP, trailer_line_2 = SKIP,
-                   trailer_line_3 = SKIP, trailer_line_4 = SKIP,
-                   trailer_line_5 = SKIP, default_checkin = SKIP,
-                   default_checkout = SKIP, default_room_rate = SKIP,
-                   default_room_number = SKIP, is_provisioned = SKIP,
-                   tip_enable = SKIP, validated_decryption = SKIP,
-                   communication_type = SKIP, active = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id:, terminal_application_id:,
+                   terminal_manufacturer_code:, title:, serial_number:, debit:,
+                   emv:, cashback_enable:, print_enable:, sig_capture_enable:,
+                   default_product_transaction_id: SKIP, terminal_cvm_id: SKIP,
+                   mac_address: SKIP, local_ip_address: SKIP, port: 10009,
+                   terminal_number: SKIP, terminal_timeouts: SKIP,
+                   tip_percents: SKIP, location_api_id: SKIP,
+                   terminal_api_id: SKIP, header_line_1: SKIP,
+                   header_line_2: SKIP, header_line_3: SKIP,
+                   header_line_4: SKIP, header_line_5: SKIP,
+                   trailer_line_1: SKIP, trailer_line_2: SKIP,
+                   trailer_line_3: SKIP, trailer_line_4: SKIP,
+                   trailer_line_5: SKIP, default_checkin: SKIP,
+                   default_checkout: SKIP, default_room_rate: SKIP,
+                   default_room_number: SKIP, is_provisioned: SKIP,
+                   tip_enable: SKIP, validated_decryption: SKIP,
+                   communication_type: SKIP, active: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id
       unless default_product_transaction_id == SKIP
@@ -348,6 +334,7 @@ module FortisApi
       @validated_decryption = validated_decryption unless validated_decryption == SKIP
       @communication_type = communication_type unless communication_type == SKIP
       @active = active unless active == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -379,9 +366,9 @@ module FortisApi
       port = hash['port'] ||= 10009
       terminal_number =
         hash.key?('terminal_number') ? hash['terminal_number'] : SKIP
-      terminal_timeouts = TerminalTimeouts.from_hash(hash['terminal_timeouts']) if
+      terminal_timeouts = TerminalTimeouts1.from_hash(hash['terminal_timeouts']) if
         hash['terminal_timeouts']
-      tip_percents = TipPercents.from_hash(hash['tip_percents']) if hash['tip_percents']
+      tip_percents = TipPercents1.from_hash(hash['tip_percents']) if hash['tip_percents']
       location_api_id =
         hash.key?('location_api_id') ? hash['location_api_id'] : SKIP
       terminal_api_id =
@@ -418,50 +405,54 @@ module FortisApi
         hash.key?('communication_type') ? hash['communication_type'] : SKIP
       active = hash.key?('active') ? hash['active'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1TerminalsRequest.new(location_id,
-                             terminal_application_id,
-                             terminal_manufacturer_code,
-                             title,
-                             serial_number,
-                             debit,
-                             emv,
-                             cashback_enable,
-                             print_enable,
-                             sig_capture_enable,
-                             default_product_transaction_id,
-                             terminal_cvm_id,
-                             mac_address,
-                             local_ip_address,
-                             port,
-                             terminal_number,
-                             terminal_timeouts,
-                             tip_percents,
-                             location_api_id,
-                             terminal_api_id,
-                             header_line_1,
-                             header_line_2,
-                             header_line_3,
-                             header_line_4,
-                             header_line_5,
-                             trailer_line_1,
-                             trailer_line_2,
-                             trailer_line_3,
-                             trailer_line_4,
-                             trailer_line_5,
-                             default_checkin,
-                             default_checkout,
-                             default_room_rate,
-                             default_room_number,
-                             is_provisioned,
-                             tip_enable,
-                             validated_decryption,
-                             communication_type,
-                             active,
-                             additional_properties)
+      V1TerminalsRequest.new(location_id: location_id,
+                             terminal_application_id: terminal_application_id,
+                             terminal_manufacturer_code: terminal_manufacturer_code,
+                             title: title,
+                             serial_number: serial_number,
+                             debit: debit,
+                             emv: emv,
+                             cashback_enable: cashback_enable,
+                             print_enable: print_enable,
+                             sig_capture_enable: sig_capture_enable,
+                             default_product_transaction_id: default_product_transaction_id,
+                             terminal_cvm_id: terminal_cvm_id,
+                             mac_address: mac_address,
+                             local_ip_address: local_ip_address,
+                             port: port,
+                             terminal_number: terminal_number,
+                             terminal_timeouts: terminal_timeouts,
+                             tip_percents: tip_percents,
+                             location_api_id: location_api_id,
+                             terminal_api_id: terminal_api_id,
+                             header_line_1: header_line_1,
+                             header_line_2: header_line_2,
+                             header_line_3: header_line_3,
+                             header_line_4: header_line_4,
+                             header_line_5: header_line_5,
+                             trailer_line_1: trailer_line_1,
+                             trailer_line_2: trailer_line_2,
+                             trailer_line_3: trailer_line_3,
+                             trailer_line_4: trailer_line_4,
+                             trailer_line_5: trailer_line_5,
+                             default_checkin: default_checkin,
+                             default_checkout: default_checkout,
+                             default_room_rate: default_room_rate,
+                             default_room_number: default_room_number,
+                             is_provisioned: is_provisioned,
+                             tip_enable: tip_enable,
+                             validated_decryption: validated_decryption,
+                             communication_type: communication_type,
+                             active: active,
+                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -485,7 +476,7 @@ module FortisApi
       " #{@sig_capture_enable}, is_provisioned: #{@is_provisioned}, tip_enable: #{@tip_enable},"\
       " validated_decryption: #{@validated_decryption}, communication_type:"\
       " #{@communication_type}, active: #{@active}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -513,7 +504,7 @@ module FortisApi
       " #{@sig_capture_enable.inspect}, is_provisioned: #{@is_provisioned.inspect}, tip_enable:"\
       " #{@tip_enable.inspect}, validated_decryption: #{@validated_decryption.inspect},"\
       " communication_type: #{@communication_type.inspect}, active: #{@active.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

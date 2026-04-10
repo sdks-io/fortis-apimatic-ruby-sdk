@@ -37,12 +37,12 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :include_children
 
-    # Alert Type
-    # @return [AlertTypeEnum]
+    # Include Children
+    # @return [Object]
     attr_accessor :alert_type
 
-    # Alert Type ID
-    # @return [AlertTypeIdEnum]
+    # Include Children
+    # @return [Object]
     attr_accessor :alert_type_id
 
     # Description
@@ -122,8 +122,6 @@ module FortisApi
       %w[
         location_id
         location_api_id
-        alert_type
-        alert_type_id
         description
         alert_message
         created_user_id
@@ -131,17 +129,15 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = SKIP, location_api_id = SKIP,
-                   date_start = SKIP, date_end = SKIP, user_location = SKIP,
-                   user_contact = SKIP, include_children = SKIP,
-                   alert_type = SKIP, alert_type_id = SKIP, description = SKIP,
-                   alert_message = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   modified_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, location_api_id: SKIP, date_start: SKIP,
+                   date_end: SKIP, user_location: SKIP, user_contact: SKIP,
+                   include_children: SKIP, alert_type: SKIP,
+                   alert_type_id: SKIP, description: SKIP, alert_message: SKIP,
+                   id: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   created_user_id: SKIP, modified_user_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       @location_api_id = location_api_id unless location_api_id == SKIP
@@ -159,6 +155,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -187,27 +184,31 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ActiveNotificationAlert.new(location_id,
-                                  location_api_id,
-                                  date_start,
-                                  date_end,
-                                  user_location,
-                                  user_contact,
-                                  include_children,
-                                  alert_type,
-                                  alert_type_id,
-                                  description,
-                                  alert_message,
-                                  id,
-                                  created_ts,
-                                  modified_ts,
-                                  created_user_id,
-                                  modified_user_id,
-                                  additional_properties)
+      ActiveNotificationAlert.new(location_id: location_id,
+                                  location_api_id: location_api_id,
+                                  date_start: date_start,
+                                  date_end: date_end,
+                                  user_location: user_location,
+                                  user_contact: user_contact,
+                                  include_children: include_children,
+                                  alert_type: alert_type,
+                                  alert_type_id: alert_type_id,
+                                  description: description,
+                                  alert_message: alert_message,
+                                  id: id,
+                                  created_ts: created_ts,
+                                  modified_ts: modified_ts,
+                                  created_user_id: created_user_id,
+                                  modified_user_id: modified_user_id,
+                                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -219,7 +220,7 @@ module FortisApi
       " #{@alert_type}, alert_type_id: #{@alert_type_id}, description: #{@description},"\
       " alert_message: #{@alert_message}, id: #{@id}, created_ts: #{@created_ts}, modified_ts:"\
       " #{@modified_ts}, created_user_id: #{@created_user_id}, modified_user_id:"\
-      " #{@modified_user_id}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_user_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -233,7 +234,7 @@ module FortisApi
       " #{@description.inspect}, alert_message: #{@alert_message.inspect}, id: #{@id.inspect},"\
       " created_ts: #{@created_ts.inspect}, modified_ts: #{@modified_ts.inspect}, created_user_id:"\
       " #{@created_user_id.inspect}, modified_user_id: #{@modified_user_id.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

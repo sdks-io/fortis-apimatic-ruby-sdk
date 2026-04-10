@@ -1,6 +1,8 @@
 
 # V1 Tokens Cc Request
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `V1TokensCcRequest`
@@ -19,11 +21,11 @@
 | `token_c_1` | `String` | Optional | Custom field 1 for API users to store custom data<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `128` |
 | `token_c_2` | `String` | Optional | Custom field 2 for API users to store custom data<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `128` |
 | `token_c_3` | `String` | Optional | Custom field 3 for API users to store custom data<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `128` |
-| `ach_sec_code` | [`AchSecCode3Enum`](../../doc/models/ach-sec-code-3-enum.md) | Optional | SEC code for the account |
-| `billing_address` | [`BillingAddress`](../../doc/models/billing-address.md) | Optional | Billing Address Object |
+| `ach_sec_code` | `Object` | Optional | - |
+| `billing_address` | [`BillingAddress7`](../../doc/models/billing-address-7.md) | Optional | - |
 | `contact_id` | `String` | Optional | Used to associate the Token with a Contact.<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `customer_id` | `String` | Optional | Used to store a customer identification number.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `50` |
-| `identity_verification` | [`IdentityVerification2`](../../doc/models/identity-verification-2.md) | Optional | Identity verification |
+| `identity_verification` | [`IdentityVerification5`](../../doc/models/identity-verification-5.md) | Optional | - |
 | `location_id` | `String` | Required | A valid Location Id associated with the Contact for this Token<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `previous_account_vault_api_id` | `String` | Optional | Can be used to pull payment info from a previous token api id.<br><br>**Constraints**: *Maximum Length*: `64` |
 | `previous_token_api_id` | `String` | Optional | Can be used to pull payment info from a previous token api id.<br><br>**Constraints**: *Maximum Length*: `64` |
@@ -49,6 +51,7 @@
 | `run_avs` | `TrueClass \| FalseClass` | Optional | A flag that will override a product transactions run_avs_on_accountvault_create setting to determine if an avsonly transaction should be run prior to storing the token. When storing an token with tha run_avs flag, if the avsonly check fails account verification with the processor, the token will not be stored in the system. The meaning of the AVS response codes can be found here on this page.This is the new preferred method of validating a credit card and can be used instead of the legacy $1 auth only transaction.Using this flag overrides the default setting for the locations product transactions.<br><br>> Transaction fees may apply when performing an avsonly transaction while storing an token. |
 | `track_data` | `String` | Optional | Track Data from a magnetic card swipe.<br><br>**Constraints**: *Maximum Length*: `256` |
 | `ticket` | `String` | Optional | A valid ticket that was created to store the token.<br><br>**Constraints**: *Maximum Length*: `36` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -64,7 +67,6 @@
   "token_c1": "token custom 1",
   "token_c2": "token custom 2",
   "token_c3": "token custom 3",
-  "ach_sec_code": "WEB",
   "contact_id": "11e95f8ec39de8fbdb0a4f1a",
   "customer_id": "123456",
   "location_id": "11e95f8ec39de8fbdb0a4f1a",
@@ -89,7 +91,11 @@
   "e_keyed_data": "236D530E098D48DB3F1AA367882CC1A7D475EFCACEFF1E965F17EC1E2D42CBF611C9EB0F80F4255784BA06951BD6092AB6CD3369D3D7E022E74DDCB16F9C40599FA03355E37E6ABB06B717B207709ED8C6BC5C7B6E32BB2B2F5046551A1C88D6",
   "run_avs": false,
   "track_data": "%B5424181111112228^FDCS TEST CARD /MASTERCARD^18121010001111123456789012?;5424181111112228=1812101100000123456?",
-  "ticket": "12345678"
+  "ticket": "12345678",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -75,14 +75,12 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, declined_transaction_id = SKIP,
-                   payment_transaction_id = SKIP, created_ts = SKIP,
-                   created_user_id = SKIP, modified_ts = SKIP,
-                   modified_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, declined_transaction_id: SKIP,
+                   payment_transaction_id: SKIP, created_ts: SKIP,
+                   created_user_id: SKIP, modified_ts: SKIP,
+                   modified_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @declined_transaction_id = declined_transaction_id unless declined_transaction_id == SKIP
@@ -91,6 +89,7 @@ module FortisApi
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -110,18 +109,22 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      PaymentRecurringNotification.new(id,
-                                       declined_transaction_id,
-                                       payment_transaction_id,
-                                       created_ts,
-                                       created_user_id,
-                                       modified_ts,
-                                       modified_user_id,
-                                       additional_properties)
+      PaymentRecurringNotification.new(id: id,
+                                       declined_transaction_id: declined_transaction_id,
+                                       payment_transaction_id: payment_transaction_id,
+                                       created_ts: created_ts,
+                                       created_user_id: created_user_id,
+                                       modified_ts: modified_ts,
+                                       modified_user_id: modified_user_id,
+                                       additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -130,7 +133,7 @@ module FortisApi
       "<#{class_name} id: #{@id}, declined_transaction_id: #{@declined_transaction_id},"\
       " payment_transaction_id: #{@payment_transaction_id}, created_ts: #{@created_ts},"\
       " created_user_id: #{@created_user_id}, modified_ts: #{@modified_ts}, modified_user_id:"\
-      " #{@modified_user_id}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_user_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -140,7 +143,7 @@ module FortisApi
       " #{@declined_transaction_id.inspect}, payment_transaction_id:"\
       " #{@payment_transaction_id.inspect}, created_ts: #{@created_ts.inspect}, created_user_id:"\
       " #{@created_user_id.inspect}, modified_ts: #{@modified_ts.inspect}, modified_user_id:"\
-      " #{@modified_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

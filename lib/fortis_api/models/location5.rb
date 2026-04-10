@@ -68,13 +68,11 @@ module FortisApi
       ]
     end
 
-    def initialize(address_line_1 = SKIP, address_line_2 = SKIP, city = SKIP,
-                   state_province = SKIP, postal_code = SKIP,
-                   phone_number = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(address_line_1: SKIP, address_line_2: SKIP, city: SKIP,
+                   state_province: SKIP, postal_code: SKIP, phone_number: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @address_line_1 = address_line_1 unless address_line_1 == SKIP
       @address_line_2 = address_line_2 unless address_line_2 == SKIP
@@ -82,6 +80,7 @@ module FortisApi
       @state_province = state_province unless state_province == SKIP
       @postal_code = postal_code unless postal_code == SKIP
       @phone_number = phone_number unless phone_number == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -99,17 +98,21 @@ module FortisApi
       postal_code = hash.key?('postal_code') ? hash['postal_code'] : SKIP
       phone_number = hash.key?('phone_number') ? hash['phone_number'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Location5.new(address_line_1,
-                    address_line_2,
-                    city,
-                    state_province,
-                    postal_code,
-                    phone_number,
-                    additional_properties)
+      Location5.new(address_line_1: address_line_1,
+                    address_line_2: address_line_2,
+                    city: city,
+                    state_province: state_province,
+                    postal_code: postal_code,
+                    phone_number: phone_number,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -117,7 +120,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} address_line_1: #{@address_line_1}, address_line_2: #{@address_line_2},"\
       " city: #{@city}, state_province: #{@state_province}, postal_code: #{@postal_code},"\
-      " phone_number: #{@phone_number}, additional_properties: #{get_additional_properties}>"
+      " phone_number: #{@phone_number}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -126,7 +129,7 @@ module FortisApi
       "<#{class_name} address_line_1: #{@address_line_1.inspect}, address_line_2:"\
       " #{@address_line_2.inspect}, city: #{@city.inspect}, state_province:"\
       " #{@state_province.inspect}, postal_code: #{@postal_code.inspect}, phone_number:"\
-      " #{@phone_number.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@phone_number.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

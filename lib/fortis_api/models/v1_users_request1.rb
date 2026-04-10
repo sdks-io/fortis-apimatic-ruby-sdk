@@ -85,8 +85,8 @@ module FortisApi
     # @return [String]
     attr_accessor :tz
 
-    # Ui Prefs
-    # @return [UiPrefs]
+    # Time zone
+    # @return [UiPrefs1]
     attr_accessor :ui_prefs
 
     # Username
@@ -101,8 +101,8 @@ module FortisApi
     # @return [String]
     attr_accessor :user_hash_key
 
-    # User Type
-    # @return [UserTypeCodeEnum]
+    # User Hash Key
+    # @return [Object]
     attr_accessor :user_type_code
 
     # Password
@@ -125,8 +125,8 @@ module FortisApi
     # @return [String]
     attr_accessor :primary_location_api_id
 
-    # Status Code
-    # @return [StatusCodeEnum]
+    # Primary LocationApi ID
+    # @return [Object]
     attr_accessor :status_code
 
     # API Only
@@ -137,8 +137,8 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :is_invitation
 
-    # Address
-    # @return [Address2]
+    # Is Invitation
+    # @return [Address3]
     attr_accessor :address
 
     # A mapping from model property names to API property names.
@@ -243,34 +243,29 @@ module FortisApi
         username
         user_api_key
         user_hash_key
-        user_type_code
         password
         zip
         location_id
         contact_api_id
         primary_location_api_id
-        status_code
       ]
     end
 
-    def initialize(account_number = SKIP, branding_domain_url = SKIP,
-                   cell_phone = SKIP, company_name = SKIP, contact_id = SKIP,
-                   date_of_birth = SKIP, domain_id = SKIP, email = SKIP,
-                   email_trx_receipt = SKIP, home_phone = SKIP,
-                   first_name = SKIP, last_name = SKIP, locale = SKIP,
-                   office_phone = SKIP, office_ext_phone = SKIP,
-                   primary_location_id = SKIP, requires_new_password = SKIP,
-                   terms_condition_code = SKIP, tz = SKIP, ui_prefs = SKIP,
-                   username = SKIP, user_api_key = SKIP, user_hash_key = SKIP,
-                   user_type_code = SKIP, password = SKIP, zip = SKIP,
-                   location_id = SKIP, contact_api_id = SKIP,
-                   primary_location_api_id = SKIP, status_code = SKIP,
-                   api_only = SKIP, is_invitation = SKIP, address = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(account_number: SKIP, branding_domain_url: SKIP,
+                   cell_phone: SKIP, company_name: SKIP, contact_id: SKIP,
+                   date_of_birth: SKIP, domain_id: SKIP, email: SKIP,
+                   email_trx_receipt: SKIP, home_phone: SKIP, first_name: SKIP,
+                   last_name: SKIP, locale: SKIP, office_phone: SKIP,
+                   office_ext_phone: SKIP, primary_location_id: SKIP,
+                   requires_new_password: SKIP, terms_condition_code: SKIP,
+                   tz: SKIP, ui_prefs: SKIP, username: SKIP, user_api_key: SKIP,
+                   user_hash_key: SKIP, user_type_code: SKIP, password: SKIP,
+                   zip: SKIP, location_id: SKIP, contact_api_id: SKIP,
+                   primary_location_api_id: SKIP, status_code: SKIP,
+                   api_only: SKIP, is_invitation: SKIP, address: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @account_number = account_number unless account_number == SKIP
       @branding_domain_url = branding_domain_url unless branding_domain_url == SKIP
@@ -305,6 +300,7 @@ module FortisApi
       @api_only = api_only unless api_only == SKIP
       @is_invitation = is_invitation unless is_invitation == SKIP
       @address = address unless address == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -338,7 +334,7 @@ module FortisApi
       terms_condition_code =
         hash.key?('terms_condition_code') ? hash['terms_condition_code'] : SKIP
       tz = hash.key?('tz') ? hash['tz'] : SKIP
-      ui_prefs = UiPrefs.from_hash(hash['ui_prefs']) if hash['ui_prefs']
+      ui_prefs = UiPrefs1.from_hash(hash['ui_prefs']) if hash['ui_prefs']
       username = hash.key?('username') ? hash['username'] : SKIP
       user_api_key = hash.key?('user_api_key') ? hash['user_api_key'] : SKIP
       user_hash_key = hash.key?('user_hash_key') ? hash['user_hash_key'] : SKIP
@@ -354,46 +350,50 @@ module FortisApi
       status_code = hash.key?('status_code') ? hash['status_code'] : SKIP
       api_only = hash.key?('api_only') ? hash['api_only'] : SKIP
       is_invitation = hash.key?('is_invitation') ? hash['is_invitation'] : SKIP
-      address = Address2.from_hash(hash['address']) if hash['address']
+      address = Address3.from_hash(hash['address']) if hash['address']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1UsersRequest1.new(account_number,
-                          branding_domain_url,
-                          cell_phone,
-                          company_name,
-                          contact_id,
-                          date_of_birth,
-                          domain_id,
-                          email,
-                          email_trx_receipt,
-                          home_phone,
-                          first_name,
-                          last_name,
-                          locale,
-                          office_phone,
-                          office_ext_phone,
-                          primary_location_id,
-                          requires_new_password,
-                          terms_condition_code,
-                          tz,
-                          ui_prefs,
-                          username,
-                          user_api_key,
-                          user_hash_key,
-                          user_type_code,
-                          password,
-                          zip,
-                          location_id,
-                          contact_api_id,
-                          primary_location_api_id,
-                          status_code,
-                          api_only,
-                          is_invitation,
-                          address,
-                          additional_properties)
+      V1UsersRequest1.new(account_number: account_number,
+                          branding_domain_url: branding_domain_url,
+                          cell_phone: cell_phone,
+                          company_name: company_name,
+                          contact_id: contact_id,
+                          date_of_birth: date_of_birth,
+                          domain_id: domain_id,
+                          email: email,
+                          email_trx_receipt: email_trx_receipt,
+                          home_phone: home_phone,
+                          first_name: first_name,
+                          last_name: last_name,
+                          locale: locale,
+                          office_phone: office_phone,
+                          office_ext_phone: office_ext_phone,
+                          primary_location_id: primary_location_id,
+                          requires_new_password: requires_new_password,
+                          terms_condition_code: terms_condition_code,
+                          tz: tz,
+                          ui_prefs: ui_prefs,
+                          username: username,
+                          user_api_key: user_api_key,
+                          user_hash_key: user_hash_key,
+                          user_type_code: user_type_code,
+                          password: password,
+                          zip: zip,
+                          location_id: location_id,
+                          contact_api_id: contact_api_id,
+                          primary_location_api_id: primary_location_api_id,
+                          status_code: status_code,
+                          api_only: api_only,
+                          is_invitation: is_invitation,
+                          address: address,
+                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -412,7 +412,7 @@ module FortisApi
       " #{@location_id}, contact_api_id: #{@contact_api_id}, primary_location_api_id:"\
       " #{@primary_location_api_id}, status_code: #{@status_code}, api_only: #{@api_only},"\
       " is_invitation: #{@is_invitation}, address: #{@address}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -434,7 +434,7 @@ module FortisApi
       " contact_api_id: #{@contact_api_id.inspect}, primary_location_api_id:"\
       " #{@primary_location_api_id.inspect}, status_code: #{@status_code.inspect}, api_only:"\
       " #{@api_only.inspect}, is_invitation: #{@is_invitation.inspect}, address:"\
-      " #{@address.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@address.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

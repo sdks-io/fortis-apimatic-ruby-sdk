@@ -37,20 +37,20 @@ module FortisApi
     # @return [String]
     attr_accessor :created_user_id
 
-    # Transaction Information on `expand`
-    # @return [RejectedTransaction]
+    # User ID Created the register
+    # @return [Transaction]
     attr_accessor :rejected_transaction
 
-    # Transaction Information on `expand`
-    # @return [RetryTransaction]
+    # User ID Created the register
+    # @return [Transaction]
     attr_accessor :retry_transaction
 
-    # Transaction Information on `expand`
-    # @return [ReturnFeeTransaction]
+    # User ID Created the register
+    # @return [Transaction]
     attr_accessor :return_fee_transaction
 
-    # User Information on `expand`
-    # @return [CreatedUser]
+    # User ID Created the register
+    # @return [User9]
     attr_accessor :created_user
 
     # Changelog Information on `expand`
@@ -100,17 +100,14 @@ module FortisApi
       ]
     end
 
-    def initialize(rejected_transaction_id = SKIP, return_fee = SKIP, id = SKIP,
-                   retry_transaction_id = SKIP,
-                   return_fee_transaction_id = SKIP, created_ts = SKIP,
-                   created_user_id = SKIP, rejected_transaction = SKIP,
-                   retry_transaction = SKIP, return_fee_transaction = SKIP,
-                   created_user = SKIP, changelogs = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(rejected_transaction_id: SKIP, return_fee: SKIP, id: SKIP,
+                   retry_transaction_id: SKIP, return_fee_transaction_id: SKIP,
+                   created_ts: SKIP, created_user_id: SKIP,
+                   rejected_transaction: SKIP, retry_transaction: SKIP,
+                   return_fee_transaction: SKIP, created_user: SKIP,
+                   changelogs: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @rejected_transaction_id = rejected_transaction_id unless rejected_transaction_id == SKIP
       @return_fee = return_fee unless return_fee == SKIP
@@ -127,6 +124,7 @@ module FortisApi
       @return_fee_transaction = return_fee_transaction unless return_fee_transaction == SKIP
       @created_user = created_user unless created_user == SKIP
       @changelogs = changelogs unless changelogs == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -145,13 +143,13 @@ module FortisApi
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
-      rejected_transaction = RejectedTransaction.from_hash(hash['rejected_transaction']) if
+      rejected_transaction = Transaction.from_hash(hash['rejected_transaction']) if
         hash['rejected_transaction']
-      retry_transaction = RetryTransaction.from_hash(hash['retry_transaction']) if
+      retry_transaction = Transaction.from_hash(hash['retry_transaction']) if
         hash['retry_transaction']
-      return_fee_transaction = ReturnFeeTransaction.from_hash(hash['return_fee_transaction']) if
+      return_fee_transaction = Transaction.from_hash(hash['return_fee_transaction']) if
         hash['return_fee_transaction']
-      created_user = CreatedUser.from_hash(hash['created_user']) if hash['created_user']
+      created_user = User9.from_hash(hash['created_user']) if hash['created_user']
       # Parameter is an array, so we need to iterate through it
       changelogs = nil
       unless hash['changelogs'].nil?
@@ -163,23 +161,27 @@ module FortisApi
 
       changelogs = SKIP unless hash.key?('changelogs')
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data26.new(rejected_transaction_id,
-                 return_fee,
-                 id,
-                 retry_transaction_id,
-                 return_fee_transaction_id,
-                 created_ts,
-                 created_user_id,
-                 rejected_transaction,
-                 retry_transaction,
-                 return_fee_transaction,
-                 created_user,
-                 changelogs,
-                 additional_properties)
+      Data26.new(rejected_transaction_id: rejected_transaction_id,
+                 return_fee: return_fee,
+                 id: id,
+                 retry_transaction_id: retry_transaction_id,
+                 return_fee_transaction_id: return_fee_transaction_id,
+                 created_ts: created_ts,
+                 created_user_id: created_user_id,
+                 rejected_transaction: rejected_transaction,
+                 retry_transaction: retry_transaction,
+                 return_fee_transaction: return_fee_transaction,
+                 created_user: created_user,
+                 changelogs: changelogs,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -191,7 +193,7 @@ module FortisApi
       " created_user_id: #{@created_user_id}, rejected_transaction: #{@rejected_transaction},"\
       " retry_transaction: #{@retry_transaction}, return_fee_transaction:"\
       " #{@return_fee_transaction}, created_user: #{@created_user}, changelogs: #{@changelogs},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -205,7 +207,7 @@ module FortisApi
       " #{@rejected_transaction.inspect}, retry_transaction: #{@retry_transaction.inspect},"\
       " return_fee_transaction: #{@return_fee_transaction.inspect}, created_user:"\
       " #{@created_user.inspect}, changelogs: #{@changelogs.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

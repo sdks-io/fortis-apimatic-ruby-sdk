@@ -9,21 +9,22 @@ module FortisApi
     # TODO: type endpoint description here
     # @param [V1WebhooksBatchRequest] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand123Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand123]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseWebhook] Response from the API call.
-    def create_a_new_transaction_batch_postback_config(body,
-                                                       expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanewtransactionbatchpostbackconfig(body,
+                                                 expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/webhooks/batch',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -31,9 +32,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -43,21 +45,22 @@ module FortisApi
     # TODO: type endpoint description here
     # @param [V1WebhooksContactRequest] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand123Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand123]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseWebhook] Response from the API call.
-    def create_a_new_contact_postback_config(body,
-                                             expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanewcontactpostbackconfig(body,
+                                        expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/webhooks/contact',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -65,9 +68,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -77,21 +81,22 @@ module FortisApi
     # TODO: type endpoint description here
     # @param [V1WebhooksTransactionRequest] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand123Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand123]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseWebhook] Response from the API call.
-    def create_a_new_transaction_postback_config(body,
-                                                 expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def createanewtransactionpostbackconfig(body,
+                                            expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::POST,
                                      '/v1/webhooks/transaction',
                                      Server::DEFAULT)
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -99,9 +104,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -110,22 +116,24 @@ module FortisApi
 
     # TODO: type endpoint description here
     # @param [String] webhook_id Required parameter: Postback Config ID
-    # @return [ResponseWebhook] Response from the API call.
-    def delete_a_postback_config(webhook_id)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def deleteapostbackconfig(webhook_id)
       @api_call
         .request(new_request_builder(HttpMethodEnum::DELETE,
                                      '/v1/webhooks/{webhook_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(webhook_id, key: 'webhook_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
@@ -133,24 +141,26 @@ module FortisApi
     # @param [String] webhook_id Required parameter: Postback Config ID
     # @param [V1WebhooksBatchRequest1] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand123Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand123]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseWebhook] Response from the API call.
-    def update_transaction_batch_postback_config(webhook_id,
-                                                 body,
-                                                 expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def updatetransactionbatchpostbackconfig(webhook_id,
+                                             body,
+                                             expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PATCH,
                                      '/v1/webhooks/{webhook_id}/batch',
                                      Server::DEFAULT)
                    .template_param(new_parameter(webhook_id, key: 'webhook_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -158,9 +168,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -171,24 +182,26 @@ module FortisApi
     # @param [String] webhook_id Required parameter: Postback Config ID
     # @param [V1WebhooksContactRequest1] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand123Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand123]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseWebhook] Response from the API call.
-    def update_contact_postback_config(webhook_id,
-                                       body,
-                                       expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def updatecontactpostbackconfig(webhook_id,
+                                    body,
+                                    expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PATCH,
                                      '/v1/webhooks/{webhook_id}/contact',
                                      Server::DEFAULT)
                    .template_param(new_parameter(webhook_id, key: 'webhook_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -196,9 +209,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))
@@ -209,24 +223,26 @@ module FortisApi
     # @param [String] webhook_id Required parameter: Postback Config ID
     # @param [V1WebhooksTransactionRequest1] body Required parameter: TODO: type
     # description here
-    # @param [Array[Expand123Enum]] expand Optional parameter: Most endpoints in
-    # the API have a way to retrieve extra data related to the current record
-    # being retrieved. For example, if the API request is for the accountvaults
+    # @param [Array[Expand123]] expand Optional parameter: Most endpoints in the
+    # API have a way to retrieve extra data related to the current record being
+    # retrieved. For example, if the API request is for the accountvaults
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @return [ResponseWebhook] Response from the API call.
-    def update_transaction_postback_config(webhook_id,
-                                           body,
-                                           expand: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def updatetransactionpostbackconfig(webhook_id,
+                                        body,
+                                        expand: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::PATCH,
                                      '/v1/webhooks/{webhook_id}/transaction',
                                      Server::DEFAULT)
                    .template_param(new_parameter(webhook_id, key: 'webhook_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'Content-Type'))
-                   .body_param(new_parameter(body))
+                   .body_param(new_parameter(body)
+                                .is_required(true))
                    .query_param(new_parameter(expand, key: 'expand'))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .body_serializer(proc do |param| param.to_json unless param.nil? end)
@@ -234,9 +250,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseWebhook.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException)
+                                 Response401TokenException)
                     .local_error('412',
                                  'Precondition Failed',
                                  Response412Exception))

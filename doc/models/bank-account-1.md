@@ -5,6 +5,8 @@ Array of bank account objects.
 
 > One account with “deposit_type” of primary is required. Maximum of two accounts are allowed.
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `BankAccount1`
@@ -17,8 +19,9 @@ Array of bank account objects.
 | `routing_number` | `String` | Required | Nine-digit Bank routing number.<br><br>**Constraints**: *Maximum Length*: `9` |
 | `account_number` | `String` | Required | Account number.<br><br>**Constraints**: *Maximum Length*: `17` |
 | `is_primary` | `TrueClass \| FalseClass` | Optional | Flag indicating whether or not the account is the primary account. Only one account can be marked as primary.<br><br>> Indicates that the account should be the primary account for the merchant. One and only one account may be set to true. |
-| `account_type` | [`AccountType12Enum`](../../doc/models/account-type-12-enum.md) | Required | Account type. Either "checking" or "savings"<br><br>**Constraints**: *Maximum Length*: `10` |
+| `account_type` | [`AccountType12`](../../doc/models/account-type-12.md) | Required | **Constraints**: *Maximum Length*: `10` |
 | `alt_deposit_types` | `Array[String]` | Optional | Array of deposit types. ('fees', 'adjustments', 'returns') |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,7 +35,11 @@ Array of bank account objects.
   "alt_deposit_types": [
     "alt_deposit_types0",
     "alt_deposit_types9"
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

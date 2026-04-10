@@ -25,7 +25,7 @@ def status_check(status_code)
 
 ## Response Type
 
-[`ResponseAsyncStatus`](../../doc/models/response-async-status.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseAsyncStatus`](../../doc/models/response-async-status.md).
 
 ## Example Usage
 
@@ -33,7 +33,12 @@ def status_check(status_code)
 status_code = '406c66c3-21cb-47fb-80fc-843bc42507fb'
 
 result = async_processing_controller.status_check(status_code)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -56,5 +61,5 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 

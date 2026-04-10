@@ -30,13 +30,12 @@ module FortisApi
       []
     end
 
-    def initialize(defer_count = nil, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(defer_count:, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @defer_count = defer_count
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -46,26 +45,30 @@ module FortisApi
       # Extract variables from the hash.
       defer_count = hash.key?('defer_count') ? hash['defer_count'] : nil
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1RecurringsDeferPaymentRequest.new(defer_count,
-                                          additional_properties)
+      V1RecurringsDeferPaymentRequest.new(defer_count: defer_count,
+                                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} defer_count: #{@defer_count}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} defer_count: #{@defer_count.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

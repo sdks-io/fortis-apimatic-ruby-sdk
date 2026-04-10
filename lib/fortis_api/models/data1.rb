@@ -9,8 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Do not store the Async Code for long term use, it expires after 30 days.
-    # @return [Async]
+    # TODO: Write general description for this method
+    # @return [Async2]
     attr_accessor :async
 
     # A mapping from model property names to API property names.
@@ -32,13 +32,12 @@ module FortisApi
       []
     end
 
-    def initialize(async = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(async: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @async = async unless async == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -46,27 +45,31 @@ module FortisApi
       return nil unless hash
 
       # Extract variables from the hash.
-      async = Async.from_hash(hash['async']) if hash['async']
+      async = Async2.from_hash(hash['async']) if hash['async']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data1.new(async,
-                additional_properties)
+      Data1.new(async: async,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
-      "<#{class_name} async: #{@async}, additional_properties: #{get_additional_properties}>"
+      "<#{class_name} async: #{@async}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} async: #{@async.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

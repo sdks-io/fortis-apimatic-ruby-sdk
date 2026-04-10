@@ -6,17 +6,17 @@ transactions_ach_controller = client.transactions_ach
 
 ## Class Name
 
-`TransactionsACHController`
+`TransactionsAchController`
 
 ## Methods
 
 * [ACH Credit](../../doc/controllers/transactions-ach.md#ach-credit)
-* [ACH Credit - Previous Transaction](../../doc/controllers/transactions-ach.md#ach-credit---previous-transaction)
-* [ACH Credit - Tokenized](../../doc/controllers/transactions-ach.md#ach-credit---tokenized)
+* [ACH Credit-Previous Transaction](../../doc/controllers/transactions-ach.md#ach-credit-previous-transaction)
+* [ACH Credit-Tokenized](../../doc/controllers/transactions-ach.md#ach-credit-tokenized)
 * [ACH Debit](../../doc/controllers/transactions-ach.md#ach-debit)
-* [ACH Debit - Previous Transaction](../../doc/controllers/transactions-ach.md#ach-debit---previous-transaction)
-* [ACH Debit - Tokenized](../../doc/controllers/transactions-ach.md#ach-debit---tokenized)
-* [ACH Refund - Previous Transaction](../../doc/controllers/transactions-ach.md#ach-refund---previous-transaction)
+* [ACH Debit-Previous Transaction](../../doc/controllers/transactions-ach.md#ach-debit-previous-transaction)
+* [ACH Debit-Tokenized](../../doc/controllers/transactions-ach.md#ach-debit-tokenized)
+* [ACH Refund-Previous Transaction](../../doc/controllers/transactions-ach.md#ach-refund-previous-transaction)
 
 
 # ACH Credit
@@ -33,82 +33,78 @@ def ach_credit(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchCreditKeyedRequest`](../../doc/models/v1-transactions-ach-credit-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchCreditKeyedRequest.new(
-  1,
-  'smith',
-  '24345',
-  AccountType16Enum::CHECKING,
-  '051904524',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  '8520748520963'
+  transaction_amount: 1,
+  account_holder_name: 'smith',
+  account_number: '24345',
+  account_type: AccountType16::CHECKING,
+  routing_number: '051904524',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  check_number: '8520748520963'
 )
 
 result = transactions_ach_controller.ach_credit(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -1162,11 +1158,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# ACH Credit - Previous Transaction
+# ACH Credit-Previous Transaction
 
 ACH Transaction that is intended for a Blind Refund, where using a previous transaction id to re process. Must have Fortis approval prior to use.
 
@@ -1180,86 +1176,75 @@ def ach_credit_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchCreditPrevTrxnRequest`](../../doc/models/v1-transactions-ach-credit-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchCreditPrevTrxnRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  'smith',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  account_holder_name: 'smith',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_ach_controller.ach_credit_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -2313,11 +2298,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# ACH Credit - Tokenized
+# ACH Credit-Tokenized
 
 ACH Transaction using an ACH Token_id that is intended for a Blind Refund, where a previous transaction id is not known. Must have approval prior to use.
 
@@ -2331,88 +2316,76 @@ def ach_credit_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchCreditTokenRequest`](../../doc/models/v1-transactions-ach-credit-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchCreditTokenRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  'smith',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  account_holder_name: 'smith',
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_ach_controller.ach_credit_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -3466,7 +3439,7 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
@@ -3484,82 +3457,78 @@ def ach_debit(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchDebitKeyedRequest`](../../doc/models/v1-transactions-ach-debit-keyed-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchDebitKeyedRequest.new(
-  1,
-  'smith',
-  '24345',
-  AccountType16Enum::CHECKING,
-  '051904524',
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  '8520748520963'
+  transaction_amount: 1,
+  account_holder_name: 'smith',
+  account_number: '24345',
+  account_type: AccountType16::CHECKING,
+  routing_number: '051904524',
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  check_number: '8520748520963'
 )
 
 result = transactions_ach_controller.ach_debit(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -4613,11 +4582,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# ACH Debit - Previous Transaction
+# ACH Debit-Previous Transaction
 
 Create an ACH Sale transaction with a previous ACH transaction_id.
 
@@ -4631,86 +4600,75 @@ def ach_debit_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchDebitPrevTrxnRequest`](../../doc/models/v1-transactions-ach-debit-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchDebitPrevTrxnRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  'smith',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  account_holder_name: 'smith',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_ach_controller.ach_debit_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -5764,11 +5722,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# ACH Debit - Tokenized
+# ACH Debit-Tokenized
 
 Utilize an ACH Token_id previously created to process an ACH Sale transaction.
 
@@ -5782,88 +5740,76 @@ def ach_debit_tokenized(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchDebitTokenRequest`](../../doc/models/v1-transactions-ach-debit-token-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchDebitTokenRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  'smith',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  nil,
-  Joi.new(
-    Conditions.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  account_holder_name: 'smith',
+  account_vault_id: '11e95f8ec39de8fbdb0a4f1a',
+  token_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_ach_controller.ach_debit_tokenized(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -6917,11 +6863,11 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 
 
-# ACH Refund - Previous Transaction
+# ACH Refund-Previous Transaction
 
 Create a new ACH refund transaction using previous transaction id
 
@@ -6935,86 +6881,75 @@ def ach_refund_previous_transaction(body,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`V1TransactionsAchRefundPrevTrxnRequest`](../../doc/models/v1-transactions-ach-refund-prev-trxn-request.md) | Body, Required | - |
-| `expand` | [`Array[Expand60Enum]`](../../doc/models/expand-60-enum.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required*, *Pattern*: `^[\w]+$` |
+| `expand` | [`Array[Expand60]`](../../doc/models/expand-60.md) | Query, Optional | Most endpoints in the API have a way to retrieve extra data related to the current record being retrieved. For example, if the API request is for the accountvaults endpoint, and the end user also needs to know which contact the token belongs to, this data can be returned in the accountvaults endpoint request.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
-[`ResponseTransaction`](../../doc/models/response-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `data` property of this instance returns the response data which is of type [`ResponseTransaction`](../../doc/models/response-transaction.md).
 
 ## Example Usage
 
 ```ruby
 body = V1TransactionsAchRefundPrevTrxnRequest.new(
-  1,
-  [],
-  BillingAddress1.new,
-  '2021-12-01',
-  '2021-12-01',
-  'AE1234',
-  nil,
-  '11e95f8ec39de8fbdb0a4f1a',
-  { 'data1' => 'custom1', 'data2' => 'custom2' },
-  'customerid',
-  'some description',
-  IdentityVerification27.new,
-  IiasIndEnum::ENUM_1,
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
-  true,
-  1,
-  1,
-  RecurringFlagEnum::YES,
-  1,
-  1,
-  false,
-  false,
-  'location-api-id-florida-2',
-  '11e95f8ec39de8fbdb0a4f1a',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  false,
-  'johnsmith@smiths.com',
-  '433659378839',
-  '555555553123',
-  '11e95f8ec39de8fbdb0a4f1a',
-  false,
-  1,
-  '303',
-  95,
-  false,
-  'John Account',
-  599,
-  100,
-  nil,
-  0,
-  0,
-  0,
-  'transaction-payment-abcd123',
-  'custom-data-1',
-  'custom-data-2',
-  'custom-data-3',
-  false,
-  false,
-  false,
-  false,
-  false,
-  EbtTypeEnum::FOOD_STAMP,
-  'P',
-  AchSecCode31Enum::C21,
-  '2021-12-01',
-  'smith',
-  '11e95f8ec39de8fbdb0a4f1a',
-  nil,
-  Joi27.new(
-    Conditions27.new(
-      envrr,
-      envrr
-    )
-  )
+  transaction_amount: 1,
+  checkin_date: '2021-12-01',
+  checkout_date: '2021-12-01',
+  clerk_number: 'AE1234',
+  contact_id: '11e95f8ec39de8fbdb0a4f1a',
+  custom_data: { 'data1' => 'custom1', 'data2' => 'custom2' },
+  customer_id: 'customerid',
+  description: 'some description',
+  image_front: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  image_back: 'U29tZVN0cmluZ09idmlvdXNseU5vdEJhc2U2NEVuY29kZWQ=',
+  installment: true,
+  installment_number: 1,
+  installment_count: 1,
+  installment_counter: 1,
+  installment_total: 1,
+  subscription: false,
+  standing_order: false,
+  location_api_id: 'location-api-id-florida-2',
+  location_id: '11e95f8ec39de8fbdb0a4f1a',
+  product_transaction_id: '11e95f8ec39de8fbdb0a4f1a',
+  advance_deposit: false,
+  no_show: false,
+  notification_email_address: 'johnsmith@smiths.com',
+  order_number: '433659378839',
+  po_number: '555555553123',
+  quick_invoice_id: '11e95f8ec39de8fbdb0a4f1a',
+  recurring: false,
+  recurring_number: 1,
+  room_num: '303',
+  room_rate: 95,
+  save_account: false,
+  save_account_title: 'John Account',
+  subtotal_amount: 599,
+  surcharge_amount: 100,
+  tax: 0,
+  tip_amount: 0,
+  secondary_amount: 0,
+  transaction_api_id: 'transaction-payment-abcd123',
+  transaction_c1: 'custom-data-1',
+  transaction_c2: 'custom-data-2',
+  transaction_c3: 'custom-data-3',
+  bank_funded_only_override: false,
+  allow_partial_authorization_override: false,
+  auto_decline_cvv_override: false,
+  auto_decline_street_override: false,
+  auto_decline_zip_override: false,
+  ach_identifier: 'P',
+  effective_date: '2021-12-01',
+  account_holder_name: 'smith',
+  previous_transaction_id: '11e95f8ec39de8fbdb0a4f1a'
 )
 
 result = transactions_ach_controller.ach_refund_previous_transaction(body)
-puts result
+
+if result.success?
+  puts result.data
+elsif result.error?
+  warn result.errors
+end
 ```
 
 ## Example Response *(as JSON)*
@@ -8068,6 +8003,6 @@ puts result
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`Response401tokenException`](../../doc/models/response-401-token-exception.md) |
+| 401 | Unauthorized | [`Response401TokenException`](../../doc/models/response-401-token-exception.md) |
 | 412 | Precondition Failed | [`Response412Exception`](../../doc/models/response-412-exception.md) |
 

@@ -36,7 +36,7 @@ The same method can accept keyword arguments to override any values read from th
 ```ruby
 # To override or fill in values that are not set in the environment, pass them
 # as keyword arguments when calling `from_env`
-client = Client.from_env(environment: 'sandbox', timeout: 30)
+client = Client.from_env(environment: 'production', timeout: 30)
 ```
 
 Values provided through arguments take precedence over those defined in environment variables.
@@ -44,12 +44,26 @@ Values provided through arguments take precedence over those defined in environm
 ## Example .env File
 
 ```ruby
-ENVIRONMENT='sandbox'
+ENVIRONMENT='production'
 
 USER_ID_USER_ID='userId'
 USER_API_KEY_USER_API_KEY='userApiKey'
 DEVELOPER_ID_DEVELOPER_ID='developerId'
 ACCESS_TOKEN_ACCESS_TOKEN='accessToken'
+
+LOG_LEVEL=Debug
+MASK_SENSITIVE_HEADERS=true
+REQUEST_LOG_BODY=true
+REQUEST_LOG_HEADERS=true
+REQUEST_INCLUDE_QUERY_IN_PATH=true
+REQUEST_HEADERS_TO_INCLUDE=Content-Type,X-Request-ID
+REQUEST_HEADERS_TO_EXCLUDE=Authorization
+REQUEST_HEADERS_TO_UNMASK=X-Request-ID
+RESPONSE_LOG_BODY=true
+RESPONSE_LOG_HEADERS=true
+RESPONSE_HEADERS_TO_INCLUDE=Content-Type,X-Correlation-ID,Date,Server
+RESPONSE_HEADERS_TO_EXCLUDE=Set-Cookie,Authorization,X-API-Key
+RESPONSE_HEADERS_TO_UNMASK=X-Correlation-ID
 
 TIMEOUT=60
 MAX_RETRIES=3

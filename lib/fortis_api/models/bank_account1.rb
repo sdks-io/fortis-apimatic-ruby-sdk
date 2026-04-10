@@ -30,8 +30,12 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :is_primary
 
-    # Account type. Either "checking" or "savings"
-    # @return [AccountType12Enum]
+    # Flag indicating whether or not the account is the primary account. Only
+    # one account can be marked as primary.
+    # >Indicates that the account should be the primary account for the
+    # merchant. One and only one account may be set to true.
+    # >
+    # @return [AccountType12]
     attr_accessor :account_type
 
     # Array of deposit types. ('fees', 'adjustments', 'returns')
@@ -63,13 +67,11 @@ module FortisApi
       []
     end
 
-    def initialize(account_holder_name = nil, routing_number = nil,
-                   account_number = nil, account_type = nil, is_primary = SKIP,
-                   alt_deposit_types = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(account_holder_name:, routing_number:, account_number:,
+                   account_type:, is_primary: SKIP, alt_deposit_types: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @account_holder_name = account_holder_name
       @routing_number = routing_number
@@ -77,6 +79,7 @@ module FortisApi
       @is_primary = is_primary unless is_primary == SKIP
       @account_type = account_type
       @alt_deposit_types = alt_deposit_types unless alt_deposit_types == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -95,17 +98,21 @@ module FortisApi
       alt_deposit_types =
         hash.key?('alt_deposit_types') ? hash['alt_deposit_types'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      BankAccount1.new(account_holder_name,
-                       routing_number,
-                       account_number,
-                       account_type,
-                       is_primary,
-                       alt_deposit_types,
-                       additional_properties)
+      BankAccount1.new(account_holder_name: account_holder_name,
+                       routing_number: routing_number,
+                       account_number: account_number,
+                       account_type: account_type,
+                       is_primary: is_primary,
+                       alt_deposit_types: alt_deposit_types,
+                       additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -114,7 +121,7 @@ module FortisApi
       "<#{class_name} account_holder_name: #{@account_holder_name}, routing_number:"\
       " #{@routing_number}, account_number: #{@account_number}, is_primary: #{@is_primary},"\
       " account_type: #{@account_type}, alt_deposit_types: #{@alt_deposit_types},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -123,7 +130,7 @@ module FortisApi
       "<#{class_name} account_holder_name: #{@account_holder_name.inspect}, routing_number:"\
       " #{@routing_number.inspect}, account_number: #{@account_number.inspect}, is_primary:"\
       " #{@is_primary.inspect}, account_type: #{@account_type.inspect}, alt_deposit_types:"\
-      " #{@alt_deposit_types.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@alt_deposit_types.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

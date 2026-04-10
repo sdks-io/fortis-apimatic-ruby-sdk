@@ -183,15 +183,13 @@ module FortisApi
       []
     end
 
-    def initialize(three_ds_server_trans_id = SKIP, acs_trans_id = SKIP,
-                   ds_trans_id = SKIP, error_code = SKIP,
-                   error_component = SKIP, error_description = SKIP,
-                   error_detail = SKIP, sdk_trans_id = SKIP,
-                   error_message_type = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(three_ds_server_trans_id: SKIP, acs_trans_id: SKIP,
+                   ds_trans_id: SKIP, error_code: SKIP, error_component: SKIP,
+                   error_description: SKIP, error_detail: SKIP,
+                   sdk_trans_id: SKIP, error_message_type: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @three_ds_server_trans_id = three_ds_server_trans_id unless three_ds_server_trans_id == SKIP
       @acs_trans_id = acs_trans_id unless acs_trans_id == SKIP
@@ -202,6 +200,7 @@ module FortisApi
       @error_detail = error_detail unless error_detail == SKIP
       @sdk_trans_id = sdk_trans_id unless sdk_trans_id == SKIP
       @error_message_type = error_message_type unless error_message_type == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -223,20 +222,24 @@ module FortisApi
       error_message_type =
         hash.key?('error_message_type') ? hash['error_message_type'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Detail1.new(three_ds_server_trans_id,
-                  acs_trans_id,
-                  ds_trans_id,
-                  error_code,
-                  error_component,
-                  error_description,
-                  error_detail,
-                  sdk_trans_id,
-                  error_message_type,
-                  additional_properties)
+      Detail1.new(three_ds_server_trans_id: three_ds_server_trans_id,
+                  acs_trans_id: acs_trans_id,
+                  ds_trans_id: ds_trans_id,
+                  error_code: error_code,
+                  error_component: error_component,
+                  error_description: error_description,
+                  error_detail: error_detail,
+                  sdk_trans_id: sdk_trans_id,
+                  error_message_type: error_message_type,
+                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -246,7 +249,7 @@ module FortisApi
       " #{@acs_trans_id}, ds_trans_id: #{@ds_trans_id}, error_code: #{@error_code},"\
       " error_component: #{@error_component}, error_description: #{@error_description},"\
       " error_detail: #{@error_detail}, sdk_trans_id: #{@sdk_trans_id}, error_message_type:"\
-      " #{@error_message_type}, additional_properties: #{get_additional_properties}>"
+      " #{@error_message_type}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -257,7 +260,7 @@ module FortisApi
       " #{@error_code.inspect}, error_component: #{@error_component.inspect}, error_description:"\
       " #{@error_description.inspect}, error_detail: #{@error_detail.inspect}, sdk_trans_id:"\
       " #{@sdk_trans_id.inspect}, error_message_type: #{@error_message_type.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

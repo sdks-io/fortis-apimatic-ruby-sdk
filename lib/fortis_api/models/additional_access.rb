@@ -32,13 +32,12 @@ module FortisApi
       []
     end
 
-    def initialize(merchant_ic_optimization = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(merchant_ic_optimization: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @merchant_ic_optimization = merchant_ic_optimization unless merchant_ic_optimization == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -49,26 +48,30 @@ module FortisApi
       merchant_ic_optimization =
         hash.key?('merchant_ic_optimization') ? hash['merchant_ic_optimization'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      AdditionalAccess.new(merchant_ic_optimization,
-                           additional_properties)
+      AdditionalAccess.new(merchant_ic_optimization: merchant_ic_optimization,
+                           additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} merchant_ic_optimization: #{@merchant_ic_optimization},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} merchant_ic_optimization: #{@merchant_ic_optimization.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

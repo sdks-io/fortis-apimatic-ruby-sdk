@@ -3,6 +3,8 @@
 
 This field is a read only field. This field will only be populated for EMV transactions and will contain proper JSON formatted data with some or all of the following fields: TC,TVR,AID,TSI,ATC,APPLAB,APPN,CVM
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `EmvReceiptData`
@@ -17,6 +19,7 @@ This field is a read only field. This field will only be populated for EMV trans
 | `cvm` | `String` | Optional | This field is a read only field. This field will only be populated for EMV transactions and will contain proper JSON formatted data with some or all of the following fields: TC,TVR,AID,TSI,ATC,APPLAB,APPN,CVM |
 | `tsi` | `String` | Optional | This field is a read only field. This field will only be populated for EMV transactions and will contain proper JSON formatted data with some or all of the following fields: TC,TVR,AID,TSI,ATC,APPLAB,APPN,CVM |
 | `tvr` | `String` | Optional | This field is a read only field. This field will only be populated for EMV transactions and will contain proper JSON formatted data with some or all of the following fields: TC,TVR,AID,TSI,ATC,APPLAB,APPN,CVM |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@ This field is a read only field. This field will only be populated for EMV trans
   "APPN": "US Maestro",
   "CVM": "Pin Verified",
   "TSI": "e800",
-  "TVR": "0800008000"
+  "TVR": "0800008000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

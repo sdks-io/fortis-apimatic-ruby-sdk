@@ -71,18 +71,9 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :display_billing_fields
 
-    # Delivery Method
-    # >0 - Do not send, use the expand parameter of payment_url in the create
-    # paylink request to obtain the payment_url to embed into your messaging
-    # system.
-    # >
-    # >1 - Email. Will send an email to the provided address in the email field.
-    # >
-    # >2 - SMS. Text message the Paylink. Check with sales rep for cost.
-    # >
-    # >3 - Both
-    # >
-    # @return [DeliveryMethodEnum]
+    # Display Billing Fields to show the billing field inputs in the paylink
+    # form
+    # @return [Object]
     attr_accessor :delivery_method
 
     # Required if delivery_method is set to 2[SMS], 3[Both email and sms], this
@@ -104,9 +95,9 @@ module FortisApi
     # @return [String]
     attr_accessor :store_token_title
 
-    # the action that will be used by the form when making the payment possible
-    # values: sale, auth-only
-    # @return [PaylinkActionEnum]
+    # Store Token Title can be used to set the name of the token, sucha John
+    # Smith
+    # @return [Object]
     attr_accessor :paylink_action
 
     # Bank Funded Only Override
@@ -137,8 +128,8 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :status_id
 
-    # The various statuses of the paylink.  0=Unpaid | 1=Paid
-    # @return [StatusCode12Enum]
+    # (DEPRECATED) Status Id
+    # @return [Object]
     attr_accessor :status_code
 
     # Paylink is still Active
@@ -248,40 +239,34 @@ module FortisApi
         paylink_api_id
         ach_product_transaction_id
         expire_date
-        delivery_method
         cell_phone
         description
         store_token_title
-        paylink_action
         tags
         redirect_url_delay
         redirect_url_on_approve
         redirect_url_on_decline
-        status_code
         created_user_id
         modified_user_id
       ]
     end
 
-    def initialize(location_id = SKIP, cc_product_transaction_id = SKIP,
-                   email = SKIP, amount_due = SKIP, location_api_id = SKIP,
-                   contact_id = SKIP, contact_api_id = SKIP,
-                   paylink_api_id = SKIP, ach_product_transaction_id = SKIP,
-                   expire_date = SKIP,
-                   display_product_transaction_receipt_details = SKIP,
-                   display_billing_fields = SKIP, delivery_method = SKIP,
-                   cell_phone = SKIP, description = SKIP, store_token = SKIP,
-                   store_token_title = SKIP, paylink_action = SKIP,
-                   bank_funded_only_override = SKIP, tags = SKIP,
-                   redirect_url_delay = 15, redirect_url_on_approve = SKIP,
-                   redirect_url_on_decline = SKIP, id = SKIP, status_id = SKIP,
-                   status_code = SKIP, active = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   modified_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, cc_product_transaction_id: SKIP,
+                   email: SKIP, amount_due: SKIP, location_api_id: SKIP,
+                   contact_id: SKIP, contact_api_id: SKIP, paylink_api_id: SKIP,
+                   ach_product_transaction_id: SKIP, expire_date: SKIP,
+                   display_product_transaction_receipt_details: SKIP,
+                   display_billing_fields: SKIP, delivery_method: SKIP,
+                   cell_phone: SKIP, description: SKIP, store_token: SKIP,
+                   store_token_title: SKIP, paylink_action: SKIP,
+                   bank_funded_only_override: SKIP, tags: SKIP,
+                   redirect_url_delay: 15, redirect_url_on_approve: SKIP,
+                   redirect_url_on_decline: SKIP, id: SKIP, status_id: SKIP,
+                   status_code: SKIP, active: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       unless cc_product_transaction_id == SKIP
@@ -326,6 +311,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -380,42 +366,46 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data16.new(location_id,
-                 cc_product_transaction_id,
-                 email,
-                 amount_due,
-                 location_api_id,
-                 contact_id,
-                 contact_api_id,
-                 paylink_api_id,
-                 ach_product_transaction_id,
-                 expire_date,
-                 display_product_transaction_receipt_details,
-                 display_billing_fields,
-                 delivery_method,
-                 cell_phone,
-                 description,
-                 store_token,
-                 store_token_title,
-                 paylink_action,
-                 bank_funded_only_override,
-                 tags,
-                 redirect_url_delay,
-                 redirect_url_on_approve,
-                 redirect_url_on_decline,
-                 id,
-                 status_id,
-                 status_code,
-                 active,
-                 created_ts,
-                 modified_ts,
-                 created_user_id,
-                 modified_user_id,
-                 additional_properties)
+      Data16.new(location_id: location_id,
+                 cc_product_transaction_id: cc_product_transaction_id,
+                 email: email,
+                 amount_due: amount_due,
+                 location_api_id: location_api_id,
+                 contact_id: contact_id,
+                 contact_api_id: contact_api_id,
+                 paylink_api_id: paylink_api_id,
+                 ach_product_transaction_id: ach_product_transaction_id,
+                 expire_date: expire_date,
+                 display_product_transaction_receipt_details: display_product_transaction_receipt_details,
+                 display_billing_fields: display_billing_fields,
+                 delivery_method: delivery_method,
+                 cell_phone: cell_phone,
+                 description: description,
+                 store_token: store_token,
+                 store_token_title: store_token_title,
+                 paylink_action: paylink_action,
+                 bank_funded_only_override: bank_funded_only_override,
+                 tags: tags,
+                 redirect_url_delay: redirect_url_delay,
+                 redirect_url_on_approve: redirect_url_on_approve,
+                 redirect_url_on_decline: redirect_url_on_decline,
+                 id: id,
+                 status_id: status_id,
+                 status_code: status_code,
+                 active: active,
+                 created_ts: created_ts,
+                 modified_ts: modified_ts,
+                 created_user_id: created_user_id,
+                 modified_user_id: modified_user_id,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -437,7 +427,7 @@ module FortisApi
       " #{@id}, status_id: #{@status_id}, status_code: #{@status_code}, active: #{@active},"\
       " created_ts: #{@created_ts}, modified_ts: #{@modified_ts}, created_user_id:"\
       " #{@created_user_id}, modified_user_id: #{@modified_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -462,7 +452,7 @@ module FortisApi
       " status_code: #{@status_code.inspect}, active: #{@active.inspect}, created_ts:"\
       " #{@created_ts.inspect}, modified_ts: #{@modified_ts.inspect}, created_user_id:"\
       " #{@created_user_id.inspect}, modified_user_id: #{@modified_user_id.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

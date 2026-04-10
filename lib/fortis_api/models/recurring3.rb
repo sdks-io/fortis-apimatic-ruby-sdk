@@ -53,8 +53,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :interval
 
-    # Interval Type
-    # @return [IntervalTypeEnum]
+    # Interval
+    # @return [IntervalType]
     attr_accessor :interval_type
 
     # Location ID
@@ -65,8 +65,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :notification_days
 
-    # Payment Method
-    # @return [PaymentMethod1Enum]
+    # Notification Days
+    # @return [PaymentMethod1]
     attr_accessor :payment_method
 
     # Product Transaction ID
@@ -85,8 +85,8 @@ module FortisApi
     # @return [String]
     attr_accessor :start_date
 
-    # Status
-    # @return [StatusEnum]
+    # Start date
+    # @return [Status]
     attr_accessor :status
 
     # Transaction amount
@@ -145,8 +145,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :modified_ts
 
-    # Recurring Type
-    # @return [RecurringTypeIdEnum]
+    # Modified Time Stamp
+    # @return [RecurringTypeId]
     attr_accessor :recurring_type_id
 
     # Installment Amount Total
@@ -266,26 +266,23 @@ module FortisApi
       ]
     end
 
-    def initialize(account_vault_id = SKIP, token_id = SKIP, contact_id = SKIP,
-                   account_vault_api_id = SKIP, token_api_id = SKIP, joi = SKIP,
-                   active = SKIP, description = SKIP, end_date = SKIP,
-                   installment_total_count = SKIP, interval = SKIP,
-                   interval_type = SKIP, location_id = SKIP,
-                   notification_days = SKIP, payment_method = SKIP,
-                   product_transaction_id = SKIP, recurring_id = SKIP,
-                   recurring_api_id = SKIP, start_date = SKIP, status = SKIP,
-                   transaction_amount = SKIP, terms_agree = SKIP,
-                   terms_agree_ip = SKIP, recurring_c1 = SKIP,
-                   recurring_c2 = SKIP, recurring_c3 = SKIP,
-                   send_to_proc_as_recur = SKIP, tags = SKIP,
-                   secondary_amount = SKIP, currency = SKIP, id = SKIP,
-                   next_run_date = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   recurring_type_id = SKIP, installment_amount_total = SKIP,
-                   created_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(account_vault_id: SKIP, token_id: SKIP, contact_id: SKIP,
+                   account_vault_api_id: SKIP, token_api_id: SKIP, joi: SKIP,
+                   active: SKIP, description: SKIP, end_date: SKIP,
+                   installment_total_count: SKIP, interval: SKIP,
+                   interval_type: SKIP, location_id: SKIP,
+                   notification_days: SKIP, payment_method: SKIP,
+                   product_transaction_id: SKIP, recurring_id: SKIP,
+                   recurring_api_id: SKIP, start_date: SKIP, status: SKIP,
+                   transaction_amount: SKIP, terms_agree: SKIP,
+                   terms_agree_ip: SKIP, recurring_c1: SKIP, recurring_c2: SKIP,
+                   recurring_c3: SKIP, send_to_proc_as_recur: SKIP, tags: SKIP,
+                   secondary_amount: SKIP, currency: SKIP, id: SKIP,
+                   next_run_date: SKIP, created_ts: SKIP, modified_ts: SKIP,
+                   recurring_type_id: SKIP, installment_amount_total: SKIP,
+                   created_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @account_vault_id = account_vault_id unless account_vault_id == SKIP
       @token_id = token_id unless token_id == SKIP
@@ -324,6 +321,7 @@ module FortisApi
       @recurring_type_id = recurring_type_id unless recurring_type_id == SKIP
       @installment_amount_total = installment_amount_total unless installment_amount_total == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -383,48 +381,52 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Recurring3.new(account_vault_id,
-                     token_id,
-                     contact_id,
-                     account_vault_api_id,
-                     token_api_id,
-                     joi,
-                     active,
-                     description,
-                     end_date,
-                     installment_total_count,
-                     interval,
-                     interval_type,
-                     location_id,
-                     notification_days,
-                     payment_method,
-                     product_transaction_id,
-                     recurring_id,
-                     recurring_api_id,
-                     start_date,
-                     status,
-                     transaction_amount,
-                     terms_agree,
-                     terms_agree_ip,
-                     recurring_c1,
-                     recurring_c2,
-                     recurring_c3,
-                     send_to_proc_as_recur,
-                     tags,
-                     secondary_amount,
-                     currency,
-                     id,
-                     next_run_date,
-                     created_ts,
-                     modified_ts,
-                     recurring_type_id,
-                     installment_amount_total,
-                     created_user_id,
-                     additional_properties)
+      Recurring3.new(account_vault_id: account_vault_id,
+                     token_id: token_id,
+                     contact_id: contact_id,
+                     account_vault_api_id: account_vault_api_id,
+                     token_api_id: token_api_id,
+                     joi: joi,
+                     active: active,
+                     description: description,
+                     end_date: end_date,
+                     installment_total_count: installment_total_count,
+                     interval: interval,
+                     interval_type: interval_type,
+                     location_id: location_id,
+                     notification_days: notification_days,
+                     payment_method: payment_method,
+                     product_transaction_id: product_transaction_id,
+                     recurring_id: recurring_id,
+                     recurring_api_id: recurring_api_id,
+                     start_date: start_date,
+                     status: status,
+                     transaction_amount: transaction_amount,
+                     terms_agree: terms_agree,
+                     terms_agree_ip: terms_agree_ip,
+                     recurring_c1: recurring_c1,
+                     recurring_c2: recurring_c2,
+                     recurring_c3: recurring_c3,
+                     send_to_proc_as_recur: send_to_proc_as_recur,
+                     tags: tags,
+                     secondary_amount: secondary_amount,
+                     currency: currency,
+                     id: id,
+                     next_run_date: next_run_date,
+                     created_ts: created_ts,
+                     modified_ts: modified_ts,
+                     recurring_type_id: recurring_type_id,
+                     installment_amount_total: installment_amount_total,
+                     created_user_id: created_user_id,
+                     additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -445,7 +447,7 @@ module FortisApi
       " next_run_date: #{@next_run_date}, created_ts: #{@created_ts}, modified_ts:"\
       " #{@modified_ts}, recurring_type_id: #{@recurring_type_id}, installment_amount_total:"\
       " #{@installment_amount_total}, created_user_id: #{@created_user_id}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -470,7 +472,7 @@ module FortisApi
       " next_run_date: #{@next_run_date.inspect}, created_ts: #{@created_ts.inspect}, modified_ts:"\
       " #{@modified_ts.inspect}, recurring_type_id: #{@recurring_type_id.inspect},"\
       " installment_amount_total: #{@installment_amount_total.inspect}, created_user_id:"\
-      " #{@created_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@created_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

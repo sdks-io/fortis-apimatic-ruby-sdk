@@ -97,12 +97,12 @@ module FortisApi
     # @return [String]
     attr_accessor :notification_email
 
-    # (DEPRECATED) Status Id
-    # @return [StatusIdEnum]
+    # Notification email
+    # @return [Object]
     attr_accessor :status_id
 
-    # Status Code
-    # @return [StatusCode14Enum]
+    # Notification email
+    # @return [Object]
     attr_accessor :status_code
 
     # Note
@@ -198,60 +198,60 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :is_active
 
-    # Quick Invoice Setting Information on `expand`
-    # @return [QuickInvoiceSetting]
+    # Register is active
+    # @return [QuickInvoiceSetting1]
     attr_accessor :quick_invoice_setting
 
     # Quick Invoice View Information on `expand`
     # @return [Array[QuickInvoiceView]]
     attr_accessor :quick_invoice_views
 
-    # Location Information on `expand`
-    # @return [Location]
+    # Quick Invoice View Information on `expand`
+    # @return [Location18]
     attr_accessor :location
 
-    # User Information on `expand`
-    # @return [CreatedUser]
+    # Quick Invoice View Information on `expand`
+    # @return [User9]
     attr_accessor :created_user
 
-    # Modified User Information on `expand`
-    # @return [ModifiedUser]
+    # Quick Invoice View Information on `expand`
+    # @return [User9]
     attr_accessor :modified_user
 
     # Changelog Information on `expand`
     # @return [Array[Changelog]]
     attr_accessor :changelogs
 
-    # Contact Information on `expand`
-    # @return [Contact1]
+    # Changelog Information on `expand`
+    # @return [Contact3]
     attr_accessor :contact
 
     # Log Email Information on `expand`
     # @return [Array[LogEmail]]
     attr_accessor :log_emails
 
-    # Log Sms Information on `expand`
-    # @return [LogSms]
+    # Log Email Information on `expand`
+    # @return [LogSms1]
     attr_accessor :log_sms
 
     # Transaction Information on `expand`
     # @return [Array[Transaction]]
     attr_accessor :transactions
 
-    # Cc Product Transaction Information on `expand`
-    # @return [CcProductTransaction]
+    # Transaction Information on `expand`
+    # @return [ProductTransaction1]
     attr_accessor :cc_product_transaction
 
-    # Ach Product Transaction Information on `expand`
-    # @return [AchProductTransaction]
+    # Transaction Information on `expand`
+    # @return [ProductTransaction1]
     attr_accessor :ach_product_transaction
 
-    # Email Blacklist Information on `expand`
-    # @return [EmailBlacklist]
+    # Transaction Information on `expand`
+    # @return [EmailBlacklist1]
     attr_accessor :email_blacklist
 
-    # Sms Blacklist Information on `expand`
-    # @return [SmsBlacklist]
+    # Transaction Information on `expand`
+    # @return [SmsBlacklist1]
     attr_accessor :sms_blacklist
 
     # Payment Url Information on `expand`
@@ -414,8 +414,6 @@ module FortisApi
         item_footer
         amount_due
         notification_email
-        status_id
-        status_code
         note
         notification_days_before_due_date
         notification_days_after_due_date
@@ -433,43 +431,38 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = SKIP, title = SKIP,
-                   cc_product_transaction_id = SKIP,
-                   ach_product_transaction_id = SKIP, due_date = SKIP,
-                   item_list = SKIP, allow_overpayment = SKIP,
-                   bank_funded_only_override = SKIP, email = SKIP,
-                   contact_id = SKIP, contact_api_id = SKIP,
-                   quick_invoice_api_id = SKIP, customer_id = SKIP,
-                   expire_date = SKIP, allow_partial_pay = SKIP,
-                   attach_files_to_email = SKIP, send_email = SKIP,
-                   invoice_number = SKIP, item_header = SKIP,
-                   item_footer = SKIP, amount_due = SKIP,
-                   notification_email = SKIP, status_id = SKIP,
-                   status_code = SKIP, note = SKIP,
-                   notification_days_before_due_date = SKIP,
-                   notification_days_after_due_date = SKIP,
-                   notification_on_due_date = SKIP, send_text_to_pay = SKIP,
-                   files = SKIP, remaining_balance = SKIP,
-                   single_payment_min_amount = SKIP,
-                   single_payment_max_amount = 999999999, cell_phone = SKIP,
-                   tags = SKIP, quick_invoice_c1 = SKIP,
-                   quick_invoice_c2 = SKIP, quick_invoice_c3 = SKIP,
-                   auto_reopen = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, created_user_id = SKIP,
-                   modified_user_id = SKIP, active = SKIP,
-                   payment_status_id = SKIP, is_active = SKIP,
-                   quick_invoice_setting = SKIP, quick_invoice_views = SKIP,
-                   location = SKIP, created_user = SKIP, modified_user = SKIP,
-                   changelogs = SKIP, contact = SKIP, log_emails = SKIP,
-                   log_sms = SKIP, transactions = SKIP,
-                   cc_product_transaction = SKIP,
-                   ach_product_transaction = SKIP, email_blacklist = SKIP,
-                   sms_blacklist = SKIP, payment_url = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id: SKIP, title: SKIP,
+                   cc_product_transaction_id: SKIP,
+                   ach_product_transaction_id: SKIP, due_date: SKIP,
+                   item_list: SKIP, allow_overpayment: SKIP,
+                   bank_funded_only_override: SKIP, email: SKIP,
+                   contact_id: SKIP, contact_api_id: SKIP,
+                   quick_invoice_api_id: SKIP, customer_id: SKIP,
+                   expire_date: SKIP, allow_partial_pay: SKIP,
+                   attach_files_to_email: SKIP, send_email: SKIP,
+                   invoice_number: SKIP, item_header: SKIP, item_footer: SKIP,
+                   amount_due: SKIP, notification_email: SKIP, status_id: SKIP,
+                   status_code: SKIP, note: SKIP,
+                   notification_days_before_due_date: SKIP,
+                   notification_days_after_due_date: SKIP,
+                   notification_on_due_date: SKIP, send_text_to_pay: SKIP,
+                   files: SKIP, remaining_balance: SKIP,
+                   single_payment_min_amount: SKIP,
+                   single_payment_max_amount: 999999999, cell_phone: SKIP,
+                   tags: SKIP, quick_invoice_c1: SKIP, quick_invoice_c2: SKIP,
+                   quick_invoice_c3: SKIP, auto_reopen: SKIP, id: SKIP,
+                   created_ts: SKIP, modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, active: SKIP,
+                   payment_status_id: SKIP, is_active: SKIP,
+                   quick_invoice_setting: SKIP, quick_invoice_views: SKIP,
+                   location: SKIP, created_user: SKIP, modified_user: SKIP,
+                   changelogs: SKIP, contact: SKIP, log_emails: SKIP,
+                   log_sms: SKIP, transactions: SKIP,
+                   cc_product_transaction: SKIP, ach_product_transaction: SKIP,
+                   email_blacklist: SKIP, sms_blacklist: SKIP,
+                   payment_url: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id unless location_id == SKIP
       @title = title unless title == SKIP
@@ -554,6 +547,7 @@ module FortisApi
       @email_blacklist = email_blacklist unless email_blacklist == SKIP
       @sms_blacklist = sms_blacklist unless sms_blacklist == SKIP
       @payment_url = payment_url unless payment_url == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -658,7 +652,7 @@ module FortisApi
       payment_status_id =
         hash.key?('payment_status_id') ? hash['payment_status_id'] : SKIP
       is_active = hash.key?('is_active') ? hash['is_active'] : SKIP
-      quick_invoice_setting = QuickInvoiceSetting.from_hash(hash['quick_invoice_setting']) if
+      quick_invoice_setting = QuickInvoiceSetting1.from_hash(hash['quick_invoice_setting']) if
         hash['quick_invoice_setting']
       # Parameter is an array, so we need to iterate through it
       quick_invoice_views = nil
@@ -670,9 +664,9 @@ module FortisApi
       end
 
       quick_invoice_views = SKIP unless hash.key?('quick_invoice_views')
-      location = Location.from_hash(hash['location']) if hash['location']
-      created_user = CreatedUser.from_hash(hash['created_user']) if hash['created_user']
-      modified_user = ModifiedUser.from_hash(hash['modified_user']) if hash['modified_user']
+      location = Location18.from_hash(hash['location']) if hash['location']
+      created_user = User9.from_hash(hash['created_user']) if hash['created_user']
+      modified_user = User9.from_hash(hash['modified_user']) if hash['modified_user']
       # Parameter is an array, so we need to iterate through it
       changelogs = nil
       unless hash['changelogs'].nil?
@@ -683,7 +677,7 @@ module FortisApi
       end
 
       changelogs = SKIP unless hash.key?('changelogs')
-      contact = Contact1.from_hash(hash['contact']) if hash['contact']
+      contact = Contact3.from_hash(hash['contact']) if hash['contact']
       # Parameter is an array, so we need to iterate through it
       log_emails = nil
       unless hash['log_emails'].nil?
@@ -694,7 +688,7 @@ module FortisApi
       end
 
       log_emails = SKIP unless hash.key?('log_emails')
-      log_sms = LogSms.from_hash(hash['log_sms']) if hash['log_sms']
+      log_sms = LogSms1.from_hash(hash['log_sms']) if hash['log_sms']
       # Parameter is an array, so we need to iterate through it
       transactions = nil
       unless hash['transactions'].nil?
@@ -705,82 +699,86 @@ module FortisApi
       end
 
       transactions = SKIP unless hash.key?('transactions')
-      cc_product_transaction = CcProductTransaction.from_hash(hash['cc_product_transaction']) if
+      cc_product_transaction = ProductTransaction1.from_hash(hash['cc_product_transaction']) if
         hash['cc_product_transaction']
-      ach_product_transaction = AchProductTransaction.from_hash(hash['ach_product_transaction']) if
+      ach_product_transaction = ProductTransaction1.from_hash(hash['ach_product_transaction']) if
         hash['ach_product_transaction']
-      email_blacklist = EmailBlacklist.from_hash(hash['email_blacklist']) if
+      email_blacklist = EmailBlacklist1.from_hash(hash['email_blacklist']) if
         hash['email_blacklist']
-      sms_blacklist = SmsBlacklist.from_hash(hash['sms_blacklist']) if hash['sms_blacklist']
+      sms_blacklist = SmsBlacklist1.from_hash(hash['sms_blacklist']) if hash['sms_blacklist']
       payment_url = hash.key?('payment_url') ? hash['payment_url'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      List10.new(location_id,
-                 title,
-                 cc_product_transaction_id,
-                 ach_product_transaction_id,
-                 due_date,
-                 item_list,
-                 allow_overpayment,
-                 bank_funded_only_override,
-                 email,
-                 contact_id,
-                 contact_api_id,
-                 quick_invoice_api_id,
-                 customer_id,
-                 expire_date,
-                 allow_partial_pay,
-                 attach_files_to_email,
-                 send_email,
-                 invoice_number,
-                 item_header,
-                 item_footer,
-                 amount_due,
-                 notification_email,
-                 status_id,
-                 status_code,
-                 note,
-                 notification_days_before_due_date,
-                 notification_days_after_due_date,
-                 notification_on_due_date,
-                 send_text_to_pay,
-                 files,
-                 remaining_balance,
-                 single_payment_min_amount,
-                 single_payment_max_amount,
-                 cell_phone,
-                 tags,
-                 quick_invoice_c1,
-                 quick_invoice_c2,
-                 quick_invoice_c3,
-                 auto_reopen,
-                 id,
-                 created_ts,
-                 modified_ts,
-                 created_user_id,
-                 modified_user_id,
-                 active,
-                 payment_status_id,
-                 is_active,
-                 quick_invoice_setting,
-                 quick_invoice_views,
-                 location,
-                 created_user,
-                 modified_user,
-                 changelogs,
-                 contact,
-                 log_emails,
-                 log_sms,
-                 transactions,
-                 cc_product_transaction,
-                 ach_product_transaction,
-                 email_blacklist,
-                 sms_blacklist,
-                 payment_url,
-                 additional_properties)
+      List10.new(location_id: location_id,
+                 title: title,
+                 cc_product_transaction_id: cc_product_transaction_id,
+                 ach_product_transaction_id: ach_product_transaction_id,
+                 due_date: due_date,
+                 item_list: item_list,
+                 allow_overpayment: allow_overpayment,
+                 bank_funded_only_override: bank_funded_only_override,
+                 email: email,
+                 contact_id: contact_id,
+                 contact_api_id: contact_api_id,
+                 quick_invoice_api_id: quick_invoice_api_id,
+                 customer_id: customer_id,
+                 expire_date: expire_date,
+                 allow_partial_pay: allow_partial_pay,
+                 attach_files_to_email: attach_files_to_email,
+                 send_email: send_email,
+                 invoice_number: invoice_number,
+                 item_header: item_header,
+                 item_footer: item_footer,
+                 amount_due: amount_due,
+                 notification_email: notification_email,
+                 status_id: status_id,
+                 status_code: status_code,
+                 note: note,
+                 notification_days_before_due_date: notification_days_before_due_date,
+                 notification_days_after_due_date: notification_days_after_due_date,
+                 notification_on_due_date: notification_on_due_date,
+                 send_text_to_pay: send_text_to_pay,
+                 files: files,
+                 remaining_balance: remaining_balance,
+                 single_payment_min_amount: single_payment_min_amount,
+                 single_payment_max_amount: single_payment_max_amount,
+                 cell_phone: cell_phone,
+                 tags: tags,
+                 quick_invoice_c1: quick_invoice_c1,
+                 quick_invoice_c2: quick_invoice_c2,
+                 quick_invoice_c3: quick_invoice_c3,
+                 auto_reopen: auto_reopen,
+                 id: id,
+                 created_ts: created_ts,
+                 modified_ts: modified_ts,
+                 created_user_id: created_user_id,
+                 modified_user_id: modified_user_id,
+                 active: active,
+                 payment_status_id: payment_status_id,
+                 is_active: is_active,
+                 quick_invoice_setting: quick_invoice_setting,
+                 quick_invoice_views: quick_invoice_views,
+                 location: location,
+                 created_user: created_user,
+                 modified_user: modified_user,
+                 changelogs: changelogs,
+                 contact: contact,
+                 log_emails: log_emails,
+                 log_sms: log_sms,
+                 transactions: transactions,
+                 cc_product_transaction: cc_product_transaction,
+                 ach_product_transaction: ach_product_transaction,
+                 email_blacklist: email_blacklist,
+                 sms_blacklist: sms_blacklist,
+                 payment_url: payment_url,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -814,7 +812,7 @@ module FortisApi
       " #{@transactions}, cc_product_transaction: #{@cc_product_transaction},"\
       " ach_product_transaction: #{@ach_product_transaction}, email_blacklist:"\
       " #{@email_blacklist}, sms_blacklist: #{@sms_blacklist}, payment_url: #{@payment_url},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -855,7 +853,7 @@ module FortisApi
       " cc_product_transaction: #{@cc_product_transaction.inspect}, ach_product_transaction:"\
       " #{@ach_product_transaction.inspect}, email_blacklist: #{@email_blacklist.inspect},"\
       " sms_blacklist: #{@sms_blacklist.inspect}, payment_url: #{@payment_url.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

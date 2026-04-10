@@ -84,13 +84,11 @@ module FortisApi
       []
     end
 
-    def initialize(result_code = SKIP, merchant_id = SKIP, apple_pay = SKIP,
-                   google_pay = SKIP, apple_pay_domains = SKIP, message = SKIP,
-                   google_jwt = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(result_code: SKIP, merchant_id: SKIP, apple_pay: SKIP,
+                   google_pay: SKIP, apple_pay_domains: SKIP, message: SKIP,
+                   google_jwt: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @result_code = result_code unless result_code == SKIP
       @merchant_id = merchant_id unless merchant_id == SKIP
@@ -99,6 +97,7 @@ module FortisApi
       @apple_pay_domains = apple_pay_domains unless apple_pay_domains == SKIP
       @message = message unless message == SKIP
       @google_jwt = google_jwt unless google_jwt == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -115,18 +114,22 @@ module FortisApi
       message = hash.key?('message') ? hash['message'] : SKIP
       google_jwt = hash.key?('googleJWT') ? hash['googleJWT'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data38.new(result_code,
-                 merchant_id,
-                 apple_pay,
-                 google_pay,
-                 apple_pay_domains,
-                 message,
-                 google_jwt,
-                 additional_properties)
+      Data38.new(result_code: result_code,
+                 merchant_id: merchant_id,
+                 apple_pay: apple_pay,
+                 google_pay: google_pay,
+                 apple_pay_domains: apple_pay_domains,
+                 message: message,
+                 google_jwt: google_jwt,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -135,7 +138,7 @@ module FortisApi
       "<#{class_name} result_code: #{@result_code}, merchant_id: #{@merchant_id}, apple_pay:"\
       " #{@apple_pay}, google_pay: #{@google_pay}, apple_pay_domains: #{@apple_pay_domains},"\
       " message: #{@message}, google_jwt: #{@google_jwt}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -144,7 +147,7 @@ module FortisApi
       "<#{class_name} result_code: #{@result_code.inspect}, merchant_id: #{@merchant_id.inspect},"\
       " apple_pay: #{@apple_pay.inspect}, google_pay: #{@google_pay.inspect}, apple_pay_domains:"\
       " #{@apple_pay_domains.inspect}, message: #{@message.inspect}, google_jwt:"\
-      " #{@google_jwt.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@google_jwt.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

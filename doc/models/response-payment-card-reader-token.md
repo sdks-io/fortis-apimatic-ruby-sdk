@@ -1,6 +1,8 @@
 
 # Response Payment Card Reader Token
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ResponsePaymentCardReaderToken`
@@ -9,8 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `type` | [`Type58Enum`](../../doc/models/type-58-enum.md) | Optional | Resource Type<br><br>**Default**: `Type58Enum::PAYMENTCARDREADERTOKEN` |
+| `type` | [`Type58`](../../doc/models/type-58.md) | Optional | - |
 | `data` | [`Data17`](../../doc/models/data-17.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -18,7 +21,15 @@
 {
   "type": "PaymentCardReaderToken",
   "data": {
-    "token": "token4"
+    "token": "token4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
   }
 }
 ```

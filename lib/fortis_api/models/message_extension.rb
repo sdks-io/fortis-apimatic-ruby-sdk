@@ -55,17 +55,16 @@ module FortisApi
       []
     end
 
-    def initialize(id = SKIP, name = SKIP, criticality_indicator = SKIP,
-                   data = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, name: SKIP, criticality_indicator: SKIP,
+                   data: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @name = name unless name == SKIP
       @criticality_indicator = criticality_indicator unless criticality_indicator == SKIP
       @data = data unless data == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -79,15 +78,19 @@ module FortisApi
         hash.key?('criticality_indicator') ? hash['criticality_indicator'] : SKIP
       data = hash.key?('data') ? hash['data'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      MessageExtension.new(id,
-                           name,
-                           criticality_indicator,
-                           data,
-                           additional_properties)
+      MessageExtension.new(id: id,
+                           name: name,
+                           criticality_indicator: criticality_indicator,
+                           data: data,
+                           additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -95,7 +98,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, name: #{@name}, criticality_indicator:"\
       " #{@criticality_indicator}, data: #{@data}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -103,7 +106,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id.inspect}, name: #{@name.inspect}, criticality_indicator:"\
       " #{@criticality_indicator.inspect}, data: #{@data.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

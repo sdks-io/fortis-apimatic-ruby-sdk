@@ -1,6 +1,8 @@
 
 # Product Transaction 1
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `ProductTransaction1`
@@ -10,14 +12,14 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `processor_version` | `String` | Optional | Processor Version |
-| `industry_type` | [`IndustryTypeEnum`](../../doc/models/industry-type-enum.md) | Optional | Industry Type<br><br>**Constraints**: *Maximum Length*: `45` |
+| `industry_type` | `Object` | Optional | - |
 | `title` | `String` | Optional | Title<br><br>**Constraints**: *Maximum Length*: `64` |
-| `payment_method` | [`PaymentMethodEnum`](../../doc/models/payment-method-enum.md) | Optional | Payment method |
-| `processor` | [`ProcessorEnum`](../../doc/models/processor-enum.md) | Optional | Processor |
+| `payment_method` | [`PaymentMethod`](../../doc/models/payment-method.md) | Optional | - |
+| `processor` | `Object` | Optional | - |
 | `mcc` | `String` | Optional | MCC<br><br>**Constraints**: *Maximum Length*: `4`, *Pattern*: `^\d+$` |
-| `tax_surcharge_config` | [`TaxSurchargeConfigEnum`](../../doc/models/tax-surcharge-config-enum.md) | Optional | Tax Surcharge Config<br><br>**Default**: `TaxSurchargeConfigEnum::ENUM_2` |
+| `tax_surcharge_config` | `Object` | Optional | - |
 | `terminal_id` | `String` | Optional | Terminal ID<br><br>**Constraints**: *Maximum Length*: `24` |
-| `partner` | [`PartnerEnum`](../../doc/models/partner-enum.md) | Optional | Partner<br><br>**Constraints**: *Maximum Length*: `24` |
+| `partner` | `Object` | Optional | - |
 | `product_ach_pv_store_id` | `String` | Optional | Product Ach Pv Store ID |
 | `invoice_adjustment_title` | `String` | Optional | Invoice Adjustment Title |
 | `location_id` | `String` | Optional | Location ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
@@ -70,7 +72,7 @@
 | `receipt_add_account_above_signature` | `String` | Optional | Receipt Add Account Above Signature<br><br>**Constraints**: *Maximum Length*: `1032` |
 | `receipt_add_recurring_above_signature` | `String` | Optional | Receipt Add Recurring Above Signature<br><br>**Constraints**: *Maximum Length*: `1032` |
 | `receipt_vt_above_signature` | `String` | Optional | Receipt VT Above Signature<br><br>**Constraints**: *Maximum Length*: `1032` |
-| `default_transaction_type` | [`DefaultTransactionTypeEnum`](../../doc/models/default-transaction-type-enum.md) | Optional | Default Transaction Type |
+| `default_transaction_type` | `Object` | Optional | - |
 | `username` | `String` | Optional | Username<br><br>**Constraints**: *Maximum Length*: `512` |
 | `password` | `String` | Optional | Passowrd<br><br>**Constraints**: *Maximum Length*: `512` |
 | `current_batch` | `Float` | Optional | Current Batch<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 9999` |
@@ -86,8 +88,8 @@
 | `hosted_payment_page_allow` | `TrueClass \| FalseClass` | Optional | Hosted Payment Page Allow |
 | `surcharge_id` | `String` | Optional | Surcharge ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `allow_big_commerce` | `TrueClass \| FalseClass` | Optional | Allow Big Commerce |
-| `level_3_default` | [`Level3Default`](../../doc/models/level-3-default.md) | Optional | Level3 Default |
-| `cau_subscribe_type_id` | [`CauSubscribeTypeIdEnum`](../../doc/models/cau-subscribe-type-id-enum.md) | Optional | Cau Subscribe Type ID |
+| `level_3_default` | [`Level3Default1`](../../doc/models/level-3-default-1.md) | Optional | - |
+| `cau_subscribe_type_id` | `Object` | Optional | - |
 | `cau_account_number` | `String` | Optional | Cau Account Number<br><br>**Constraints**: *Minimum Length*: `32`, *Maximum Length*: `32`, *Pattern*: `^[a-zA-Z0-9\-]+$` |
 | `location_billing_account_id` | `String` | Optional | Location Billing Account ID |
 | `product_billing_group_id` | `String` | Optional | Product Billing Group ID |
@@ -110,7 +112,7 @@
 | `allow_secondary_amount` | `TrueClass \| FalseClass` | Optional | Allow Retained Amount |
 | `show_google_pay` | `TrueClass \| FalseClass` | Optional | Vt Require Street |
 | `show_apple_pay` | `TrueClass \| FalseClass` | Optional | Vt Require Street |
-| `batch_risk_config` | [`BatchRiskConfig`](../../doc/models/batch-risk-config.md) | Optional | Batch Risk Config |
+| `batch_risk_config` | [`BatchRiskConfig1`](../../doc/models/batch-risk-config-1.md) | Optional | - |
 | `currency_code` | `Float` | Optional | Currency Code |
 | `enable_ach_validation` | `TrueClass \| FalseClass` | Optional | Enable ACH Validation |
 | `enable_ach_retry` | `TrueClass \| FalseClass` | Optional | Enable ACH Retry |
@@ -129,8 +131,9 @@
 | `is_secondary_amount_allowed` | `TrueClass \| FalseClass` | Optional | Allow Retained Amount |
 | `fortis_id` | `String` | Optional | - |
 | `product_billing_group_code` | `String` | Optional | Product Billing Group Code |
-| `cau_subscribe_type_code` | [`CauSubscribeTypeCodeEnum`](../../doc/models/cau-subscribe-type-code-enum.md) | Optional | Cau Subscribe Type Code |
+| `cau_subscribe_type_code` | `Object` | Optional | - |
 | `merchant_code` | `String` | Optional | Merchant Code<br><br>**Constraints**: *Maximum Length*: `24` |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -138,11 +141,7 @@
 {
   "processor_version": "1_0_0",
   "title": "My terminal",
-  "payment_method": "cc",
-  "processor": "zgate",
   "mcc": "1111",
-  "tax_surcharge_config": 2,
-  "partner": "standalone",
   "location_id": "11e95f8ec39de8fbdb0a4f1a",
   "vt_clerk_number": true,
   "vt_billing_phone": true,
@@ -191,7 +190,6 @@
   "hosted_payment_page_allow": false,
   "surcharge_id": "11e95f8ec39de8fbdb0a4f1a",
   "allow_big_commerce": false,
-  "cau_subscribe_type_id": 0,
   "location_billing_account_id": "11eb88b873980c64a21e5fd2",
   "product_billing_group_id": "nofees",
   "account_number": "12345678",
@@ -227,8 +225,19 @@
   "is_secondary_amount_allowed": false,
   "fortis_id": "8149742",
   "product_billing_group_code": "nofees",
-  "cau_subscribe_type_code": 0,
-  "industry_type": "ecommerce"
+  "industry_type": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "payment_method": "cash",
+  "processor": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

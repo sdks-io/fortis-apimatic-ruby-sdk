@@ -67,12 +67,10 @@ module FortisApi
       ]
     end
 
-    def initialize(code = SKIP, type = SKIP, id = SKIP, progress = SKIP,
-                   error = SKIP, ttl = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(code: SKIP, type: SKIP, id: SKIP, progress: SKIP,
+                   error: SKIP, ttl: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @code = code unless code == SKIP
       @type = type unless type == SKIP
@@ -80,6 +78,7 @@ module FortisApi
       @progress = progress unless progress == SKIP
       @error = error unless error == SKIP
       @ttl = ttl unless ttl == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -94,24 +93,28 @@ module FortisApi
       error = hash.key?('error') ? hash['error'] : SKIP
       ttl = hash.key?('ttl') ? hash['ttl'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data.new(code,
-               type,
-               id,
-               progress,
-               error,
-               ttl,
-               additional_properties)
+      Data.new(code: code,
+               type: type,
+               id: id,
+               progress: progress,
+               error: error,
+               ttl: ttl,
+               additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} code: #{@code}, type: #{@type}, id: #{@id}, progress: #{@progress}, error:"\
-      " #{@error}, ttl: #{@ttl}, additional_properties: #{get_additional_properties}>"
+      " #{@error}, ttl: #{@ttl}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -119,7 +122,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} code: #{@code.inspect}, type: #{@type.inspect}, id: #{@id.inspect},"\
       " progress: #{@progress.inspect}, error: #{@error.inspect}, ttl: #{@ttl.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

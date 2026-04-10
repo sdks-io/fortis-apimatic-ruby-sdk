@@ -53,8 +53,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :interval
 
-    # Interval Type
-    # @return [IntervalTypeEnum]
+    # Interval
+    # @return [IntervalType]
     attr_accessor :interval_type
 
     # Location ID
@@ -65,8 +65,8 @@ module FortisApi
     # @return [Integer]
     attr_accessor :notification_days
 
-    # Payment Method
-    # @return [PaymentMethod1Enum]
+    # Notification Days
+    # @return [Object]
     attr_accessor :payment_method
 
     # Product Transaction ID
@@ -85,8 +85,8 @@ module FortisApi
     # @return [String]
     attr_accessor :start_date
 
-    # Status
-    # @return [StatusEnum]
+    # Start date
+    # @return [Object]
     attr_accessor :status
 
     # Transaction amount
@@ -200,11 +200,9 @@ module FortisApi
         end_date
         installment_total_count
         notification_days
-        payment_method
         product_transaction_id
         recurring_id
         recurring_api_id
-        status
         terms_agree_ip
         recurring_c1
         recurring_c2
@@ -214,23 +212,20 @@ module FortisApi
       ]
     end
 
-    def initialize(interval = nil, interval_type = nil, location_id = nil,
-                   start_date = nil, transaction_amount = nil,
-                   account_vault_id = SKIP, token_id = SKIP, contact_id = SKIP,
-                   account_vault_api_id = SKIP, token_api_id = SKIP, joi = SKIP,
-                   active = SKIP, description = SKIP, end_date = SKIP,
-                   installment_total_count = SKIP, notification_days = SKIP,
-                   payment_method = SKIP, product_transaction_id = SKIP,
-                   recurring_id = SKIP, recurring_api_id = SKIP, status = SKIP,
-                   terms_agree = SKIP, terms_agree_ip = SKIP,
-                   recurring_c1 = SKIP, recurring_c2 = SKIP,
-                   recurring_c3 = SKIP, send_to_proc_as_recur = SKIP,
-                   tags = SKIP, secondary_amount = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(interval:, interval_type:, location_id:, start_date:,
+                   transaction_amount:, account_vault_id: SKIP, token_id: SKIP,
+                   contact_id: SKIP, account_vault_api_id: SKIP,
+                   token_api_id: SKIP, joi: SKIP, active: SKIP,
+                   description: SKIP, end_date: SKIP,
+                   installment_total_count: SKIP, notification_days: SKIP,
+                   payment_method: SKIP, product_transaction_id: SKIP,
+                   recurring_id: SKIP, recurring_api_id: SKIP, status: SKIP,
+                   terms_agree: SKIP, terms_agree_ip: SKIP, recurring_c1: SKIP,
+                   recurring_c2: SKIP, recurring_c3: SKIP,
+                   send_to_proc_as_recur: SKIP, tags: SKIP,
+                   secondary_amount: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @account_vault_id = account_vault_id unless account_vault_id == SKIP
       @token_id = token_id unless token_id == SKIP
@@ -261,6 +256,7 @@ module FortisApi
       @send_to_proc_as_recur = send_to_proc_as_recur unless send_to_proc_as_recur == SKIP
       @tags = tags unless tags == SKIP
       @secondary_amount = secondary_amount unless secondary_amount == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -309,40 +305,44 @@ module FortisApi
       secondary_amount =
         hash.key?('secondary_amount') ? hash['secondary_amount'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1RecurringsRequest.new(interval,
-                              interval_type,
-                              location_id,
-                              start_date,
-                              transaction_amount,
-                              account_vault_id,
-                              token_id,
-                              contact_id,
-                              account_vault_api_id,
-                              token_api_id,
-                              joi,
-                              active,
-                              description,
-                              end_date,
-                              installment_total_count,
-                              notification_days,
-                              payment_method,
-                              product_transaction_id,
-                              recurring_id,
-                              recurring_api_id,
-                              status,
-                              terms_agree,
-                              terms_agree_ip,
-                              recurring_c1,
-                              recurring_c2,
-                              recurring_c3,
-                              send_to_proc_as_recur,
-                              tags,
-                              secondary_amount,
-                              additional_properties)
+      V1RecurringsRequest.new(interval: interval,
+                              interval_type: interval_type,
+                              location_id: location_id,
+                              start_date: start_date,
+                              transaction_amount: transaction_amount,
+                              account_vault_id: account_vault_id,
+                              token_id: token_id,
+                              contact_id: contact_id,
+                              account_vault_api_id: account_vault_api_id,
+                              token_api_id: token_api_id,
+                              joi: joi,
+                              active: active,
+                              description: description,
+                              end_date: end_date,
+                              installment_total_count: installment_total_count,
+                              notification_days: notification_days,
+                              payment_method: payment_method,
+                              product_transaction_id: product_transaction_id,
+                              recurring_id: recurring_id,
+                              recurring_api_id: recurring_api_id,
+                              status: status,
+                              terms_agree: terms_agree,
+                              terms_agree_ip: terms_agree_ip,
+                              recurring_c1: recurring_c1,
+                              recurring_c2: recurring_c2,
+                              recurring_c3: recurring_c3,
+                              send_to_proc_as_recur: send_to_proc_as_recur,
+                              tags: tags,
+                              secondary_amount: secondary_amount,
+                              additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -360,7 +360,7 @@ module FortisApi
       " #{@terms_agree_ip}, recurring_c1: #{@recurring_c1}, recurring_c2: #{@recurring_c2},"\
       " recurring_c3: #{@recurring_c3}, send_to_proc_as_recur: #{@send_to_proc_as_recur}, tags:"\
       " #{@tags}, secondary_amount: #{@secondary_amount}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -381,7 +381,7 @@ module FortisApi
       " #{@terms_agree_ip.inspect}, recurring_c1: #{@recurring_c1.inspect}, recurring_c2:"\
       " #{@recurring_c2.inspect}, recurring_c3: #{@recurring_c3.inspect}, send_to_proc_as_recur:"\
       " #{@send_to_proc_as_recur.inspect}, tags: #{@tags.inspect}, secondary_amount:"\
-      " #{@secondary_amount.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@secondary_amount.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

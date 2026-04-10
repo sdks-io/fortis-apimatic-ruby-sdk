@@ -101,14 +101,12 @@ module FortisApi
       []
     end
 
-    def initialize(three_ds_server_trans_id = SKIP, transaction_status = SKIP,
-                   ds_trans_id = SKIP, acs_trans_id = SKIP,
-                   message_version = SKIP, authentication_value = SKIP,
-                   eci = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(three_ds_server_trans_id: SKIP, transaction_status: SKIP,
+                   ds_trans_id: SKIP, acs_trans_id: SKIP, message_version: SKIP,
+                   authentication_value: SKIP, eci: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @three_ds_server_trans_id = three_ds_server_trans_id unless three_ds_server_trans_id == SKIP
       @transaction_status = transaction_status unless transaction_status == SKIP
@@ -117,6 +115,7 @@ module FortisApi
       @message_version = message_version unless message_version == SKIP
       @authentication_value = authentication_value unless authentication_value == SKIP
       @eci = eci unless eci == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -136,18 +135,22 @@ module FortisApi
         hash.key?('authentication_value') ? hash['authentication_value'] : SKIP
       eci = hash.key?('eci') ? hash['eci'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data13.new(three_ds_server_trans_id,
-                 transaction_status,
-                 ds_trans_id,
-                 acs_trans_id,
-                 message_version,
-                 authentication_value,
-                 eci,
-                 additional_properties)
+      Data13.new(three_ds_server_trans_id: three_ds_server_trans_id,
+                 transaction_status: transaction_status,
+                 ds_trans_id: ds_trans_id,
+                 acs_trans_id: acs_trans_id,
+                 message_version: message_version,
+                 authentication_value: authentication_value,
+                 eci: eci,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -156,7 +159,7 @@ module FortisApi
       "<#{class_name} three_ds_server_trans_id: #{@three_ds_server_trans_id}, transaction_status:"\
       " #{@transaction_status}, ds_trans_id: #{@ds_trans_id}, acs_trans_id: #{@acs_trans_id},"\
       " message_version: #{@message_version}, authentication_value: #{@authentication_value}, eci:"\
-      " #{@eci}, additional_properties: #{get_additional_properties}>"
+      " #{@eci}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -166,7 +169,7 @@ module FortisApi
       " transaction_status: #{@transaction_status.inspect}, ds_trans_id: #{@ds_trans_id.inspect},"\
       " acs_trans_id: #{@acs_trans_id.inspect}, message_version: #{@message_version.inspect},"\
       " authentication_value: #{@authentication_value.inspect}, eci: #{@eci.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

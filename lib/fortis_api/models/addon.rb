@@ -65,13 +65,11 @@ module FortisApi
       ]
     end
 
-    def initialize(title = SKIP, secret = SKIP, iframe_url = SKIP,
-                   location_setup_url = SKIP, user_setup_url = SKIP,
-                   encrypt_url_params = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(title: SKIP, secret: SKIP, iframe_url: SKIP,
+                   location_setup_url: SKIP, user_setup_url: SKIP,
+                   encrypt_url_params: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @title = title unless title == SKIP
       @secret = secret unless secret == SKIP
@@ -79,6 +77,7 @@ module FortisApi
       @location_setup_url = location_setup_url unless location_setup_url == SKIP
       @user_setup_url = user_setup_url unless user_setup_url == SKIP
       @encrypt_url_params = encrypt_url_params unless encrypt_url_params == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -96,17 +95,21 @@ module FortisApi
       encrypt_url_params =
         hash.key?('encrypt_url_params') ? hash['encrypt_url_params'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Addon.new(title,
-                secret,
-                iframe_url,
-                location_setup_url,
-                user_setup_url,
-                encrypt_url_params,
-                additional_properties)
+      Addon.new(title: title,
+                secret: secret,
+                iframe_url: iframe_url,
+                location_setup_url: location_setup_url,
+                user_setup_url: user_setup_url,
+                encrypt_url_params: encrypt_url_params,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -115,7 +118,7 @@ module FortisApi
       "<#{class_name} title: #{@title}, secret: #{@secret}, iframe_url: #{@iframe_url},"\
       " location_setup_url: #{@location_setup_url}, user_setup_url: #{@user_setup_url},"\
       " encrypt_url_params: #{@encrypt_url_params}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -124,7 +127,7 @@ module FortisApi
       "<#{class_name} title: #{@title.inspect}, secret: #{@secret.inspect}, iframe_url:"\
       " #{@iframe_url.inspect}, location_setup_url: #{@location_setup_url.inspect},"\
       " user_setup_url: #{@user_setup_url.inspect}, encrypt_url_params:"\
-      " #{@encrypt_url_params.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@encrypt_url_params.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

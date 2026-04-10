@@ -3,6 +3,8 @@
 
 Level 3 data object
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Level3Data`
@@ -19,7 +21,7 @@ Level 3 data object
 | `shipfrom_zip_code` | `String` | Optional | Postal/ZIP code of the address from where the purchased goods are being shipped.<br><br>**Constraints**: *Maximum Length*: `10` |
 | `shipto_zip_code` | `String` | Optional | Postal/ZIP code of the address where purchased goods will be delivered.<br><br>**Constraints**: *Maximum Length*: `10` |
 | `tax_amount` | `Integer` | Optional | Amount of any value added taxes ,Can accept Two (2) decimal places.<br><br>**Constraints**: `>= 0`, `<= 99999999999` |
-| `tax_exempt` | [`TaxExemptEnum`](../../doc/models/tax-exempt-enum.md) | Optional | Sales Tax Exempt. Allowed values: “1”, “0”. |
+| `tax_exempt` | `Object` | Optional | - |
 | `customer_vat_registration` | `String` | Optional | Customer VAT Registration<br><br>**Constraints**: *Maximum Length*: `13` |
 | `merchant_vat_registration` | `String` | Optional | Merchant VAT Registration<br><br>**Constraints**: *Maximum Length*: `20` |
 | `order_date` | `String` | Optional | Order Date<br><br>**Constraints**: *Minimum Length*: `6`, *Maximum Length*: `6` |
@@ -27,6 +29,7 @@ Level 3 data object
 | `tax_rate` | `Integer` | Optional | Tax rate used to calculate the sales tax amount, can accept 2 decimal places.<br><br>**Constraints**: `<= 999900` |
 | `unique_vat_ref_number` | `String` | Optional | Unique VAT Reference Number<br><br>**Constraints**: *Maximum Length*: `15` |
 | `line_items` | [`Array[LineItem13]`](../../doc/models/line-item-13.md) | Optional | Array of line items in transaction |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,13 +43,16 @@ Level 3 data object
   "shipfrom_zip_code": "AZ1234",
   "shipto_zip_code": "FL1234",
   "tax_amount": 10,
-  "tax_exempt": "0",
   "customer_vat_registration": "12345678",
   "merchant_vat_registration": "123456",
   "order_date": "171006",
   "summary_commodity_code": "C1K2",
   "tax_rate": 0,
-  "unique_vat_ref_number": "vat1234"
+  "unique_vat_ref_number": "vat1234",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

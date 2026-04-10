@@ -26,7 +26,7 @@ module FortisApi
     attr_accessor :service
 
     # Service
-    # @return [Array[DepositTypeEnum]]
+    # @return [Array[DepositType]]
     attr_accessor :deposit_types
 
     # Deposit Amount
@@ -145,19 +145,16 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, company_id = SKIP, merchant_id = SKIP,
-                   service = SKIP, deposit_types = SKIP, deposit_amount = SKIP,
-                   batch_amount = SKIP, adjustment_amount = SKIP,
-                   retained_amount = SKIP, conveyed_amount = SKIP,
-                   fee_amount = SKIP, reference_number = SKIP,
-                   trace_number = SKIP, currency = SKIP, created_ts = SKIP,
-                   reported_date = SKIP, transaction_date = SKIP,
-                   deposit_account = SKIP, details = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, company_id: SKIP, merchant_id: SKIP, service: SKIP,
+                   deposit_types: SKIP, deposit_amount: SKIP,
+                   batch_amount: SKIP, adjustment_amount: SKIP,
+                   retained_amount: SKIP, conveyed_amount: SKIP,
+                   fee_amount: SKIP, reference_number: SKIP, trace_number: SKIP,
+                   currency: SKIP, created_ts: SKIP, reported_date: SKIP,
+                   transaction_date: SKIP, deposit_account: SKIP, details: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @company_id = company_id unless company_id == SKIP
@@ -178,6 +175,7 @@ module FortisApi
       @transaction_date = transaction_date unless transaction_date == SKIP
       @deposit_account = deposit_account unless deposit_account == SKIP
       @details = details unless details == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -221,30 +219,34 @@ module FortisApi
 
       details = SKIP unless hash.key?('details')
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data14.new(id,
-                 company_id,
-                 merchant_id,
-                 service,
-                 deposit_types,
-                 deposit_amount,
-                 batch_amount,
-                 adjustment_amount,
-                 retained_amount,
-                 conveyed_amount,
-                 fee_amount,
-                 reference_number,
-                 trace_number,
-                 currency,
-                 created_ts,
-                 reported_date,
-                 transaction_date,
-                 deposit_account,
-                 details,
-                 additional_properties)
+      Data14.new(id: id,
+                 company_id: company_id,
+                 merchant_id: merchant_id,
+                 service: service,
+                 deposit_types: deposit_types,
+                 deposit_amount: deposit_amount,
+                 batch_amount: batch_amount,
+                 adjustment_amount: adjustment_amount,
+                 retained_amount: retained_amount,
+                 conveyed_amount: conveyed_amount,
+                 fee_amount: fee_amount,
+                 reference_number: reference_number,
+                 trace_number: trace_number,
+                 currency: currency,
+                 created_ts: created_ts,
+                 reported_date: reported_date,
+                 transaction_date: transaction_date,
+                 deposit_account: deposit_account,
+                 details: details,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -258,7 +260,7 @@ module FortisApi
       " trace_number: #{@trace_number}, currency: #{@currency}, created_ts: #{@created_ts},"\
       " reported_date: #{@reported_date}, transaction_date: #{@transaction_date}, deposit_account:"\
       " #{@deposit_account}, details: #{@details}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -274,7 +276,7 @@ module FortisApi
       " #{@currency.inspect}, created_ts: #{@created_ts.inspect}, reported_date:"\
       " #{@reported_date.inspect}, transaction_date: #{@transaction_date.inspect},"\
       " deposit_account: #{@deposit_account.inspect}, details: #{@details.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

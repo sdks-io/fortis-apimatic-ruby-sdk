@@ -3,6 +3,8 @@
 
 Error details
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Detail1`
@@ -20,6 +22,7 @@ Error details
 | `error_detail` | `String` | Optional | Additional detail regarding the problem identified. |
 | `sdk_trans_id` | `String` | Optional | Universally unique transaction identifier assigned by the 3DS SDK to identify a single transaction. |
 | `error_message_type` | `String` | Optional | The Message Type that was identified as erroneous.<br><br>> AReq - Authentication request<br>> <br>> ARes - Authentication response<br>> <br>> CReq - Challenge request<br>> <br>> CRes - Challenge response<br>> <br>> PReq - Preparation request<br>> <br>> PRes - Preparation response<br>> <br>> RReq - Results request<br>> <br>> RRes - Results response<br>> <br>> Erro - Error<br>> <br>> 3dsMethodReq - 3DS method request<br>> <br>> OReq - Operation request. Since 2.3.1<br>> <br>> ORes - Operation response. Since 2.3.1 |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@ Error details
   "acs_trans_id": "acs_trans_id2",
   "ds_trans_id": "ds_trans_id8",
   "error_code": "error_code0",
-  "error_component": "error_component6"
+  "error_component": "error_component6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

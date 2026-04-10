@@ -55,18 +55,17 @@ module FortisApi
       ]
     end
 
-    def initialize(routing_number = SKIP, account_number = SKIP,
-                   account_holder_name = SKIP, deposit_type = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(routing_number: SKIP, account_number: SKIP,
+                   account_holder_name: SKIP, deposit_type: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @routing_number = routing_number unless routing_number == SKIP
       @account_number = account_number unless account_number == SKIP
       @account_holder_name = account_holder_name unless account_holder_name == SKIP
       @deposit_type = deposit_type unless deposit_type == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -82,15 +81,19 @@ module FortisApi
         hash.key?('account_holder_name') ? hash['account_holder_name'] : SKIP
       deposit_type = hash.key?('deposit_type') ? hash['deposit_type'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      AltBankAccount.new(routing_number,
-                         account_number,
-                         account_holder_name,
-                         deposit_type,
-                         additional_properties)
+      AltBankAccount.new(routing_number: routing_number,
+                         account_number: account_number,
+                         account_holder_name: account_holder_name,
+                         deposit_type: deposit_type,
+                         additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -98,7 +101,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} routing_number: #{@routing_number}, account_number: #{@account_number},"\
       " account_holder_name: #{@account_holder_name}, deposit_type: #{@deposit_type},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -106,8 +109,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} routing_number: #{@routing_number.inspect}, account_number:"\
       " #{@account_number.inspect}, account_holder_name: #{@account_holder_name.inspect},"\
-      " deposit_type: #{@deposit_type.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " deposit_type: #{@deposit_type.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

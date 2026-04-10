@@ -37,8 +37,8 @@ module FortisApi
     # @return [Array[ChangelogDetail]]
     attr_accessor :changelog_details
 
-    # User
-    # @return [User]
+    # Change Log Details
+    # @return [User4]
     attr_accessor :user
 
     # A mapping from model property names to API property names.
@@ -80,13 +80,11 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, created_ts = SKIP, action = SKIP, model = SKIP,
-                   model_id = SKIP, user_id = SKIP, changelog_details = SKIP,
-                   user = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, created_ts: SKIP, action: SKIP, model: SKIP,
+                   model_id: SKIP, user_id: SKIP, changelog_details: SKIP,
+                   user: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
@@ -96,6 +94,7 @@ module FortisApi
       @user_id = user_id unless user_id == SKIP
       @changelog_details = changelog_details unless changelog_details == SKIP
       @user = user unless user == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -119,21 +118,25 @@ module FortisApi
       end
 
       changelog_details = SKIP unless hash.key?('changelog_details')
-      user = User.from_hash(hash['user']) if hash['user']
+      user = User4.from_hash(hash['user']) if hash['user']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Changelog.new(id,
-                    created_ts,
-                    action,
-                    model,
-                    model_id,
-                    user_id,
-                    changelog_details,
-                    user,
-                    additional_properties)
+      Changelog.new(id: id,
+                    created_ts: created_ts,
+                    action: action,
+                    model: model,
+                    model_id: model_id,
+                    user_id: user_id,
+                    changelog_details: changelog_details,
+                    user: user,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -141,8 +144,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, created_ts: #{@created_ts}, action: #{@action}, model:"\
       " #{@model}, model_id: #{@model_id}, user_id: #{@user_id}, changelog_details:"\
-      " #{@changelog_details}, user: #{@user}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@changelog_details}, user: #{@user}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -151,7 +153,7 @@ module FortisApi
       "<#{class_name} id: #{@id.inspect}, created_ts: #{@created_ts.inspect}, action:"\
       " #{@action.inspect}, model: #{@model.inspect}, model_id: #{@model_id.inspect}, user_id:"\
       " #{@user_id.inspect}, changelog_details: #{@changelog_details.inspect}, user:"\
-      " #{@user.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@user.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

@@ -35,14 +35,13 @@ module FortisApi
       []
     end
 
-    def initialize(location_id = nil, title = nil, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id:, title:, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id
       @title = title
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -53,27 +52,31 @@ module FortisApi
       location_id = hash.key?('location_id') ? hash['location_id'] : nil
       title = hash.key?('title') ? hash['title'] : nil
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1TagsRequest.new(location_id,
-                        title,
-                        additional_properties)
+      V1TagsRequest.new(location_id: location_id,
+                        title: title,
+                        additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} location_id: #{@location_id}, title: #{@title}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} location_id: #{@location_id.inspect}, title: #{@title.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

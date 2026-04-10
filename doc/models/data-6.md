@@ -1,6 +1,8 @@
 
 # Data 6
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `Data6`
@@ -16,15 +18,16 @@
 | `terms_conditions` | `String` | Optional | This is the message that is displayed on the screen when prompting for a signature.<br><br>**Constraints**: *Maximum Length*: `4096` |
 | `id` | `String` | Optional | Device term ID<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
 | `reason_code_id` | `Integer` | Optional | Reason code ID |
-| `signature` | [`Signature`](../../doc/models/signature.md) | Optional | Signature Information on `expand` |
+| `signature` | [`Signature1`](../../doc/models/signature-1.md) | Optional | - |
 | `created_ts` | `Integer` | Optional | Created Time Stamp |
 | `modified_ts` | `Integer` | Optional | Modified Time Stamp |
 | `created_user_id` | `String` | Optional | System generated id for user who created record<br><br>**Constraints**: *Pattern*: `^(([0-9a-fA-F\-]{24,36})\|(([0-9a-fA-F]{8})-(([0-9a-fA-F]{4}\-){3})([0-9a-fA-F]{12})))$` |
-| `created_user` | [`CreatedUser`](../../doc/models/created-user.md) | Optional | User Information on `expand` |
-| `location` | [`Location`](../../doc/models/location.md) | Optional | Location Information on `expand` |
-| `terminal` | [`Terminal`](../../doc/models/terminal.md) | Optional | Terminal Information on `expand` |
+| `created_user` | [`User9`](../../doc/models/user-9.md) | Optional | - |
+| `location` | [`Location18`](../../doc/models/location-18.md) | Optional | - |
+| `terminal` | [`Terminal2`](../../doc/models/terminal-2.md) | Optional | - |
 | `changelogs` | [`Array[Changelog]`](../../doc/models/changelog.md) | Optional | Changelog Information on `expand` |
-| `reason_code` | [`ReasonCode`](../../doc/models/reason-code.md) | Optional | Reason Code Information on `expand` |
+| `reason_code` | [`ReasonCode1`](../../doc/models/reason-code-1.md) | Optional | - |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,7 +42,11 @@
   "reason_code_id": 1000,
   "created_ts": 1422040992,
   "modified_ts": 1422040992,
-  "created_user_id": "11e95f8ec39de8fbdb0a4f1a"
+  "created_user_id": "11e95f8ec39de8fbdb0a4f1a",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -53,17 +53,16 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, quick_invoice_id = SKIP, remote_ip = SKIP,
-                   created_ts = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, quick_invoice_id: SKIP, remote_ip: SKIP,
+                   created_ts: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @quick_invoice_id = quick_invoice_id unless quick_invoice_id == SKIP
       @remote_ip = remote_ip unless remote_ip == SKIP
       @created_ts = created_ts unless created_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -77,15 +76,19 @@ module FortisApi
       remote_ip = hash.key?('remote_ip') ? hash['remote_ip'] : SKIP
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      QuickInvoiceView.new(id,
-                           quick_invoice_id,
-                           remote_ip,
-                           created_ts,
-                           additional_properties)
+      QuickInvoiceView.new(id: id,
+                           quick_invoice_id: quick_invoice_id,
+                           remote_ip: remote_ip,
+                           created_ts: created_ts,
+                           additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -93,7 +96,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, quick_invoice_id: #{@quick_invoice_id}, remote_ip:"\
       " #{@remote_ip}, created_ts: #{@created_ts}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -101,7 +104,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id.inspect}, quick_invoice_id: #{@quick_invoice_id.inspect},"\
       " remote_ip: #{@remote_ip.inspect}, created_ts: #{@created_ts.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

@@ -9,38 +9,8 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Mechanism used by the Cardholder to authenticate to the 3DS Requestor.
-    # "07" and "08" are accepted as well if 3DS Server initiates authentication
-    # with EMV 3DS 2.2.0 version or greater (required protocol version can be
-    # set in the preferred_protocol_version field)
-    # >01 - No 3DS Requestor authentication occurred (i.e. cardholder "logged
-    # in" as guest)
-    # >
-    # >02 - Login to the cardholder account at the 3DS Requestor system using
-    # 3DS Requestor's own credentials
-    # >
-    # >03 - Login to the cardholder account at the 3DS Requestor system using
-    # federated ID
-    # >
-    # >04 - Login to the cardholder account at the 3DS Requestor system using
-    # issuer credentials
-    # >
-    # >05 - Login to the cardholder account at the 3DS Requestor system using
-    # third-party authentication
-    # >
-    # >06 - Login to the cardholder account at the 3DS Requestor system using
-    # FIDO Authenticator
-    # >
-    # >07 - Login to the cardholder account at the 3DS Requestor system using
-    # FIDO Authenticator (FIDO assurance data signed) (EMV 3DS 2.2.0 version or
-    # greater)
-    # >
-    # >08 - SRC Assurance Data (EMV 3DS 2.2.0 version or greater)
-    # >
-    # >80 through 99 - can be used for PS-specific values, regardless of
-    # protocol version
-    # >
-    # @return [ThreeDsReqAuthMethodEnum]
+    # TODO: Write general description for this method
+    # @return [ThreeDsReqAuthMethod]
     attr_accessor :three_ds_req_auth_method
 
     # Date and time converted into UTC of the cardholder authentication. Field
@@ -90,13 +60,11 @@ module FortisApi
       []
     end
 
-    def initialize(three_ds_req_auth_method = SKIP,
-                   three_ds_req_auth_timestamp = SKIP,
-                   three_ds_req_auth_data = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(three_ds_req_auth_method: SKIP,
+                   three_ds_req_auth_timestamp: SKIP,
+                   three_ds_req_auth_data: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @three_ds_req_auth_method = three_ds_req_auth_method unless three_ds_req_auth_method == SKIP
       unless three_ds_req_auth_timestamp == SKIP
@@ -104,6 +72,7 @@ module FortisApi
           three_ds_req_auth_timestamp
       end
       @three_ds_req_auth_data = three_ds_req_auth_data unless three_ds_req_auth_data == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -118,14 +87,18 @@ module FortisApi
       three_ds_req_auth_data =
         hash.key?('three_ds_req_auth_data') ? hash['three_ds_req_auth_data'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ThreeDsRequestorAuthenticationInfo.new(three_ds_req_auth_method,
-                                             three_ds_req_auth_timestamp,
-                                             three_ds_req_auth_data,
-                                             additional_properties)
+      ThreeDsRequestorAuthenticationInfo.new(three_ds_req_auth_method: three_ds_req_auth_method,
+                                             three_ds_req_auth_timestamp: three_ds_req_auth_timestamp,
+                                             three_ds_req_auth_data: three_ds_req_auth_data,
+                                             additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -133,7 +106,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} three_ds_req_auth_method: #{@three_ds_req_auth_method},"\
       " three_ds_req_auth_timestamp: #{@three_ds_req_auth_timestamp}, three_ds_req_auth_data:"\
-      " #{@three_ds_req_auth_data}, additional_properties: #{get_additional_properties}>"
+      " #{@three_ds_req_auth_data}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -142,7 +115,7 @@ module FortisApi
       "<#{class_name} three_ds_req_auth_method: #{@three_ds_req_auth_method.inspect},"\
       " three_ds_req_auth_timestamp: #{@three_ds_req_auth_timestamp.inspect},"\
       " three_ds_req_auth_data: #{@three_ds_req_auth_data.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

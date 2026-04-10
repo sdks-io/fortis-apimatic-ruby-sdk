@@ -9,27 +9,29 @@ module FortisApi
     # Get user verification
     # @param [String] user_verification_id Required parameter: TODO: type
     # description here
-    # @return [ResponseUserVerification] Response from the API call.
-    def get_user_verification(user_verification_id)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def getuserverification(user_verification_id)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/user-verifications/{user_verification_id}',
                                      Server::DEFAULT)
                    .template_param(new_parameter(user_verification_id, key: 'user_verification_id')
+                                    .is_required(true)
                                     .should_encode(true))
                    .header_param(new_parameter('application/json', key: 'accept'))
                    .auth(And.new('user-id', 'user-api-key', 'developer-id')))
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseUserVerification.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
 
     # List user verifications
-    # @param [Page] page Optional parameter: Use this field to specify paginate
+    # @param [Page1] page Optional parameter: Use this field to specify paginate
     # your results, by using page size and number. You can use one of the
     # following methods: >/endpoint?page={ "number": 1, "size": 50 } >
     # >/endpoint?page[number]=1&page[size]=50 >
@@ -60,24 +62,24 @@ module FortisApi
     # endpoint, and the end user also needs to know which contact the token
     # belongs to, this data can be returned in the accountvaults endpoint
     # request.
-    # @param [Format1Enum] format Optional parameter: Reporting format, valid
+    # @param [Format1] format Optional parameter: Reporting format, valid
     # values: csv, tsv
     # @param [String] typeahead Optional parameter: You can use any `field_name`
     # from this endpoint results to order the list using the value provided as
     # filter for the same `field_name`. It will be ordered using the following
     # rules: 1) Exact match, 2) Starts with, 3) Contains. >/endpoint?filter={
     # "field_name": "Value" }&_typeahead=field_name >
-    # @param [Array[Field59Enum]] fields Optional parameter: You can use any
+    # @param [Array[Field59]] fields Optional parameter: You can use any
     # `field_name` from this endpoint results to filter the list of fields
     # returned on the response.
-    # @return [ResponseUserVerificationsCollection] Response from the API call.
-    def list_user_verifications(page: nil,
-                                order: nil,
-                                filter_by: nil,
-                                expand: nil,
-                                format: nil,
-                                typeahead: nil,
-                                fields: nil)
+    # @return [ApiResponse] Complete http response with raw body and status code.
+    def listuserverifications(page: nil,
+                              order: nil,
+                              filter_by: nil,
+                              expand: nil,
+                              format: nil,
+                              typeahead: nil,
+                              fields: nil)
       @api_call
         .request(new_request_builder(HttpMethodEnum::GET,
                                      '/v1/user-verifications',
@@ -94,9 +96,10 @@ module FortisApi
         .response(new_response_handler
                     .deserializer(APIHelper.method(:custom_type_deserializer))
                     .deserialize_into(ResponseUserVerificationsCollection.method(:from_hash))
+                    .is_api_response(true)
                     .local_error('401',
                                  'Unauthorized',
-                                 Response401tokenException))
+                                 Response401TokenException))
         .execute
     end
   end

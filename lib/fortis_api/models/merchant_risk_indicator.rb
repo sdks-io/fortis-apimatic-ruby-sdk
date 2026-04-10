@@ -9,51 +9,12 @@ module FortisApi
     SKIP = Object.new
     private_constant :SKIP
 
-    # Indicates shipping method chosen for the transaction. Merchants must
-    # choose the Shipping Indicator code that most accurately describes the
-    # cardholder's specific transaction. If one or more items are included in
-    # the sale, use the Shipping Indicator code for the physical goods, or if
-    # all digital goods, use the code that describes the most expensive item.
-    # >01 - Ship to cardholder's billing address
-    # >
-    # >02 - Ship to another verified address on file with merchant
-    # >
-    # >03 - Ship to address that is different than the cardholder's billing
-    # address
-    # >
-    # >04 - "Ship to Store" / Pick-up at local store (Store address shall be
-    # populated in shipping address fields)
-    # >
-    # >05 - Digital goods (includes online services, electronic gift cards and
-    # redemption codes)
-    # >
-    # >06 - Travel and Event tickets, not shipped
-    # >
-    # >07 - Other (for example, Gaming, digital services not shipped, e-media
-    # subscriptions, etc.)
-    # >
-    # >08 - Pick-up and go delivery. Availble in EMV 3DS 2.3.1 and later
-    # >
-    # >09 - Locker delivery (or other automated pick-up). Availble in EMV 3DS
-    # 2.3.1 and later
-    # >
-    # >80 - PS-specific value (dependent on the payment scheme type)
-    # >
-    # >81 - PS-specific value (dependent on the payment scheme type)
-    # >
-    # @return [ShipIndicatorEnum]
+    # TODO: Write general description for this method
+    # @return [ShipIndicator]
     attr_accessor :ship_indicator
 
-    # Indicates the merchandise delivery timeframe.
-    # >01 - Electronic Delivery
-    # >
-    # >02 - Same day shipping
-    # >
-    # >03 - Overnight shipping
-    # >
-    # >04 - Two-day or more shipping
-    # >
-    # @return [DeliveryTimeframeEnum]
+    # TODO: Write general description for this method
+    # @return [DeliveryTimeframe]
     attr_accessor :delivery_timeframe
 
     # For electronic delivery, the email address to which the merchandise was
@@ -61,22 +22,14 @@ module FortisApi
     # @return [String]
     attr_accessor :delivery_email_address
 
-    # Indicates whether the cardholder is reordering previously purchased
-    # merchandise.
-    # >01 - First time ordered
-    # >
-    # >02 - Reordered
-    # >
-    # @return [ReorderItemsIndEnum]
+    # For electronic delivery, the email address to which the merchandise was
+    # delivered.
+    # @return [ReorderItemsInd]
     attr_accessor :reorder_items_ind
 
-    # Indicates whether Cardholder is placing an order for merchandise with a
-    # future availability or release date.
-    # >01 - Merchandise available
-    # >
-    # >02 - Future availability
-    # >
-    # @return [PreOrderPurchaseIndEnum]
+    # For electronic delivery, the email address to which the merchandise was
+    # delivered.
+    # @return [PreOrderPurchaseInd]
     attr_accessor :pre_order_purchase_ind
 
     # For a pre-ordered purchase, the expected date that the merchandise will be
@@ -105,7 +58,7 @@ module FortisApi
     # >
     # >02 - NFT transaction
     # >
-    # @return [Array[TransCharEnum]]
+    # @return [Array[TransChar]]
     attr_accessor :trans_char
 
     # A mapping from model property names to API property names.
@@ -145,16 +98,14 @@ module FortisApi
       []
     end
 
-    def initialize(ship_indicator = SKIP, delivery_timeframe = SKIP,
-                   delivery_email_address = SKIP, reorder_items_ind = SKIP,
-                   pre_order_purchase_ind = SKIP, pre_order_date = SKIP,
-                   gift_card_amount = SKIP, gift_card_curr = SKIP,
-                   gift_card_count = SKIP, trans_char = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(ship_indicator: SKIP, delivery_timeframe: SKIP,
+                   delivery_email_address: SKIP, reorder_items_ind: SKIP,
+                   pre_order_purchase_ind: SKIP, pre_order_date: SKIP,
+                   gift_card_amount: SKIP, gift_card_curr: SKIP,
+                   gift_card_count: SKIP, trans_char: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @ship_indicator = ship_indicator unless ship_indicator == SKIP
       @delivery_timeframe = delivery_timeframe unless delivery_timeframe == SKIP
@@ -166,6 +117,7 @@ module FortisApi
       @gift_card_curr = gift_card_curr unless gift_card_curr == SKIP
       @gift_card_count = gift_card_count unless gift_card_count == SKIP
       @trans_char = trans_char unless trans_char == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -193,21 +145,25 @@ module FortisApi
         hash.key?('gift_card_count') ? hash['gift_card_count'] : SKIP
       trans_char = hash.key?('trans_char') ? hash['trans_char'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      MerchantRiskIndicator.new(ship_indicator,
-                                delivery_timeframe,
-                                delivery_email_address,
-                                reorder_items_ind,
-                                pre_order_purchase_ind,
-                                pre_order_date,
-                                gift_card_amount,
-                                gift_card_curr,
-                                gift_card_count,
-                                trans_char,
-                                additional_properties)
+      MerchantRiskIndicator.new(ship_indicator: ship_indicator,
+                                delivery_timeframe: delivery_timeframe,
+                                delivery_email_address: delivery_email_address,
+                                reorder_items_ind: reorder_items_ind,
+                                pre_order_purchase_ind: pre_order_purchase_ind,
+                                pre_order_date: pre_order_date,
+                                gift_card_amount: gift_card_amount,
+                                gift_card_curr: gift_card_curr,
+                                gift_card_count: gift_card_count,
+                                trans_char: trans_char,
+                                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -219,7 +175,7 @@ module FortisApi
       " #{@pre_order_purchase_ind}, pre_order_date: #{@pre_order_date}, gift_card_amount:"\
       " #{@gift_card_amount}, gift_card_curr: #{@gift_card_curr}, gift_card_count:"\
       " #{@gift_card_count}, trans_char: #{@trans_char}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -231,7 +187,7 @@ module FortisApi
       " pre_order_purchase_ind: #{@pre_order_purchase_ind.inspect}, pre_order_date:"\
       " #{@pre_order_date.inspect}, gift_card_amount: #{@gift_card_amount.inspect},"\
       " gift_card_curr: #{@gift_card_curr.inspect}, gift_card_count: #{@gift_card_count.inspect},"\
-      " trans_char: #{@trans_char.inspect}, additional_properties: #{get_additional_properties}>"
+      " trans_char: #{@trans_char.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

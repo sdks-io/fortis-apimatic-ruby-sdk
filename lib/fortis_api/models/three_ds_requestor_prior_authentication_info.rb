@@ -17,19 +17,12 @@ module FortisApi
     # @return [String]
     attr_accessor :three_ds_req_prior_ref
 
-    # Mechanism used by the Cardholder to previously authenticate to the 3DS
-    # Requestor.
-    # >01 - Frictionless authentication occurred by ACS
-    # >
-    # >02 - Cardholder challenge occurred by ACS
-    # >
-    # >03 - AVS verified
-    # >
-    # >04 - Other issuer methods
-    # >
-    # >80 through 99 - PS-specific value (dependent on the payment scheme type).
-    # >
-    # @return [ThreeDsReqPriorAuthMethodEnum]
+    # This data element provides additional information to the ACS to determine
+    # the best approach for handling a request. The field is limited to 36
+    # characters containing ACS Transaction ID for a prior authenticated
+    # transaction (for example, the first recurring transaction that was
+    # authenticated with the cardholder).
+    # @return [ThreeDsReqPriorAuthMethod]
     attr_accessor :three_ds_req_prior_auth_method
 
     # Date and time converted into UTC of the prior authentication. Accepted
@@ -73,15 +66,13 @@ module FortisApi
       []
     end
 
-    def initialize(three_ds_req_prior_ref = SKIP,
-                   three_ds_req_prior_auth_method = SKIP,
-                   three_ds_req_prior_auth_timestamp = SKIP,
-                   three_ds_req_prior_auth_data = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(three_ds_req_prior_ref: SKIP,
+                   three_ds_req_prior_auth_method: SKIP,
+                   three_ds_req_prior_auth_timestamp: SKIP,
+                   three_ds_req_prior_auth_data: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @three_ds_req_prior_ref = three_ds_req_prior_ref unless three_ds_req_prior_ref == SKIP
       unless three_ds_req_prior_auth_method == SKIP
@@ -96,6 +87,7 @@ module FortisApi
         @three_ds_req_prior_auth_data =
           three_ds_req_prior_auth_data
       end
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -112,15 +104,19 @@ module FortisApi
       three_ds_req_prior_auth_data =
         hash.key?('three_ds_req_prior_auth_data') ? hash['three_ds_req_prior_auth_data'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ThreeDsRequestorPriorAuthenticationInfo.new(three_ds_req_prior_ref,
-                                                  three_ds_req_prior_auth_method,
-                                                  three_ds_req_prior_auth_timestamp,
-                                                  three_ds_req_prior_auth_data,
-                                                  additional_properties)
+      ThreeDsRequestorPriorAuthenticationInfo.new(three_ds_req_prior_ref: three_ds_req_prior_ref,
+                                                  three_ds_req_prior_auth_method: three_ds_req_prior_auth_method,
+                                                  three_ds_req_prior_auth_timestamp: three_ds_req_prior_auth_timestamp,
+                                                  three_ds_req_prior_auth_data: three_ds_req_prior_auth_data,
+                                                  additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -130,7 +126,7 @@ module FortisApi
       " three_ds_req_prior_auth_method: #{@three_ds_req_prior_auth_method},"\
       " three_ds_req_prior_auth_timestamp: #{@three_ds_req_prior_auth_timestamp},"\
       " three_ds_req_prior_auth_data: #{@three_ds_req_prior_auth_data}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -140,7 +136,7 @@ module FortisApi
       " three_ds_req_prior_auth_method: #{@three_ds_req_prior_auth_method.inspect},"\
       " three_ds_req_prior_auth_timestamp: #{@three_ds_req_prior_auth_timestamp.inspect},"\
       " three_ds_req_prior_auth_data: #{@three_ds_req_prior_auth_data.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

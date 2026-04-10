@@ -1,6 +1,8 @@
 
 # V1 Quick Invoices Request 1
 
+*This model accepts additional fields of type Object.*
+
 ## Structure
 
 `V1QuickInvoicesRequest1`
@@ -48,6 +50,7 @@
 | `quick_invoice_c_2` | `String` | Optional | Custom field 2 for api users to store custom data<br><br>**Constraints**: *Maximum Length*: `128` |
 | `quick_invoice_c_3` | `String` | Optional | Custom field 1 for api users to store custom data<br><br>**Constraints**: *Maximum Length*: `128` |
 | `auto_reopen` | `TrueClass \| FalseClass` | Optional | Auto Reopen. If set to true, a void, refund or detachment of a Transaction Payment will cause the QuickInvoice to be opened again |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -88,7 +91,11 @@
   "quick_invoice_c1": "custom-data-1",
   "quick_invoice_c2": "custom-data-2",
   "quick_invoice_c3": "custom-data-3",
-  "auto_reopen": true
+  "auto_reopen": true,
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

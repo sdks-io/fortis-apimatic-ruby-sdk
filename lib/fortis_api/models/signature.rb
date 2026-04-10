@@ -13,10 +13,8 @@ module FortisApi
     # @return [String]
     attr_accessor :signature
 
-    # Resource
-    # >Recurring, Transaction, AccountVault, DeviceTerm
-    # >
-    # @return [ResourceEnum]
+    # Signature
+    # @return [Resource]
     attr_accessor :resource
 
     # Resource ID
@@ -64,13 +62,11 @@ module FortisApi
       []
     end
 
-    def initialize(signature = SKIP, resource = SKIP, resource_id = SKIP,
-                   id = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(signature: SKIP, resource: SKIP, resource_id: SKIP, id: SKIP,
+                   created_ts: SKIP, modified_ts: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @signature = signature unless signature == SKIP
       @resource = resource unless resource == SKIP
@@ -78,6 +74,7 @@ module FortisApi
       @id = id unless id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -92,17 +89,21 @@ module FortisApi
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Signature.new(signature,
-                    resource,
-                    resource_id,
-                    id,
-                    created_ts,
-                    modified_ts,
-                    additional_properties)
+      Signature.new(signature: signature,
+                    resource: resource,
+                    resource_id: resource_id,
+                    id: id,
+                    created_ts: created_ts,
+                    modified_ts: modified_ts,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -110,7 +111,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} signature: #{@signature}, resource: #{@resource}, resource_id:"\
       " #{@resource_id}, id: #{@id}, created_ts: #{@created_ts}, modified_ts: #{@modified_ts},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -119,7 +120,7 @@ module FortisApi
       "<#{class_name} signature: #{@signature.inspect}, resource: #{@resource.inspect},"\
       " resource_id: #{@resource_id.inspect}, id: #{@id.inspect}, created_ts:"\
       " #{@created_ts.inspect}, modified_ts: #{@modified_ts.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

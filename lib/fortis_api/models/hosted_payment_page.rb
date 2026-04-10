@@ -49,8 +49,8 @@ module FortisApi
     # @return [String]
     attr_accessor :redirect_url_on_decline
 
-    # field_configuration
-    # @return [FieldConfiguration]
+    # Redirect Url On Decline
+    # @return [FieldConfiguration2]
     attr_accessor :field_configuration
 
     # Encryption Key
@@ -159,21 +159,18 @@ module FortisApi
       ]
     end
 
-    def initialize(user_id = SKIP, location_id = SKIP, location_api_id = SKIP,
-                   product_transaction_id = SKIP, title = SKIP,
-                   redirect_url_delay = 15, min_payment_amount = SKIP,
-                   max_payment_amount = 9999999999,
-                   redirect_url_on_approve = SKIP,
-                   redirect_url_on_decline = SKIP, field_configuration = SKIP,
-                   encryption_key = SKIP, stylesheet_url = SKIP,
-                   parent_send_message = SKIP, hide_optional_fields = SKIP,
-                   id = SKIP, created_ts = SKIP, modified_ts = SKIP,
-                   created_user_id = SKIP, modified_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(user_id: SKIP, location_id: SKIP, location_api_id: SKIP,
+                   product_transaction_id: SKIP, title: SKIP,
+                   redirect_url_delay: 15, min_payment_amount: SKIP,
+                   max_payment_amount: 9999999999,
+                   redirect_url_on_approve: SKIP, redirect_url_on_decline: SKIP,
+                   field_configuration: SKIP, encryption_key: SKIP,
+                   stylesheet_url: SKIP, parent_send_message: SKIP,
+                   hide_optional_fields: SKIP, id: SKIP, created_ts: SKIP,
+                   modified_ts: SKIP, created_user_id: SKIP,
+                   modified_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @user_id = user_id unless user_id == SKIP
       @location_id = location_id unless location_id == SKIP
@@ -195,6 +192,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -217,7 +215,7 @@ module FortisApi
         hash.key?('redirect_url_on_approve') ? hash['redirect_url_on_approve'] : SKIP
       redirect_url_on_decline =
         hash.key?('redirect_url_on_decline') ? hash['redirect_url_on_decline'] : SKIP
-      field_configuration = FieldConfiguration.from_hash(hash['field_configuration']) if
+      field_configuration = FieldConfiguration2.from_hash(hash['field_configuration']) if
         hash['field_configuration']
       encryption_key =
         hash.key?('encryption_key') ? hash['encryption_key'] : SKIP
@@ -235,31 +233,35 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      HostedPaymentPage.new(user_id,
-                            location_id,
-                            location_api_id,
-                            product_transaction_id,
-                            title,
-                            redirect_url_delay,
-                            min_payment_amount,
-                            max_payment_amount,
-                            redirect_url_on_approve,
-                            redirect_url_on_decline,
-                            field_configuration,
-                            encryption_key,
-                            stylesheet_url,
-                            parent_send_message,
-                            hide_optional_fields,
-                            id,
-                            created_ts,
-                            modified_ts,
-                            created_user_id,
-                            modified_user_id,
-                            additional_properties)
+      HostedPaymentPage.new(user_id: user_id,
+                            location_id: location_id,
+                            location_api_id: location_api_id,
+                            product_transaction_id: product_transaction_id,
+                            title: title,
+                            redirect_url_delay: redirect_url_delay,
+                            min_payment_amount: min_payment_amount,
+                            max_payment_amount: max_payment_amount,
+                            redirect_url_on_approve: redirect_url_on_approve,
+                            redirect_url_on_decline: redirect_url_on_decline,
+                            field_configuration: field_configuration,
+                            encryption_key: encryption_key,
+                            stylesheet_url: stylesheet_url,
+                            parent_send_message: parent_send_message,
+                            hide_optional_fields: hide_optional_fields,
+                            id: id,
+                            created_ts: created_ts,
+                            modified_ts: modified_ts,
+                            created_user_id: created_user_id,
+                            modified_user_id: modified_user_id,
+                            additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -274,7 +276,7 @@ module FortisApi
       " stylesheet_url: #{@stylesheet_url}, parent_send_message: #{@parent_send_message},"\
       " hide_optional_fields: #{@hide_optional_fields}, id: #{@id}, created_ts: #{@created_ts},"\
       " modified_ts: #{@modified_ts}, created_user_id: #{@created_user_id}, modified_user_id:"\
-      " #{@modified_user_id}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_user_id}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -292,7 +294,7 @@ module FortisApi
       " #{@hide_optional_fields.inspect}, id: #{@id.inspect}, created_ts: #{@created_ts.inspect},"\
       " modified_ts: #{@modified_ts.inspect}, created_user_id: #{@created_user_id.inspect},"\
       " modified_user_id: #{@modified_user_id.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
   end
 end

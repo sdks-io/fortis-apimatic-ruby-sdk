@@ -161,23 +161,21 @@ module FortisApi
       ]
     end
 
-    def initialize(surcharge_fee = SKIP, surcharge_rate = SKIP,
-                   max_transaction_amount = SKIP, min_fee_amount = SKIP,
-                   max_fee_amount = SKIP, surcharge_on_recurring = SKIP,
-                   refund_surcharges = SKIP, blind_refund_surcharges = SKIP,
-                   product_transaction_id = SKIP,
-                   run_as_separate_transaction = SKIP,
-                   apply_to_user_type_id = SKIP, title = SKIP,
-                   surcharge_label = SKIP,
-                   surcharge_transaction_product_id = SKIP,
-                   state_exception_check = SKIP, compliant = SKIP, id = SKIP,
-                   created_user_id = SKIP, modified_user_id = SKIP,
-                   created_ts = SKIP, modified_ts = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(surcharge_fee: SKIP, surcharge_rate: SKIP,
+                   max_transaction_amount: SKIP, min_fee_amount: SKIP,
+                   max_fee_amount: SKIP, surcharge_on_recurring: SKIP,
+                   refund_surcharges: SKIP, blind_refund_surcharges: SKIP,
+                   product_transaction_id: SKIP,
+                   run_as_separate_transaction: SKIP,
+                   apply_to_user_type_id: SKIP, title: SKIP,
+                   surcharge_label: SKIP,
+                   surcharge_transaction_product_id: SKIP,
+                   state_exception_check: SKIP, compliant: SKIP, id: SKIP,
+                   created_user_id: SKIP, modified_user_id: SKIP,
+                   created_ts: SKIP, modified_ts: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @surcharge_fee = surcharge_fee unless surcharge_fee == SKIP
       @surcharge_rate = surcharge_rate unless surcharge_rate == SKIP
@@ -206,6 +204,7 @@ module FortisApi
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
       @created_ts = created_ts unless created_ts == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -250,32 +249,36 @@ module FortisApi
       created_ts = hash.key?('created_ts') ? hash['created_ts'] : SKIP
       modified_ts = hash.key?('modified_ts') ? hash['modified_ts'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Surcharge.new(surcharge_fee,
-                    surcharge_rate,
-                    max_transaction_amount,
-                    min_fee_amount,
-                    max_fee_amount,
-                    surcharge_on_recurring,
-                    refund_surcharges,
-                    blind_refund_surcharges,
-                    product_transaction_id,
-                    run_as_separate_transaction,
-                    apply_to_user_type_id,
-                    title,
-                    surcharge_label,
-                    surcharge_transaction_product_id,
-                    state_exception_check,
-                    compliant,
-                    id,
-                    created_user_id,
-                    modified_user_id,
-                    created_ts,
-                    modified_ts,
-                    additional_properties)
+      Surcharge.new(surcharge_fee: surcharge_fee,
+                    surcharge_rate: surcharge_rate,
+                    max_transaction_amount: max_transaction_amount,
+                    min_fee_amount: min_fee_amount,
+                    max_fee_amount: max_fee_amount,
+                    surcharge_on_recurring: surcharge_on_recurring,
+                    refund_surcharges: refund_surcharges,
+                    blind_refund_surcharges: blind_refund_surcharges,
+                    product_transaction_id: product_transaction_id,
+                    run_as_separate_transaction: run_as_separate_transaction,
+                    apply_to_user_type_id: apply_to_user_type_id,
+                    title: title,
+                    surcharge_label: surcharge_label,
+                    surcharge_transaction_product_id: surcharge_transaction_product_id,
+                    state_exception_check: state_exception_check,
+                    compliant: compliant,
+                    id: id,
+                    created_user_id: created_user_id,
+                    modified_user_id: modified_user_id,
+                    created_ts: created_ts,
+                    modified_ts: modified_ts,
+                    additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -292,7 +295,7 @@ module FortisApi
       " state_exception_check: #{@state_exception_check}, compliant: #{@compliant}, id: #{@id},"\
       " created_user_id: #{@created_user_id}, modified_user_id: #{@modified_user_id}, created_ts:"\
       " #{@created_ts}, modified_ts: #{@modified_ts}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -312,7 +315,7 @@ module FortisApi
       " #{@state_exception_check.inspect}, compliant: #{@compliant.inspect}, id: #{@id.inspect},"\
       " created_user_id: #{@created_user_id.inspect}, modified_user_id:"\
       " #{@modified_user_id.inspect}, created_ts: #{@created_ts.inspect}, modified_ts:"\
-      " #{@modified_ts.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_ts.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

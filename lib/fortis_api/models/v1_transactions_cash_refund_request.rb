@@ -13,8 +13,8 @@ module FortisApi
     # @return [Array[AdditionalAmount]]
     attr_accessor :additional_amounts
 
-    # Billing Address Object
-    # @return [BillingAddress1]
+    # Additional amounts
+    # @return [BillingAddress2]
     attr_accessor :billing_address
 
     # Checkin Date - The time difference between checkin_date and checkout_date
@@ -60,12 +60,12 @@ module FortisApi
     # @return [String]
     attr_accessor :description
 
-    # Identity Verification
-    # @return [IdentityVerification]
+    # Description
+    # @return [IdentityVerification1]
     attr_accessor :identity_verification
 
-    # Possible values are '0', '1','2'
-    # @return [IiasIndEnum]
+    # Description
+    # @return [Object]
     attr_accessor :iias_ind
 
     # A base64 encoded string for the image.  Used with Check21 ACH
@@ -96,8 +96,11 @@ module FortisApi
     # @return [Integer]
     attr_accessor :installment_count
 
-    # Recurring Flag
-    # @return [RecurringFlagEnum]
+    # If this is a fixed installment plan and installment field is being passed
+    # as 1, then this field must have a vlue of 1-999 specifying the total
+    # number of installments on the plan. This number must be grater than or
+    # equal to installment_number.
+    # @return [Object]
     attr_accessor :recurring_flag
 
     # Installment Counter
@@ -260,8 +263,8 @@ module FortisApi
     # @return [TrueClass | FalseClass]
     attr_accessor :auto_decline_zip_override
 
-    # EBT Type
-    # @return [EbtTypeEnum]
+    # Auto Decline Zip Override
+    # @return [Object]
     attr_accessor :ebt_type
 
     # previous_transaction_id is used as token to run transaction. Account
@@ -418,12 +421,10 @@ module FortisApi
         contact_id
         customer_id
         description
-        iias_ind
         image_front
         image_back
         installment_number
         installment_count
-        recurring_flag
         installment_counter
         installment_total
         location_api_id
@@ -447,45 +448,42 @@ module FortisApi
         transaction_c1
         transaction_c2
         transaction_c3
-        ebt_type
         previous_transaction_id
         account_holder_name
         response_message
       ]
     end
 
-    def initialize(transaction_amount = nil, additional_amounts = SKIP,
-                   billing_address = SKIP, checkin_date = SKIP,
-                   checkout_date = SKIP, clerk_number = SKIP,
-                   contact_api_id = SKIP, contact_id = SKIP, custom_data = SKIP,
-                   customer_id = SKIP, description = SKIP,
-                   identity_verification = SKIP, iias_ind = SKIP,
-                   image_front = SKIP, image_back = SKIP, installment = SKIP,
-                   installment_number = SKIP, installment_count = SKIP,
-                   recurring_flag = SKIP, installment_counter = SKIP,
-                   installment_total = SKIP, subscription = SKIP,
-                   standing_order = SKIP, location_api_id = SKIP,
-                   location_id = SKIP, product_transaction_id = SKIP,
-                   advance_deposit = SKIP, no_show = SKIP,
-                   notification_email_address = SKIP, order_number = SKIP,
-                   po_number = SKIP, quick_invoice_id = SKIP, recurring = SKIP,
-                   recurring_number = SKIP, room_num = SKIP, room_rate = SKIP,
-                   save_account = SKIP, save_account_title = SKIP,
-                   subtotal_amount = SKIP, surcharge_amount = SKIP, tags = SKIP,
-                   tax = SKIP, tip_amount = SKIP, secondary_amount = SKIP,
-                   transaction_api_id = SKIP, transaction_c1 = SKIP,
-                   transaction_c2 = SKIP, transaction_c3 = SKIP,
-                   bank_funded_only_override = SKIP,
-                   allow_partial_authorization_override = SKIP,
-                   auto_decline_cvv_override = SKIP,
-                   auto_decline_street_override = SKIP,
-                   auto_decline_zip_override = SKIP, ebt_type = SKIP,
-                   previous_transaction_id = SKIP, account_holder_name = SKIP,
-                   response_message = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(transaction_amount:, additional_amounts: SKIP,
+                   billing_address: SKIP, checkin_date: SKIP,
+                   checkout_date: SKIP, clerk_number: SKIP,
+                   contact_api_id: SKIP, contact_id: SKIP, custom_data: SKIP,
+                   customer_id: SKIP, description: SKIP,
+                   identity_verification: SKIP, iias_ind: SKIP,
+                   image_front: SKIP, image_back: SKIP, installment: SKIP,
+                   installment_number: SKIP, installment_count: SKIP,
+                   recurring_flag: SKIP, installment_counter: SKIP,
+                   installment_total: SKIP, subscription: SKIP,
+                   standing_order: SKIP, location_api_id: SKIP,
+                   location_id: SKIP, product_transaction_id: SKIP,
+                   advance_deposit: SKIP, no_show: SKIP,
+                   notification_email_address: SKIP, order_number: SKIP,
+                   po_number: SKIP, quick_invoice_id: SKIP, recurring: SKIP,
+                   recurring_number: SKIP, room_num: SKIP, room_rate: SKIP,
+                   save_account: SKIP, save_account_title: SKIP,
+                   subtotal_amount: SKIP, surcharge_amount: SKIP, tags: SKIP,
+                   tax: SKIP, tip_amount: SKIP, secondary_amount: SKIP,
+                   transaction_api_id: SKIP, transaction_c1: SKIP,
+                   transaction_c2: SKIP, transaction_c3: SKIP,
+                   bank_funded_only_override: SKIP,
+                   allow_partial_authorization_override: SKIP,
+                   auto_decline_cvv_override: SKIP,
+                   auto_decline_street_override: SKIP,
+                   auto_decline_zip_override: SKIP, ebt_type: SKIP,
+                   previous_transaction_id: SKIP, account_holder_name: SKIP,
+                   response_message: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @additional_amounts = additional_amounts unless additional_amounts == SKIP
       @billing_address = billing_address unless billing_address == SKIP
@@ -562,6 +560,7 @@ module FortisApi
       @previous_transaction_id = previous_transaction_id unless previous_transaction_id == SKIP
       @account_holder_name = account_holder_name unless account_holder_name == SKIP
       @response_message = response_message unless response_message == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -581,7 +580,7 @@ module FortisApi
       end
 
       additional_amounts = SKIP unless hash.key?('additional_amounts')
-      billing_address = BillingAddress1.from_hash(hash['billing_address']) if
+      billing_address = BillingAddress2.from_hash(hash['billing_address']) if
         hash['billing_address']
       checkin_date = hash.key?('checkin_date') ? hash['checkin_date'] : SKIP
       checkout_date = hash.key?('checkout_date') ? hash['checkout_date'] : SKIP
@@ -592,7 +591,7 @@ module FortisApi
       custom_data = hash.key?('custom_data') ? hash['custom_data'] : SKIP
       customer_id = hash.key?('customer_id') ? hash['customer_id'] : SKIP
       description = hash.key?('description') ? hash['description'] : SKIP
-      identity_verification = IdentityVerification.from_hash(hash['identity_verification']) if
+      identity_verification = IdentityVerification1.from_hash(hash['identity_verification']) if
         hash['identity_verification']
       iias_ind = hash.key?('iias_ind') ? hash['iias_ind'] : SKIP
       image_front = hash.key?('image_front') ? hash['image_front'] : SKIP
@@ -668,68 +667,72 @@ module FortisApi
       response_message =
         hash.key?('response_message') ? hash['response_message'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1TransactionsCashRefundRequest.new(transaction_amount,
-                                          additional_amounts,
-                                          billing_address,
-                                          checkin_date,
-                                          checkout_date,
-                                          clerk_number,
-                                          contact_api_id,
-                                          contact_id,
-                                          custom_data,
-                                          customer_id,
-                                          description,
-                                          identity_verification,
-                                          iias_ind,
-                                          image_front,
-                                          image_back,
-                                          installment,
-                                          installment_number,
-                                          installment_count,
-                                          recurring_flag,
-                                          installment_counter,
-                                          installment_total,
-                                          subscription,
-                                          standing_order,
-                                          location_api_id,
-                                          location_id,
-                                          product_transaction_id,
-                                          advance_deposit,
-                                          no_show,
-                                          notification_email_address,
-                                          order_number,
-                                          po_number,
-                                          quick_invoice_id,
-                                          recurring,
-                                          recurring_number,
-                                          room_num,
-                                          room_rate,
-                                          save_account,
-                                          save_account_title,
-                                          subtotal_amount,
-                                          surcharge_amount,
-                                          tags,
-                                          tax,
-                                          tip_amount,
-                                          secondary_amount,
-                                          transaction_api_id,
-                                          transaction_c1,
-                                          transaction_c2,
-                                          transaction_c3,
-                                          bank_funded_only_override,
-                                          allow_partial_authorization_override,
-                                          auto_decline_cvv_override,
-                                          auto_decline_street_override,
-                                          auto_decline_zip_override,
-                                          ebt_type,
-                                          previous_transaction_id,
-                                          account_holder_name,
-                                          response_message,
-                                          additional_properties)
+      V1TransactionsCashRefundRequest.new(transaction_amount: transaction_amount,
+                                          additional_amounts: additional_amounts,
+                                          billing_address: billing_address,
+                                          checkin_date: checkin_date,
+                                          checkout_date: checkout_date,
+                                          clerk_number: clerk_number,
+                                          contact_api_id: contact_api_id,
+                                          contact_id: contact_id,
+                                          custom_data: custom_data,
+                                          customer_id: customer_id,
+                                          description: description,
+                                          identity_verification: identity_verification,
+                                          iias_ind: iias_ind,
+                                          image_front: image_front,
+                                          image_back: image_back,
+                                          installment: installment,
+                                          installment_number: installment_number,
+                                          installment_count: installment_count,
+                                          recurring_flag: recurring_flag,
+                                          installment_counter: installment_counter,
+                                          installment_total: installment_total,
+                                          subscription: subscription,
+                                          standing_order: standing_order,
+                                          location_api_id: location_api_id,
+                                          location_id: location_id,
+                                          product_transaction_id: product_transaction_id,
+                                          advance_deposit: advance_deposit,
+                                          no_show: no_show,
+                                          notification_email_address: notification_email_address,
+                                          order_number: order_number,
+                                          po_number: po_number,
+                                          quick_invoice_id: quick_invoice_id,
+                                          recurring: recurring,
+                                          recurring_number: recurring_number,
+                                          room_num: room_num,
+                                          room_rate: room_rate,
+                                          save_account: save_account,
+                                          save_account_title: save_account_title,
+                                          subtotal_amount: subtotal_amount,
+                                          surcharge_amount: surcharge_amount,
+                                          tags: tags,
+                                          tax: tax,
+                                          tip_amount: tip_amount,
+                                          secondary_amount: secondary_amount,
+                                          transaction_api_id: transaction_api_id,
+                                          transaction_c1: transaction_c1,
+                                          transaction_c2: transaction_c2,
+                                          transaction_c3: transaction_c3,
+                                          bank_funded_only_override: bank_funded_only_override,
+                                          allow_partial_authorization_override: allow_partial_authorization_override,
+                                          auto_decline_cvv_override: auto_decline_cvv_override,
+                                          auto_decline_street_override: auto_decline_street_override,
+                                          auto_decline_zip_override: auto_decline_zip_override,
+                                          ebt_type: ebt_type,
+                                          previous_transaction_id: previous_transaction_id,
+                                          account_holder_name: account_holder_name,
+                                          response_message: response_message,
+                                          additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -761,8 +764,7 @@ module FortisApi
       " #{@auto_decline_street_override}, auto_decline_zip_override:"\
       " #{@auto_decline_zip_override}, ebt_type: #{@ebt_type}, previous_transaction_id:"\
       " #{@previous_transaction_id}, account_holder_name: #{@account_holder_name},"\
-      " response_message: #{@response_message}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " response_message: #{@response_message}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -801,7 +803,7 @@ module FortisApi
       " auto_decline_zip_override: #{@auto_decline_zip_override.inspect}, ebt_type:"\
       " #{@ebt_type.inspect}, previous_transaction_id: #{@previous_transaction_id.inspect},"\
       " account_holder_name: #{@account_holder_name.inspect}, response_message:"\
-      " #{@response_message.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@response_message.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

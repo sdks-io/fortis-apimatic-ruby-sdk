@@ -121,17 +121,14 @@ module FortisApi
       ]
     end
 
-    def initialize(title = SKIP, product_file_credential_id = SKIP,
-                   free_bytes = SKIP, byte_increment = SKIP,
-                   max_file_size_bytes = SKIP, increment_cost = SKIP,
-                   monthly_fee = SKIP, file_ext_allowed = SKIP,
-                   container = SKIP, id = SKIP, created_ts = SKIP,
-                   modified_ts = SKIP, active = SKIP, created_user_id = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(title: SKIP, product_file_credential_id: SKIP,
+                   free_bytes: SKIP, byte_increment: SKIP,
+                   max_file_size_bytes: SKIP, increment_cost: SKIP,
+                   monthly_fee: SKIP, file_ext_allowed: SKIP, container: SKIP,
+                   id: SKIP, created_ts: SKIP, modified_ts: SKIP, active: SKIP,
+                   created_user_id: SKIP, additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @title = title unless title == SKIP
       unless product_file_credential_id == SKIP
@@ -150,6 +147,7 @@ module FortisApi
       @modified_ts = modified_ts unless modified_ts == SKIP
       @active = active unless active == SKIP
       @created_user_id = created_user_id unless created_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -178,25 +176,29 @@ module FortisApi
       created_user_id =
         hash.key?('created_user_id') ? hash['created_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      ProductFile1.new(title,
-                       product_file_credential_id,
-                       free_bytes,
-                       byte_increment,
-                       max_file_size_bytes,
-                       increment_cost,
-                       monthly_fee,
-                       file_ext_allowed,
-                       container,
-                       id,
-                       created_ts,
-                       modified_ts,
-                       active,
-                       created_user_id,
-                       additional_properties)
+      ProductFile1.new(title: title,
+                       product_file_credential_id: product_file_credential_id,
+                       free_bytes: free_bytes,
+                       byte_increment: byte_increment,
+                       max_file_size_bytes: max_file_size_bytes,
+                       increment_cost: increment_cost,
+                       monthly_fee: monthly_fee,
+                       file_ext_allowed: file_ext_allowed,
+                       container: container,
+                       id: id,
+                       created_ts: created_ts,
+                       modified_ts: modified_ts,
+                       active: active,
+                       created_user_id: created_user_id,
+                       additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -208,7 +210,7 @@ module FortisApi
       " #{@increment_cost}, monthly_fee: #{@monthly_fee}, file_ext_allowed: #{@file_ext_allowed},"\
       " container: #{@container}, id: #{@id}, created_ts: #{@created_ts}, modified_ts:"\
       " #{@modified_ts}, active: #{@active}, created_user_id: #{@created_user_id},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -221,7 +223,7 @@ module FortisApi
       " #{@monthly_fee.inspect}, file_ext_allowed: #{@file_ext_allowed.inspect}, container:"\
       " #{@container.inspect}, id: #{@id.inspect}, created_ts: #{@created_ts.inspect},"\
       " modified_ts: #{@modified_ts.inspect}, active: #{@active.inspect}, created_user_id:"\
-      " #{@created_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@created_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

@@ -21,8 +21,8 @@ module FortisApi
     # @return [String]
     attr_accessor :payment_transaction_id
 
-    # Status
-    # @return [Status3Enum]
+    # Payment Transaction Id
+    # @return [Status3]
     attr_accessor :status
 
     # Recurring Id
@@ -88,15 +88,13 @@ module FortisApi
       ]
     end
 
-    def initialize(id = SKIP, declined_transaction_id = SKIP,
-                   payment_transaction_id = SKIP, status = SKIP,
-                   recurring_id = SKIP, created_ts = SKIP,
-                   created_user_id = SKIP, modified_ts = SKIP,
-                   modified_user_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, declined_transaction_id: SKIP,
+                   payment_transaction_id: SKIP, status: SKIP,
+                   recurring_id: SKIP, created_ts: SKIP, created_user_id: SKIP,
+                   modified_ts: SKIP, modified_user_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @declined_transaction_id = declined_transaction_id unless declined_transaction_id == SKIP
@@ -107,6 +105,7 @@ module FortisApi
       @created_user_id = created_user_id unless created_user_id == SKIP
       @modified_ts = modified_ts unless modified_ts == SKIP
       @modified_user_id = modified_user_id unless modified_user_id == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -128,20 +127,24 @@ module FortisApi
       modified_user_id =
         hash.key?('modified_user_id') ? hash['modified_user_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      List3.new(id,
-                declined_transaction_id,
-                payment_transaction_id,
-                status,
-                recurring_id,
-                created_ts,
-                created_user_id,
-                modified_ts,
-                modified_user_id,
-                additional_properties)
+      List3.new(id: id,
+                declined_transaction_id: declined_transaction_id,
+                payment_transaction_id: payment_transaction_id,
+                status: status,
+                recurring_id: recurring_id,
+                created_ts: created_ts,
+                created_user_id: created_user_id,
+                modified_ts: modified_ts,
+                modified_user_id: modified_user_id,
+                additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -151,7 +154,7 @@ module FortisApi
       " payment_transaction_id: #{@payment_transaction_id}, status: #{@status}, recurring_id:"\
       " #{@recurring_id}, created_ts: #{@created_ts}, created_user_id: #{@created_user_id},"\
       " modified_ts: #{@modified_ts}, modified_user_id: #{@modified_user_id},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -162,7 +165,7 @@ module FortisApi
       " #{@payment_transaction_id.inspect}, status: #{@status.inspect}, recurring_id:"\
       " #{@recurring_id.inspect}, created_ts: #{@created_ts.inspect}, created_user_id:"\
       " #{@created_user_id.inspect}, modified_ts: #{@modified_ts.inspect}, modified_user_id:"\
-      " #{@modified_user_id.inspect}, additional_properties: #{get_additional_properties}>"
+      " #{@modified_user_id.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end

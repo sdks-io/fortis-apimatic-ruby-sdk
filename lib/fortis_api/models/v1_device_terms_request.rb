@@ -56,19 +56,18 @@ module FortisApi
       ]
     end
 
-    def initialize(location_id = nil, terminal_id = nil,
-                   require_signature = nil, terms_conditions = nil,
-                   device_term_api_id = SKIP, additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(location_id:, terminal_id:, require_signature:,
+                   terms_conditions:, device_term_api_id: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @location_id = location_id
       @terminal_id = terminal_id
       @require_signature = require_signature
       @device_term_api_id = device_term_api_id unless device_term_api_id == SKIP
       @terms_conditions = terms_conditions
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -85,16 +84,20 @@ module FortisApi
       device_term_api_id =
         hash.key?('device_term_api_id') ? hash['device_term_api_id'] : SKIP
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      V1DeviceTermsRequest.new(location_id,
-                               terminal_id,
-                               require_signature,
-                               terms_conditions,
-                               device_term_api_id,
-                               additional_properties)
+      V1DeviceTermsRequest.new(location_id: location_id,
+                               terminal_id: terminal_id,
+                               require_signature: require_signature,
+                               terms_conditions: terms_conditions,
+                               device_term_api_id: device_term_api_id,
+                               additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
@@ -102,8 +105,7 @@ module FortisApi
       class_name = self.class.name.split('::').last
       "<#{class_name} location_id: #{@location_id}, terminal_id: #{@terminal_id},"\
       " require_signature: #{@require_signature}, device_term_api_id: #{@device_term_api_id},"\
-      " terms_conditions: #{@terms_conditions}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " terms_conditions: #{@terms_conditions}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
@@ -112,7 +114,7 @@ module FortisApi
       "<#{class_name} location_id: #{@location_id.inspect}, terminal_id: #{@terminal_id.inspect},"\
       " require_signature: #{@require_signature.inspect}, device_term_api_id:"\
       " #{@device_term_api_id.inspect}, terms_conditions: #{@terms_conditions.inspect},"\
-      " additional_properties: #{get_additional_properties}>"
+      " additional_properties: #{@additional_properties}>"
     end
   end
 end

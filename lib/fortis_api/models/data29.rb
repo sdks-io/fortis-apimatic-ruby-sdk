@@ -17,8 +17,8 @@ module FortisApi
     # @return [String]
     attr_accessor :transaction_id
 
-    # Level 3 data object
-    # @return [Level3Data]
+    # Transaction ID
+    # @return [Level3Data1]
     attr_accessor :level3_data
 
     # A mapping from model property names to API property names.
@@ -44,16 +44,15 @@ module FortisApi
       []
     end
 
-    def initialize(id = SKIP, transaction_id = SKIP, level3_data = SKIP,
-                   additional_properties = {})
-      # Add additional model properties to the instance.
-      additional_properties.each do |_name, _value|
-        instance_variable_set("@#{_name}", _value)
-      end
+    def initialize(id: SKIP, transaction_id: SKIP, level3_data: SKIP,
+                   additional_properties: nil)
+      # Add additional model properties to the instance
+      additional_properties = {} if additional_properties.nil?
 
       @id = id unless id == SKIP
       @transaction_id = transaction_id unless transaction_id == SKIP
       @level3_data = level3_data unless level3_data == SKIP
+      @additional_properties = additional_properties
     end
 
     # Creates an instance of the object from a hash.
@@ -64,31 +63,34 @@ module FortisApi
       id = hash.key?('id') ? hash['id'] : SKIP
       transaction_id =
         hash.key?('transaction_id') ? hash['transaction_id'] : SKIP
-      level3_data = Level3Data.from_hash(hash['level3_data']) if hash['level3_data']
+      level3_data = Level3Data1.from_hash(hash['level3_data']) if hash['level3_data']
 
-      # Clean out expected properties from Hash.
-      additional_properties = hash.reject { |k, _| names.value?(k) }
+      # Create a new hash for additional properties, removing known properties.
+      new_hash = hash.reject { |k, _| names.value?(k) }
+
+      additional_properties = APIHelper.get_additional_properties(
+        new_hash, proc { |value| value }
+      )
 
       # Create object from extracted values.
-      Data29.new(id,
-                 transaction_id,
-                 level3_data,
-                 additional_properties)
+      Data29.new(id: id,
+                 transaction_id: transaction_id,
+                 level3_data: level3_data,
+                 additional_properties: additional_properties)
     end
 
     # Provides a human-readable string representation of the object.
     def to_s
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id}, transaction_id: #{@transaction_id}, level3_data:"\
-      " #{@level3_data}, additional_properties: #{get_additional_properties}>"
+      " #{@level3_data}, additional_properties: #{@additional_properties}>"
     end
 
     # Provides a debugging-friendly string with detailed object information.
     def inspect
       class_name = self.class.name.split('::').last
       "<#{class_name} id: #{@id.inspect}, transaction_id: #{@transaction_id.inspect},"\
-      " level3_data: #{@level3_data.inspect}, additional_properties:"\
-      " #{get_additional_properties}>"
+      " level3_data: #{@level3_data.inspect}, additional_properties: #{@additional_properties}>"
     end
   end
 end
