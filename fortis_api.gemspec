@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'fortis-apimatic-sdk'
-  s.version = '1.0.3'
+  s.version = '1.0.5'
   s.summary = 'SDKs for fortis'
   s.description = 'SDKs for fortis by APIMatic'
   s.authors = ['Muhammad Rafay']

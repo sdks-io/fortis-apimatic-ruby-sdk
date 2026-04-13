@@ -10,7 +10,7 @@ module FortisApi
     attr_accessor :config, :http_call_back
 
     def self.user_agent
-      'Ruby SDK, Version: 1.0.3, on OS {os-info}'
+      'Ruby SDK, Version: 1.0.5, on OS {os-info}'
     end
 
     def self.user_agent_parameters
